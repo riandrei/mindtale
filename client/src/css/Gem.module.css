@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@200;300;400;700;900&family=Sedgwick+Ave&family=Whisper&display=swap');
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+.Gem{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+.Gem img{
+    width:25px;
+    transform: translateX(5px);
+}
+.Gem input{
+    width:75px;
+    min-height:20px;
+    background-color: #111;
+    color:#fff;
+
+    border:none;
+    text-align: center;
+    pointer-events: none;
+
+    font-family: 'Poppins';
+}
+.Gem button{
+    font-size: 1em;
+    width:25px;
+    height:25px;
+    background-color: gold;
+    border-radius: 50%;
+    border:none;
+    transform: translateX(-10px);
+}
