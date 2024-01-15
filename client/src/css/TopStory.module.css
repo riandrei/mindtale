@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@200;300;400;700;900&family=Sedgwick+Ave&family=Whisper&display=swap');
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+.TopStory {
+    position: relative;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+    padding: 1.5rem 1.5rem 2rem;
+}
+
+.TopStory::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url(../assets/artwork2.webp);
+    background-size: cover;
+    background-position: center;
+    filter: blur(1.5px); 
+    z-index: -1;
+}
+.story_left{
+    display:flex;
+    flex-direction: column;
+    gap:.5rem;
+}
+.story_left h1{
+    color:#fff;
+    font-family:'Poppins';
+}
+.story_left img{
+    height:385px;
+    aspect-ratio: 1/1.54;
+
+    transition: all 550ms;
+}
+.story_left img:hover{
+    border-radius: 0 200px 0 200px;
+}
+.book_inner{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.book_title{
+    display: flex;
+    gap:1rem;
+    color:#fff;
+    background-color: #33333375;
+    padding:.5rem;
+}
+.book_title img{
+    width:30px;
+    height:30px;
+    cursor: pointer;
+    
+}
+.book_title img:active{
+    scale:.9;
+}
+.story_right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:1rem;
+    width:75%;
+    color:#fff;
+    padding-bottom: 5rem;
+    line-height: 125%;
+
+
+}
+.description{
+    background-color: #33333375;
+    padding:.5rem;
+    line-height: 200%;
+    color:#fff;
+    font-size: 1em;
+    font-family:'Poppins';
+    font-weight:400;
+}
+.story_right button{
+    width:100px;
+    padding:.5rem 1rem;
+    background-color: #34A9D5;
+    border:none;
+    font-family: 'Poppins';
+    color:#fff;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 350ms;
+    transform: translateY(.5rem);
+}
+.story_right button:hover{
+    scale:1.05;
+}
+.dots{
+    display: none;
+}
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+.SavedNotif{
+    
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap:.5rem;
+    background-color: #222;
+    padding:.5rem 1rem;
+    color:#fff;
+    border-radius: 10px;
+    z-index: 999;
+    animation: saved 1 1250ms ease-out forwards;
+}
+.SavedNotif img{
+    width:2rem;
+}
+@keyframes saved{
+    0%{
+        top:5%;
+        opacity: 1;
+    }
+    75%{
+        top:10%;
+        opacity: 1;
+    }
+    80%{
+        top:10%;
+    }
+    95%{
+        top:10%;
+    }
+
+    100%{
+        opacity:.25;
+        display: none;
+    }
+}
+
+@media(max-width:431px){
+    .TopStory{
+        height:60vh;
+        max-height: 420px;
+        padding:.5rem;
+        align-items: flex-end;
+
+        padding-top: 20vh;
+        padding-bottom: 1.5rem;
+        gap:.5rem;
+    }
+    .story_left{
+        width:fit-content;
+    }
+    /* .story_left{
+        padding-bottom: 4rem;
+    } */
+    .story_left{
+        justify-content: center;
+        
+    }
+    .story_left h1{
+        font-size: 1em;
+    }
+    .story_left img{
+        height:238px;
+        width:160px;
+    }
+    .story_right{
+        gap:.25rem;
+        padding-bottom: 1rem;
+        /* transform: translateY(2rem); */
+    }
+    .story_right p{
+        font-size: .65em;
+        line-height: normal;
+        overflow: hidden;
+        
+    }
+    .story_right button{
+        padding:.25rem .5rem;
+        width:75px;
+        font-size: .6em;
+    }
+    .book_title{
+        justify-content: space-between;
+    }
+    .book_inner h2{
+        font-size: 1em;
+    }
+    .book_title img{
+        width:20px;
+        height: 20px;
+    }
+    .description{
+        font-size: .6em;
+    }
+    .dots{
+        display: inline-block;
+    }
+    .book_inner{
+        gap:.1rem;
+    }
+
+    .SavedNotif h3{
+        font-size: .65em;
+    }
+    @keyframes saved{
+        0%{
+            top:40%;
+            opacity: 1;
+        }
+        75%{
+            top:50%;
+            opacity: 1;
+        }
+        80%{
+            top:50%;
+        }
+        95%{
+            top:50%;
+        }
+    
+        100%{
+            opacity:.25;
+            display: none;
+        }
+    }
+
+}
