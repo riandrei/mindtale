@@ -5,9 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cd client && npm run dev",
-    "install": "cd client && npm install"
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server-install": "cd server && npm install",
+    "client-install": "cd client && npm install",
+    "install-packages": "concurrently \"npm run server-install\" \"npm run client-install\""
   },
   "author": "Riandrei",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.3.1"
+  }
 }
