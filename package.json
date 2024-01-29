@@ -9,8 +9,5 @@
     "install": "cd client && npm install"
   },
   "author": "Riandrei",
-  "license": "ISC",
-  "dependencies": {
-    "react-router-dom": "^6.21.1"
-  }
+  "license": "ISC"
 }
