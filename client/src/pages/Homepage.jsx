@@ -6,12 +6,20 @@ import GemContainer from '../components/GemContainer'
 import Notification from '../components/Notification'
 import Nav from '../components/Nav'
 import TopStory from '../components/TopStory'
+import TopBar from '../components/TopBar'
+import LastRead from '../components/LastRead'
+import DailyRead from '../components/DailyRead'
 
 import Filter from '../assets/filter.png'
 import Search from '../assets/search.png'
+import Art from '../assets/artwork3.jpg'
+import Save from '../assets/save.png'
 
 
 function Homepage() {
+
+    
+
     const buttonLabels = ["For you", "Scifi", "Sports", "Top Rated", "Adventure", "Fantasy", "Action", "Horror", "Mystery", "Romance"];
     const [activeButton, setActiveButton] = useState(0);
   
@@ -29,29 +37,8 @@ function Homepage() {
 
         <div className={styles.Homepage}>
             <Nav/>
-            
-            <section className={styles.top_container}>
-                <div className={styles.top_inner}>
-                    <NameTag/>
-                    <div className={styles.top_right}>
-                        {/* <GemContainer/> */}
-                        <Notification/>
-                    </div>
-                </div>
-                <div className={styles.search}>
-                    <button><img src={ Search } /></button>
-                    <input maxLength={30} type="text" placeholder="   Search stories" />
-                    <img onClick={handleFilterClick} className={ styles.filter } src={Filter} />
-
-                    {isOpenFilter && (
-                        <div className={ styles.filter_open}>
-                            <h1>Filter</h1>
-                        </div>
-                    )}
-                </div>
-            </section>
-
-            <section id="top-con" className={ styles.topstory_container }z>
+            <TopBar/>
+            <section id="top-con" className={ styles.topstory_container }>
                 <TopStory/>
                 <TopStory/>
                 <TopStory/>
@@ -59,27 +46,12 @@ function Homepage() {
                 <TopStory/>
             </section>
 
-            <section className={ styles.categories_container }>
-                <div className={ styles.story_button }>
-                    <button></button>
-                    <button></button>
-                    <button></button>
-                    <button></button>
-                    <button></button>
-                </div>
-                <div className={styles.categories}>
-                {buttonLabels.map((label, index) => (
-                    <button
-                        key={index}
-                        style={{
-                            backgroundColor: activeButton === index ? "#940000" : "",
-                        }}
-                        onClick={() => handleButtonClick(index)}
-                        >
-                        {label}
-                    </button>
-                ))}
-                </div>
+
+
+            <section className={ styles.main_body}>
+                <LastRead/>
+                <DailyRead/>
+                <h1 style={{color:"#fff"}}>helloe</h1>
             </section>
 
         </div>

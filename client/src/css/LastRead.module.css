@@ -1,0 +1,145 @@
+.continue_reading{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+    color:#fff;
+    padding:.5rem;
+
+
+}
+@keyframes textShine {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+.continue_reading h1{
+    font-size: 2em;
+
+    background: linear-gradient(
+        to right,
+        #fff 20%,
+        #FFD3D3 30%,
+        #ff7f7f 70%,
+        #E43544 80%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-fill-color: transparent;
+      background-size: 500% auto;
+      animation: textShine 5s ease-in-out infinite alternate;
+}
+.continue_inner{
+    display: flex;
+    gap:1.5rem;
+}
+.continue_details{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    gap:1rem;
+    width:73%;
+}
+.continue_title_container{
+    display: flex;
+    gap:.5rem;
+    background-color: #33333375;
+    padding:.5rem;
+}
+.explore{
+    display: flex;
+    gap:1rem;
+}
+.continue_details button{
+    width:10%;
+    padding:.5rem .75rem;
+    border:none;
+    color:#fff;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 350ms;
+}
+.continue_details button:hover{
+    scale:1.05;
+}
+.continue_details button:first-child{
+
+    background-color: #940000;
+
+}
+.continue_details button:nth-child(2){
+
+    border:solid 1px #fff;
+    background-color: #33333375;
+
+}
+.story_description{
+    padding:.5rem;
+    background-color: #33333375;
+    line-height: 200%;
+}
+.continue_title{
+    display: flex;
+    flex-direction: column;
+}
+.continue_main_pic{
+    height:385px;
+    aspect-ratio: 1/1.54;
+    border-radius: 20px;
+    border:solid 1px #fff;
+}
+.save{
+    margin-top: .25rem;
+    width:30px;
+    height:30px;
+}
+@media (min-width: 768px) and (max-width: 1023px){
+    .explore button{
+        width:25%;
+    }
+}
+@media(max-width:431px){
+    .continue_reading{
+        gap:.25rem;
+    }
+    .continue_reading h1{
+        font-size: 1.5em;
+    }
+    .continue_main_pic{
+        height:238px;
+        width:160px;
+    }
+    .story_description{
+        line-height: 125%;
+    }
+    .continue_inner{
+        gap:.5rem;
+        
+    }
+    .story_description{
+        font-size: .6em;
+        line-height: 200%;
+    }
+    .explore button{
+        width:50%;
+        padding:.25rem .5rem;
+    }
+    .continue_title h2{
+        font-size: 1em;
+    }
+
+    .continue_title p{
+        font-size: .75em;
+    }
+    .continue_title_container{
+        justify-content: space-between;
+    }
+    .continue_title_container img{
+        width:20px;
+        height:20px;
+    }
+    
+}
