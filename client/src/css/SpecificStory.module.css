@@ -1,0 +1,22 @@
+.SpecificStory{
+    display: flex;
+    flex-direction: column;
+    gap:.25rem;
+    width:175px;
+}
+.SampleStory{
+    height:250px;
+    width:175px;
+    border-radius: 10px;
+
+}
+.Stars{
+    display: flex;
+    
+    gap:1rem;
+}
+.Stars img{
+    width:10px;
+}
+@media(max-width:431px){
+}

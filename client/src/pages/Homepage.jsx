@@ -9,6 +9,7 @@ import TopStory from '../components/TopStory'
 import TopBar from '../components/TopBar'
 import LastRead from '../components/LastRead'
 import DailyRead from '../components/DailyRead'
+import Recommendation from '../components/Recommendation.jsx'
 
 import Filter from '../assets/filter.png'
 import Search from '../assets/search.png'
@@ -20,12 +21,12 @@ function Homepage() {
 
     
 
-    const buttonLabels = ["For you", "Scifi", "Sports", "Top Rated", "Adventure", "Fantasy", "Action", "Horror", "Mystery", "Romance"];
-    const [activeButton, setActiveButton] = useState(0);
+    // const buttonLabels = ["For you", "Scifi", "Sports", "Top Rated", "Adventure", "Fantasy", "Action", "Horror", "Mystery", "Romance"];
+    // const [activeButton, setActiveButton] = useState(0);
   
-    const handleButtonClick = (index) => {
-      setActiveButton(index);
-    };
+    // const handleButtonClick = (index) => {
+    //   setActiveButton(index);
+    // };
 
     const [isOpenFilter, setOpenFilter] = useState(false);
 
@@ -36,7 +37,7 @@ function Homepage() {
     return (
 
         <div className={styles.Homepage}>
-            <Nav/>
+                <Nav />
             <TopBar/>
             <section id="top-con" className={ styles.topstory_container }>
                 <TopStory/>
@@ -49,6 +50,7 @@ function Homepage() {
 
 
             <section className={ styles.main_body}>
+                <Recommendation/>
                 <LastRead/>
                 <DailyRead/>
                 <h1 style={{color:"#fff"}}>helloe</h1>

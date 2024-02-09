@@ -1,24 +1,433 @@
-.main_pic{
-    width:100%;
-    height:75vh;
-    background-image: url(../assets/artwork3.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: solid 1px #333;
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.Story_details{
+    width:calc(100% - 70px);
+    padding:0 1rem;
 
-    border-radius: 0 0 100% 100%;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+    background-image: url(../assets/mindtale_blur.png);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+    
+
+}
+.Details_top{
+
+    display: flex;
+    gap:1rem;
+    padding-bottom: .75rem;
+    border-bottom: solid 2px #333;
+}
+.main_pic{
+    width:300px;
+    aspect-ratio: 1/1.36;
+    border-radius:0 0 210px 0;
+    border:solid 2px #fff;
+}
+.Details_left, .Details_right{
+    color:#fff;
+    position:relative;
+    padding-top: 135px;
+
 }
 
-/* @media(min-width:835px) and (max-height:1280px){
-    .main_pic{
-        height:50vh;
-        background-color: green;
+.Details_left{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+    
+}
+.Details_right{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+.Synopsis{
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;
+    line-height:250%;
+}
+
+.Details_buttons{
+    display:flex;
+    gap:.5rem;
+}
+.Details_buttons img{
+    width:20px;
+    
+}
+.Details_buttons button{
+    display:flex;
+    align-items:center;
+    padding:.25rem 1.25rem;
+    border-radius:5px;
+    border:none;
+    font-size:1em;
+    color:#fff;
+    cursor: pointer;
+
+}
+.Details_buttons button:active{
+    scale:.9;
+}
+.read{
+    text-decoration: none;
+    color:#fff;
+    display: flex;
+    gap:.25rem;
+    align-items: center;
+}
+.Details_buttons button:first-child{
+    background-color:#940000;
+    display: flex;
+    gap:.5rem;
+}
+.Details_buttons button:nth-child(2){
+    display: flex;
+    gap:.5rem;
+    background-color:#111;
+    border:solid 1px #fff;
+}
+.Story_top{
+    display: flex;
+    justify-content: space-between;
+}
+.save{
+    height:40px;
+}
+.Story_title{
+    display: flex;
+    flex-direction: column;
+    gap:.25rem;
+
+    max-width:100%;
+}
+.Story_title h1{
+    letter-spacing: 10px;
+    line-height: 100%;
+    text-transform: uppercase;
+    background: linear-gradient(
+        to right,
+        #fff 20%,
+        #FFD3D3 30%,
+        #ff7f7f 70%,
+        #E43544 80%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-fill-color: transparent;
+      background-size: 500% auto;
+      animation: textShine 5s ease-in-out infinite alternate;
+}
+
+@keyframes textShine {
+    0% {
+      background-position: 0% 50%;
     }
-} */
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+.Story_title p{
+    opacity: .75;
+}
+.Star_container{
+    display: flex;
+    gap:.5rem;
+    max-width: 100%;
+    align-items: center;
+}
+.Star_container img{
+    width:10px;
+    height:10px;
+}
+.Star_container span{
+    font-size: .75em;
+}
+.back{
+    display:none;
+}
+
+.Views{
+    display: flex;
+    width:100%;
+    justify-content: flex-end;
+    gap:.5rem;
+    align-items:center;
+    position: absolute;
+    bottom: 0;
+    left:0;
+    
+
+}
+.Views img{
+    width:20px;
+}
+.text{
+    display: none;
+}
+
+.Details_bottom{
+    margin-top: 2vh;
+    width: 100%;
+    display: flex;
+    gap:.5rem;
+}
+.Details_bottom img{
+    width:50px;
+    height:50px;
+    border-radius: 10px;
+    border:solid 1px #fff;
+}
+.input_comment{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap:.25rem;
+    width:100%;
+}
+.input_comment input{
+    border: none;
+    border-bottom: solid 1px #333;
+    background-color: #00000000;
+    padding:.5rem;
+    color:#fff;
+}
+.input_comment input:focus{
+    outline:none;
+}
+.input_comment button{
+    background-color: #34A9D5;
+    border:none;
+    outline:none;
+    width:5rem;
+    padding:.25rem 0 ;
+    cursor:pointer;
+}
+.input_comment button:active{
+    scale:.9;
+}
+.comment_text{
+    display: flex;
+    align-items: center;
+    gap:2rem;
+    color:#fff;
+}
+.comment_text h3{
+    font-size: 1.5em;
+    letter-spacing: 2px;
+}
+.Sort{
+    display: flex;
+    gap:.5rem;
+    align-items: center;
+}
+.Sort img{
+    width:20px;
+}
+.Sort select{
+    background-color: #000;
+    color:#fff;
+    border:solid 1px #fff;
+    padding:.25rem .5rem;
+}
+.Actual_comments{
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;   
+}
+.Actual_comments > *:nth-child(even){
+    background-color: #111111;
+}
+.Review{
+    color:#fff;
+    font-size: 1.5em;
+    letter-spacing: 2.5px;
+}
+
+@media (min-width: 768px) and (max-width: 1024px){
+    .text{
+        display: inline-block;
+    }
+    .Story_details{
+        width:100%;
+        padding:1.5rem;
+        flex-direction: column;
+    }
+}
 @media(max-width:431px){
-    .main_pic{
-        height:50vh;
-        border-radius: 0 0 60% 60%;
+
+
+    .back{
+        display: block;
+        width:32px;
+        height:32px;
+        filter: drop-shadow(0 0 1px #fff);
     }
+
+    .Story_details{
+        width:100%;
+        padding:0;
+        flex-direction: column;
+        background: none;
+    }
+    .Synopsis{
+        line-height: 150%;
+        color:#f0f0f0;
+        text-align: justify;
+
+    }
+    .text{
+        display: inline-block;
+    }
+    .Views{
+        position:static;
+        height:20px;
+        
+
+    }
+    .Details_top{
+        flex-direction: column;
+        padding-bottom: .25rem;
+
+    }
+    .Details_left,.Details_right{
+        padding-top: 0;
+    }
+    .Details_right{
+        transform: translateY(-2.5rem);
+        padding:0 .5rem;
+        gap:2rem;
+    }
+    .Synopsis:not(h2), .Views{
+        font-size: .75em;
+    }
+    .Views img{
+        width: 15px;
+    }
+    .Details_left{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap:0;
+    }
+    .main_pic{
+        width:100%;
+        clip-path: circle(70% at 50% 35%);
+        border:solid 1px #fff;
+        border-radius: 0;
+    }
+    .Details_buttons{
+        display:flex;
+        flex-direction: column;
+        padding:0;
+        gap:.5rem;
+        align-items: center;
+        justify-content: center;
+        transform: translateY(-2.5rem);
+    }
+
+
+    .Details_buttons button:first-child{
+        padding:0;
+        background-color: #600000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:60px;
+        height: 60px;
+        aspect-ratio: 1/1;
+        border-radius:50%;
+        transition:all 350ms;
+    }
+    .Details_buttons button:first-child:hover{
+        background-color:#940000;
+    }
+    .Details_buttons button:first-child span{
+        display: none;
+        
+    }
+    .Details_buttons button:nth-child(2){
+        width:100px;
+        padding:.25rem .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: .75em;
+    }
+    .Story_title{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .Story_title p{
+        opacity:.5;
+    }
+    .Story_details h1{
+        letter-spacing: 2px;
+        font-size: 1.5em;
+    }
+    .save{
+        width:24px;
+        height:24px;
+    }
+    .Details_bottom{
+        margin-top: 0;
+        padding:.25rem .5rem;
+    }
+    .Details_bottom input{
+        padding:.25rem 0;
+        font-size: .75em;
+    }
+    .Details_bottom button{
+        width:5rem;
+    }
+    .Details_bottom img{
+        width:50px;
+        height:50px;
+        border-radius: 50%;
+    }
+    .comment_text{
+        justify-content: space-between;
+        padding:0 .25rem;
+    }
+    .comment_text h3{
+        font-size:16px;
+    }
+    .Review{
+        padding: .25rem;
+        font-size: 16px;
+        
+    }
+    .Sort select{
+        width:120px;
+    }
+    .Sort option{
+        font-size: .75em;
+    }
+    .Sort span{
+        font-size: .75em;
+    }
+    .Review span{
+        font-size: .75em;
+        font-weight: 300;
+        opacity:.5;
+        letter-spacing: 0;
+    }
+
+
+
+
 }

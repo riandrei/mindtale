@@ -1,0 +1,119 @@
+.Comment{
+    display: flex;
+    flex-direction: column;
+    padding:.5rem 0;
+    gap:.75rem;
+    color:#fff;
+}
+.Comment_name img{
+    width:16px;
+    cursor: pointer;
+}
+.Comment_details{
+    display: flex;
+    flex-direction: column;
+    gap:.15rem;
+    width:100%;
+}
+.Comment h2{
+    font-size: 1.5em;
+    letter-spacing: 2.5px;
+}
+.Comment_name h3,
+ .Comment_name p{
+    font-size: .75em;
+}
+.Comment_name p{
+    opacity: .75;
+}
+.Comment_container{
+    display: flex;
+    gap:.5rem;
+    padding:.25rem;
+
+    
+}
+.Comment_name{
+    display: flex;
+    gap:.5rem;
+    align-items: center;
+    position: relative;
+
+}
+.edit_button{
+    position: absolute;
+    display: flex;
+    left:0;
+    gap:.15rem;
+    background-color: #000;
+    padding: .55rem;
+    flex-direction: column;
+    border:solid 1px #fff;
+    justify-content: space-between;
+    max-width: 200px;
+}
+.edit_button button{
+    cursor: pointer;
+}
+.edit_inner img{
+    width:10px;
+    height:10px;
+}
+.edit_inner{
+    display: flex;
+    justify-content: space-between;
+    gap:.5rem;
+}
+.close{
+    width:20px;
+}
+.edit_button button:active{
+    scale:.9;
+}
+.edit_button button{
+    color:#fff;
+    background-color: #940000;
+    border:none;
+    padding:.25rem;
+}
+.User{
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    border:solid 1px #fff;
+}
+.Star_container{
+    display: flex;
+    gap:.75rem;
+}
+.Star_container img{
+    width:10px;
+}
+.Comment_details p{
+    font-size: .85em;
+}
+@media(max-width:431px){
+    .Comment{
+        padding:0 .5rem;
+    }
+    .Comment_container{
+        align-items: center;
+    }
+    .Comment_name h3{
+        font-weight: 400;
+    }
+
+    .Comment_details p{
+        font-size: .75em;
+    }
+    .Comment_name p{
+        font-size: .5em;
+        text-align: center;
+    }
+    .Comment_name img{
+        width:12px;
+    }
+    .edit_button{
+        bottom: 0;
+    }
+}

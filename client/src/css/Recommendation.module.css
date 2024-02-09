@@ -1,0 +1,11 @@
+.Recommendation{
+    display:flex;
+    flex-direction:column;
+    gap:.5rem;
+    color:#fff;
+}
+.Story_container{
+    display: flex;
+    gap:1rem;
+
+}
