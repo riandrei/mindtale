@@ -3,14 +3,12 @@
     width: calc(100% - 70px);
     padding: 0 1rem;
     flex-direction: column;
-    /* background-image: url(../assets/mindtale_blur.png); */
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
     overflow: hidden;
     display: flex;
 }
-
 
 .Story_details {
     gap: 1rem;
@@ -26,13 +24,9 @@
 .Details_right {
     flex-direction: column;
     gap: 1rem;
-}
-@keyframes Go{
-    from{}
-        to{
-            opacity:1;
-        transform: translate(0);
-    }
+    color: #fff;
+    position: relative;
+    padding-top: 135px;
 }
 
 @keyframes Exit {
@@ -48,66 +42,55 @@
     border-bottom: 2px solid #333;
 }
 
+.Details_buttons,
+.Synopsis {
+    gap: .5rem;
+    animation: .5s forwards Go;
+    display: flex;
+}
+
 .main_pic {
     width: 300px;
     aspect-ratio: 1/1.36;
     border-radius: 0 0 210px;
     border: 2px solid #fff;
-    transform: translateX(-15rem);
-    animation: .5s ease forwards Go;
+    transform: translateX(-15rem) rotate(45deg);
+    animation: .5s forwards Go;
 }
 
-
 .Details_bottom,
+.Details_right,
 .Views,
 .input_comment {
     width: 100%;
     display: flex;
 }
-.Views{
-    transform: translateY(15rem);
-    animation: .5s ease forwards Go;
-}
 
-.Details_left,
-.Details_right {
-    color: #fff;
-    position: relative;
-    padding-top: 135px;
+.Views {
+    transform: translateY(15rem);
+    animation: .5s forwards Go;
 }
 
 .Details_left {
     display: flex;
 }
 
-.Details_right {
-    width: 100%;
-    display: flex;
-}
-
 .Synopsis {
-    display: flex;
     flex-direction: column;
-    gap: .5rem;
     line-height: 250%;
     transform: translateX(15rem);
-    animation: .5s ease forwards Go;
 }
-@keyframes Go{
-    from{}
-    to{
+
+@keyframes Go {
+    to {
+        opacity: 1;
         transform: translate(0);
     }
 }
 
-
 .Details_buttons {
-    display: flex;
-    gap: .5rem;
     transform: translateY(15rem);
-    animation: .5s ease forwards Go;
 }
-
 
 .Story_title,
 .read {
@@ -160,9 +143,8 @@
     display: flex;
     justify-content: space-between;
     transform: translateY(-15rem);
-    animation:.5s ease forwards Go;
+    animation: .5s forwards Go;
 }
-
 
 .save {
     height: 40px;
@@ -190,7 +172,6 @@
     0% {
         background-position: 0 50%;
     }
-
     100% {
         background-position: 100% 50%;
     }
@@ -316,7 +297,6 @@
     .text {
         display: inline-block;
     }
-
     .Story_details {
         width: 100%;
         padding: 1.5rem;
@@ -325,166 +305,150 @@
 }
 
 @media (max-width: 431px) {
-    .back{
+    .back {
         display: block;
-        width:32px;
-        height:32px;
+        width: 32px;
+        height: 32px;
         filter: drop-shadow(0 0 1px #fff);
     }
-
-    .Story_details{
-        width:100%;
-        padding:0;
+    .Story_details {
+        width: 100%;
+        padding: 0;
         flex-direction: column;
-        background: none;
+        background: 0 0;
     }
-    .Synopsis{
+    .Synopsis {
         line-height: 150%;
-        color:#f0f0f0;
+        color: #f0f0f0;
         text-align: justify;
-
     }
-    .text{
+    .text {
         display: inline-block;
     }
-    .Views{
-        position:static;
-        height:20px;
-        
-
+    .Views {
+        position: static;
+        height: 20px;
     }
-    .Details_top{
+    .Details_top {
         flex-direction: column;
         padding-bottom: .25rem;
-
     }
-    .Details_left,.Details_right{
+    .Details_left,
+    .Details_right {
         padding-top: 0;
     }
-    .Details_right{
+    .Details_right {
         transform: translateY(-2.5rem);
-        padding:0 .5rem;
-        gap:2rem;
+        padding: 0 .5rem;
+        gap: 2rem;
     }
-    .Synopsis:not(h2), .Views{
+    .Sort option,
+    .Sort span,
+    .Synopsis:not(h2),
+    .Views {
         font-size: .75em;
     }
-    .Views img{
+    .Views img {
         width: 15px;
     }
-    .Details_left{
+    .Details_left {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap:0;
+        gap: 0;
     }
-    .main_pic{
-        width:100%;
+    .main_pic {
+        width: 100%;
         clip-path: circle(70% at 50% 35%);
-        border:solid 1px #fff;
+        border: 1px solid #fff;
         border-radius: 0;
     }
-
-
-
-    .Details_buttons button:first-child{
-        padding:0;
+    .Details_buttons button:first-child {
+        padding: 0;
         background-color: #600000;
         display: flex;
         align-items: center;
         justify-content: center;
-        width:60px;
+        width: 60px;
         height: 60px;
         aspect-ratio: 1/1;
-        border-radius:50%;
-        transition:all 350ms;
+        border-radius: 50%;
+        transition: 350ms;
     }
-    .Details_buttons button:first-child:hover{
-        background-color:#940000;
+    .Details_buttons button:first-child:hover {
+        background-color: #940000;
     }
-    .Details_buttons button:first-child span{
+    .Details_buttons button:first-child span {
         display: none;
-        
     }
-    .Details_buttons button:nth-child(2){
-        width:100px;
-        padding:.25rem .5rem;
+    .Details_buttons button:nth-child(2) {
+        width: 100px;
+        padding: .25rem .5rem;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: .75em;
     }
-    .Story_title{
+    .Story_title {
         display: flex;
         align-items: center;
         justify-content: center;
-        
     }
-    .Story_title p{
-        opacity:.5;
+    .Story_title p {
+        opacity: .5;
     }
-    .Story_details h1{
+    .Story_details h1 {
         letter-spacing: 2px;
         font-size: 1.5em;
     }
-    .save{
-        width:24px;
-        height:24px;
+    .save {
+        width: 24px;
+        height: 24px;
     }
-    .Details_bottom{
+    .Details_bottom {
         margin-top: 0;
-        padding:.25rem .5rem;
+        padding: .25rem .5rem;
     }
-    .Details_bottom input{
-        padding:.25rem 0;
+    .Details_bottom input {
+        padding: .25rem 0;
         font-size: .75em;
     }
-    .Details_bottom button{
-        width:5rem;
+    .Review,
+    .comment_text h3 {
+        font-size: 16px;
     }
-    .Details_bottom img{
-        width:50px;
-        height:50px;
+    .Details_bottom button {
+        width: 5rem;
+    }
+    .Details_bottom img {
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
     }
-    .comment_text{
+    .comment_text {
         justify-content: space-between;
-        padding:0 .25rem;
+        padding: 0 .25rem;
     }
-    .comment_text h3{
-        font-size:16px;
-    }
-    .Review{
+    .Review {
         padding: .25rem;
-        font-size: 16px;
-        
     }
-    .Sort select{
-        width:120px;
+    .Sort select {
+        width: 120px;
     }
-    .Sort option{
-        font-size: .75em;
-    }
-    .Sort span{
-        font-size: .75em;
-    }
-    .Review span{
+    .Review span {
         font-size: .75em;
         font-weight: 300;
-        opacity:.5;
+        opacity: .5;
         letter-spacing: 0;
     }
-    .Details_buttons{
-        display:flex;
+    .Details_buttons {
+        display: flex;
         flex-direction: column;
-        padding:0;
-        gap:.5rem;
+        padding: 0;
+        gap: .5rem;
         align-items: center;
         justify-content: center;
-        transform: translateY(-2.5rem) !important;
-        
+        transform: translateY(-2.5rem)!important;
     }
-
-    
 }
