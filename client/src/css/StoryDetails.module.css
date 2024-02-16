@@ -45,7 +45,7 @@
 .Details_buttons,
 .Synopsis {
     gap: .5rem;
-    animation: .5s forwards Go;
+    animation: .75s forwards Go;
     display: flex;
 }
 
@@ -55,7 +55,7 @@
     border-radius: 0 0 210px;
     border: 2px solid #fff;
     transform: translateX(-15rem) rotate(45deg);
-    animation: .5s forwards Go;
+    animation: .75s forwards Go;
 }
 
 .Details_bottom,
@@ -68,7 +68,7 @@
 
 .Views {
     transform: translateY(15rem);
-    animation: .5s forwards Go;
+    animation: .75s forwards Go;
 }
 
 .Details_left {
@@ -143,7 +143,7 @@
     display: flex;
     justify-content: space-between;
     transform: translateY(-15rem);
-    animation: .5s forwards Go;
+    animation: .75s forwards Go;
 }
 
 .save {
@@ -214,6 +214,9 @@
 .Details_bottom {
     margin-top: 2vh;
     gap: .5rem;
+    
+    transform: translateX(-15rem);
+    animation: .75s forwards Go;
 }
 
 .Details_bottom img {
@@ -255,6 +258,8 @@
     align-items: center;
     gap: 2rem;
     color: #fff;
+    transform: translateX(15rem);
+    animation: .75s forwards Go;
 }
 
 .Actual_comments,

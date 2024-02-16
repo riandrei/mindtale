@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
 import styles from '../css/Profile.module.css'
 
 import Nav from '../components/Nav'
@@ -11,9 +12,17 @@ import IG from '../assets/profile_ig.png'
 import Telegram from '../assets/telegram.png'
 import Twitter from '../assets/profile_twitter.png'
 import User from '../assets/Dowelle.jpg'
+import Artwork6 from '../assets/artwork6.jpg'
+import Shadow from '../assets/shadow.png'
+import Pinned from '../assets/Pinned.jpeg'
+import Menu from '../assets/menu.png'
 
 export function Profile(props) {
     
+    const [isPinned, setIsPinned] = useState(false);
+    const handlePinnedClick = () => {
+        setIsPinned( !isPinned )
+    }
 
     return (
         <div className={styles.Profile}>
@@ -36,6 +45,19 @@ export function Profile(props) {
                             <img src={ Tiktok } />
                         </div>
                     </div>
+
+                    <div className={styles.Pinned}>
+                        <img className={styles.Pinned_pic} src={Pinned} />
+                        <div className={styles.Pinned_inner}>
+                            <div className={styles.Pinned_text}>
+                                <p>How About me?</p>
+                                <span>Drama | Adventure</span>
+                            </div>
+                            <img src={Menu} onClick={handlePinnedClick}/>
+                            {isPinned && <Link className={styles.Change}><p >Change pinned story?</p></Link>}
+                        </div>
+
+                    </div>
                 </div>
 
                 <div className={styles.center_middle}>
@@ -46,7 +68,15 @@ export function Profile(props) {
                         <option className={styles.block}>Block User</option>
                     </select>
                 </div>
-                <div></div>
+                <div className={styles.Last_read}>
+                    <div className={styles.Last_inner}>
+                        <h3>Last read</h3>
+                        <img src={ Artwork6 }/>
+                        <p>Where the Flower Blooms</p>
+                        <span>Drama | Romance</span>
+                    </div>
+                    <img className={styles.Shadow} src={Shadow} />
+                </div>
             </div>
         </div>
     )
