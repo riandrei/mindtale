@@ -16,6 +16,9 @@ import Artwork6 from '../assets/artwork6.jpg'
 import Shadow from '../assets/shadow.png'
 import Pinned from '../assets/Pinned.jpeg'
 import Menu from '../assets/menu.png'
+import Fav1 from '../assets/fav1.jpg'
+import Fav2 from '../assets/fav2.jpg'
+import Fav3 from '../assets/fav3.jpg'
 
 export function Profile(props) {
     
@@ -27,55 +30,102 @@ export function Profile(props) {
     return (
         <div className={styles.Profile}>
             <Nav/>
-            <div className={styles.top_first}>
-                <img src={Setting} />
-                <img src={Off} />
-            </div>
-            <h1 className={ styles.Mindtale }>MINDTALE</h1>
-            <div className={styles.center}>
-                <div className={styles.center_left}>
-                    <div className={styles.about_me}>
-                        <h2>About me</h2>
-                        <p>Hello! I am Dowelle Dayle Mon and I love reading books, especially mystery stories that involves mind games and detective stuffs.</p>
-                        <div className={styles.socials}>
-                            <img src={ FB } />
-                            <img src={ IG } />
-                            <img src={ Twitter } />
-                            <img src={ Telegram } />
-                            <img src={ Tiktok } />
-                        </div>
-                    </div>
-
-                    <div className={styles.Pinned}>
-                        <img className={styles.Pinned_pic} src={Pinned} />
-                        <div className={styles.Pinned_inner}>
-                            <div className={styles.Pinned_text}>
-                                <p>How About me?</p>
-                                <span>Drama | Adventure</span>
+            <div className={styles.Profile_container}>
+                <div className={styles.top_first}>
+                    <img src={Setting} />
+                    <img src={Off} />
+                </div>
+                <h1 className={ styles.Mindtale }>MINDTALE</h1>
+                <div className={styles.center}>
+                    <div className={`${styles.center_left} ${styles.center_child}`}>
+                        <div className={`${styles.about_me} ${styles.left_child}`}>
+                            <h2>About me</h2>
+                            <p>Hello! I am Dowelle Dayle Mon and I love reading books, especially mystery stories that involves mind games and detective stuffs.</p>
+                            <div className={styles.socials}>
+                                <img src={ FB } />
+                                <img src={ IG } />
+                                <img src={ Twitter } />
+                                <img src={ Telegram } />
+                                <img src={ Tiktok } />
                             </div>
-                            <img src={Menu} onClick={handlePinnedClick}/>
-                            {isPinned && <Link className={styles.Change}><p >Change pinned story?</p></Link>}
                         </div>
 
+                        <div className={`${styles.Pinned} ${styles.left_child}`}>
+                            <img className={styles.Pinned_pic} src={Pinned} />
+                            <div className={styles.Pinned_inner}>
+                                <div className={styles.Pinned_text}>
+                                    <p>How About me?</p>
+                                    <span>Drama | Adventure</span>
+                                </div>
+                                <img src={Menu} onClick={handlePinnedClick}/>
+                                {isPinned && <Link className={styles.Change}><p >Change pinned story?</p></Link>}
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div className={`${styles.center_middle} ${styles.center_child}`}>
+                        <img className={styles.User} src={ User } />
+                        <h3>Dowelle Dayle</h3>
+                        <select>
+                            <option>Add Friend</option>
+                            <option className={styles.block}>Block User</option>
+                        </select>
+                    </div>
+                    <div className={`${styles.Last_read} ${styles.center_child}`}>
+                        <div className={styles.lastRead_first}>
+                            <div className={styles.last_spans}>
+                                <span>D</span>
+                                <span>A</span>
+                                <span>E</span>
+                                <span>R</span>
+                                <span style={{visibility:"hidden"}}>m</span>
+                                <span>T</span>
+                                <span>S</span>
+                                <span>A</span>
+                                <span>L</span>
+                            </div>
+                            <img src={Artwork6} />
+                        </div>
+                        <div className={styles.lastRead_second}>
+                            <h2>Where The Flower Blooms</h2>
+                            <span>Drama</span>
+                        </div>
                     </div>
                 </div>
 
-                <div className={styles.center_middle}>
-                    <img className={styles.User} src={ User } />
-                    <h3>Dowelle Dayle</h3>
-                    <select>
-                        <option>Add Friend</option>
-                        <option className={styles.block}>Block User</option>
-                    </select>
-                </div>
-                <div className={styles.Last_read}>
-                    <div className={styles.Last_inner}>
-                        <h3>Last read</h3>
-                        <img src={ Artwork6 }/>
-                        <p>Where the Flower Blooms</p>
-                        <span>Drama | Romance</span>
+                <div className={styles.Profile_bottom}>
+                    <div className={styles.bottom_left}>
+                        <h2>Favorite Genre</h2>
+                        <div className={styles.genre_pics}>
+                            <img src={Fav1} />
+                            <img src={Fav3} />
+                            <img src={Fav2} />
+                        </div>
                     </div>
-                    <img className={styles.Shadow} src={Shadow} />
+
+                    <div className={styles.bottom_stats}>
+                        <div className={styles.stats_container}>
+                            <div className={styles.stats}>
+                                <h3>Book Finished</h3>
+                                <span>23</span>
+                            </div>
+                            <div className={styles.stats}>
+                                <h3>Avg. Reading Duration</h3>
+                                <span>10:03 mins</span>
+                            </div>
+                        </div>
+                        <div className={styles.stats_container}>
+                            <div className={styles.stats}>
+                                <h3>Book Finished</h3>
+                                <span>23</span>
+                            </div>
+                            <div className={styles.stats}>
+                                <h3>Book Finished</h3>
+                                <span>23</span>
+                            </div>
+                        </div>        
+                    </div>
                 </div>
             </div>
         </div>

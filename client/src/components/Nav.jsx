@@ -12,11 +12,11 @@ import Profile from '../assets/account.png'
 function Nav() {
     return (
         <div className={styles.Nav}>
-            <Link> <img src={Book} /> </Link>
+            <Link to="/"> <img src={Book} /> </Link>
             <Link> <img src={Search} /> </Link>
             <Link> <img src={Quest} /> </Link>
             <Link> <img src={Save} /> </Link>
-            <Link> <img src={Profile} /> </Link>
+            <Link to="/Profile"> <img src={Profile} /> </Link>
             <div className={styles.title}>
                 <span>M</span>
                 <span>I</span>
