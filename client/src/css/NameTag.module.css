@@ -23,6 +23,7 @@
     font-family: 'Poppins';
     color:#fff;
     font-size: .75em;
+    background-color: #60606050;
 }
 .NameTag_names p:first-child{
     font-weight: bold;

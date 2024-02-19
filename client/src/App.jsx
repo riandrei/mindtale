@@ -6,7 +6,8 @@ import Login from './pages/Login'
 import Landing from './pages/Landing';
 import Signin from './pages/Signin';
 import LoadingScreen from './pages/LoadingScreen';
-import { StoryDetails } from './pages/StoryDetails';
+import StoryDetails from './pages/StoryDetails';
+import Profile from './pages/Profile'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Signin" element={<Signin/>}/>
           <Route path="/LoadingScreen" element={<LoadingScreen/>}/>
           <Route path="/StoryDetails" element={<StoryDetails/>}/>
+          <Route path="/Profile" element={<Profile />} />
         </Routes>
       </Router>
     </>
