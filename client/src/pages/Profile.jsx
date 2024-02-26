@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styles from '../css/Profile.module.css'
 
 import Nav from '../components/Nav'
+import Footer from '../components/Footer'
 
 import Setting from '../assets/settings.png'
 import Off from '../assets/turn-off.png'
@@ -19,6 +20,8 @@ import Menu from '../assets/menu.png'
 import Fav1 from '../assets/fav1.jpg'
 import Fav2 from '../assets/fav2.jpg'
 import Fav3 from '../assets/fav3.jpg'
+import Save from '../assets/save.png'
+import Book from '../assets/book.png'
 
 export function Profile(props) {
     
@@ -26,6 +29,22 @@ export function Profile(props) {
     const handlePinnedClick = () => {
         setIsPinned( !isPinned )
     }
+
+
+    const [isClickFinished, setIsClickFinished] = useState(true);
+    const handleFinishedClick = () => {
+        setIsClickSavedStory(false);
+        setIsClickFinished(true);
+    };
+    
+    const [isClickSavedStory, setIsClickSavedStory] = useState(false);
+    const handleSavedFinishedClick = () => {
+        setIsClickFinished(false);
+        setIsClickSavedStory(true);
+    };
+    
+
+    
 
     return (
         <div className={styles.Profile}>
@@ -127,7 +146,53 @@ export function Profile(props) {
                         </div>        
                     </div>
                 </div>
+                
+                <div className={styles.content_container}>
+                    <div className={styles.title_container}>
+                        <div onClick={handleFinishedClick}className={ styles.title_inner}>
+                            <img src={Book} />
+                            <h2 >Books I've Finished</h2>
+                        </div>
+                        <div onClick={handleSavedFinishedClick} className={styles.title_inner}>
+                            <img src={Save} />
+                            <h2 >Saved Stories</h2>
+                        </div>
+                    </div>
+
+                                    {
+                    isClickFinished ? (
+                        <div className={styles.Books_finished}>
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                            <img src={Fav1} />
+                        </div>
+                    ) : (
+                        <div className={styles.Books_finished}>
+                            <img src={Fav2} />
+                            <img src={Fav2} />
+                            <img src={Fav2} />
+                            <img src={Fav2} />
+                        </div>
+                    )
+                }
+
+                </div>
+
             </div>
+            <Footer />
         </div>
     )
 }

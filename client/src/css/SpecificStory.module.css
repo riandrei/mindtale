@@ -3,12 +3,21 @@
     flex-direction: column;
     gap:.25rem;
     width:175px;
+    color:#fff;
+    cursor: pointer;
+
+
 }
+
+
 .SampleStory{
     height:250px;
     width:175px;
     border-radius: 10px;
-
+    transition: all 350ms;
+}
+.SampleStory:hover{
+    box-shadow: 0 0 5px #bababa;
 }
 .Stars{
     display: flex;
@@ -19,4 +28,14 @@
     width:10px;
 }
 @media(max-width:431px){
+    .SampleStory{
+        height:156px;
+        width:106px;
+    }
+    .SpecificStory p{
+        font-size: .75em;
+    }
+    .Stars img{
+        width: 5px;
+    }
 }

@@ -16,10 +16,12 @@ import Search from '../assets/search.png'
 import Art from '../assets/artwork3.jpg'
 import Save from '../assets/save.png'
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination, Autoplay } from 'swiper/modules';
 
 function Homepage() {
-
-    
 
     // const buttonLabels = ["For you", "Scifi", "Sports", "Top Rated", "Adventure", "Fantasy", "Action", "Horror", "Mystery", "Romance"];
     // const [activeButton, setActiveButton] = useState(0);
@@ -39,13 +41,25 @@ function Homepage() {
         <div className={styles.Homepage}>
                 <Nav />
             <TopBar/>
-            <section id="top-con" className={ styles.topstory_container }>
-                <TopStory/>
-                <TopStory/>
-                <TopStory/>
-                <TopStory/>
-                <TopStory/>
-            </section>
+            <Swiper
+        spaceBetween={10}
+        pagination={{
+          clickable: true,
+        }}
+        autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+        modules={[Pagination, Autoplay]}
+        className={styles.mySwiper}
+      >
+        <SwiperSlide><TopStory/></SwiperSlide>
+        <SwiperSlide><TopStory/></SwiperSlide>
+        <SwiperSlide><TopStory/></SwiperSlide>
+        <SwiperSlide><TopStory/></SwiperSlide>
+        <SwiperSlide><TopStory/></SwiperSlide>
+
+      </Swiper>
 
 
 

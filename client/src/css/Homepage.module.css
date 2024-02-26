@@ -8,8 +8,7 @@
 
 .Homepage{
     min-height: 100vh;
-    background-color: #111;
-    padding: 0 0 0 1rem;
+
 }
 .nav_con{
     padding:.75rem 1rem;
@@ -102,135 +101,14 @@
 .activeButton {
     background-color: red;
   }
-.topstory_container{
-    
-    display: flex;
-    width:500%;
-    animation: next-story 40s linear 5000ms infinite  alternate-reverse;
-}
-
-@keyframes next-story{
-    0%{
-        transform: translateX(-80%);
-    }
-    24%{
-        transform: translateX(-80%);
-    }
-    25%{
-        transform: translateX(-60%);
-    }
-    49%{
-        transform: translateX(-60%);
-    }
-    50%{
-        transform: translateX(-40%);
-    }
-    74%{
-        transform: translateX(-40%);
-    }
-    75%{
-        transform: translateX(-20%);
-    }
-    99%{
-        transform: translateX(-20%);
-    }
-
-    100%{
-        transform: translateX(0);
-    }
-}
-/* .top_container:nth-child(2) {
-    animation-delay: 10s;
-}
-.top_container:nth-child(3) {
-    animation-delay: 15s;
-}
-.top_container:nth-child(4) {
-    animation-delay: 20s;
-}
-.top_container:nth-child(5) {
-    animation-delay: 25s;
-} */
-
-.categories_container{
-    display: flex;
-    flex-direction: column;
 
 
-    gap:1.25rem;
-    transform: translateY(-1.5rem);
-}
-.categories{
-    display:flex;
-    gap:1rem;
-    justify-content:center;
-}
-.categories button{
-    font-family: 'Poppins';
-    text-align: center;
-    width:8vw;
-    height:2rem;
-    background-color: #111;
-    border:solid 1px #fff;
-    border-radius: 5px;
-    color:#fff;
-    transition: all 350ms;
-    cursor:pointer;
 
-}
-.categories button:nth-child(2):hover{
-    background-image: url(../assets/scifi.jpg);
-    background-size: cover;
-    background-position: center;
-    scale:1.025;
-}
-.categories button:nth-child(3):hover{
-    background-image: url(../assets/sports.png);
-    background-size: cover;
-    background-position: center;
-    scale:1.025;
-}
-.categories button:nth-child(5):hover{
-    background-image: url(../assets/adventure.jpg);
-    background-size: cover;
-    background-position: center;
-    scale:1.025;
-}
-.categories button:nth-child(6):hover{
-    background-image: url(../assets/fantasy.jpg);
-    background-size: cover;
-    background-position: center;
-    scale:1.025;
-}
-.categories button:nth-child(7):hover{
-    background-image: url(../assets/action.jpg);
-    background-size: cover;
-    background-position: center;
-    scale:1.025;
-}
-.categories button:nth-child(8):hover{
-    background-image: url(../assets/horror.png);
-    background-size: cover;
-    background-position: center;
-    scale:1.025;
-}
-.categories button:nth-child(9):hover{
-    background-image: url(../assets/mystery.jpg);
-    background-size: cover;
-    background-position: center;
-    scale:1.025;
-}
-.categories button:nth-child(10):hover{
-    background-image: url(../assets/romance.jpeg);
-    background-size: cover;
-    background-position: center;
-    scale:1.025;
-}
 
 .main_body{
     background-color: #111;
     min-height:100vh;
-    /* background-image: url(../assets/mindtale_blur.png); */
+    background-image: url(../assets/mindtale_blur.png);
     background-position: center;
     background-size: 25%;
     background-repeat: no-repeat;
@@ -243,26 +121,11 @@
 
 
 
+
 @media(max-width:431px){
-    .top_container{
-        width:100%;
-        padding:.5rem;
-        max-height: 5vh;
-    }
+
     .main_body{
         background-size: 50%;
-    }
-    .categories{
-        width:min-content;
-        overflow-x: scroll;
-        justify-content: flex-start;
-        padding:0 .5rem;
-    }
-    .categories_container{
-        transform: translateY(-1rem);
-    }
-    .categories button{
-        width:25vw;
     }
     .search input{
         padding:.5rem .75rem;
@@ -286,9 +149,7 @@
     .topstory_container{
         animation: next-story 30s linear 5000ms infinite  alternate-reverse;
     }
-    .main_body{
-        padding:.5rem;
-    }
+
     /*cotinue*/
 
     
