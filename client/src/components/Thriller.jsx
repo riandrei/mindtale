@@ -28,7 +28,7 @@ import SpecificStory from '../components/SpecificStory'
 import styles from '../css/Recommendation.module.css'
 import { Pagination } from 'swiper/modules';
 
-export default function RecentExploration() {
+export default function Thriller() {
 
   const targetRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -61,7 +61,7 @@ export default function RecentExploration() {
   return (
     <div ref={targetRef} className={`${styles.Recommendation} ${isVisible && styles.animation}`}>
       <div className={styles.viewAll}>
-        <h2 className={styles.Reco}>Recent Explorations</h2>
+        <h2 className={styles.Reco}>Thriller</h2>
         <Link className={styles.View}>View all</Link>
       </div>
       <Swiper
@@ -71,9 +71,10 @@ export default function RecentExploration() {
           clickable: false,
         }}
         breakpoints={{
-          640: {
+          431: {
+            height:915,
             slidesPerView: 3,
-            spaceBetween: 5,
+            spaceBetween: 0,
           },
           768: {
             slidesPerView: 4,

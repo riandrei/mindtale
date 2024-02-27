@@ -40,7 +40,7 @@
   background-image: url(../assets/artwork2.webp);
   background-size: cover;
   background-position: center;
-  filter: blur(1.5px);
+  filter: blur(2.5px);
   z-index: -1;
 }
 

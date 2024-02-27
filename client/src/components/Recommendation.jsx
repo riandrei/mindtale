@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -29,8 +29,37 @@ import styles from '../css/Recommendation.module.css'
 import { Pagination } from 'swiper/modules';
 
 export default function Recommendation() {
+
+  const targetRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // Disconnect the observer once triggered
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.3,
+      }
+    );
+
+    if (targetRef.current) {
+      observer.observe(targetRef.current);
+    }
+
+    return () => {
+      if (targetRef.current) {
+        observer.unobserve(targetRef.current);
+      }
+    };
+  }, []);
   return (
-    <div className={styles.Recommendation}>
+    <div ref={targetRef} className={`${styles.Recommendation} ${isVisible && styles.animation}`}>
       <div className={styles.viewAll}>
         <h2 className={styles.Reco}>Recommendations</h2>
         <Link className={styles.View}>View all</Link>
@@ -43,7 +72,7 @@ export default function Recommendation() {
         }}
         breakpoints={{
           640: {
-            slidesPerView: 4,
+            slidesPerView: 3,
             spaceBetween: 10,
           },
           768: {

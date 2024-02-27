@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from '../css/Homepage.module.css'
 
 import NameTag from '../components/NameTag'
@@ -12,6 +12,7 @@ import DailyRead from '../components/DailyRead'
 import Recommendation from '../components/Recommendation'
 import Footer from '../components/Footer'
 import RecentExploration from '../components/RecentExploration';
+import Thriller from '../components/Thriller';
 
 import Filter from '../assets/filter.png'
 import Search from '../assets/search.png'
@@ -43,6 +44,32 @@ function Homepage() {
         setOpenFilter( !isOpenFilter)
     }
 
+    const targetRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+  
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsVisible(entry.isIntersecting);
+        },
+        {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.5, // Change this threshold as per your requirement
+        }
+      );
+  
+      if (targetRef.current) {
+        observer.observe(targetRef.current);
+      }
+  
+      // Cleanup
+      return () => {
+        if (targetRef.current) {
+          observer.unobserve(targetRef.current);
+        }
+      };
+    }, []);
     return (
 
         <div className={styles.Homepage}>
@@ -75,7 +102,9 @@ function Homepage() {
                 <RecentExploration/>
                 <LastRead/>
                 <Recommendation/>
+                <Thriller />
                 <DailyRead/>
+                
             </section>
             <Footer/>
 

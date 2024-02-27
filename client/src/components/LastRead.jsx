@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import styles from '../css/LastRead.module.css'
 
 import Art from '../assets/goth.jpg'
@@ -24,8 +24,38 @@ export function LastRead(props) {
     }, []);
   
     const truncatedText = fullText.substring(0, maxLength);
+
+    const targetRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+        ([entry]) => {
+            if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect(); // Disconnect the observer once triggered
+            }
+        },
+        {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.3,
+        }
+        );
+
+        if (targetRef.current) {
+        observer.observe(targetRef.current);
+        }
+
+        return () => {
+        if (targetRef.current) {
+            observer.unobserve(targetRef.current);
+        }
+        };
+    }, []);
+
     return (
-        <div className={ styles.continue_reading }>
+        <div ref={targetRef} className={`${styles.continue_reading} ${isVisible && styles.animation}`}>
                         <h1>Continue Reading</h1>
                         <div className={ styles.continue_inner }>
                             <img className={ styles.continue_main_pic } src={ Art } alt="" />
