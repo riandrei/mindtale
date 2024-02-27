@@ -1,5 +1,5 @@
 .Recommendation{
-    padding:.75rem 0 .75rem .75rem;
+    padding:.75rem 0 .75rem;
 
 }
 .Reco{
@@ -18,9 +18,8 @@
     cursor: pointer;
 }
 .mySwiper{
-    padding-right: 4rem;
+    padding-right: 2rem;
 }
-
 .title{
     text-decoration: none;
 }

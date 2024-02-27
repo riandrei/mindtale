@@ -1,7 +1,7 @@
 .Story_details,
 .Story_details2 {
     width: calc(100% - 70px);
-    padding: 0 1rem;
+
     flex-direction: column;
     background-attachment: fixed;
     background-repeat: no-repeat;

@@ -9,12 +9,19 @@ import TopStory from '../components/TopStory'
 import TopBar from '../components/TopBar'
 import LastRead from '../components/LastRead'
 import DailyRead from '../components/DailyRead'
-import Recommendation from '../components/Recommendation.jsx'
+import Recommendation from '../components/Recommendation'
+import Footer from '../components/Footer'
+import RecentExploration from '../components/RecentExploration';
 
 import Filter from '../assets/filter.png'
 import Search from '../assets/search.png'
 import Art from '../assets/artwork3.jpg'
 import Save from '../assets/save.png'
+import Art1 from '../assets/goth.jpg'
+import Art2 from '../assets/artwork10.jpg'
+import Art3 from '../assets/artwork6.jpg'
+import Art4 from '../assets/Pinned.jpeg'
+import Art5 from '../assets/artwork8.jpg'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -53,22 +60,24 @@ function Homepage() {
         modules={[Pagination, Autoplay]}
         className={styles.mySwiper}
       >
-        <SwiperSlide><TopStory/></SwiperSlide>
-        <SwiperSlide><TopStory/></SwiperSlide>
-        <SwiperSlide><TopStory/></SwiperSlide>
-        <SwiperSlide><TopStory/></SwiperSlide>
-        <SwiperSlide><TopStory/></SwiperSlide>
+        <SwiperSlide><TopStory Story_image={Art1} /></SwiperSlide>
+        <SwiperSlide><TopStory Story_image={Art2}/></SwiperSlide>
+        <SwiperSlide><TopStory Story_image={Art3}/></SwiperSlide>
+        <SwiperSlide><TopStory Story_image={Art4} /></SwiperSlide>
+        <SwiperSlide><TopStory Story_image={Art5}/></SwiperSlide>
 
       </Swiper>
 
 
 
             <section className={ styles.main_body}>
-                <Recommendation/>
+
+                <RecentExploration/>
                 <LastRead/>
+                <Recommendation/>
                 <DailyRead/>
-                <h1 style={{color:"#fff"}}>helloe</h1>
             </section>
+            <Footer/>
 
         </div>
     )

@@ -28,11 +28,11 @@ import SpecificStory from '../components/SpecificStory'
 import styles from '../css/Recommendation.module.css'
 import { Pagination } from 'swiper/modules';
 
-export default function Recommendation() {
+export default function RecentExploration() {
   return (
     <div className={styles.Recommendation}>
       <div className={styles.viewAll}>
-        <h2 className={styles.Reco}>Recommendations</h2>
+        <h2 className={styles.Reco}>Recent Explorations</h2>
         <Link className={styles.View}>View all</Link>
       </div>
       <Swiper
@@ -42,20 +42,19 @@ export default function Recommendation() {
           clickable: false,
         }}
         breakpoints={{
-          640: {
-            slidesPerView: 4,
-            spaceBetween: 10,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 10,
-          },
-
-          1280: {
-            slidesPerView: 8,
-            spaceBetween: 10,
-          },
-        }}
+            640: {
+              slidesPerView: 3,
+              spaceBetween: 0,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 10,
+            },
+            1280: {
+              slidesPerView: 8,
+              spaceBetween: 10,
+            },
+          }}
         modules={[]}
         className={styles.mySwiper}
       >

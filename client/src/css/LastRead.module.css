@@ -4,6 +4,7 @@
     gap:1rem;
     color:#fff;
     padding:.5rem;
+    width:calc(100% - 70px);
 
 
 }
@@ -41,12 +42,13 @@
     flex-direction:column;
     justify-content: center;
     gap:1rem;
-    width:73%;
+    width:100%;
+
 }
 .continue_title_container{
     display: flex;
     gap:.5rem;
-    background-color: #33333375;
+
     padding:.5rem;
 }
 .explore{
@@ -71,14 +73,14 @@
 
 }
 .continue_details button:nth-child(2){
-
-    border:solid 1px #fff;
     background-color: #33333375;
+    border:solid 1px #fff;
+
 
 }
 .story_description{
     padding:.5rem;
-    background-color: #33333375;
+
     line-height: 200%;
 }
 .continue_title{
@@ -86,7 +88,7 @@
     flex-direction: column;
 }
 .continue_main_pic{
-    height:385px;
+    height:300px;
     aspect-ratio: 1/1.54;
     border-radius: 20px;
     border:solid 1px #fff;

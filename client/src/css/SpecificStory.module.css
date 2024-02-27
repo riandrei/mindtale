@@ -1,3 +1,4 @@
+
 .SpecificStory{
     display: flex;
     flex-direction: column;
@@ -7,14 +8,18 @@
     cursor: pointer;
 
 
-}
 
+}
+.Title{
+    text-decoration: none;
+}
 
 .SampleStory{
     height:250px;
     width:175px;
     border-radius: 10px;
     transition: all 350ms;
+    border: solid 1px #fff;;
 }
 .SampleStory:hover{
     box-shadow: 0 0 5px #bababa;

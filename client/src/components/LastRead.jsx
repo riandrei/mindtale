@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import styles from '../css/LastRead.module.css'
 
-import Art from '../assets/artwork3.jpg'
+import Art from '../assets/goth.jpg'
 import Save from '../assets/save.png'
 
 export function LastRead(props) {

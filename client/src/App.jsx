@@ -18,10 +18,10 @@ function App() {
     <>  
       <Router>
         <Routes>
-          <Route path="/" element={<Homepage/>}/>
+          <Route path="/Homepage" element={<Homepage/>}/>
           <Route path="/Sample" element={<Sample/>}/>
           <Route path="/Login" element={<Login/>}/>
-          <Route path="/Landing" element={<Landing/>}/>
+          <Route path="/" element={<Landing/>}/>
           <Route path="/Signin" element={<Signin/>}/>
           <Route path="/LoadingScreen" element={<LoadingScreen/>}/>
           <Route path="/StoryDetails" element={<StoryDetails/>}/>
