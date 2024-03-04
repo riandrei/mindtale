@@ -7,7 +7,7 @@ import Landing from './pages/Landing';
 import Signin from './pages/Signin';
 import LoadingScreen from './pages/LoadingScreen';
 import StoryDetails from './pages/StoryDetails';
-import Profile from './pages/Profile'
+import Profile from './pages/UserProfile'
 import Sample from './pages/Sample'
 import StoryDetails2 from './pages/StoryDetails2';
 
