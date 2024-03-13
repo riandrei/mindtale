@@ -1,0 +1,32 @@
+.User_saved {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(5rem);
+    animation: 1s forwards entrance;
+}
+
+@keyframes entrance {
+    to {
+        transform: translate(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+.User_saved img {
+    width: 16%;
+    border: 3px solid #333;
+}
+
+@media(max-width:431px) {
+    .User_saved {
+        justify-content: center;
+    }
+    .User_saved img {
+        width: 30%;
+    }
+}

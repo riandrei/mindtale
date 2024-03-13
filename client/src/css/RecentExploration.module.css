@@ -1,0 +1,25 @@
+.Recommendation{
+    padding:.75rem 0 .75rem;
+
+}
+.Reco{
+    color:#fff;
+
+}
+.viewAll{
+    display: flex;
+    gap:1rem;
+    align-items: center;
+
+    margin-bottom: .5rem;
+}
+.View{
+    color:#34a9d5;
+    cursor: pointer;
+}
+.mySwiper{
+    padding-right: 2rem;
+}
+.title{
+    text-decoration: none;
+}
