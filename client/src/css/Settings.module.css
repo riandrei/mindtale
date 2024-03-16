@@ -1,0 +1,45 @@
+.Settings{
+    background-color: #111;
+    height:100vh;
+    width:100%;
+}
+.Setting_nav{
+    width:fit-content;
+    height:100%;
+    max-width: 350px;
+    background-color: #000;
+    border-right:solid 1px #fff;
+    display: flex;
+    flex-direction: column;
+    padding:.5rem 2rem;
+    gap:1rem;
+    color:#333;
+}
+.Setting_nav h3{
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 350ms;
+}
+.Setting_nav h3:hover{
+    scale:1.05;
+}
+.Back{
+    display: flex;
+    align-items: center;
+
+}
+.Back h2{
+    font-weight: 400;
+    font-size: 1.25em;
+}
+.Back img{
+    width:32px;
+}
+.Setting_click{
+    display: flex;
+    gap:.5rem;
+    align-items: center;
+}
+.Setting_click img{
+     width:32px;
+}
