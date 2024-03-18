@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from '../css/Profile.module.css';
 import Cover from '../assets/sample.jpg'
@@ -27,7 +28,7 @@ function UserProfile() {
     return (
         <div className={styles.Profile}>
             <div className={styles.Cover}>
-                <img src={Settings} />
+                <Link to="/Settings"><img src={Settings} /></Link>
                 <img src={Off} />
             </div>
             <div className={styles.User}>
