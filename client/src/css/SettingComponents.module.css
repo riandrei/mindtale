@@ -7,7 +7,7 @@
     width:100%;
     display: flex;
     flex-direction: column;
-    gap:2rem;
+    gap:.25rem;
 }
 .User{
     width:128px;
@@ -63,12 +63,20 @@
 .Change_bio{
     display: flex;
     flex-direction: column;
-    border: solid 1px #fff;
+
 }
 textarea{
     background: none;
-    border: solid 1px #fff;
+    border:solid 1px #fff;
     padding:.5rem 1rem;
     resize: none;
     width:100%;
+}
+.textarea{
+    background: none;
+    border:solid 1px #ff4f4f50;
+    padding:.5rem 1rem;
+    resize: none;
+    width:100%;
+    outline:none;
 }
