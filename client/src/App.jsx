@@ -10,6 +10,7 @@ import StoryDetails from './pages/StoryDetails';
 import Profile from './pages/UserProfile'
 import StoryDetails2 from './pages/StoryDetails2';
 import Settings from './pages/Settings';
+import NewUserVerify from './pages/NewUserVerify';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/StoryDetails2" element={<StoryDetails2/>}/>
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Settings" element={<Settings />} />
+          <Route path="/NewUserVerify" element={<NewUserVerify />} />
         </Routes>
       </Router>
     </>

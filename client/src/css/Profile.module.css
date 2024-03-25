@@ -156,8 +156,8 @@
     }
 }
 @media only screen 
-and (min-device-width: 768px) /* minimum width for tablets */
-and (max-device-width: 1024px) /* maximum width for tablets */{
+and (min-device-width: 768px)
+and (max-device-width: 1024px){
     .Cover{
         height:35vh;
     }
