@@ -43,15 +43,12 @@ export function Profile(props) {
         setIsClickSavedStory(true);
     };
     
-
-    
-
     return (
         <div className={styles.Profile}>
             <Nav/>
             <div className={styles.Profile_container}>
                 <div className={styles.top_first}>
-                    <img src={Setting} />
+                    <Link to="/Settings">hello</Link>
                     <img src={Off} />
                 </div>
                 <h1 className={ styles.Mindtale }>MINDTALE</h1>
