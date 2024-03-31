@@ -60,7 +60,7 @@
     width: 100%;
     padding: .5rem 1rem 1rem;
     background-color: #111717;
-    background-image: url('../assets/bg-desktop.jpg');
+    background-image: url('../assets/castle4.png'); /*check mo kung ano maangas, 1, 3, or 4*/
     background-size: cover;
     background-position: center center;
     background-repeat: repeat-x;
@@ -220,7 +220,7 @@
 
 .title p {
     letter-spacing: 7.5px;
-    background: linear-gradient(to right, #e43544 20%, #ff7974 30%, #ff8986 70%, #ff9997 80%);
+    background: linear-gradient(to right, #2395A5 20%, #37afbe 30%, #8ad7e2 70%, #cbedf2 80%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

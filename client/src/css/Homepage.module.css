@@ -121,9 +121,9 @@
 
 .main_body {
     background-color: #111;
-    background-image: url(../assets/mindtale_blur.png);
+    background-image: url(../assets/castle.png);
     background-position: center;
-    background-size: 25%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     margin-bottom: 1rem;

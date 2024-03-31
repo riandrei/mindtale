@@ -91,7 +91,7 @@ function Login() {
                     onClick={handleWrongClick}
                     style={
                         password === '' || password.length < 7 || email === ''
-                        ? { pointerEvents: 'none', filter:"brightness(.5)" }
+                        ? { pointerEvents: 'none' }
                         : {}
                     }
                     type='submit'
