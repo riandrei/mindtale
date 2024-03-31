@@ -1,0 +1,24 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+.Choices{
+    display: flex;
+    background-color: none;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width:750px;
+    gap:.5rem;
+}
+.Choices button{
+    width:365px;
+    background: black;
+    border:solid 1px #fff;
+    padding:.75rem;
+    cursor: pointer;
+}
+.Selected{
+    background-color: #2395A5;
+}

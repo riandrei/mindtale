@@ -4,13 +4,14 @@ import styles from '../css/Login.module.css'
 
 import { Forgot } from '../components/Forgot';
 
+
 import Open from '../assets/openeye.png';
 import Close from '../assets/closeeye.png';
 import FB from '../assets/fb.png'
 import Google from '../assets/google.png'
 import Logo from '../assets/mindtale.png'
 import Wrong from '../assets/remove.png'
-
+import Music from '../assets/bg-music.mp3'
 
 function Login() {
 
@@ -55,6 +56,7 @@ function Login() {
     }
     return (
         <div className={ styles.Login }>
+            {/* <iframe src={Music} allow="autoplay" style={{display: 'none'}}></iframe> */}
             <div className={ styles.inputs }>
                 <div className={ styles.email }>
                     <input maxLength={35} type="email" placeholder='Email address' 

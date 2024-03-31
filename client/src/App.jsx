@@ -11,6 +11,7 @@ import Profile from './pages/UserProfile'
 import StoryDetails2 from './pages/StoryDetails2';
 import Settings from './pages/Settings';
 import NewUserVerify from './pages/NewUserVerify';
+import { StoryBoard } from './pages/StoryBoard';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Settings" element={<Settings />} />
           <Route path="/NewUserVerify" element={<NewUserVerify />} />
+          <Route path="/StoryBoard" element={<StoryBoard />} />
         </Routes>
       </Router>
     </>
