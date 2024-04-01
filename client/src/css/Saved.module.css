@@ -17,16 +17,9 @@
     }
 }
 
-.User_saved img {
-    width: 16%;
-    border: 3px solid #333;
-}
-
 @media(max-width:431px) {
     .User_saved {
         justify-content: center;
     }
-    .User_saved img {
-        width: 30%;
-    }
+
 }

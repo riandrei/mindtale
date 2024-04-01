@@ -151,7 +151,9 @@
 
 @media (max-width: 431px) {
     .main_body {
-        background-size: 50%;
+        background-position: center;
+        background-attachment: fixed;
+        background-image: url(../assets/castle-mobile.png);
     }
 
     .search input {

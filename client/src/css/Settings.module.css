@@ -9,8 +9,11 @@
     height:100%;
     max-width: 350px;
     background-color: #000;
-
+    background-image: url(../assets/set-bg.png);
+    background-size: cover;
+    background-position: center;
     display: flex;
+
     flex-direction: column;
     border-right: solid 1px #333;
     gap:1rem;

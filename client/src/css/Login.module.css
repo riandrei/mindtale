@@ -68,7 +68,16 @@
     flex-direction: column;
     overflow: hidden;
     clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
-    animation: 1s ease-out forwards entrance;
+    animation: 1s ease-out forwards entrance, bright 7500ms infinite alternate-reverse ease;
+    filter: brightness(100%);
+}
+@keyframes bright{
+    from{
+        filter: brightness(100%);
+    }
+    to{
+        filter: brightness(175%);
+    }
 }
 @keyframes entrance{
     0%{
@@ -151,7 +160,7 @@
 }
 
 .link {
-    color: #e43544;
+    color: #2395A5;
 }
 
 .link:hover {
@@ -294,11 +303,12 @@
 
 @media (max-width: 431px) {
     .Login {
-        background-image: url('../assets/bg-mob.png');
+        background-image: url('../assets/castle-mobile.png');
         background-size: cover;
         flex-direction: column-reverse;
         min-height: 100vh;
         padding: .5rem .5rem 1rem 1rem;
+        animation: 1s ease-out forwards entrance;
     }
 
     .inputs {
