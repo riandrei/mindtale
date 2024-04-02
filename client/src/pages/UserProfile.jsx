@@ -21,6 +21,7 @@ import Saved from '../components/Saved'
 import Completed from '../components/Completed';
 import Friends from '../components/Friends';
 import Achievements from '../components/Achievements';
+import About from '../components/About'
 import Nav from '../components/Nav'
 
 function UserProfile() {
@@ -78,10 +79,11 @@ function UserProfile() {
                                     activeIndex === 0 ? <Completed /> :
                                     activeIndex === 1 ? <Saved /> : 
                                     activeIndex === 2 ? <Achievements /> :
-                                    activeIndex === 3 ? <Friends /> :null
-                                    // activeIndex === 4 ? <About /> : null
+                                    activeIndex === 3 ? <Friends /> :
+                                    activeIndex === 4 ? <About /> : null
                                 }
             </div>
+            <Footer />
         </div>
     );
 }

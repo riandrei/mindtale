@@ -72,6 +72,9 @@
         border-top: 1.5px solid green;
         padding: .75rem 1rem .5rem;
         position: fixed;
+        background-image:url(../assets/artwork10.jpg);
+        background-position:center;
+        background-size:cover;
     }
 
     .Nav img {

@@ -5,6 +5,7 @@
 }
 .Profile{
     background-image: url(../assets/castle.png);
+    background-attachment: fixed;
     background-size: cover;
     background-position: center;
     min-height: 100vh;
