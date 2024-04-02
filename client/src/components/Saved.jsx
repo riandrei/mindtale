@@ -9,6 +9,8 @@ export default function Saved(props) {
     return (
         <div className={styles.User_saved}>
             <SpecificStory image={Story} />
+            <SpecificStory image={Story} />
+            <SpecificStory image={Story} />
         </div>
     )
 }

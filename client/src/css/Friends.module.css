@@ -1,3 +1,6 @@
+*{
+    color:#fff;
+}
 .Friends {
     display: flex;
     flex-wrap: wrap;

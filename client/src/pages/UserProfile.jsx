@@ -67,7 +67,7 @@ function UserProfile() {
                                     </div>
                                     <div className={activeIndex === 3 ? styles.UserHead_click2 : styles.UserHead_click} onClick={() => handleDivClick(3)}>
                                         <img src={Friend} />
-                                        <span>Friends <span>(23)</span></span>
+                                        <span>Friends</span>
                                     </div>
                                     <div className={activeIndex === 4 ? styles.UserHead_click2 : styles.UserHead_click} onClick={() => handleDivClick(4)}>
                                         <img src={Info} />

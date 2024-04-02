@@ -73,10 +73,10 @@
 }
 @keyframes bright{
     from{
-        filter: brightness(100%);
+        filter: brightness(80%);
     }
     to{
-        filter: brightness(175%);
+        filter: brightness(150%);
     }
 }
 @keyframes entrance{

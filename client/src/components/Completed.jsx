@@ -15,16 +15,16 @@ export default function Completed(props) {
 
     return (
         <div className={styles.User_saved}>
-            <SpecificStory image={Story1}/>
-            <SpecificStory image={Art1}/>
-            <SpecificStory image={Art2}/>
-            <SpecificStory image={Art3}/>
-            <SpecificStory image={Art4}/>
-            <SpecificStory image={Art5}/>
-            <SpecificStory image={Story1}/>
-            <SpecificStory image={Story1}/>
-            <SpecificStory image={Story1}/>
-            <SpecificStory image={Story1}/>
+            <SpecificStory image={Story1} title="Hello"/>
+            <SpecificStory image={Art1} title="Hello"/>
+            <SpecificStory image={Art2} title="Hello"/>
+            <SpecificStory image={Art3} title="Hello"/>
+            <SpecificStory image={Art4} title="Hello"/>
+            <SpecificStory image={Art5} title="Hello"/>
+            <SpecificStory image={Story1} title="Hello"/>
+            <SpecificStory image={Story1} title="Hello"/>
+            <SpecificStory image={Story1} title="Hello"/>
+            <SpecificStory image={Story1} title="Hello"/ >
         </div>
     )
 }
