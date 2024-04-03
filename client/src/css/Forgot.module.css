@@ -1,0 +1,115 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.Close img,
+.Forgot button {
+    cursor: pointer;
+}
+
+.Check,
+.warning {
+    font-size: 0.75em;
+}
+
+.Forgot {
+    position: fixed;
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+    transform: translateY(5rem);
+    opacity: 0;
+    filter: blur(10px);
+    animation: .5s forwards Entrance;
+}
+
+@keyframes Entrance {
+    to {
+        opacity: 1;
+        transform: translate(0);
+        filter: blur(0);
+    }
+}
+
+.Forgot_inner {
+    background-color: #111;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 25%;
+}
+
+.Forgot_inner h1 {
+    font-size: 1.25em;
+    color: #f0f0f0;
+}
+
+.Forgot_inner input {
+    border: 1px solid #333;
+    color: #fff;
+    background-color: #000;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+
+.Forgot_inner button {
+    background-color: #32888d;
+    border: none;
+    padding: 0.5rem 0;
+    border-radius: 5px;
+}
+
+.Close {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Close img {
+    width: 16px;
+    transition: 350ms;
+}
+
+.Close img:hover {
+    scale: 1.25;
+}
+
+.Inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.Check {
+    background-color: #333;
+    padding: 0.25rem;
+}
+
+.warning {
+    background-color: #ff000090;
+    padding: 0.5rem;
+}
+
+@media (max-width: 431px) {
+    .Forgot {
+        transform: translate(0);
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .Forgot_inner {
+        width: 75%;
+        margin: 0 10%;
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .Forgot_inner {
+        width: 50%;
+    }
+}

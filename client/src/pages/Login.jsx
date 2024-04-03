@@ -2,14 +2,23 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../css/Login.module.css'
 
+import { Forgot } from '../components/Forgot';
+
+
 import Open from '../assets/openeye.png';
 import Close from '../assets/closeeye.png';
 import FB from '../assets/fb.png'
 import Google from '../assets/google.png'
 import Logo from '../assets/mindtale.png'
 import Wrong from '../assets/remove.png'
+import Music from '../assets/bg-music.mp3'
 
 function Login() {
+
+    const [ isForgot, useIsForgot] = useState(false)
+    const handleForgotClick = ( ) => {
+        useIsForgot( !isForgot)
+    }
 
     //pang reveal password
     const [isShowPass, setIsShowPass] = useState(false);
@@ -47,6 +56,7 @@ function Login() {
     }
     return (
         <div className={ styles.Login }>
+            {/* <iframe src={Music} allow="autoplay" style={{display: 'none'}}></iframe> */}
             <div className={ styles.inputs }>
                 <div className={ styles.email }>
                     <input maxLength={35} type="email" placeholder='Email address' 
@@ -73,7 +83,7 @@ function Login() {
                         <img style={{visibility:"hidden"}} onClick={handleShowClick} src={isShowPass ? Close : Open} />
                     )}
                     </div>
-                    <Link className={ `${styles.link} ${styles.usog}` }>Forgot password?</Link>
+                    <Link onClick={handleForgotClick} className={ `${styles.link} ${styles.usog}` }>Forgot password?</Link>
                 </div>
                 <button
                     // onClick para sa kapag mali cred ng user di ko knows pano mo siya ibahin kapag may backed na
@@ -81,7 +91,7 @@ function Login() {
                     onClick={handleWrongClick}
                     style={
                         password === '' || password.length < 7 || email === ''
-                        ? { pointerEvents: 'none', filter:"brightness(.5)" }
+                        ? { pointerEvents: 'none' }
                         : {}
                     }
                     type='submit'
@@ -134,6 +144,9 @@ function Login() {
                         
                 </div>
                 )
+            }
+            {
+                isForgot && <Forgot handleForgotClick={handleForgotClick}/>
             }
         </div>
     )

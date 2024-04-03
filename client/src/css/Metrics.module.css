@@ -1,0 +1,41 @@
+.Metrics{
+    display: flex;
+    gap:.5rem;
+}
+
+.left{
+    width:10px;
+    height:100px;
+    background-color: #fff;
+    opacity:.75;
+}
+.right{
+    width:200px;
+    background-color: #2395a5;
+    padding:.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+.right h3{
+    font-size: .75em;
+}
+.right span{
+    font-size: 1.75em ;
+    font-weight: 600;
+    text-align: center;
+}
+@media(max-width:431px){
+    .Metrics{
+        width:45%;
+    }
+    .right{
+        width:100%;
+    }
+    .left{
+        height:75px;
+    }
+    .right span{
+        font-size:1.25em;
+    }
+}

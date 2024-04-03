@@ -60,15 +60,24 @@
     width: 100%;
     padding: .5rem 1rem 1rem;
     background-color: #111717;
-    background-image: url('../assets/bg-desktop.jpg');
-    background-size: 90%;
+    background-image: url('../assets/castle4.png'); /*check mo kung ano maangas, 1, 3, or 4*/
+    background-size: cover;
     background-position: center center;
-    background-repeat: no-repeat;
+    background-repeat: repeat-x;
     justify-content: space-between;
     flex-direction: column;
     overflow: hidden;
     clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
-    animation: 1s ease-out forwards entrance;
+    animation: 1s ease-out forwards entrance, bright 7500ms infinite alternate-reverse ease;
+    filter: brightness(100%);
+}
+@keyframes bright{
+    from{
+        filter: brightness(80%);
+    }
+    to{
+        filter: brightness(150%);
+    }
 }
 @keyframes entrance{
     0%{
@@ -103,7 +112,7 @@
     padding: .25rem 2rem;
     text-align: center;
     color: #fff;
-    background-color: #e43544;
+    background-color: #2395A5;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -151,7 +160,7 @@
 }
 
 .link {
-    color: #e43544;
+    color: #2395A5;
 }
 
 .link:hover {
@@ -181,6 +190,10 @@
 
 .socials img {
     width: 2.75rem;
+    border: solid 1px #fff;
+    border-radius: 50%;
+    padding:.25rem;
+    background-color: #333333;
 }
 
 .socials:first-child {
@@ -216,7 +229,7 @@
 
 .title p {
     letter-spacing: 7.5px;
-    background: linear-gradient(to right, #e43544 20%, #ff7974 30%, #ff8986 70%, #ff9997 80%);
+    background: linear-gradient(to right, #2395A5 20%, #37afbe 30%, #8ad7e2 70%, #cbedf2 80%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -290,11 +303,12 @@
 
 @media (max-width: 431px) {
     .Login {
-        background-image: url('../assets/bg-mobile.jpg');
+        background-image: url('../assets/castle-mobile.png');
         background-size: cover;
         flex-direction: column-reverse;
-        height: 100vh;
+        min-height: 100vh;
         padding: .5rem .5rem 1rem 1rem;
+        animation: 1s ease-out forwards entrance;
     }
 
     .inputs {

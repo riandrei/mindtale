@@ -8,6 +8,7 @@
     background-position: center;
     overflow: hidden;
     display: flex;
+
 }
 
 .Story_details {
@@ -26,7 +27,7 @@
     gap: 1rem;
     color: #fff;
     position: relative;
-    padding-top: 135px;
+    padding: 135px 1rem 0;
 }
 
 @keyframes Exit {
@@ -73,6 +74,11 @@
 
 .Details_left {
     display: flex;
+}
+.comment_text,
+.Details_bottom,
+.Actual_comments{
+    padding:0 1rem;
 }
 
 .Synopsis {
@@ -296,6 +302,7 @@
     color: #fff;
     font-size: 1.5em;
     letter-spacing: 2.5px;
+    padding: 0 1rem;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -362,6 +369,7 @@
         align-items: center;
         justify-content: center;
         gap: 0;
+        padding: 0;
     }
     .main_pic {
         width: 100%;
@@ -455,5 +463,8 @@
         align-items: center;
         justify-content: center;
         transform: translateY(-2.5rem)!important;
+    }
+    .Actual_comments{
+        padding:0 .25rem;
     }
 }

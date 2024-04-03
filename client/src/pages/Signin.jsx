@@ -88,7 +88,7 @@ function Signin() {
                 {/* hindi clickable yung submit button unless nasatisfy niya yung requirements */}
                 <div className={ styles.already }>
                     <button onClick={ handleSubmitClick } style={{ pointerEvents: isDisabled && 'none',filter: isDisabled && "brightness(.5)"}}>Create account</button>
-                    <p>Already have an account? <Link className={ styles.link }>Log in</Link></p>
+                    <p>Already have an account? <Link to="/Homepage" className={ styles.link }>Log in</Link></p>
                 </div>
                 <p className={ styles.arrow }>ARROW FUNK-TION</p>
             </div>

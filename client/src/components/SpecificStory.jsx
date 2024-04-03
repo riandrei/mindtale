@@ -10,12 +10,7 @@ export function SpecificStory(props) {
         <div className={styles.SpecificStory}>
             <img className={styles.SampleStory} src={ props.image } />
             <p className={styles.Title}>{props.title}</p>
-            <div className={styles.Stars}>
-                <img src={ Star } />
-                <img src={ Star } />
-                <img src={ Star } />
-                <img src={ Star } />
-            </div>
+
         </div>
     )
 }

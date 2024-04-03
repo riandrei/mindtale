@@ -19,7 +19,7 @@
 
     height: 100vh;
     z-index: 2;
-    background-color: #00000090;
+    background-color: #000000;
     border-left:solid 1px #999;
 }
 
@@ -37,7 +37,7 @@
     font-family: Poppins;
     font-weight: 900;
     font-size: 2.5em;
-    color: #940000;
+    color: #2395A5;
     transform: rotate(90deg);
     margin-top: -20px;
 }
@@ -72,6 +72,9 @@
         border-top: 1.5px solid green;
         padding: .75rem 1rem .5rem;
         position: fixed;
+        background-image:url(../assets/artwork10.jpg);
+        background-position:center;
+        background-size:cover;
     }
 
     .Nav img {
