@@ -6,14 +6,23 @@ import { logIn } from "../actions/authActions";
 
 import styles from "../css/Login.module.css";
 
-import Open from "../assets/openeye.png";
-import Close from "../assets/closeeye.png";
-import FB from "../assets/fb.png";
-import Google from "../assets/google.png";
-import Logo from "../assets/mindtale.png";
-import Wrong from "../assets/remove.png";
+import { Forgot } from '../components/Forgot';
+
+
+import Open from '../assets/openeye.png';
+import Close from '../assets/closeeye.png';
+import FB from '../assets/fb.png'
+import Google from '../assets/google.png'
+import Logo from '../assets/mindtale.png'
+import Wrong from '../assets/remove.png'
+import Music from '../assets/bg-music.mp3'
 
 function Login({ logIn }) {
+
+    const [ isForgot, useIsForgot] = useState(false)
+    const handleForgotClick = ( ) => {
+        useIsForgot( !isForgot)
+    }
   //pang reveal password
   const [isShowPass, setIsShowPass] = useState(false);
   const handleShowClick = () => {
@@ -42,10 +51,10 @@ function Login({ logIn }) {
 
   // pang catch kapag mali credentials ng user di ko alam pano mo siya maaapply sayo
   const [wrongAcc, setWrongAcc] = useState(false);
-  // const handleWrongClick = () => {
-  //     setWrongAcc( !wrongAcc );
-  //     console.log("hello")
-  // }
+   const handleWrongClick = () => {
+    setWrongAcc( !wrongAcc );
+      console.log("hello")
+   }
 
   const handleLogin = () => {
     console.log("yo");
@@ -54,6 +63,7 @@ function Login({ logIn }) {
 
   return (
     <div className={styles.Login}>
+            {/* <iframe src={Music} allow="autoplay" style={{display: 'none'}}></iframe> */}
       <div className={styles.inputs}>
         <div className={styles.email}>
           <input
@@ -92,7 +102,7 @@ function Login({ logIn }) {
               />
             )}
           </div>
-          <Link className={`${styles.link} ${styles.usog}`}>
+          <Link onClick={handleForgotClick} className={`${styles.link} ${styles.usog}`}>
             Forgot password?
           </Link>
         </div>
@@ -102,7 +112,7 @@ function Login({ logIn }) {
           onClick={handleLogin}
           style={
             password === "" || password.length < 7 || email === ""
-              ? { pointerEvents: "none", filter: "brightness(.5)" }
+              ? { pointerEvents: "none" }
               : {}
           }
           type="submit"
@@ -162,12 +172,18 @@ function Login({ logIn }) {
         </div>
       </div>
 
-      {wrongAcc && (
-        <div className={styles.catch}>
-          <img src={Wrong} />
-          <p>Incorrect login details, please verify and try again</p>
-        </div>
-      )}
+            {
+                wrongAcc && (
+                    <div className={styles.catch}>
+                    <img src={ Wrong }/>
+                    <p>Incorrect login details, please verify and try again</p>
+                        
+                </div>
+                )
+            }
+            {
+                isForgot && <Forgot handleForgotClick={handleForgotClick}/>
+            }
     </div>
   );
 }

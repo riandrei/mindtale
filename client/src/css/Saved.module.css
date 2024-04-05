@@ -1,0 +1,29 @@
+.User_saved {
+    display: flex;
+    gap: .25rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(5rem);
+    animation: 1s forwards entrance;
+}
+
+@keyframes entrance {
+    to {
+        transform: translate(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+@media (max-width: 835px) and (max-height: 1280px){
+    .User_saved{
+        justify-content: center;
+    }
+}
+@media(max-width:431px) {
+    .User_saved {
+        justify-content: center;
+    }
+
+}

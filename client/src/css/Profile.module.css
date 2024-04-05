@@ -1,0 +1,134 @@
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.Profile{
+    background-image: url(../assets/castle.png);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    margin-right: 70px;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+
+.Top{
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+
+
+}
+.Top img{
+    width:32px;
+    height:32px;
+    cursor: pointer;
+    padding:.25rem;
+}
+.Top_inner{
+    display: flex;
+    gap:1rem;
+}
+.Top_inner img:nth-child(2){
+    background-color: #940000;
+    border:solid 1px #fff;
+    border-radius: 5px;
+
+}
+.Middle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition:all 350ms;
+    width:225px;
+    margin: 0 auto;
+}
+.Middle:hover{
+    scale:1.05;
+}
+
+.Middle_top{
+    display: flex;
+    align-items: center;
+    gap:.25rem;
+    width:225px;
+    justify-content: center;
+    
+}
+.Middle_top img{
+    width:30px;
+}
+.Middle_line{
+    height:5px;
+    width:115px;
+    background-color: #ffffff;
+}
+.Photocard{
+    width:225px;
+}
+.Name{
+    width:225px;
+    background-color: #2395a5;
+    text-align: center;
+    color:#333;
+    padding:.5rem 1rem;
+    font-size: 1em;
+    font-weight:600;
+    border: solid 2px #ffffff75;
+}
+.Round{
+    height:100px;
+    width: 225px;
+    background-color: hsl(0, 0%, 13%, 80%);
+    clip-path: polygon(100% 0, 100% 20%, 50% 100%, 0 20%, 0 0);
+    text-align: center;
+    padding-top: .25rem;
+    color:#2395a5;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}   
+.User_details{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+.User_head{
+    display:flex;
+    justify-content: space-around;
+    border-bottom: solid 1px #fff;
+    padding-bottom: .5rem;
+}
+.UserHead_click, .UserHead_click2{
+    display: flex;
+    align-items: center;
+    gap:.5rem;
+    color:#fff;
+}
+.UserHead_click img, .UserHead_click2 img{
+    width:22px;
+}
+.UserHead_click span{
+    cursor: pointer;
+}
+
+@media(max-width:431px){
+    .Profile{
+        margin-right: 0;
+    }
+
+    .UserHead_click img,
+    .UserHead_click2 img{
+        display: none;
+    }
+    .UserHead_click span,
+    .UserHead_click2 span{
+        font-size: .85em;
+    }
+}

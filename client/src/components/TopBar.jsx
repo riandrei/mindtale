@@ -14,10 +14,8 @@ export function TopBar(props) {
         <div className={styles.TopBar}>
             <div className={ styles.TopBar_inner }>
                 <NameTag/>  
-                <div className={ styles.Top_inner }>
-                    <GemContainer/>
-                    <Notification/>
-                </div> 
+                <Notification/>
+                
             </div>
             <div className={ styles.TopInput}>
                 <img src={Search} alt="" />

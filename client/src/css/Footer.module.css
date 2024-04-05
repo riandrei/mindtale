@@ -1,0 +1,84 @@
+@font-face {
+    font-family: 'VALORANT';
+    src: local('Valo'), url('../assets/Valo.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+.Footer{
+    width:calc(100% + 1.5rem);
+    display: flex;
+    justify-content: space-between;
+    margin-left:-1.5rem;
+    align-items: center;
+    border-top:solid 1px #444 ;
+    max-height: 120px;
+    background-color:#111;
+}
+.lines{
+    height:120px;
+    width:160px;
+    
+}
+.logo{
+    width:60px;
+    background-color: #000;
+    border-radius:50%;
+    padding:.5rem;
+}
+.links{
+    color:#fff;
+    text-decoration: none;
+    font-size: .75em;
+    transition: all 350ms;
+}
+.links:hover{
+    color:#ec7373;
+}
+.middle{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color:#fff;
+    transform: translateY(-1rem);
+}
+.middle p:not(.arrow){
+    font-weight: 600;
+}
+
+.arrow{
+    padding-top: 1rem;
+    font-family: Valorant;
+    font-weight: 500;
+}
+@media (max-width:431px){
+    .Footer{
+        justify-content: center;
+        width:100%;
+        margin-left: 0;
+        max-height: 80px;
+    }
+    .link_container{
+        font-size: .75em;
+    }
+
+    .middle{
+
+    }
+    .middle img{
+        width:35px;
+    }
+    .middle p{
+        font-size: .5em;
+        font-weight: 400;
+    }
+    .lines{
+        display: none;
+
+    }
+    .arrow{
+        padding-top: .5rem;
+    }
+}

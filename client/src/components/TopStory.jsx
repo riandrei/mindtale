@@ -7,7 +7,7 @@ import Confetti from '../assets/confetti.png'
 
 
 
-function TopStory() {
+function TopStory(props) {
   const [maxLength, setMaxLength] = useState(window.innerWidth <= 431 ? 100 : 50);
   const fullText = "Black Torch unfolds the journey of Jiro, a reluctant wielder of enigmatic powers, navigating the blurred realm between humans and supernatural beings. Fueled by captivating discoveries and lurking dangers, Jiro's tale explores the delicate balance of coexistence. Faced with unforeseen challenges, he grapples with identity, friendship, and the intricate threads connecting his world to the mystical forces that shape his destiny."; // Your full text here
 
@@ -38,7 +38,7 @@ function TopStory() {
             
             <div className={ styles.story_left }>
                 <h1>Top Stories</h1>
-                <img src={ Artwork2 } />
+                <img src={ props.Story_image } />
                 
             </div>
             <div className={ styles.story_right }>

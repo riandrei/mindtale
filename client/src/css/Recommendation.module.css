@@ -1,0 +1,49 @@
+.Recommendation {
+    padding: 0.75rem 0 0.75rem 0.75rem;
+    opacity: 0;
+    transform: translateX(-7.5rem);
+    filter: blur(10px);
+}
+
+.Reco {
+    color: #fff;
+}
+
+.viewAll {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.View {
+    color: #34a9d5;
+    cursor: pointer;
+}
+
+.mySwiper {
+    padding-right: 4rem;
+}
+
+.title {
+    text-decoration: none;
+}
+
+.samplee {
+    background-color: #fff;
+    width: 50%;
+    transform: translateX(-5rem);
+    opacity: 0;
+}
+
+.animation {
+    animation: 1.25s forwards entrance;
+}
+
+@keyframes entrance {
+    to {
+        transform: translate(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}

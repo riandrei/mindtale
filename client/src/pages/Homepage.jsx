@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from '../css/Homepage.module.css'
 
 import NameTag from '../components/NameTag'
@@ -9,23 +9,34 @@ import TopStory from '../components/TopStory'
 import TopBar from '../components/TopBar'
 import LastRead from '../components/LastRead'
 import DailyRead from '../components/DailyRead'
+import Recommendation from '../components/Recommendation'
+import Footer from '../components/Footer'
+import RecentExploration from '../components/RecentExploration';
+import Thriller from '../components/Thriller';
 
 import Filter from '../assets/filter.png'
 import Search from '../assets/search.png'
 import Art from '../assets/artwork3.jpg'
 import Save from '../assets/save.png'
+import Art1 from '../assets/goth.jpg'
+import Art2 from '../assets/artwork10.jpg'
+import Art3 from '../assets/artwork6.jpg'
+import Art4 from '../assets/Pinned.jpeg'
+import Art5 from '../assets/artwork8.jpg'
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination, Autoplay } from 'swiper/modules';
 
 function Homepage() {
 
-    
-
-    const buttonLabels = ["For you", "Scifi", "Sports", "Top Rated", "Adventure", "Fantasy", "Action", "Horror", "Mystery", "Romance"];
-    const [activeButton, setActiveButton] = useState(0);
+    // const buttonLabels = ["For you", "Scifi", "Sports", "Top Rated", "Adventure", "Fantasy", "Action", "Horror", "Mystery", "Romance"];
+    // const [activeButton, setActiveButton] = useState(0);
   
-    const handleButtonClick = (index) => {
-      setActiveButton(index);
-    };
+    // const handleButtonClick = (index) => {
+    //   setActiveButton(index);
+    // };
 
     const [isOpenFilter, setOpenFilter] = useState(false);
 
@@ -33,26 +44,69 @@ function Homepage() {
         setOpenFilter( !isOpenFilter)
     }
 
+    const targetRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+  
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsVisible(entry.isIntersecting);
+        },
+        {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.5, // Change this threshold as per your requirement
+        }
+      );
+  
+      if (targetRef.current) {
+        observer.observe(targetRef.current);
+      }
+  
+      // Cleanup
+      return () => {
+        if (targetRef.current) {
+          observer.unobserve(targetRef.current);
+        }
+      };
+    }, []);
     return (
 
         <div className={styles.Homepage}>
-            <Nav/>
+                <Nav />
             <TopBar/>
-            <section id="top-con" className={ styles.topstory_container }>
-                <TopStory/>
-                <TopStory/>
-                <TopStory/>
-                <TopStory/>
-                <TopStory/>
-            </section>
+            <Swiper
+        spaceBetween={10}
+        pagination={{
+          clickable: true,
+        }}
+        autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+        modules={[Pagination, Autoplay]}
+        className={styles.mySwiper}
+      >
+        <SwiperSlide><TopStory Story_image={Art1} /></SwiperSlide>
+        <SwiperSlide><TopStory Story_image={Art2}/></SwiperSlide>
+        <SwiperSlide><TopStory Story_image={Art3}/></SwiperSlide>
+        <SwiperSlide><TopStory Story_image={Art4} /></SwiperSlide>
+        <SwiperSlide><TopStory Story_image={Art5}/></SwiperSlide>
+
+      </Swiper>
 
 
 
             <section className={ styles.main_body}>
+
+                <RecentExploration/>
                 <LastRead/>
+                <Recommendation/>
+                <Thriller />
                 <DailyRead/>
-                <h1 style={{color:"#fff"}}>helloe</h1>
+                
             </section>
+            <Footer/>
 
         </div>
     )
