@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { connect, useSelector } from "react-redux";
 
 import { signUp } from "../actions/authActions";
 
@@ -44,6 +44,10 @@ function Signin({ signUp }) {
   const [notMatch, setNotMatch] = useState(false);
   const [shortPassword, setShortPassword] = useState(false);
 
+  const navigate = useNavigate();
+
+  const user = useSelector((state) => state.auth.user);
+
   const handleSubmitClick = () => {
     if (!isPasswordMatch) {
       setNotMatch(!notMatch);
@@ -54,9 +58,16 @@ function Signin({ signUp }) {
       } else {
         setNotMatch(false);
 
-        console.log(signUp);
+        signUp(createEmail, createPassword, navigate);
 
-        signUp(createEmail, createPassword);
+        console.log(user);
+
+        // FOR WHEN WE HAVE VERIFICATION PAGE
+        // if (!user.verified) {
+        //   navigate("/verify");
+        // } else {
+        //   navigate("/");
+        // }
       }
     }
   };

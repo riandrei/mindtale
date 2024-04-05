@@ -4,10 +4,18 @@ dotenv.config();
 const express = require("express");
 const mongoose = require("mongoose");
 
+const cors = require("cors");
+
 const sessionRoutes = require("./routes/sessionRoutes");
 const authRoutes = require("./routes/authRoutes");
 
 const app = express();
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 const port = 3001;
