@@ -4,13 +4,15 @@
     box-sizing: border-box;
 }
 .Main_container{
-    width:100%;
+
     display: flex;
     flex-direction: column;
     gap:.25rem;
+    margin-left: 275px;
+
 }
 .User{
-    width:128px;
+    width:100px;
     border-radius: 50%;
     border: solid 1px #fff;
 }
@@ -36,19 +38,22 @@
 
 .Change_name input{
     background:none;
-    border:solid 1px #fff;
+    background-color: #454545;
     padding:.5rem 1rem;
     width:100%;
     font-size: 1em;
     outline: none;
     
 }
+textarea{
+    background-color: #454545;
+}
 
 .User_name, .User_tag{
     display: flex;
     flex-direction: column;
     color:#fff;
-    width:45%;
+    width:49%;
     gap:.5rem;
 }
 .Length{
@@ -79,4 +84,46 @@ textarea{
     resize: none;
     width:100%;
     outline:none;
+}
+.Photocard_container{
+    display: flex;
+    gap:.25rem;
+    flex-wrap: wrap;
+
+}
+.Photocard{
+    width:19%;
+    cursor: pointer;
+    transition: all 350ms;
+    padding:.25rem;
+    filter: brightness(75%);
+
+}
+.Selected_photocard{
+    background-color: #2395a5;
+    filter: brightness(100%);
+}
+.Photocard:hover{
+    scale:1.025;
+    filter: brightness(100%);
+}
+.Button_con{
+    display: flex;
+    gap:1rem;
+}
+.Button_con button{
+    width:100px;
+    background-color: #111;
+    border: solid 1px #2395a5;
+    padding:.5rem 0;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 350ms;
+}
+.Button_con button:hover{
+    scale:1.025;
+}
+.Button_con button:first-child{
+    background-color: #2395a5;
+    color:#fff;
 }

@@ -1,13 +1,13 @@
 .Settings{
     background-color: #111;
-    height:100vh;
+    min-height:100vh;
     width:100%;
     display: flex;
 }
 .Setting_nav{
-    width:fit-content;
+
     height:100%;
-    max-width: 350px;
+    width: 275px;
     background-color: #000;
     background-image: url(../assets/set-bg.png);
     background-size: cover;
@@ -19,6 +19,8 @@
     gap:1rem;
     color:#333;
     padding:1rem 0;
+    position: fixed;
+    left: 0;
 }
 .Setting_nav h3{
     font-weight: 400;

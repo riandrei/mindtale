@@ -12,7 +12,6 @@ export function Settings(props) {
         <div className={styles.Settings}>
             <SettingNav />
             <div className={styles.Main_body}>
-                <img className={styles.Logo} src={Logo} />
                 <div className={styles.Main_content}>
                     <EditProfile/>
                 </div>
