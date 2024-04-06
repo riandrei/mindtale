@@ -4,11 +4,10 @@
     box-sizing: border-box;
 }
 .Main_container{
-
     display: flex;
     flex-direction: column;
-    gap:.25rem;
-    margin-left: 275px;
+    gap:.5rem;
+    margin-left: 250px;
 
 }
 .User{
@@ -21,6 +20,10 @@
     flex-direction: column;
     align-items: center;
     gap:.5rem;
+    opacity:0;
+    filter: blur(10px);
+    transform: translateY(5rem);
+    animation:Photocard 1050ms ease forwards 300ms;
 }
 .Change_profile label{
     color:#34A9D5;
@@ -34,21 +37,24 @@
     display: flex;
     width:100%;
     justify-content: space-between;
+    opacity:0;
+    filter: blur(10px);
+    transform: translateY(5rem);
+    animation:Photocard 1050ms ease forwards 600ms;
 }
 
 .Change_name input{
     background:none;
-    background-color: #454545;
+    background-color: #45454550;
     padding:.5rem 1rem;
     width:100%;
     font-size: 1em;
     outline: none;
     
 }
-textarea{
-    background-color: #454545;
+.Change_bio textarea{
+    background-color: #45454550;
 }
-
 .User_name, .User_tag{
     display: flex;
     flex-direction: column;
@@ -68,14 +74,20 @@ textarea{
 .Change_bio{
     display: flex;
     flex-direction: column;
+    opacity:0;
+    filter: blur(10px);
+    transform: translateY(5rem);
+    animation:Photocard 1050ms ease forwards 900ms;
 
 }
 textarea{
     background: none;
-    border:solid 1px #fff;
     padding:.5rem 1rem;
     resize: none;
     width:100%;
+    background-color: #454545;
+    outline:none;
+
 }
 .textarea{
     background: none;
@@ -85,11 +97,32 @@ textarea{
     width:100%;
     outline:none;
 }
+.Change_cover{
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;
+    opacity:0;
+    filter: blur(10px);
+    transform: translateY(5rem);
+    animation:Photocard 1050ms ease forwards 1200ms;
+}
+.Change_cover h2{
+    font-weight: 400;
+    opacity: .75;
+}
 .Photocard_container{
     display: flex;
     gap:.25rem;
     flex-wrap: wrap;
 
+}
+@keyframes Photocard{
+    from{}
+    to{
+        opacity: 1;
+        filter: blur(0);
+        transform: translate(0);
+    }
 }
 .Photocard{
     width:19%;
@@ -126,4 +159,30 @@ textarea{
 .Button_con button:first-child{
     background-color: #2395a5;
     color:#fff;
+}
+@media(max-width:431px){
+    .Main_container{
+        margin-left: 0;
+    }
+    .Photocard_container{
+        justify-content: center;
+    }
+    .Change_cover h2{
+        font-size: 1em;
+    }
+    .Photocard{
+        width:32%;
+    }
+    .Button_con{
+        border-top: solid 1px #333;
+        padding-top: .55rem;
+        align-items: center;
+        justify-content: center;
+    }
+    .User_tag{
+        width:30%;
+    }
+    .User_name{
+        width:68%;
+    }
 }

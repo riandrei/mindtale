@@ -19,7 +19,7 @@ export default function SettingNav(props) {
             <div className={styles.Back}>
                 <img src={Back} onClick={goBack} />
                 <h2>Settings</h2>
-                <div></div>
+
             </div>
             <div className={styles.Nav_inner}>
                 <div className={styles.Setting_click}>

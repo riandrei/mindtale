@@ -4,6 +4,7 @@ import SettingNav from '../components/SettingNav'
 import Logo from '../assets/mindtale.png'
 
 import EditProfile from '../components/EditProfile'
+import Footer from '../components/Footer'
 
 
 export function Settings(props) {
@@ -16,6 +17,7 @@ export function Settings(props) {
                     <EditProfile/>
                 </div>
             </div>
+            {/* <Footer /> */}
         </div>
     )
 }

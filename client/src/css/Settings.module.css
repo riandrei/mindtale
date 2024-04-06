@@ -7,7 +7,7 @@
 .Setting_nav{
 
     height:100%;
-    width: 275px;
+    width: 225px;
     background-color: #000;
     background-image: url(../assets/set-bg.png);
     background-size: cover;
@@ -33,14 +33,14 @@
 .Back{
     display: flex;
     align-items: center;
-    justify-content: space-around;
-
+    gap:.5rem;
     width:250px;
+    padding:0 .25rem;
 
 }
 .Back h2{
     font-weight: 400;
-    font-size: 1.25em;
+    font-size: 1em;
 }
 .Back img{
     width:32px;
@@ -62,6 +62,7 @@
 }
 .Setting_click img{
      width:32px;
+     display: none;
 }
 .Nav_inner{
     display: flex;
@@ -86,4 +87,33 @@
 }
 .Main_content{
     width:100%;
+}
+
+@media(max-width:431px){
+    .Settings{
+        flex-direction: column;
+    }
+    .Setting_click img{
+        display: block;
+
+    }
+    .Setting_click span{
+        display: none;
+    }
+    .Setting_nav{
+        height: fit-content;
+    }
+    .Nav_inner{
+        flex-direction: row;
+        gap:.5rem;
+    }
+    .Setting_nav{
+        position: static;
+        width:100%;
+        gap:.25rem;
+        padding:.25rem;
+        background: none;
+        background-color: #33333350;
+    }
+    
 }
