@@ -13,6 +13,7 @@ import Recommendation from '../components/Recommendation'
 import Footer from '../components/Footer'
 import RecentExploration from '../components/RecentExploration';
 import Thriller from '../components/Thriller';
+import NameInput from '../components/NameInput';
 
 import Filter from '../assets/filter.png'
 import Search from '../assets/search.png'
@@ -106,6 +107,7 @@ function Homepage() {
                 <DailyRead/>
                 
             </section>
+            <NameInput />
             <Footer/>
 
         </div>
