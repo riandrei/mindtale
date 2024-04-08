@@ -5,6 +5,7 @@ import Logo from '../assets/mindtale.png'
 
 import EditProfile from '../components/EditProfile'
 import Footer from '../components/Footer'
+import Premium from '../components/PremiumPlan'
 
 
 export function Settings(props) {
@@ -14,7 +15,7 @@ export function Settings(props) {
             <SettingNav />
             <div className={styles.Main_body}>
                 <div className={styles.Main_content}>
-                    <EditProfile/>
+                    <Premium />
                 </div>
             </div>
             {/* <Footer /> */}
