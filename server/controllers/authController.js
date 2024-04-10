@@ -31,11 +31,9 @@ module.exports.signUp = (req, res, next) => {
         .save()
         .then(() => {
           sendEmail(email, verificationCode);
-          res.status(201).json({ message: "User created" });
+          return res.status(201).json({ message: "User created" });
         })
-        .catch((err) => {
-          res.status(400).json({ error: "Error creating user" });
-        });
+        .catch((err) => res.status(400).json({ error: "Error creating user" }));
     });
   });
 };
@@ -65,7 +63,7 @@ module.exports.signIn = (req, res) => {
         token,
       };
 
-      res.status(200).json({ message: "User signed in", userInfo });
+      return res.status(200).json({ message: "User signed in", userInfo });
     });
   });
 };
@@ -86,12 +84,8 @@ module.exports.verify = (req, res) => {
 
     user
       .save()
-      .then(() => {
-        res.status(200).json({ message: "User verified" });
-      })
-      .catch((err) => {
-        res.status(400).json({ error: "Error verifying user" });
-      });
+      .then(() => res.status(200).json({ message: "User verified" }))
+      .catch((err) => res.status(400).json({ error: "Error verifying user" }));
   });
 };
 
@@ -108,9 +102,36 @@ module.exports.getUser = (req, res) => {
       username: user.username,
       id: user._id,
       verified: user.verified,
+      savedStories: user.savedStories,
     };
 
-    res.status(200).json({ userInfo });
+    return res.status(200).json({ userInfo });
+  });
+};
+
+module.exports.toggleUserBookmark = (req, res) => {
+  const { storyId } = req.params;
+  const { email } = req.user;
+
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    const index = user.savedStories.indexOf(storyId);
+
+    if (index === -1) {
+      user.savedStories.push(storyId);
+    } else {
+      user.savedStories.splice(index, 1);
+    }
+
+    user
+      .save()
+      .then(() => res.status(200).json({ message: "Bookmark toggled" }))
+      .catch((err) =>
+        res.status(400).json({ error: "Error toggling bookmark" })
+      );
   });
 };
 

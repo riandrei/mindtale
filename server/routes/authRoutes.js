@@ -5,6 +5,7 @@ const {
   signIn,
   verify,
   getUser,
+  toggleUserBookmark,
 } = require("../controllers/authController");
 const tokenMiddleware = require("../middleware/tokenMiddleware");
 
@@ -14,5 +15,6 @@ router.post("/login", signIn);
 router.post("/signup", signUp);
 router.post("/verify", verify);
 router.get("/user", tokenMiddleware, getUser);
+router.post("/bookmark/:storyId", tokenMiddleware, toggleUserBookmark);
 
 module.exports = router;

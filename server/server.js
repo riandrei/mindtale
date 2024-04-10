@@ -8,6 +8,7 @@ const cors = require("cors");
 
 const sessionRoutes = require("./routes/sessionRoutes");
 const authRoutes = require("./routes/authRoutes");
+const storyRoutes = require("./routes/storyRoutes");
 
 const app = express();
 app.use(
@@ -27,14 +28,18 @@ app.get("/", (req, res) => {
 
 app.use("/api", sessionRoutes);
 app.use("/api", authRoutes);
+app.use("/api", storyRoutes);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
+// const saveGamesToDatabase = require("../saveGamesToDatabase");
+
 mongoose
   .connect(dbURI)
   .then((result) => {
     console.log("Connected to db");
+    // saveGamesToDatabase();
   })
   .catch((err) => console.log(err));

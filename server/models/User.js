@@ -24,6 +24,12 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  savedStories: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "story",
+    },
+  ],
 });
 
 module.exports = User = mongoose.model("user", UserSchema);

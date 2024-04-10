@@ -1,37 +1,37 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import View from '../assets/back.png'
-import Goth from '../assets/goth.jpg'
-import Art1 from '../assets/artwork2.webp'
-import Art2 from '../assets/artwork3.jpg'
-import Art3 from '../assets/artwork4.jpg'
-import Art4 from '../assets/artwork6.jpg'
-import Art5 from '../assets/Pinned.jpeg'
-import Art7 from '../assets/artwork7.jpg'
-import Art8 from '../assets/artwork8.jpg'
-import Art9 from '../assets/artwork9.jpg'
-import Art10 from '../assets/artwork10.jpg'
-import Art11 from '../assets/artwork11.jpg'
-import Art12 from '../assets/artwork12.jpg'
+import View from "../assets/back.png";
+import Goth from "../assets/goth.jpg";
+import Art1 from "../assets/artwork2.webp";
+import Art2 from "../assets/artwork3.jpg";
+import Art3 from "../assets/artwork4.jpg";
+import Art4 from "../assets/artwork6.jpg";
+import Art5 from "../assets/Pinned.jpeg";
+import Art7 from "../assets/artwork7.jpg";
+import Art8 from "../assets/artwork8.jpg";
+import Art9 from "../assets/artwork9.jpg";
+import Art10 from "../assets/artwork10.jpg";
+import Art11 from "../assets/artwork11.jpg";
+import Art12 from "../assets/artwork12.jpg";
 
+import "swiper/css";
+import "swiper/css/pagination";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "../css/Recommendation.module.css";
+import SpecificStory from "../components/SpecificStory";
 
-import '../css/Recommendation.module.css';
-import SpecificStory from '../components/SpecificStory'
-
-
-import styles from '../css/Recommendation.module.css'
-import { Pagination } from 'swiper/modules';
+import styles from "../css/Recommendation.module.css";
+import { Pagination } from "swiper/modules";
 
 export default function Thriller() {
-
   const targetRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+
+  const stories = useSelector((state) => state.story.stories);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -43,7 +43,7 @@ export default function Thriller() {
       },
       {
         root: null,
-        rootMargin: '0px',
+        rootMargin: "0px",
         threshold: 0.3,
       }
     );
@@ -59,7 +59,10 @@ export default function Thriller() {
     };
   }, []);
   return (
-    <div ref={targetRef} className={`${styles.Recommendation} ${isVisible && styles.animation}`}>
+    <div
+      ref={targetRef}
+      className={`${styles.Recommendation} ${isVisible && styles.animation}`}
+    >
       <div className={styles.viewAll}>
         <h2 className={styles.Reco}>Thriller</h2>
         <Link className={styles.View}>View all</Link>
@@ -72,7 +75,7 @@ export default function Thriller() {
         }}
         breakpoints={{
           431: {
-            height:915,
+            height: 915,
             slidesPerView: 3,
             spaceBetween: 0,
           },
@@ -89,8 +92,21 @@ export default function Thriller() {
         modules={[]}
         className={styles.mySwiper}
       >
-        <SwiperSlide> <Link className={styles.title} to="/StoryDetails"> <SpecificStory image={Goth} title="The Lost Girl"/> </Link>  </SwiperSlide>
-        <SwiperSlide> <SpecificStory image={Art8} title="Skull Bar"/>  </SwiperSlide>
+        <SwiperSlide>
+          <Link className={styles.title} to="/StoryDetails">
+            <SpecificStory image={Goth} title="The Lost Girl" />
+          </Link>
+        </SwiperSlide>
+
+        {stories.map((story) => (
+          <SwiperSlide key={story._id}>
+            <Link className={styles.title} to={`/StoryDetails/${story._id}`}>
+              <SpecificStory image={story.imgURL} title={story.title} />
+            </Link>
+          </SwiperSlide>
+        ))}
+
+        {/* <SwiperSlide> <SpecificStory image={Art8} title="Skull Bar"/>  </SwiperSlide>
         <SwiperSlide> <SpecificStory image={Art9} title="Hell's Paradise" />  </SwiperSlide>
 
         <SwiperSlide> <SpecificStory image={Art4} title="Sakura Misoki"/>  </SwiperSlide>
@@ -106,9 +122,7 @@ export default function Thriller() {
         <SwiperSlide> <SpecificStory image={Art3} title="The Girl"/>  </SwiperSlide>
         <SwiperSlide> <SpecificStory image={Art1} title="The Girl"/>  </SwiperSlide>
         <SwiperSlide> <SpecificStory image={Art7} title="The Girl"/>  </SwiperSlide>
-        <SwiperSlide> <SpecificStory image={Art2} title="The Girl"/>  </SwiperSlide>
-
-
+        <SwiperSlide> <SpecificStory image={Art2} title="The Girl"/>  </SwiperSlide> */}
       </Swiper>
     </div>
   );

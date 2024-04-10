@@ -57,7 +57,6 @@ export const verifyAccount = (code, email, navigate) => (dispatch) => {
 };
 
 export const getUser = () => (dispatch) => {
-  console.log(localStorage.getItem("token"));
   fetch("http://localhost:3001/api/user", {
     method: "GET",
     headers: {
@@ -72,6 +71,20 @@ export const getUser = () => (dispatch) => {
           payload: res.userInfo,
         });
       });
+    }
+  });
+};
+
+export const toggleBookmark = (token, storyId) => (dispatch) => {
+  fetch(`http://localhost:3001/api/bookmark/${storyId}`, {
+    method: "POST",
+    headers: {
+      Authorization: token,
+      "Content-Type": "application/json",
+    },
+  }).then((res) => {
+    if (res.status === 200) {
+      dispatch(getUser());
     }
   });
 };

@@ -17,6 +17,7 @@ import RecentExploration from "../components/RecentExploration";
 import Thriller from "../components/Thriller";
 
 import { getUser } from "../actions/authActions";
+import { getStories } from "../actions/storyActions";
 
 import Filter from "../assets/filter.png";
 import Search from "../assets/search.png";
@@ -34,7 +35,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-function Homepage({ getUser }) {
+function Homepage({ getUser, getStories }) {
   // const buttonLabels = ["For you", "Scifi", "Sports", "Top Rated", "Adventure", "Fantasy", "Action", "Horror", "Mystery", "Romance"];
   // const [activeButton, setActiveButton] = useState(0);
 
@@ -79,6 +80,8 @@ function Homepage({ getUser }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    getStories();
+
     if (!user.id) {
       if (localStorage.getItem("token")) {
         getUser();
@@ -89,6 +92,7 @@ function Homepage({ getUser }) {
       }
     }
   }, []);
+
   return (
     <div className={styles.Homepage}>
       <Nav />
@@ -134,6 +138,6 @@ function Homepage({ getUser }) {
   );
 }
 
-const mapDispatchToProps = { getUser };
+const mapDispatchToProps = { getUser, getStories };
 
 export default connect(null, mapDispatchToProps)(Homepage);
