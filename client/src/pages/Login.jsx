@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../css/Login.module.css'
 
@@ -14,7 +14,11 @@ import Wrong from '../assets/remove.png'
 import Music from '../assets/bg-music.mp3'
 
 function Login() {
+    const elements = Array.from({ length: 50 }, (_, index) => index + 1);
 
+    const containerElements = elements.map(count => (
+    <div key={`container${count}`} id="container" className={`${styles.Dust} ${styles[`Count${count}`]}`}></div>
+    ));
     const [ isForgot, useIsForgot] = useState(false)
     const handleForgotClick = ( ) => {
         useIsForgot( !isForgot)
@@ -148,6 +152,11 @@ function Login() {
             {
                 isForgot && <Forgot handleForgotClick={handleForgotClick}/>
             }
+
+        {containerElements}
+
+
+
         </div>
     )
 }
