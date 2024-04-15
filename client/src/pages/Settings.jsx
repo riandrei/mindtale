@@ -10,15 +10,15 @@ import Premium from '../components/PremiumPlan'
 
 export function Settings(props) {
 
+
     return (
         <div className={styles.Settings}>
             <SettingNav />
             <div className={styles.Main_body}>
                 <div className={styles.Main_content}>
-                    <Premium />
+                    <EditProfile />
                 </div>
             </div>
-            {/* <Footer /> */}
         </div>
     )
 }

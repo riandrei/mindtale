@@ -8,13 +8,14 @@ import Save from '../assets/save.png'
 import Search from '../assets/search.png'
 import Quest from '../assets/quest.png'
 import Profile from '../assets/account.png'
+import SearchPeople from '../assets/search-profile.png'
 
 function Nav() {
     return (
         <div className={styles.Nav}>
-            <Link to="/"> <img src={Book} /> </Link>
+            <Link to="/Homepage"> <img src={Book} /> </Link>
             <Link> <img src={Search} /> </Link>
-            <Link> <img src={Quest} /> </Link>
+            <Link> <img src={SearchPeople} /> </Link>
             <Link> <img src={Save} /> </Link>
             <Link to="/Profile"> <img src={Profile} /> </Link>
             <div className={styles.title}>

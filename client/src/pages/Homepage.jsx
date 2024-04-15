@@ -107,7 +107,7 @@ function Homepage() {
                 <DailyRead/>
                 
             </section>
-            <NameInput />
+            {/* <NameInput /> */}
             <Footer/>
 
         </div>
