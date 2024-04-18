@@ -11,9 +11,10 @@
     flex-wrap: wrap;
     width:750px;
     gap:.5rem;
+    max-width: 50%;
 }
 .Choices button{
-    width:365px;
+    width:49%;
     background: black;
     border:solid 1px #fff;
     padding:.75rem;

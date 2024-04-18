@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from '../css/ChaptersNav.module.css'
 
 import Logo from '../assets/mindtale.png'
@@ -10,11 +10,17 @@ import Close from '../assets/invisible.png'
 import Chapters from '../components/Chapters'
 
 export const ChaptersNav = () => {
+
+    const [hideNav, setHideNav] = useState(false)
+    const handleNavClick = () => {
+        setHideNav( !hideNav )
+    }
+
     return(
         <div className={styles.Chapters}>
             <div className={styles.Top}>
                 <img src={Back} />
-                <img src={Close} />
+                <img onClick={handleNavClick} src={Close} />
             </div>
             <div className={styles.Cover}>
 
