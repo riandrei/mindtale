@@ -31,6 +31,7 @@ export const ChaptersNav = () => {
                 <Chapters title="Chapter 1: The Destination" />
                 <Chapters title="Chapter 1: The Destination" />
                 <Chapters title="Chapter 1: The Destination" />
+                <Chapters title="Reading Assessment" />
             </div>
         </div>
     )

@@ -9,6 +9,7 @@ import Sample1 from '../assets/sample1.png'
 import Footer from '../components/Footer'
 import { Choices } from '../components/Choices'
 import ChaptersNav from '../components/ChaptersNav'
+import Story from '../components/Story'
 
 
 export function StoryBoard(props) {
@@ -16,7 +17,7 @@ export function StoryBoard(props) {
 
     return (
         <div className={styles.StoryBoard} >
-
+            <Story />
             <ChaptersNav />
         </div>
     )

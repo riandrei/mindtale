@@ -51,6 +51,7 @@
     width:100%;
     font-size: 1em;
     outline: none;
+    border:none;
     
 }
 .Change_bio textarea{
