@@ -15,7 +15,7 @@ function Nav() {
         <div className={styles.Nav}>
             <Link to="/Homepage"> <img src={Book} /> </Link>
             <Link> <img src={Search} /> </Link>
-            <Link> <img src={SearchPeople} /> </Link>
+            <Link to="/SearchPeople"> <img src={SearchPeople} /> </Link>
             <Link> <img src={Save} /> </Link>
             <Link to="/Profile"> <img src={Profile} /> </Link>
             <div className={styles.title}>

@@ -1,29 +1,88 @@
-*{
-    padding:0;
-    margin:0;
-    border:none;
-    outline:none;
-    box-sizing:border-box;
+.Bottom_con,
+.Left,
+.Name_con button {
+  background-color: #2395a5;
 }
-.People{
-    width:49%;
+
+
+* {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: 0;
+  box-sizing: border-box;
 }
-.User{
-    width:64px;
-    border-radius: 50%;
+
+.People {
+  width: 49%;
+  cursor: pointer;
+  transition: 350ms;
 }
-.Line{
-    width:20%;
+
+.People:hover {
+  transform: scale(1.012);
 }
-.Name_con{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width:100%;
-    padding:.75rem;
-    border:solid 1px #fff;
+
+.User {
+  width: 64px;
+  border-radius: 50%;
 }
-.Name_con button{
-    padding:1rem;
-    background-color: #2395a5;
+
+.Line {
+  width: 20%;
+}
+
+.Name_con {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ffffff50;
+  border-bottom: none;
+}
+
+.Name_con button {
+  padding: 1rem;
+  width:17%;
+}
+
+.Left {
+  width: 10px;
+  height: 100%;
+}
+
+.People_top {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.Bottom_con {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem;
+}
+
+.Bottom_con span {
+  font-size: 0.85em;
+}
+@media (max-width: 431px) {
+  .People {
+    width: 100%;
+  }
+
+  .User {
+    width: 48px;
+  }
+
+  .Line {
+    width: 33.3%;
+  }
+
+  .Name_con button {
+    width: 20%;
+    font-size: 0.5em;
+    padding: 0.5rem;
+    text-align: center;
+  }
 }
