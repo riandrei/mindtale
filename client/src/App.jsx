@@ -12,6 +12,7 @@ import StoryDetails2 from './pages/StoryDetails2';
 import Settings from './pages/Settings';
 import NewUserVerify from './pages/NewUserVerify';
 import { StoryBoard } from './pages/StoryBoard';
+import { SearchPeople } from './pages/SearchPeople';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/Settings" element={<Settings />} />
           <Route path="/NewUserVerify" element={<NewUserVerify />} />
           <Route path="/StoryBoard" element={<StoryBoard />} />
+          <Route path="/SearchPeople" element={<SearchPeople />} />
         </Routes>
       </Router>
     </>
