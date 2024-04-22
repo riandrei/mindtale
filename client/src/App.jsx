@@ -13,6 +13,7 @@ import Settings from './pages/Settings';
 import NewUserVerify from './pages/NewUserVerify';
 import { StoryBoard } from './pages/StoryBoard';
 import { SearchPeople } from './pages/SearchPeople';
+import SearchBook from './pages/SearchBook';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/NewUserVerify" element={<NewUserVerify />} />
           <Route path="/StoryBoard" element={<StoryBoard />} />
           <Route path="/SearchPeople" element={<SearchPeople />} />
+          <Route path="SearchBook" element={<SearchBook />}/>
         </Routes>
       </Router>
     </>
