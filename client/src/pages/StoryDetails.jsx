@@ -4,6 +4,7 @@ import { connect, useSelector } from "react-redux";
 
 import { getStories, postReview, getReviews } from "../actions/storyActions";
 import { toggleBookmark, getUser } from "../actions/authActions";
+import { readStory } from "../actions/sessionActions";
 
 import Nav from "../components/Nav";
 import Comment from "../components/Comment";
@@ -26,6 +27,7 @@ export function StoryDetails({
   toggleBookmark,
   postReview,
   getReviews,
+  readStory,
   getUser,
 }) {
   const [maxLength, setMaxLength] = useState(
@@ -48,10 +50,12 @@ export function StoryDetails({
   const [isRead, useIsRead] = useState(true);
 
   const handleReadClick = () => {
-    useIsRead(false);
-    setTimeout(() => {
-      window.location.href = "/LoadingScreen";
-    }, 500);
+    // useIsRead(false);
+    // setTimeout(() => {
+    //   window.location.href = "/LoadingScreen";
+    // }, 500);
+
+    readStory({ storyId });
   };
 
   const { storyId } = useParams();
@@ -224,6 +228,7 @@ const mapDispatchToProps = {
   postReview,
   getReviews,
   getUser,
+  readStory,
 };
 
 export default connect(null, mapDispatchToProps)(StoryDetails);

@@ -1,11 +1,12 @@
 const Router = require("express").Router;
-const sessionControllers = require("../controllers/sessionControllers");
-
 const router = Router();
 
-console.log("sessionRoutes.js");
+const { startSession } = require("../controllers/sessionControllers");
+const tokenMiddleware = require("../middleware/tokenMiddleware");
 
-router.get("/gameState", sessionControllers.getGameState);
+router.get("/sessions/:storyId", tokenMiddleware, startSession);
+
+// router.get("/gameState", sessionControllers.getGameState);
 // router.post("/userDecision", sessionControllers.postUserDecision);
 
 module.exports = router;

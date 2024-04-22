@@ -2,14 +2,30 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const SessionSchema = new Schema({
-  gameId: {
-    type: String,
-    required: true,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
   },
-  history: {
-    type: String,
-    required: true,
+  story: {
+    type: Schema.Types.ObjectId,
+    ref: "story",
   },
+  history: [
+    {
+      role: {
+        type: String,
+        required: true,
+      },
+      parts: [
+        {
+          text: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+    },
+  ],
 });
 
 module.exports = Session = mongoose.model("session", SessionSchema);
