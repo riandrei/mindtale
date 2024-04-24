@@ -34,9 +34,9 @@
     background-color: red;
 }
 
-.Homepage:not(.categories) {
+/* .Homepage {
     overflow: hidden;
-}
+} */
 
 .top_container {
     position: absolute;

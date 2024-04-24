@@ -65,7 +65,7 @@ export default function RecentExploration() {
         <Link className={styles.View}>View all</Link>
       </div>
       <Swiper
-        slidesPerView={3}
+        slidesPerView={2.75}
         spaceBetween={20}
         pagination={{
           clickable: false,

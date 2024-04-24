@@ -1,80 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@200;300;400;700;900&family=Sedgwick+Ave&family=Whisper&display=swap');
-
-*{
-    padding:0;
-    margin: 0;
-    box-sizing: border-box;
-    border: none;
-    font-family: 'Poppins';
-}
 .StoryBoard{
     background-color: #111;
     min-height: 100vh;
-    transition: background-color 0.5s ease;
-    
-}
-.StoryBoard_top, .StoryBoard_left{
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.StoryBoard_top{
-    padding:.5rem 1rem;
-}
-.StoryBoard_left{
-    gap:1.75rem;
-}
-.StoryBoard_left button{
-    width:30px;
-    background:none;
-    font-size: 1.75em;
-    font-style: italic;
-    cursor: pointer;
-}
-.StoryBoard_left img{
-    width:36px;
-    cursor: pointer;
-}
-.StoryBoard_top img:first-child{
-    width:42px;
-    height:42px;
-
-}
-.Main_Story{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap:.75rem;
-    margin-bottom: 2rem;
-}
-.Illustration{
-    width:650px;
-}
-.Main_Story p{
-    width:750px;
-    font-weight: 300;
-}
-.Next{
     display: flex;
     justify-content: space-between;
-    width:750px;
-    padding-top: 1rem;
-    border-top: solid 1px #fff;
 }
-.Next button{
-    background: none;
-    border:solid 1px #fff;
-    padding:.5rem 1rem;
-    border-radius: 20px;
-    width:175px;
-    cursor: pointer;
-}
-.Nextt, .Prev{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.Nextt img, .Prev img{
-    width:24px;
+@media (max-width:431px){
+    .StoryBoard{
+        flex-direction: column;
+    }
 }

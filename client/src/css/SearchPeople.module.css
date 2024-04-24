@@ -1,0 +1,83 @@
+.Top,
+.Top input {
+  padding: 1rem;
+  outline: 0;
+  border: none;
+}
+
+.People,
+.Top {
+  display: flex;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.SearchPeople {
+  min-height: 100vh;
+  background-image: url(../assets/castle4.png);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.Top {
+  gap: 1rem;
+  align-items: center;
+}
+
+.Top img {
+  width: 32px;
+}
+
+.Top input {
+  width: 100%;
+  background-color: #60606075;
+}
+
+.Top input:nth-child(3) {
+  width: 20%;
+}
+
+.Top button {
+  background-color: #2395a5;
+  cursor: pointer;
+  transition: 350ms;
+  padding: 1rem;
+}
+
+.Top button:active {
+  transform: scale(0.9);
+}
+
+.People {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+@media (max-width: 431px) {
+  .SearchPeople {
+    padding: 0.5rem;
+    background-image: url(../assets/castle-mobile.png);
+  }
+
+  .Top {
+    gap: 0.25rem;
+  }
+
+  .Top input {
+    width: 90%;
+  }
+
+  .Top input:nth-child(3) {
+    display: none;
+  }
+}

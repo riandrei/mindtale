@@ -1,9 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import styles from '../css/SettingComponents.module.css'
 
 import User from '../assets/Dowelle.jpg'
+import Photocard1 from '../assets/photocard1.png'
+import Photocard2 from '../assets/photocard2.png'
+import Photocard3 from '../assets/photocard3.png'
+import Photocard4 from '../assets/photocard4.png'
+
 
 export function EditProfile(props) {
+
+
     const [name, setName] = useState("");
     const handleNameChange = (e) => {
         const newName = e.target.value;
@@ -22,7 +29,11 @@ export function EditProfile(props) {
         const newBio = e.target.value;
         setBio(newBio);
     };
+    const [selectedCard, setSelectedCard] = useState(null);
 
+    const handleCardClick = (index) => {
+        setSelectedCard(index);
+    };
     return (
         <div className={styles.Main_container}>
             <div className={styles.Change_profile}>
@@ -62,6 +73,40 @@ export function EditProfile(props) {
                 <label for="Bio" htmlFor="">Bio:</label>
                 <textarea className={bio.length === 150 ? styles.textarea : ''} maxLength={150} value={bio} onChange={handleBioChange} id="Bio" cols="10" rows="5" ></textarea>
                 <span className={bio.length === 150 ? styles.Length2 : styles.Length}>{bio.length}/150</span>
+            </div>
+            <div className={styles.Change_cover}>
+                <h2>Choose your MindTale photocard:</h2>
+                <div className={styles.Photocard_container}>
+                    <img
+                    src={Photocard1}
+                    className={`${styles.Photocard} ${selectedCard === 1 ? styles.Selected_photocard : ''}`}
+                    onClick={() => handleCardClick(1)}
+                    />
+                    <img
+                        src={Photocard2}
+                        className={`${styles.Photocard} ${selectedCard === 2 ? styles.Selected_photocard : ''}`}
+                        onClick={() => handleCardClick(2)}
+                    />
+                    <img
+                        src={Photocard3}
+                        className={`${styles.Photocard} ${selectedCard === 3 ? styles.Selected_photocard : ''}`}
+                        onClick={() => handleCardClick(3)}
+                    />
+                    <img
+                        src={Photocard4}
+                        className={`${styles.Photocard} ${selectedCard === 4 ? styles.Selected_photocard : ''}`}
+                        onClick={() => handleCardClick(4)}
+                    />
+                    <img
+                        src={Photocard1}
+                        className={`${styles.Photocard} ${selectedCard === 5 ? styles.Selected_photocard : ''}`}
+                        onClick={() => handleCardClick(5)}
+                    />
+                </div>
+            </div>
+            <div className={styles.Button_con}>
+                <button>Save</button>
+                <button>Cancel</button>
             </div>
         </div>
     )

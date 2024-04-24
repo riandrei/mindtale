@@ -1,0 +1,38 @@
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.Recommend{
+    display: flex;
+    gap:.5rem;
+
+    width:32%;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 350ms;
+    background-color: #00000050;
+    padding: .5rem;
+}
+.Recommend:hover{
+    scale:1.05;
+}
+.Recommend_inner span{
+    opacity: .85;
+    font-size: .75em;
+    color:gold;
+}
+.Recommend img{
+    width:100px;
+    border: solid 1px #fff;
+}
+@media(max-width:431px){
+    .Recommend{
+        flex-direction: column;
+        width:45%;
+        align-items: center;
+    }
+    .Recommend_inner{
+        text-align: center;
+    }
+}

@@ -4,13 +4,15 @@
     box-sizing: border-box;
 }
 .Main_container{
-    width:100%;
     display: flex;
     flex-direction: column;
-    gap:.25rem;
+    gap:.5rem;
+    margin-left: 250px;
+    padding: 1rem;
+
 }
 .User{
-    width:128px;
+    width:100px;
     border-radius: 50%;
     border: solid 1px #fff;
 }
@@ -19,6 +21,10 @@
     flex-direction: column;
     align-items: center;
     gap:.5rem;
+    opacity:0;
+    filter: blur(10px);
+    transform: translateY(5rem);
+    animation:Photocard 1050ms ease forwards 300ms;
 }
 .Change_profile label{
     color:#34A9D5;
@@ -32,23 +38,30 @@
     display: flex;
     width:100%;
     justify-content: space-between;
+    opacity:0;
+    filter: blur(10px);
+    transform: translateY(5rem);
+    animation:Photocard 1050ms ease forwards 600ms;
 }
 
 .Change_name input{
     background:none;
-    border:solid 1px #fff;
+    background-color: #45454550;
     padding:.5rem 1rem;
     width:100%;
     font-size: 1em;
     outline: none;
+    border:none;
     
 }
-
+.Change_bio textarea{
+    background-color: #45454550;
+}
 .User_name, .User_tag{
     display: flex;
     flex-direction: column;
     color:#fff;
-    width:45%;
+    width:49%;
     gap:.5rem;
 }
 .Length{
@@ -63,14 +76,20 @@
 .Change_bio{
     display: flex;
     flex-direction: column;
+    opacity:0;
+    filter: blur(10px);
+    transform: translateY(5rem);
+    animation:Photocard 1050ms ease forwards 900ms;
 
 }
 textarea{
     background: none;
-    border:solid 1px #fff;
     padding:.5rem 1rem;
     resize: none;
     width:100%;
+    background-color: #454545;
+    outline:none;
+
 }
 .textarea{
     background: none;
@@ -79,4 +98,156 @@ textarea{
     resize: none;
     width:100%;
     outline:none;
+}
+.Change_cover{
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;
+    opacity:0;
+    filter: blur(10px);
+    transform: translateY(5rem);
+    animation:Photocard 1050ms ease forwards 1200ms;
+}
+.Change_cover h2{
+    font-weight: 400;
+    opacity: .75;
+}
+.Photocard_container{
+    display: flex;
+    gap:.25rem;
+    flex-wrap: wrap;
+
+}
+@keyframes Photocard{
+    from{}
+    to{
+        opacity: 1;
+        filter: blur(0);
+        transform: translate(0);
+    }
+}
+.Photocard{
+    width:19%;
+    cursor: pointer;
+    transition: all 350ms;
+    padding:.25rem;
+    filter: brightness(75%);
+
+}
+.Selected_photocard{
+    background-color: #2395a5;
+    filter: brightness(100%);
+}
+.Photocard:hover{
+    scale:1.025;
+    filter: brightness(100%);
+}
+.Button_con{
+    display: flex;
+    gap:1rem;
+}
+.Button_con button{
+    width:100px;
+    background-color: #111;
+    border: solid 1px #2395a5;
+    padding:.5rem 0;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 350ms;
+}
+.Button_con button:hover{
+    scale:1.025;
+}
+.Button_con button:first-child{
+    background-color: #2395a5;
+    color:#fff;
+}
+
+.Premium{
+    margin-left: 225px;
+    background-image: url(../assets/premium_dark.png);
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+
+
+}
+.Premium_feats{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+.Premium_feats span{
+    font-size: 1.25em;
+    opacity: .75;
+}
+.Premium_inner{
+    width:50%;
+    margin:0 auto;
+    padding:1rem 0;
+}
+.Premium_pic{
+    width:100%;
+    border: solid 2px #2395a5;
+    border-radius: 100px 0;
+}
+.Premium button{
+    background-color: #2395a5;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:.5rem;
+    border: solid 2px #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    width:40%;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+.Premium button span{
+    font-weight: 600;
+}
+.Premium button img{
+    width:22px;
+
+}
+
+@media(max-width:431px){
+    .Main_container, .Premium{
+        margin-left: 0;
+    }
+    .Photocard_container{
+        justify-content: center;
+    }
+    .Change_cover h2{
+        font-size: 1em;
+    }
+    .Photocard{
+        width:32%;
+    }
+    .Button_con{
+        border-top: solid 1px #333;
+        padding-top: .55rem;
+        align-items: center;
+        justify-content: center;
+    }
+    .User_tag{
+        width:30%;
+    }
+    .User_name{
+        width:68%;
+    }
+    .Premium_pic{
+        border-radius: 0;
+    }
+    .Premium_inner{
+        width:100%;
+        padding: 0;
+    }
+    .Premium button{
+        width:75%;
+    }
+
+    
 }

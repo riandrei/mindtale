@@ -12,6 +12,8 @@ import StoryDetails2 from './pages/StoryDetails2';
 import Settings from './pages/Settings';
 import NewUserVerify from './pages/NewUserVerify';
 import { StoryBoard } from './pages/StoryBoard';
+import { SearchPeople } from './pages/SearchPeople';
+import SearchBook from './pages/SearchBook';
 
 
 function App() {
@@ -21,8 +23,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/Homepage" element={<Homepage/>}/>
-          <Route path="/" element={<Login/>}/>
-          <Route path="/Landing" element={<Landing/>}/>
+          <Route path="/Login" element={<Login/>}/>
+          <Route path="/" element={<Landing/>}/>
           <Route path="/Signin" element={<Signin/>}/>
           <Route path="/LoadingScreen" element={<LoadingScreen/>}/>
           <Route path="/StoryDetails" element={<StoryDetails/>}/>
@@ -31,6 +33,8 @@ function App() {
           <Route path="/Settings" element={<Settings />} />
           <Route path="/NewUserVerify" element={<NewUserVerify />} />
           <Route path="/StoryBoard" element={<StoryBoard />} />
+          <Route path="/SearchPeople" element={<SearchPeople />} />
+          <Route path="SearchBook" element={<SearchBook />}/>
         </Routes>
       </Router>
     </>

@@ -47,6 +47,22 @@
     transition:all 350ms;
     width:225px;
     margin: 0 auto;
+    clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
+    opacity: 0;
+    filter: blur(10px);
+    /* transform: translateY(5rem); */
+    animation:card 2000ms ease forwards 200ms;
+}
+@keyframes card{
+    from{
+
+    }
+    to{
+        opacity: 1;
+        filter: blur(0);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        transform: translate(0);
+    }
 }
 .Middle:hover{
     scale:1.05;
