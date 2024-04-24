@@ -11,9 +11,10 @@
     flex-wrap: wrap;
     width:750px;
     gap:.5rem;
+    max-width: 50%;
 }
 .Choices button{
-    width:365px;
+    width:49%;
     background: black;
     border:solid 1px #fff;
     padding:.75rem;
@@ -21,4 +22,13 @@
 }
 .Selected{
     background-color: #2395A5;
+}
+
+@media(max-width:431px){
+    .Choices{
+        min-width: 85%;
+    }
+    .Choices button{
+        width:100%;
+    }
 }

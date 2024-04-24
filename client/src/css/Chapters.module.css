@@ -1,0 +1,39 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.Chapters{
+    display: flex;
+    flex-direction: column;
+    gap:.75rem;
+    cursor: pointer;
+
+}
+.Chapter_inner{
+    display: flex;
+    gap:.75rem;
+    align-items: center;
+    padding:1rem .75rem .25rem;
+}
+.Chapters span{
+    font-size: .85em;
+    opacity: .75;
+}
+.Book{
+    width: 28px;
+}
+.Progress{
+    background-color: #808080;
+    width:100%;
+    height:1.5px;
+
+    position: relative;
+}
+.Progress_inner{
+    position: absolute;
+    background-color: red;
+    width:80%;
+    height:1.5px;
+}

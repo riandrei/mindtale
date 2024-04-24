@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -16,11 +16,21 @@ import Logo from "../assets/mindtale.png";
 import Wrong from "../assets/remove.png";
 import Music from "../assets/bg-music.mp3";
 
-function Login({ logIn }) {
+function Login() {
+  const elements = Array.from({ length: 50 }, (_, index) => index + 1);
+
+  const containerElements = elements.map((count) => (
+    <div
+      key={`container${count}`}
+      id="container"
+      className={`${styles.Dust} ${styles[`Count${count}`]}`}
+    ></div>
+  ));
   const [isForgot, useIsForgot] = useState(false);
   const handleForgotClick = () => {
     useIsForgot(!isForgot);
   };
+
   //pang reveal password
   const [isShowPass, setIsShowPass] = useState(false);
   const handleShowClick = () => {
@@ -182,6 +192,8 @@ function Login({ logIn }) {
         </div>
       )}
       {isForgot && <Forgot handleForgotClick={handleForgotClick} />}
+
+      {containerElements}
     </div>
   );
 }

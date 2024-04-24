@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from '../css/Settings.module.css'
 
@@ -14,12 +14,13 @@ export default function SettingNav(props) {
     const goBack = () => {
       navigate(-1);
     }
+
     return (
         <div className={styles.Setting_nav}>
             <div className={styles.Back}>
                 <img src={Back} onClick={goBack} />
                 <h2>Settings</h2>
-                <div></div>
+
             </div>
             <div className={styles.Nav_inner}>
                 <div className={styles.Setting_click}>

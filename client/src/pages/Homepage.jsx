@@ -18,6 +18,7 @@ import Thriller from "../components/Thriller";
 
 import { getUser } from "../actions/authActions";
 import { getStories } from "../actions/storyActions";
+import NameInput from "../components/NameInput";
 
 import Filter from "../assets/filter.png";
 import Search from "../assets/search.png";

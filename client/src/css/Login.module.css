@@ -1,10 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@200;300;400;700;900&family=Sedgwick+Ave&family=Whisper&display=swap');
+@import url(https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@200;300;400;700;900&family=Sedgwick+Ave&family=Whisper&display=swap);
 
 *,
+.Login,
 .description,
 .story_left h1,
 .story_right button {
     font-family: Poppins;
+}
+
+.inputs button,
+.sign span {
+    color: #fff;
+    text-align: center;
+}
+
+.inputs button,
+.show img,
+.sign img {
+    cursor: pointer;
 }
 
 * {
@@ -14,8 +27,13 @@
 }
 
 .Login,
+.bottom,
+.catch,
 .inputs,
-.show {
+.media,
+.show,
+.sign,
+.socials {
     display: flex;
 }
 
@@ -53,14 +71,13 @@
 }
 
 .Login {
-    font-family: Poppins;
     height: 100vw;
     min-height: 100vh;
     max-height: 100vh;
     width: 100%;
     padding: .5rem 1rem 1rem;
     background-color: #111717;
-    background-image: url('../assets/castle4.png'); /*check mo kung ano maangas, 1, 3, or 4*/
+    background-image: url('../assets/castle4.png');
     background-size: cover;
     background-position: center center;
     background-repeat: repeat-x;
@@ -68,24 +85,22 @@
     flex-direction: column;
     overflow: hidden;
     clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
-    animation: 1s ease-out forwards entrance, bright 7500ms infinite alternate-reverse ease;
+    animation: 1s ease-out forwards entrance, 7.5s infinite alternate-reverse bright;
     filter: brightness(100%);
 }
-@keyframes bright{
-    from{
+
+@keyframes bright {
+    from {
         filter: brightness(80%);
     }
-    to{
+
+    to {
         filter: brightness(150%);
     }
 }
-@keyframes entrance{
-    0%{
 
-    }
-
-    100%{
-
+@keyframes entrance {
+    100% {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     }
 }
@@ -94,10 +109,334 @@
     align-items: center;
 }
 
+.Dust {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    background-color: #ffffff90;
+    border-radius: 50%;
+    animation: 10s infinite fog;
+    opacity: 0;
+}
+
+.Count1,
+.Count2,
+.Count29,
+.Count31,
+.Count35,
+.Count39,
+.Count43,
+.Count45,
+.Count48,
+.Count9 {
+    animation-delay: 1s;
+    position: fixed;
+}
+
+@keyframes fog {
+    75% {
+        transform: translate(5rem, 10rem);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(5rem, 10rem);
+        opacity: 0;
+    }
+}
+
+.Count9 {
+    left: 50px;
+    top: 200px;
+    scale: 2;
+}
+
+.Count13 {
+    left: 600px;
+    bottom: 100px;
+    position: fixed;
+}
+
+.Count6 {
+    right: 100px;
+    position: fixed;
+    top: 150px;
+}
+
+.Count11 {
+    right: 200px;
+    position: fixed;
+    scale: 2;
+}
+
+.Count1 {
+    left: 100px;
+    top: 50px;
+}
+
+.Count15 {
+    right: 300px;
+    bottom: 200px;
+    position: fixed;
+}
+
+.Count3 {
+    left: 300px;
+    position: fixed;
+}
+
+.Count10 {
+    right: 400px;
+    top: 250px;
+    position: fixed;
+    scale: 2;
+}
+
+.Count4 {
+    left: 400px;
+    bottom: 300px;
+    position: fixed;
+}
+
+.Count7 {
+    right: 500px;
+    position: fixed;
+    scale: 2;
+}
+
+.Count12 {
+    left: 700px;
+    top: 350px;
+    position: fixed;
+}
+
+.Count2 {
+    left: 200px;
+    top: 100px;
+    scale: 2;
+}
+
+.Count14,
+.Count18 {
+    right: 600px;
+    bottom: 150px;
+    position: fixed;
+}
+
+.Count5 {
+    left: 500px;
+    position: fixed;
+    scale: 2;
+}
+
+.Count16,
+.Count8 {
+    right: 650px;
+    bottom: 50px;
+    position: fixed;
+}
+
+.Count17 {
+    right: 700px;
+    bottom: 100px;
+    position: fixed;
+}
+
+.Count19 {
+    right: 750px;
+    bottom: 200px;
+    position: fixed;
+    scale: 2;
+}
+
+.Count20 {
+    right: 700px;
+    bottom: 250px;
+    position: fixed;
+}
+
+.Count21 {
+    right: 600px;
+    bottom: 300px;
+    position: fixed;
+}
+
+.Count22 {
+    right: 650px;
+    bottom: 350px;
+    scale: 2;
+    position: fixed;
+}
+
+.Count23 {
+    right: 750px;
+    bottom: 400px;
+    position: fixed;
+}
+
+.Count24 {
+    right: 700px;
+    bottom: 450px;
+    position: fixed;
+}
+
+.Count25 {
+    right: 600px;
+    bottom: 500px;
+    position: fixed;
+}
+
+.Count26 {
+    right: 650px;
+    scale: 2;
+    bottom: 550px;
+    position: fixed;
+}
+
+.Count27 {
+    right: 750px;
+    bottom: 600px;
+    position: fixed;
+}
+
+.Count28 {
+    right: 700px;
+    bottom: 650px;
+    position: fixed;
+}
+
+.Count29 {
+    right: 600px;
+    bottom: 700px;
+    scale: 2;
+}
+
+.Count30 {
+    right: 650px;
+    bottom: 750px;
+    position: fixed;
+}
+
+.Count31 {
+    left: 100px;
+    bottom: 200px;
+}
+
+.Count32 {
+    left: 300px;
+    top: 400px;
+    scale: 2;
+    position: fixed;
+}
+
+.Count33 {
+    left: 500px;
+    bottom: 600px;
+    position: fixed;
+}
+
+.Count34 {
+    right: 200px;
+    top: 300px;
+    position: fixed;
+}
+
+.Count35 {
+    right: 400px;
+    bottom: 100px;
+    scale: 2;
+}
+
+.Count36 {
+    right: 600px;
+    top: 200px;
+    position: fixed;
+}
+
+.Count37 {
+    left: 700px;
+    top: 50px;
+    scale: 2;
+    position: fixed;
+}
+
+.Count38 {
+    right: 50px;
+    bottom: 500px;
+    position: fixed;
+}
+
+.Count39 {
+    right: 250px;
+    top: 150px;
+}
+
+.Count40 {
+    left: 150px;
+    bottom: 350px;
+    position: fixed;
+}
+
+.Count41 {
+    left: 650px;
+    top: 250px;
+    position: fixed;
+}
+
+.Count42 {
+    right: 350px;
+    bottom: 450px;
+    position: fixed;
+}
+
+.Count43 {
+    left: 450px;
+    bottom: 50px;
+}
+
+.Count44 {
+    right: 550px;
+    top: 650px;
+    position: fixed;
+}
+
+.Count45 {
+    left: 250px;
+    top: 550px;
+}
+
+.Count46 {
+    right: 150px;
+    bottom: 350px;
+    position: fixed;
+}
+
+.Count47 {
+    right: 750px;
+    bottom: 200px;
+    position: fixed;
+}
+
+.Count48 {
+    left: 50px;
+    top: 150px;
+}
+
+.Count49 {
+    left: 350px;
+    bottom: 500px;
+    position: fixed;
+}
+
+.Count50 {
+    right: 450px;
+    top: 700px;
+    position: fixed;
+}
+
 .show img {
     width: 20px;
     transform: translateX(-2rem);
-    cursor: pointer;
     z-index: 2;
 }
 
@@ -110,12 +449,9 @@
     margin-top: 10px;
     height: fit-content;
     padding: .25rem 2rem;
-    text-align: center;
-    color: #fff;
-    background-color: #2395A5;
+    background-color: #2395a5;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
 }
 
 .inputs button:active {
@@ -129,6 +465,11 @@
     color: #fff;
     background-color: #80808050;
     width: 18.5vw;
+}
+
+.catch,
+.socials img {
+    background-color: #333;
 }
 
 .inputs input:focus {
@@ -151,16 +492,8 @@
     display: none;
 }
 
-.bottom,
-.catch,
-.media,
-.sign,
-.socials {
-    display: flex;
-}
-
 .link {
-    color: #2395A5;
+    color: #2395a5;
 }
 
 .link:hover {
@@ -190,10 +523,9 @@
 
 .socials img {
     width: 2.75rem;
-    border: solid 1px #fff;
+    border: 1px solid #fff;
     border-radius: 50%;
-    padding:.25rem;
-    background-color: #333333;
+    padding: .25rem;
 }
 
 .socials:first-child {
@@ -209,18 +541,18 @@
     transform: translateX(10rem);
     animation: 2.55s forwards bottom;
 }
-@keyframes bottom{
-    from{
 
+@keyframes bottom {
+    40% {
+        opacity: 1;
     }
-    40%{
-        opacity:1;
-    }
-    to{
-        opacity:1;
+
+    to {
+        opacity: 1;
         transform: translateX(0);
     }
 }
+
 .title h1 {
     line-height: 100%;
     font-size: 5em;
@@ -229,7 +561,7 @@
 
 .title p {
     letter-spacing: 7.5px;
-    background: linear-gradient(to right, #2395A5 20%, #37afbe 30%, #8ad7e2 70%, #cbedf2 80%);
+    background: linear-gradient(to right, #2395a5 20%, #37afbe 30%, #8ad7e2 70%, #cbedf2 80%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -246,13 +578,7 @@
 .sign span {
     background-color: #2b8aac;
     padding: .25rem .5rem;
-    color: #fff;
     border-radius: 20px;
-    text-align: center;
-}
-
-.sign img {
-    cursor: pointer;
 }
 
 .sign img:hover {
@@ -269,7 +595,6 @@
     top: 5%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #333;
     padding: .5rem 1rem;
     gap: .5rem;
     border-radius: 5px;
