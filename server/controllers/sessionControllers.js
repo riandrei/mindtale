@@ -6,11 +6,13 @@ const Story = require("../models/Story");
 
 const generativeAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-module.exports.startSession = async (req, res) => {
+const model = generativeAI.getGenerativeModel({
+  model: "gemini-1.0-pro",
+});
+
+module.exports.startSession = async (req, res, next) => {
   const { storyId } = req.params;
   const { email } = req.user;
-
-  console.log(storyId, email);
 
   User.findOne({ email }).then((user) => {
     if (!user) {
@@ -19,7 +21,14 @@ module.exports.startSession = async (req, res) => {
 
     Session.findOne({ user: user._id, story: storyId }).then((session) => {
       if (session) {
-        return res.status(200).json({ session });
+        const parsedText = JSON.parse(
+          session.history[session.history.length - 1].parts[0].text
+        );
+
+        req.body = { userChoice: parsedText.choices[0] };
+        next();
+
+        // return res.status(200).json({ parsedText });
       } else {
         const newSession = new Session({
           user: user._id,
@@ -27,15 +36,11 @@ module.exports.startSession = async (req, res) => {
           history: [],
         });
 
-        newSession.save().then((session) => {
+        newSession.save().then((Session) => {
           Story.findById(storyId).then(async (story) => {
             if (!story) {
               return res.status(400).json({ error: "Story not found" });
             }
-
-            const model = generativeAI.getGenerativeModel({
-              model: "gemini-1.0-pro",
-            });
 
             const chat = model.startChat({
               history: [
@@ -61,7 +66,7 @@ module.exports.startSession = async (req, res) => {
 
             console.log(story.synopsis);
 
-            let result = await chat.sendMessage(
+            const result = await chat.sendMessage(
               `Here is the synopsis of the book: ${story.synopsis}`
             );
 
@@ -70,58 +75,70 @@ module.exports.startSession = async (req, res) => {
             const text = response.text();
             console.log(response);
             console.log(text);
-            const history = await chat.getHistory();
-            console.log(history);
             console.log("test");
 
-            return res.status(200);
+            const parsedText = JSON.parse(text);
 
-            // const history = chat.history();
+            console.log(parsedText);
+            console.log("test2");
 
-            // session.history.push({
-            //   role: "model",
-            //   parts: [
-            //     {
-            //       text: `scenario: ${text.scenario} choices: ${text.choices}`,
-            //     },
-            //   ],
-            // });
+            const history = await chat.getHistory();
+            console.log(history);
+
+            Session.history = [...history];
+            Session.save();
+
+            return res.status(200).json(parsedText);
           });
         });
       }
     });
   });
+};
 
-  // const model = generativeAI.getGenerativeModel({ model: "gemini-1.0-pro" });
+module.exports.submitUserChoice = async (req, res) => {
+  const { storyId } = req.params;
+  const { email } = req.user;
+  const { userChoice } = req.body;
 
-  // const chat = model.startChat({
-  //   history: [
-  //     {
-  //       role: "user",
-  //       parts: [{ text: "Hello, I am Riandrei." }],
-  //     },
-  //     {
-  //       role: "model",
-  //       parts: [{ text: "Great to meet you. What would you like to know?" }],
-  //     },
-  //   ],
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
 
-  //   generationConfig: { maxOutputTokens: 100 },
-  // });
+    Session.findOne({ user: user._id, story: storyId }).then(
+      async (session) => {
+        if (!session) {
+          return res.status(400).json({ error: "Session not found" });
+        }
 
-  // const result = await chat.sendMessage("Hello! I am riandrei");
+        const chat = model.startChat({
+          history: session.history.map(({ _id, role, parts }) => {
+            const cleanedParts = parts.map(({ text }) => ({ text }));
+            return { role, parts: cleanedParts };
+          }),
+          generationConfig: { maxOutputTokens: 200 },
+        });
 
-  // const response = await result.response;
+        console.log(userChoice);
 
-  // const text = response.text();
+        const result = await chat.sendMessage(`I pick: ${userChoice}`);
 
-  // console.log(text);
+        const response = await result.response;
 
-  // const result2 = await chat.sendMessage("What's my name?");
+        const text = response.text();
+        console.log(text);
 
-  // const response2 = await result2.response;
+        const parsedText = JSON.parse(text);
 
-  // const text2 = response2.text();
+        const history = await chat.getHistory();
+        console.log(history);
 
-  // console.log(text2);
+        session.history = [...history];
+        session.save();
+
+        return res.status(200).json(parsedText);
+      }
+    );
+  });
 };
