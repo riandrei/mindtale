@@ -21,7 +21,8 @@ export function SearchBook(props) {
                 <button>Search</button>
             </div>
             <div className={styles.Stories_con}>
-                <SpecificStory title="Magic and Mascles" image={Story1}/>
+                {/* <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/> */}
+                <h1 className={styles.Oops}>Looks like the book you are looking for doesn't exist...</h1>
             </div>
         </div>
     )
