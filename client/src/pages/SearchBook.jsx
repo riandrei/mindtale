@@ -7,7 +7,7 @@ import Story1 from '../assets/artwork7.jpg'
 
 import SpecificStory from '../components/SpecificStory'
 
-export function SearchBook(props) {
+export function SearchBook({props, searchBook, handleBookSearch}) {
     
     const navigate = useNavigate()
     const goBack = () => {
@@ -15,7 +15,7 @@ export function SearchBook(props) {
     }
 
     const [noBook, setNoBook] = useState(false);
-    const handleBookSearch = () => {
+    const handleSearch = () => {
         setNoBook( !noBook)
     }
 
@@ -23,7 +23,7 @@ export function SearchBook(props) {
         <div className={styles.SearchBook}>
             <div className={styles.Top}>
                 <img src={Back} onClick={goBack} />
-                <input type="text" placeholder='Search bookworms...'/>
+                <input onChange={handleBookSearch} type="text" placeholder='Search bookworms...'/>
                 <button>Search</button>
             </div>
             <div className={styles.Stories_con}>
@@ -44,7 +44,9 @@ export function SearchBook(props) {
                 {
                     noBook && <h1 className={styles.Oops}>Looks like the book you are looking for doesn't exist...</h1>
                 }
+                
             </div>
+            {console.log(searchBook)}
         </div>
     )
 }
