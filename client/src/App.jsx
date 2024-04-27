@@ -14,6 +14,7 @@ import NewUserVerify from './pages/NewUserVerify';
 import { StoryBoard } from './pages/StoryBoard';
 import { SearchPeople } from './pages/SearchPeople';
 import SearchBook from './pages/SearchBook';
+import Admin from './pages/Admin'
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/StoryBoard" element={<StoryBoard />} />
           <Route path="/SearchPeople" element={<SearchPeople />} />
           <Route path="SearchBook" element={<SearchBook />}/>
+          <Route path="/Admin" element={<Admin/>}/>
         </Routes>
       </Router>
     </>
