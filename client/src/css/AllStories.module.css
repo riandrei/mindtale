@@ -34,3 +34,8 @@
     gap:.5rem;
     flex-wrap: wrap;
 }
+@media(max-width:431px){
+    .Stories_con{
+        gap:0;
+    }
+}
