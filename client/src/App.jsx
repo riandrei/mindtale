@@ -1,5 +1,5 @@
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -16,6 +16,8 @@ import NewUserVerify from "./pages/NewUserVerify";
 import StoryBoard from "./pages/StoryBoard";
 import { SearchPeople } from "./pages/SearchPeople";
 import SearchBook from "./pages/SearchBook";
+import Admin from "./pages/Admin";
+import Story from "./components/Story";
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
           <Route path="/StoryBoard/:storyId" element={<StoryBoard />} />
           <Route path="/SearchPeople" element={<SearchPeople />} />
           <Route path="SearchBook" element={<SearchBook />} />
+          <Route path="/Admin" element={<Admin />} />
         </Routes>
       </Router>
     </Provider>

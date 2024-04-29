@@ -17,6 +17,14 @@
     flex-direction: column;
     gap:1rem;
 }
+.Stories_con{
+    display: flex;
+    gap:1rem;
+    flex-wrap: wrap;
+}
+.Oops{
+    text-align: center;
+}
 
 .Top{
     display: flex;
@@ -39,5 +47,9 @@
 @media(max-width:431px){
     .SearchBook{
         background-image: url(../assets/castle-mobile.png);
+        padding:.25rem .5rem;
+    }
+    .Stories_con{
+        gap:0rem;
     }
 }

@@ -38,13 +38,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 function Homepage({ getUser, getStories }) {
-  // const buttonLabels = ["For you", "Scifi", "Sports", "Top Rated", "Adventure", "Fantasy", "Action", "Horror", "Mystery", "Romance"];
-  // const [activeButton, setActiveButton] = useState(0);
-
-  // const handleButtonClick = (index) => {
-  //   setActiveButton(index);
-  // };
-
   const [isOpenFilter, setOpenFilter] = useState(false);
 
   const handleFilterClick = () => {

@@ -1,0 +1,41 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    outline:none;
+    border:none;
+}
+.AllStories{
+    padding: 1rem .5rem;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+.Stories_top{
+    display: flex;
+    gap:1rem;
+    align-items: center;
+}
+.Stories_top span{
+    font-size: 1.25em;
+    font-weight: 600;
+}
+.Stories_top input{
+    padding:.5rem 1rem;
+    background-color: #60606050;
+    width:75%;
+}
+.Stories_top select{
+    background-color: #2395a5;
+    padding:.5rem;
+}
+.Stories_con{
+    display: flex;
+    gap:.5rem;
+    flex-wrap: wrap;
+}
+@media(max-width:431px){
+    .Stories_con{
+        gap:0;
+    }
+}

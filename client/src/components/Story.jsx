@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from "../css/Story.module.css";
@@ -7,9 +8,16 @@ import Recommend from "../components/Recommend";
 
 import Sample1 from "../assets/sample1.png";
 import Art from "../assets/artwork11.jpg";
-import { useEffect } from "react";
+import Back from "../assets/back.png";
+import Menu from "../assets/menuu.png";
 
 export function Story(props) {
+  const [openNav, setOpenNav] = useState(false);
+  const handleNavClick = () => {
+    console.log("Hello check");
+    setOpenNav(!openNav);
+  };
+
   const currentNarrative = useSelector(
     (state) => state.session.currentNarrative
   );
@@ -21,6 +29,10 @@ export function Story(props) {
 
   return (
     <div className={styles.Story}>
+      <div className={styles.Top}>
+        <img src={Back} />
+        {openNav && <img onClick={handleNavClick} src={Menu} />}
+      </div>
       <h1 className={styles.Main_title}>Prologue: Where it All Started</h1>
       <img src={Sample1} />
       <p>{currentNarrative || "Loading..."}</p>

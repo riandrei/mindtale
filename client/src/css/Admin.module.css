@@ -1,0 +1,241 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    outline: none;
+    border:none;
+}
+.Admin{
+    min-height:100vh;
+    background-color: #000;
+    padding:0 .75rem .75rem;
+    display: flex;
+    flex-direction: column;
+    gap:1.25rem;
+
+}
+.Back{
+    width:32px;
+}
+.Cover{
+    width:350px;
+}
+.Middle{
+    display: flex;
+    gap:1rem;
+
+    justify-content: center;
+
+}
+.Middle_left{
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;
+    width:350px;
+}
+.Middle_left_down{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:100%;
+    gap:.5rem;
+}
+.Middle_left_down img{
+    width:32px;
+    height: 100%;
+    padding:.5rem;
+    border:solid 1px #fff;
+}
+.Middle_left_down button{
+    background-color: #2395a5;
+    width:100%;
+    padding: .5rem;
+    text-align: center;
+}
+.Book_title{
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;
+}
+.Middle_right{
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+.Book_title label{
+    font-size: 1.25em;
+    font-weight: 600;
+}
+.Book_title input{
+    background-color: #60606050;
+    font-size: 1.15em;
+    padding:.5rem 1rem;
+}
+.Book_title textarea{
+    background-color: #60606050;
+    height:20vh;
+    font-size: 1em;
+}
+.Genre{
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;
+}
+.Genre span{
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+.Choice{
+    display: flex;
+    align-items: center;
+    gap:.5rem;
+    width:15%;
+}
+.Choice input[type="checkbox"]{
+    border-radius: 50%;
+    background-color: #60606050;
+    padding:.5rem;
+}
+.Genre_choices{
+    display: flex;
+    gap:1rem;
+    flex-wrap: wrap;
+}
+.Story_type{
+    display: flex;
+    gap:1rem;
+}
+
+.Story_type button:active{
+    scale:.9;
+}
+.Premium{
+    display: flex;
+    align-items: center;
+    gap:.5rem;
+}
+.Premium img{
+    width:22px;
+}
+.Create{
+    background-color: #2395a5;
+    padding: .5rem 0;
+    cursor: pointer;
+    transition: all 350ms;
+}
+.Create:active{
+    scale:.95;
+}
+.Line_con{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+.Line{
+    width:150px;
+}
+.select{
+    background-color: #2395a5 !important;
+}
+.Story_type .button{
+    background-color: #000;
+    padding:.5rem 1rem;
+    border:solid 1px #fff;
+    width:25%;
+    cursor: pointer;
+    transition: all 350ms;
+
+}
+.Story_type .button:nth-child(2){
+    display: flex;
+    align-items: center;
+    gap:.5rem;
+}
+.Story_type img{
+    width:32px;
+}
+.Popup{
+    width:75%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap:.75rem;
+    justify-content: center;
+    align-items: center;
+    padding:.5rem;
+    border: solid 1px #ffffff50;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000;
+    animation:appear 500ms ease forwards;
+    opacity:0;
+    filter: blur(10px);
+
+}
+@keyframes appear{
+    from{}
+    to{
+        opacity: 1;
+        filter:blur(0);
+
+    }
+}
+.Popup h1{
+    font-size: 1.75em;
+}
+.Sure_con{
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+}
+.Sure_con button{
+    width:40%;
+    color:#fff;
+    padding:.5rem 1rem;
+    transition: all 350ms;
+    background-color: #000;
+    cursor: pointer;
+    border:solid 1px #ffffff50;
+}
+.Sure_con button:first-child:hover{
+    background-color: #2395a5;
+}
+.Sure_con button:nth-child(2){
+    background-color: #940000;
+}
+
+
+@media(max-width:431px){
+    .Admin{
+        padding: .5rem .75rem .75rem;
+    }
+    .Middle{
+        flex-direction: column;
+    }
+    .Middle_right{
+        width:100%;
+    }
+    .Middle_left{
+        width:100%;
+    }
+    .Cover{
+        width:100%;
+    }
+    .Choice{
+        width:30%;
+    }
+    .Story_type{
+        justify-content: center;
+    }
+    .Story_type button{
+        width:45%;
+        
+    }
+    .Popup{
+        width:95%;
+    }
+}
