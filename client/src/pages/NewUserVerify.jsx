@@ -1,30 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 
-import { verifyAccount } from "../actions/authActions";
+import { verifyAccount, getUser } from "../actions/authActions";
 
 import styles from "../css/NewUserVerify.module.css";
 
 import Back from "../assets/back.png";
 
-function NewUserVerify({ verifyAccount }) {
+function NewUserVerify({ verifyAccount, getUser }) {
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
   };
 
-  const user = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth?.user);
   const [isMatch, setIsMatch] = useState(false);
   const [code, setCode] = useState("");
 
   const handleSubmitClick = () => {
+    console.log(user.email);
+    setIsMatch(false);
+    setCode("");
     verifyAccount(code, user.email, navigate);
   };
 
   const handleCodeValueChange = (e) => {
     setCode(e.target.value);
   };
+
+  const errorStatus = useSelector((state) => state.auth.error);
+
+  useEffect(() => {
+    setIsMatch(errorStatus === "Invalid verification code");
+  }, [errorStatus]);
+
+  useEffect(() => {
+    console.log(user);
+    if (Object.keys(user).length === 0) {
+      console.log("test", user);
+      getUser();
+    }
+
+    console.log(user);
+  }, []);
 
   return (
     <div className={styles.NewUserVerify}>
@@ -40,11 +59,11 @@ function NewUserVerify({ verifyAccount }) {
           onChange={handleCodeValueChange}
         />
         {isMatch && (
-          <p className={styles.Wrong}>The verification code does not match</p>
+          <p className={styles.Wrong}>The verification code is wrong</p>
         )}
         <p>
-          We've sent a verification code to your email; if not received, click
-          'Resend’.
+          We've sent a verification code to your email. Check your spam if it
+          isn't working
         </p>
         <div className={styles.Buttons}>
           <button onClick={handleSubmitClick}>Submit</button>
@@ -55,6 +74,6 @@ function NewUserVerify({ verifyAccount }) {
   );
 }
 
-const matchDispatchToProps = { verifyAccount };
+const matchDispatchToProps = { verifyAccount, getUser };
 
 export default connect(null, matchDispatchToProps)(NewUserVerify);

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@200;300;400;700;900&family=Sedgwick+Ave&family=Whisper&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@200;300;400;700;900&family=Sedgwick+Ave&family=Whisper&display=swap");
 
 *,
 .description,
@@ -21,7 +21,6 @@
   align-items: flex-end;
   gap: 0.75rem;
   padding: 1.5rem;
-
 }
 
 .book_title,
@@ -31,13 +30,12 @@
 }
 
 .TopStory::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: url(../assets/artwork2.webp);
   background-size: cover;
   background-position: center;
   filter: blur(2.5px);

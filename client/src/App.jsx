@@ -13,7 +13,7 @@ import Profile from "./pages/UserProfile";
 import StoryDetails2 from "./pages/StoryDetails2";
 import Settings from "./pages/Settings";
 import NewUserVerify from "./pages/NewUserVerify";
-import { StoryBoard } from "./pages/StoryBoard";
+import StoryBoard from "./pages/StoryBoard";
 import { SearchPeople } from "./pages/SearchPeople";
 import SearchBook from "./pages/SearchBook";
 
@@ -32,7 +32,7 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Settings" element={<Settings />} />
           <Route path="/NewUserVerify" element={<NewUserVerify />} />
-          <Route path="/StoryBoard" element={<StoryBoard />} />
+          <Route path="/StoryBoard/:storyId" element={<StoryBoard />} />
           <Route path="/SearchPeople" element={<SearchPeople />} />
           <Route path="SearchBook" element={<SearchBook />} />
         </Routes>

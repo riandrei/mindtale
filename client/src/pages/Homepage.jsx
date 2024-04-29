@@ -15,6 +15,7 @@ import Recommendation from "../components/Recommendation";
 import Footer from "../components/Footer";
 import RecentExploration from "../components/RecentExploration";
 import Thriller from "../components/Thriller";
+import SliderTags from "../components/SliderTags";
 
 import { getUser } from "../actions/authActions";
 import { getStories } from "../actions/storyActions";
@@ -78,6 +79,7 @@ function Homepage({ getUser, getStories }) {
   }, []);
 
   const user = useSelector((state) => state.auth.user);
+  const stories = useSelector((state) => state.story.stories);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -93,6 +95,31 @@ function Homepage({ getUser, getStories }) {
       }
     }
   }, []);
+
+  const [topTags, setTopTags] = useState([]);
+  useEffect(() => {
+    const tagCounts = user?.completedStories?.reduce((acc, story) => {
+      story.tags.forEach((tag) => {
+        acc[tag] = (acc[tag] || 0) + 1;
+      });
+      return acc;
+    }, {});
+
+    if (tagCounts) {
+      const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+
+      // 2. Slice the first three elements (top 3 values)
+      const topThreeTags = sortedTags.slice(0, 3).map(([tag]) => tag);
+
+      if (topThreeTags.length === 0) {
+        topThreeTags.push("Fantasy");
+        topThreeTags.push("Exploration");
+        topThreeTags.push("Cyberpunk");
+      }
+
+      setTopTags(topThreeTags);
+    }
+  }, [user]);
 
   return (
     <div className={styles.Homepage}>
@@ -110,7 +137,18 @@ function Homepage({ getUser, getStories }) {
         modules={[Pagination, Autoplay]}
         className={styles.mySwiper}
       >
-        <SwiperSlide>
+        {stories?.length > 0 &&
+          stories.map((story) => (
+            <SwiperSlide key={story?._id}>
+              <TopStory
+                title={story?.title}
+                tags={story?.tags}
+                synopsis={story.synopsis}
+                imgURL={story?.imgURL}
+              />
+            </SwiperSlide>
+          ))}
+        {/* <SwiperSlide>
           <TopStory Story_image={Art1} />
         </SwiperSlide>
         <SwiperSlide>
@@ -124,14 +162,15 @@ function Homepage({ getUser, getStories }) {
         </SwiperSlide>
         <SwiperSlide>
           <TopStory Story_image={Art5} />
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
 
       <section className={styles.main_body}>
         <RecentExploration />
         <LastRead />
-        <Recommendation />
-        <Thriller />
+        {topTags.map((tag) => (
+          <SliderTags key={tag} tag={tag} />
+        ))}
         <DailyRead />
       </section>
       <Footer />

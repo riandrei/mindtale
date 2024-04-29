@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 import { logIn } from "../actions/authActions";
 
@@ -16,7 +16,7 @@ import Logo from "../assets/mindtale.png";
 import Wrong from "../assets/remove.png";
 import Music from "../assets/bg-music.mp3";
 
-function Login() {
+function Login({ logIn }) {
   const elements = Array.from({ length: 50 }, (_, index) => index + 1);
 
   const containerElements = elements.map((count) => (
@@ -66,9 +66,17 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    console.log(email, password);
-    logIn(email, password, navigate);
+  const errorStatus = useSelector((state) => state.auth.error);
+
+  useEffect(() => {
+    if (errorStatus === "Invalid credentials") {
+      setWrongAcc(true);
+    }
+  }, [errorStatus]);
+
+  const handleLogin = async () => {
+    await logIn(email, password, navigate);
+    // logIn(email, password, navigate);
   };
 
   return (

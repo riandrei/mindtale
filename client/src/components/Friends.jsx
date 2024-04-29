@@ -1,50 +1,24 @@
-import React from 'react'
-import styles from '../css/Friends.module.css'
-import User1 from '../assets/jem.jpg'
+import { useSelector } from "react-redux";
 
-export default function Friends(props) {
-    
+import styles from "../css/Friends.module.css";
+import User1 from "../assets/jem.jpg";
 
-    return (
-        <div className={styles.Friends}>
-            <div className={styles.Specific_friend}>
-                <img src={User1}/>
-                <div className={styles.Friends_inner}> 
-                    <h3>Jem Andrei</h3>
-                    <span>19 mutual friends</span>
-                </div>
-            </div>
+export default function Friends() {
+  const user = useSelector((state) => state.auth?.user);
 
-            <div className={styles.Specific_friend}>
-                <img src={User1}/>
-                <div className={styles.Friends_inner}> 
-                    <h3>Jem Andrei</h3>
-                    <span>19 mutual friends</span>
-                </div>
-            </div>
-
-            <div className={styles.Specific_friend}>
-                <img src={User1}/>
-                <div className={styles.Friends_inner}> 
-                    <h3>Jem Andrei</h3>
-                    <span>19 mutual friends</span>
-                </div>
-            </div>
-
-            <div className={styles.Specific_friend}>
-                <img src={User1}/>
-                <div className={styles.Friends_inner}> 
-                    <h3>Jem Andrei</h3>
-                    <span>19 mutual friends</span>
-                </div>
-            </div>
-            <div className={styles.Specific_friend}>
-                <img src={User1}/>
-                <div className={styles.Friends_inner}> 
-                    <h3>Jem Andrei</h3>
-                    <span>19 mutual friends</span>
-                </div>
-            </div>
+  return (
+    <div className={styles.Friends}>
+      {user?.friends?.length > 0 ? (
+        <div className={styles.Specific_friend}>
+          <img src={User1} />
+          <div className={styles.Friends_inner}>
+            <h3>Jem Andrei</h3>
+            <span>19 mutual friends</span>
+          </div>
         </div>
-    )
+      ) : (
+        <h1>Friends show up here.</h1>
+      )}
+    </div>
+  );
 }

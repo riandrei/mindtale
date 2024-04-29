@@ -2,11 +2,14 @@ import {
   LOGIN_SUCCESS,
   VERIFY_SUCCESS,
   GET_USER_SUCCESS,
+  LOGIN_FAIL,
+  VERIFY_FAIL,
 } from "../actions/types";
 
 const initialState = {
   isAuthenticated: false,
   user: {},
+  error: null,
 };
 
 export default function authReducer(state = initialState, action) {
@@ -29,11 +32,23 @@ export default function authReducer(state = initialState, action) {
         },
       };
     case GET_USER_SUCCESS:
-      console.log("test");
+      console.log(action.payload);
       return {
         ...state,
         isAuthenticated: true,
         user: action.payload,
+      };
+    case LOGIN_FAIL:
+      return {
+        ...state,
+        isAuthenticated: false,
+        error: action.payload,
+        user: {},
+      };
+    case VERIFY_FAIL:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

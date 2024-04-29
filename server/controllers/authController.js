@@ -48,7 +48,7 @@ module.exports.signIn = (req, res) => {
 
     bcrypt.compare(password, user.password).then((result) => {
       if (!result) {
-        return res.status(400).json({ error: "Invalid password" });
+        return res.status(401).json({ error: "Invalid credentials" });
       }
 
       const token = jwt.sign({ email }, process.env.JWT_SECRET, {
@@ -60,6 +60,13 @@ module.exports.signIn = (req, res) => {
         username: user.username,
         id: user._id,
         verified: user.verified,
+        savedStories: user.savedStories,
+        completedStories: user.completedStories,
+        friends: user.friends,
+        friendRequests: user.friendRequests,
+        profilePicture: user.profilePicture,
+        history: user.history,
+        visited: user.visited,
         token,
       };
 
@@ -103,6 +110,12 @@ module.exports.getUser = (req, res) => {
       id: user._id,
       verified: user.verified,
       savedStories: user.savedStories,
+      completedStories: user.completedStories,
+      friends: user.friends,
+      friendRequests: user.friendRequests,
+      profilePicture: user.profilePicture,
+      history: user.history,
+      visited: user.visited,
     };
 
     return res.status(200).json({ userInfo });
@@ -133,6 +146,65 @@ module.exports.toggleUserBookmark = (req, res) => {
         res.status(400).json({ error: "Error toggling bookmark" })
       );
   });
+};
+
+module.exports.addVisited = (req, res) => {
+  const { storyId } = req.params;
+  const { email } = req.user;
+
+  console.log(storyId, email);
+
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        return res.status(400).json({ error: "User not found" });
+      }
+      const existingStory = user.visited.find(
+        (visit) => visit.story.toString() === storyId
+      );
+      if (existingStory) {
+        existingStory.date = new Date();
+      } else {
+        user.visited.push({ story: storyId, date: new Date() });
+      }
+      return user.save();
+    })
+    .then((user) => {
+      res.status(200).json({ message: "Story added to visited" });
+    })
+    .catch((error) => {
+      // ...
+    });
+};
+
+module.exports.addHistory = (req, res, next) => {
+  const { storyId } = req.params;
+  const { email } = req.user;
+
+  console.log(storyId, email);
+
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        return res.status(400).json({ error: "User not found" });
+      }
+      const existingStory = user.history.find(
+        (history) => history.story.toString() === storyId
+      );
+      if (existingStory) {
+        existingStory.date = new Date();
+      } else {
+        user.history.push({ story: storyId, date: new Date() });
+      }
+      return user.save();
+    })
+    .then((user) => {
+      console.log("History added");
+      next();
+    })
+    .catch((error) => {
+      // ...
+    });
 };
 
 function hashPassword(password) {

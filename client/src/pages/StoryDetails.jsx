@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 
 import { getStories, postReview, getReviews } from "../actions/storyActions";
-import { toggleBookmark, getUser } from "../actions/authActions";
+import { toggleBookmark, getUser, addVisited } from "../actions/authActions";
 import { readStory } from "../actions/sessionActions";
 
 import Nav from "../components/Nav";
@@ -29,6 +29,7 @@ export function StoryDetails({
   getReviews,
   readStory,
   getUser,
+  addVisited,
 }) {
   const [maxLength, setMaxLength] = useState(
     window.innerWidth <= 431 ? 100 : 50
@@ -49,20 +50,22 @@ export function StoryDetails({
 
   const [isRead, useIsRead] = useState(true);
 
-  const handleReadClick = () => {
-    // useIsRead(false);
-    // setTimeout(() => {
-    //   window.location.href = "/LoadingScreen";
-    // }, 500);
-
-    readStory({ storyId });
-  };
-
   const { storyId } = useParams();
   const stories = useSelector((state) => state.story.stories);
 
   const story = stories?.find((story) => story._id === storyId);
   const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+
+  const handleReadClick = () => {
+    // useIsRead(false);
+    // setTimeout(() => {
+    //   window.location.href = "/LoadingScreen";
+    // }, 500);
+    navigate(`/StoryBoard/${storyId}`);
+
+    // readStory({ storyId });
+  };
 
   useEffect(() => {
     if (stories.length === 0) {
@@ -75,6 +78,12 @@ export function StoryDetails({
       }
     }
   }, []);
+
+  useEffect(() => {
+    if (user.id) {
+      addVisited(storyId);
+    }
+  }, [user]);
 
   const handleBookmarkClick = () => {
     const token = localStorage.getItem("token");
@@ -229,6 +238,7 @@ const mapDispatchToProps = {
   getReviews,
   getUser,
   readStory,
+  addVisited,
 };
 
 export default connect(null, mapDispatchToProps)(StoryDetails);

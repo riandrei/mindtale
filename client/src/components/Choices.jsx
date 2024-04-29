@@ -1,33 +1,45 @@
-import React, {useState} from 'react'
-import styles from '../css/Choices.module.css'
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
 
-export function Choices(props) {
-    const [selectedButton, setSelectedButton] = useState(null);
+import { submitUserChoice } from "../actions/sessionActions";
 
-    function handleClick(index) {
-        setSelectedButton(index);
-    }
+import styles from "../css/Choices.module.css";
 
-    return (
-        <div className={styles.Choices}>
-            <button
-                onClick={() => handleClick(1)}
-                style={{ backgroundColor: selectedButton === 1 ? '#2395A5' : '' }}
-            >Drive at the gas station</button>
-            <button
-                onClick={() => handleClick(2)}
-                style={{ backgroundColor: selectedButton === 2 ? '#2395A5' : '' }}
-            >Take a break at the Beach</button>
-            <button
-                onClick={() => handleClick(3)}
-                style={{ backgroundColor: selectedButton === 3 ? '#2395A5' : '' }}
-            >Sleep in the Car</button>
-            <button
-                onClick={() => handleClick(4)}
-                style={{ backgroundColor: selectedButton === 4 ? '#2395A5' : '' }}
-            >Play mobile games</button>
-        </div>
-    )
+export function Choices({ choices, submitUserChoice }) {
+  //   const [selectedButton, setSelectedButton] = useState(null);
+
+  // function handleClick(index) {
+  //     setSelectedButton(index);
+  // }
+
+  const { storyId } = useParams();
+
+  const handleChoiceClick = (choice) => {
+    submitUserChoice({ userChoice: choice, storyId });
+  };
+
+  return (
+    <div className={styles.Choices}>
+      {choices?.length === 0 ? (
+        <button onClick={() => handleChoiceClick("Next")}>Next</button>
+      ) : (
+        choices?.map((choice, index) => (
+          <button
+            key={index}
+            onClick={() => handleChoiceClick(choice)}
+            // style={{ backgroundColor: selectedButton === index ? '#2395A5' : '' }}
+          >
+            {choice}
+          </button>
+        ))
+      )}
+    </div>
+  );
 }
 
-export default Choices;
+const mapDispatchToProps = {
+  submitUserChoice,
+};
+
+export default connect(null, mapDispatchToProps)(Choices);

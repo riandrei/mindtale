@@ -1,6 +1,13 @@
-import { LOGIN_SUCCESS, VERIFY_SUCCESS, GET_USER_SUCCESS } from "./types";
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  VERIFY_SUCCESS,
+  VERIFY_FAIL,
+  GET_USER_SUCCESS,
+} from "./types";
 
 export const logIn = (email, password, navigate) => (dispatch) => {
+  console.log("this working?");
   fetch("http://localhost:3001/api/logIn", {
     method: "POST",
     headers: {
@@ -17,6 +24,16 @@ export const logIn = (email, password, navigate) => (dispatch) => {
           redirect: navigate,
         });
       });
+    } else {
+      if (res.status === 401) {
+        res.json().then((res) => {
+          dispatch({
+            type: LOGIN_FAIL,
+            payload: res.error,
+          });
+          console.log(res.error);
+        });
+      }
     }
   });
 };
@@ -53,6 +70,15 @@ export const verifyAccount = (code, email, navigate) => (dispatch) => {
         redirect: navigate,
       });
     }
+
+    if (res.status === 400) {
+      res.json().then((res) => {
+        dispatch({
+          type: VERIFY_FAIL,
+          payload: res.error,
+        });
+      });
+    }
   });
 };
 
@@ -85,6 +111,19 @@ export const toggleBookmark = (token, storyId) => (dispatch) => {
   }).then((res) => {
     if (res.status === 200) {
       dispatch(getUser());
+    }
+  });
+};
+
+export const addVisited = (storyId) => (dispatch) => {
+  fetch(`http://localhost:3001/api/visited/${storyId}`, {
+    method: "POST",
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  }).then((res) => {
+    if (res.status === 200) {
+      return;
     }
   });
 };
