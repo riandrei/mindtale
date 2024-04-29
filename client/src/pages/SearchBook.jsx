@@ -30,15 +30,7 @@ export function SearchBook({props, searchBook, handleBookSearch}) {
                 <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/>
                 <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/>
                 <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/>
-                <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/>
-                <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/>
-                <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/>
-                <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/>
-                <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/>
-                <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/>
-                <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/>
-                <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/>
-                <SpecificStory title="Magic and Mascles" image={Story1} genre="Drama"/>
+
 
                 {/* popup if wala yung book na hinahanap niya */}
                 {

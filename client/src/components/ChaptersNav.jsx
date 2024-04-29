@@ -8,13 +8,11 @@ import Back from '../assets/back.png'
 import Close from '../assets/invisible.png'
 
 import Chapters from '../components/Chapters'
+// import { handleNavClick } from './Story'
 
-export const ChaptersNav = () => {
+export const ChaptersNav = ({ openNav, handleNavClick }) => {
+    // const [openNav, setOpenNav] = useState(false);
 
-    const [hideNav, setHideNav] = useState(false)
-    const handleNavClick = () => {
-        setHideNav( !hideNav )
-    }
 
     return(
         <div className={styles.Chapters}>
