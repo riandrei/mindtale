@@ -32,12 +32,6 @@ import { Pagination, Autoplay } from 'swiper/modules';
 
 function Homepage() {
 
-    // const buttonLabels = ["For you", "Scifi", "Sports", "Top Rated", "Adventure", "Fantasy", "Action", "Horror", "Mystery", "Romance"];
-    // const [activeButton, setActiveButton] = useState(0);
-  
-    // const handleButtonClick = (index) => {
-    //   setActiveButton(index);
-    // };
 
     const [isOpenFilter, setOpenFilter] = useState(false);
 
@@ -56,7 +50,7 @@ function Homepage() {
         {
           root: null,
           rootMargin: '0px',
-          threshold: 0.5, // Change this threshold as per your requirement
+          threshold: 0.5,
         }
       );
   
@@ -95,8 +89,6 @@ function Homepage() {
         <SwiperSlide><TopStory Story_image={Art5}/></SwiperSlide>
 
       </Swiper>
-
-
 
             <section className={ styles.main_body}>
 

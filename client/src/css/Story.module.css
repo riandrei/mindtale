@@ -38,6 +38,16 @@
 .Prev:hover{
     background-color: #2395a5;
 }
+.Top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:100%;
+    padding: 0 1rem;
+}
+.Top img{
+    width:32px;
+}
 .Story p{
     width:50%;
     margin: 0 auto;
