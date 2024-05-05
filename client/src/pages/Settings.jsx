@@ -5,18 +5,19 @@ import Logo from '../assets/mindtale.png'
 
 import EditProfile from '../components/EditProfile'
 import Footer from '../components/Footer'
-import Premium from '../components/PremiumPlan'
+import PremiumPlan from '../components/PremiumPlan'
 
 
-export function Settings(props) {
+export function Settings({settingClick, handleSettingClick}) {
 
 
     return (
         <div className={styles.Settings}>
-            <SettingNav />
+            <SettingNav settingClick={settingClick} handleSettingClick={handleSettingClick} />
             <div className={styles.Main_body}>
                 <div className={styles.Main_content}>
-                    <EditProfile />
+                    {settingClick === 1 && <EditProfile />}
+                    {settingClick === 4 && <PremiumPlan />}
                 </div>
             </div>
         </div>

@@ -20,11 +20,22 @@ import Story from './components/Story'
 
 
 function App() {
+
+  // For storyboard open and close navbar
   const [openNav, setOpenNav] = useState(false);
   const handleNavClick = () => {
     console.log("Hello check")
     setOpenNav(!openNav);
   }
+
+  // For toggle in settings
+  const [settingClick , setSettingClick] = useState(1);
+  const handleSettingClick = (value) => {
+    setSettingClick(value)
+    console.log(value)
+  }
+
+
   return (
     <> 
 
@@ -38,7 +49,6 @@ function App() {
           <Route path="/StoryDetails" element={<StoryDetails/>}/>
           <Route path="/StoryDetails2" element={<StoryDetails2/>}/>
           <Route path="/Profile" element={<Profile />} />
-          <Route path="/Settings" element={<Settings />} />
           <Route path="/NewUserVerify" element={<NewUserVerify />} />
           <Route path="/SearchPeople" element={<SearchPeople />} />
           <Route path="SearchBook" element={<SearchBook />}/>
@@ -48,6 +58,10 @@ function App() {
             path="/StoryBoard"
             element={<StoryBoard openNav={openNav} handleNavClick={handleNavClick} />}
           />
+
+          <Route 
+            path="/Settings" 
+            element={<Settings settingClick={ settingClick } handleSettingClick={ handleSettingClick }/>} />
 
         </Routes>
       </Router>
