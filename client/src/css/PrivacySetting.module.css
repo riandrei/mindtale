@@ -1,0 +1,41 @@
+*{
+    padding:0;
+    margin:0;
+    border:none;
+    box-sizing: border-box;
+    outline:none;
+}
+.PrivacySetting{
+    min-height: 100vh;
+    margin-left: 225px;
+    padding:.5rem 2rem .5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+}
+.Logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Logo img{
+    width:96px;
+}
+.SettingSample{
+    display: flex;
+    align-items: center;
+    gap:25vw;
+}
+.SpecificSetting{
+    display: flex;
+    flex-direction: column;
+    width:50%;
+}
+.SpecificSetting span:nth-child(2){
+    opacity: .75;
+}
+.SettingSample img{
+    width:48px;
+    height:48px;
+    transition: all 350ms;
+}

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import styles from '../css/Profile.module.css';
 import Cover from '../assets/sample.jpg'
@@ -30,13 +30,20 @@ function UserProfile() {
     const handleDivClick = (index) => {
       setActiveIndex(index === activeIndex ? null : index); // Toggle active index
     };
+
+    const navigate = useNavigate();
+    const goBack = () => {
+        console.log("Hello")
+        navigate(-1)
+
+    }
     return (
         <div className={styles.Profile}>
             <Nav />
             <div className={styles.Top}>
-                <img src={Back} />
+                <img onClick={goBack} src={Back} />
                 <div className={styles.Top_inner}>
-                    <img src={Settings} />
+                    <Link to="/Settings"><img src={Settings} /></Link>
                     <img src={Off} />
                 </div>
             </div>

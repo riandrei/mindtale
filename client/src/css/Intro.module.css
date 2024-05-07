@@ -22,6 +22,18 @@
     display:flex;
     gap:1rem;
     flex-wrap:wrap;
+    flex-direction: column;
+}
+.Metrics_inner{
+    display: flex;
+    flex-wrap: wrap;
+    gap:.5rem;
+}
+.Metricss{
+    padding:.5rem 1rem;
+    background-color: #2395a5;
+    border:solid 1.5px #ffffff90;
+    width:fit-content;
 }
 @media(max-width:431px){
     .Metrics{

@@ -38,7 +38,7 @@ export default function SettingNav({settingClick, handleSettingClick}) {
                     <span>Security setting</span>
                 </div>
 
-                <div className={styles.Setting_click}>
+                <div className={styles.Setting_click} onClick={() => handleSettingClick(3)}>
                     <img src={Privacy} alt="" />
                     <span>Privacy setting</span>
                 </div>
