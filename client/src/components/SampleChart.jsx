@@ -2,11 +2,8 @@ import React from "react";
 import { Chart } from "react-google-charts";
 
 export const data = [
-  ["Element", "Density", { role: "style" }],
-  ["Copper", 8.94, "#b87333"], // RGB value
-  ["Silverr", 10.49, "silver"], // English color name
-  ["Gold", 19.3, "gold"],
-  ["Platinum", 21.45, "color: #2395a5"], // CSS-style declaration
+  ["Score", "Total", { role: "style" }],
+  ["", 0, ""], // RGB value
 ];
 
 export default function App() {
