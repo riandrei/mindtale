@@ -1,0 +1,44 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    outline:none;
+    border:none;
+}
+
+.SpecificQuestion{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    width:75%;
+    margin:0 auto;
+}
+.Choices {
+    width:75%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap:1rem;
+}
+.Choices button{
+    background-color: #f0f0f0;
+    width:45%;
+    display: flex;
+    cursor: pointer;
+
+}
+.Choices button span:first-child{
+    color:#2395a5;
+    width: 15%;
+    text-align: center;
+    padding:1rem 0;
+    font-weight: bold;
+}
+.Choices button span:nth-child(2){
+    background-color: #2395a5;
+    width: 100%;
+    padding:1rem 0;
+    text-align: center;
+}

@@ -15,6 +15,7 @@ import { SearchPeople } from './pages/SearchPeople';
 import SearchBook from './pages/SearchBook';
 import Admin from './pages/Admin'
 import MetricsPage from './pages/MetricsPage'
+import Quiz from './pages/Quiz';
 
 import Story from './components/Story'
 
@@ -55,6 +56,7 @@ function App() {
           <Route path="SearchBook" element={<SearchBook />}/>
           <Route path="/Admin" element={<Admin/>}/>
           <Route path="/MetricsPage" element={<MetricsPage/>}/>
+          <Route path="/Quiz" element={<Quiz/>}/>
 
           <Route
             path="/StoryBoard"
