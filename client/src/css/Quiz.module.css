@@ -1,0 +1,24 @@
+.Quiz{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    transition: all 350ms;
+}
+.Quiz2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    background-color: #f7f7f7;
+    transition: all 350ms;
+}
+.Count{
+    text-align: right;
+    padding: 1rem;
+}
+.Count2{
+    text-align: right;
+    padding: 1rem;
+    color:#333;
+}

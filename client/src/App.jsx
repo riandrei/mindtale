@@ -18,6 +18,7 @@ import MetricsPage from './pages/MetricsPage'
 import Quiz from './pages/Quiz';
 
 import Story from './components/Story'
+import StoryNav from './components/StoryNav'
 
 
 
@@ -37,10 +38,24 @@ function App() {
     console.log(value)
   }
 
+  const [questionCount, setQuestionCount] = useState(1);
+  const handleQuestionCount = () => {
+      setQuestionCount(prevCount => {
+          if (prevCount >= 10) {
+              return 1; 
+          }
+          return prevCount + 1; 
+      });
+  };
+
+  const [isLight, setIsLight] = useState(false)
+  const handleThemeClick = () => {
+    setIsLight( !isLight)
+    console.log("light")
+  }
 
   return (
     <> 
-
       <Router>
         <Routes>
           <Route path="/Homepage" element={<Homepage/>}/>
@@ -56,7 +71,12 @@ function App() {
           <Route path="SearchBook" element={<SearchBook />}/>
           <Route path="/Admin" element={<Admin/>}/>
           <Route path="/MetricsPage" element={<MetricsPage/>}/>
-          <Route path="/Quiz" element={<Quiz/>}/>
+
+          <Route 
+            path="/Quiz" 
+            element={<Quiz questionCount={questionCount} handleQuestionCount={handleQuestionCount} isLight={isLight} handleThemeClick={handleThemeClick} />}
+            
+          />
 
           <Route
             path="/StoryBoard"
