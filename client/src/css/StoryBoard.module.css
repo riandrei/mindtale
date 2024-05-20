@@ -2,7 +2,13 @@
     background-color: #111;
     min-height: 100vh;
     display: flex;
-    justify-content: space-between;
+
+
+}
+.StoryBoard_inner{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
 }
 @media (max-width:431px){
     .StoryBoard{

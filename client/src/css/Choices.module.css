@@ -6,15 +6,13 @@
 .Choices{
     display: flex;
     background-color: none;
-    align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
-    width:750px;
+
     gap:.5rem;
-    max-width: 50%;
+    width:100%;
 }
 .Choices button{
-    width:49%;
+    width:47%;
     background: black;
     border:solid 1px #fff;
     padding:.75rem;

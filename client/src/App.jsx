@@ -80,7 +80,7 @@ function App() {
 
           <Route
             path="/StoryBoard"
-            element={<StoryBoard openNav={openNav} handleNavClick={handleNavClick} />}
+            element={<StoryBoard openNav={openNav} handleNavClick={handleNavClick} isLight={isLight} handleThemeClick={handleThemeClick}/>}
           />
 
           <Route 
