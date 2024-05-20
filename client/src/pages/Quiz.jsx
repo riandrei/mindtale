@@ -2,10 +2,11 @@ import React from 'react';
 import styles from '../css/Quiz.module.css'
 import Question from '../components/Question';
 import StoryNav from '../components/StoryNav';
+import Congrats from '../components/Congrats'
 
 export const Quiz = ({handleQuestionCount, questionCount, isLight, handleThemeClick}) => {
     return(
-        <div className={isLight? styles.Quiz: styles.Quiz2}>
+        <div className={isLight? styles.Quiz2: styles.Quiz}>
             <StoryNav isLight={isLight} handleThemeClick={handleThemeClick}/>
             {questionCount === 1 && (
                 <Question
@@ -87,7 +88,10 @@ export const Quiz = ({handleQuestionCount, questionCount, isLight, handleThemeCl
                     isLight={isLight}
                 />
             )}
-            <span className={isLight?styles.Count:styles.Count2}>{questionCount} / 10</span>
+            {questionCount === 11 && (
+                <Congrats/>
+            )}
+            <span className={isLight?styles.Count2:styles.Count}>{questionCount} / 10</span>
         </div>
     )
 }

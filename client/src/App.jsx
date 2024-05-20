@@ -41,7 +41,7 @@ function App() {
   const [questionCount, setQuestionCount] = useState(1);
   const handleQuestionCount = () => {
       setQuestionCount(prevCount => {
-          if (prevCount >= 10) {
+          if (prevCount >= 11) {
               return 1; 
           }
           return prevCount + 1; 
