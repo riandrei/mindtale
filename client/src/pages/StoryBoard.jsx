@@ -25,8 +25,10 @@ function StoryBoard({ readStory }) {
 
   return (
     <div className={styles.StoryBoard}>
-      <Story />
-      {/* <ChaptersNav /> */}
+      <Story openNav={openNav} handleNavClick={handleNavClick} />
+      {openNav ? null : (
+        <ChaptersNav openNav={openNav} handleNavClick={handleNavClick} />
+      )}
     </div>
   );
 }

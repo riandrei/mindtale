@@ -17,7 +17,11 @@ import StoryBoard from "./pages/StoryBoard";
 import SearchPeople from "./pages/SearchPeople";
 import SearchBook from "./pages/SearchBook";
 import Admin from "./pages/Admin";
+import MetricsPage from "./pages/MetricsPage";
+import Quiz from "./pages/Quiz";
+
 import Story from "./components/Story";
+import StoryNav from "./components/StoryNav";
 
 function App() {
   return (
@@ -32,12 +36,32 @@ function App() {
           <Route path="/StoryDetails/:storyId" element={<StoryDetails />} />
           <Route path="/StoryDetails2" element={<StoryDetails2 />} />
           <Route path="/Profile" element={<Profile />} />
-          <Route path="/Settings" element={<Settings />} />
           <Route path="/NewUserVerify" element={<NewUserVerify />} />
           <Route path="/StoryBoard/:storyId" element={<StoryBoard />} />
           <Route path="/SearchPeople" element={<SearchPeople />} />
           <Route path="SearchBook" element={<SearchBook />} />
           <Route path="/Admin" element={<Admin />} />
+          <Route path="/MetricsPage" element={<MetricsPage />} />
+          <Route
+            path="/Quiz"
+            element={
+              <Quiz
+                questionCount={questionCount}
+                handleQuestionCount={handleQuestionCount}
+                isLight={isLight}
+                handleThemeClick={handleThemeClick}
+              />
+            }
+          />
+          <Route
+            path="/Settings"
+            element={
+              <Settings
+                settingClick={settingClick}
+                handleSettingClick={handleSettingClick}
+              />
+            }
+          />
         </Routes>
       </Router>
     </Provider>

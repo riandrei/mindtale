@@ -1,0 +1,17 @@
+.StoryNav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 1rem;
+}
+.Back{
+    width:32px;
+}
+.StoryNav_inner img{
+    width:32px;
+    height: 32px;
+}
+.StoryNav_inner{
+    display: flex;
+    gap:1rem;
+}

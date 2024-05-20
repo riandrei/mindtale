@@ -7,6 +7,8 @@
     position: absolute;
     z-index: 2;
     padding: .75rem;
+    height: fit-content;
+
 }
 .TopBar_inner{
     width:100%;

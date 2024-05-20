@@ -8,12 +8,17 @@ import Security from '../assets/security.png'
 import Privacy from '../assets/privacy.png'
 import Premium from '../assets/premium.png'
 
-export default function SettingNav(props) {
+export default function SettingNav({settingClick, handleSettingClick}) {
     
     const navigate = useNavigate();
     const goBack = () => {
       navigate(-1);
     }
+
+    const handleClick = (value, event) => {
+        event.stopPropagation(); 
+        handleSettingClick(value);
+      };
 
     return (
         <div className={styles.Setting_nav}>
@@ -22,8 +27,8 @@ export default function SettingNav(props) {
                 <h2>Settings</h2>
 
             </div>
-            <div className={styles.Nav_inner}>
-                <div className={styles.Setting_click}>
+            <div className={styles.Nav_inner} >
+                <div className={styles.Setting_click} onClick={() => handleSettingClick(1)}>
                     <img src={Account} alt="" />
                     <span>Edit Profile</span>
                 </div>
@@ -33,12 +38,12 @@ export default function SettingNav(props) {
                     <span>Security setting</span>
                 </div>
 
-                <div className={styles.Setting_click}>
+                <div className={styles.Setting_click} onClick={() => handleSettingClick(3)}>
                     <img src={Privacy} alt="" />
                     <span>Privacy setting</span>
                 </div>
 
-                <div className={styles.Setting_click}>
+                <div className={styles.Setting_click} onClick={() => handleSettingClick(4)}>
                     <img src={Premium} alt="" />
                     <span>Premium plan</span>
                 </div>

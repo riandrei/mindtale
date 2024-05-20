@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styles from "../css/Intro.module.css";
 
 import Metrics from "../components/Metrics";
-import { useEffect } from "react";
 
 export const About = () => {
   const user = useSelector((state) => state.auth?.user);
