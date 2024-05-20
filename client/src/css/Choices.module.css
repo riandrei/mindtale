@@ -10,6 +10,16 @@
 
     gap:.5rem;
     width:100%;
+    filter: blur(10px)
+    opacity(0);
+    animation: appear 500ms ease forwards 1750ms;
+}
+@keyframes appear{
+    from {}
+    to{
+        filter: blur(0)
+        opacity(1);
+    }
 }
 .Choices button{
     width:47%;

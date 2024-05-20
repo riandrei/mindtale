@@ -2,8 +2,13 @@
     background-color: #111;
     min-height: 100vh;
     display: flex;
-
-
+    transition: all 350ms;
+}
+.StoryBoard2{
+    background-color: #fff;
+    min-height: 100vh;
+    display: flex;
+    transition: all 350ms;
 }
 .StoryBoard_inner{
     display: flex;

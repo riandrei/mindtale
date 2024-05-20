@@ -18,10 +18,34 @@
     gap:1rem;
     width:100%;
 }
-.Story_inner p{
+.Text{
     font-size: 1.25em;
     font-weight: 450;
     line-height:175%;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    filter: blur(10px)
+    opacity(0);
+    animation:text 2000ms ease-in-out forwards 500ms;
+}
+.Text2{
+    color:#333;
+    font-size: 1.25em;
+    font-weight: 450;
+    line-height:175%;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    filter: blur(10px)
+    opacity(0);
+    animation:text 2000ms ease-in-out forwards 500ms;
+}
+
+@keyframes text{
+    from{}
+
+    to{
+        filter: blur(0)
+        opacity(1);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
 }
 .Main_title{
     font-style: italic;
@@ -29,6 +53,23 @@
 }
 .Picture{
     width:25%;
+    transform: translateY(5rem);
+    filter: blur(10px)
+    opacity(0);
+    animation:appear 750ms ease-out forwards;
+}
+@keyframes appear{
+    0%{}
+    75%{
+        transform: translateY(-3rem);
+        opacity:1;
+        filter:blur(0);
+    }
+    100%{
+        transform: translate(0);
+        opacity:1;
+        filter:blur(0);
+    }
 }
 .Next{
     width:95%;
@@ -71,5 +112,8 @@
     }
     .Picture{
         width:65%;
+    }
+    .Text2, .Text{
+        font-size: 1em;
     }
 }

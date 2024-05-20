@@ -11,7 +11,7 @@ import Back from '../assets/back.png';
 import Menu from '../assets/menuu.png';
 
 
-export function Story({ openNav, handleNavClick }) {
+export function Story({ openNav, handleNavClick, isLight }) {
     
 
 
@@ -19,7 +19,7 @@ export function Story({ openNav, handleNavClick }) {
         <div className={styles.Story}>
             <img className={styles.Picture} src={Sample1} />
             <div className={styles.Story_inner}>
-                <p>Lorem ipsum dolor sit amet. 33 nihil internos ut omnis quia nam fuga natus aut ratione incidunt. Qui fugit eius in dolorum dicta ab excepturi natus non dolorum voluptatem hic tempora quod et architecto dignissimos quo quia possimus. Lorem ipsum dolor sit amet. 33 nihil internos ut omnis quia nam fuga natus aut ratione incidunt. Qui fugit eius in dolorum dicta ab excepturi natus non dolorum voluptatem hic tempora quod et architecto dignissimos quo quia possimus.Lorem ipsum dolor sit amet. 33 nihil internos ut omnis quia nam fuga natus aut ratione incidunt. Qui fugit eius in dolorum dicta ab excepturi natus non dolorum voluptatem hic tempora quod et architecto dignissimos quo quia possimus. </p>
+                <p className={isLight?styles.Text2:styles.Text}>Lorem ipsum dolor sit amet. 33 nihil internos ut omnis quia nam fuga natus aut ratione incidunt. Qui fugit eius in dolorum dicta ab excepturi natus non dolorum voluptatem hic tempora quod et architecto dignissimos quo quia possimus. Lorem ipsum dolor sit amet. 33 nihil internos ut omnis quia nam fuga natus aut ratione incidunt. Qui fugit eius in dolorum dicta ab excepturi natus non dolorum voluptatem hic tempora quod et architecto dignissimos quo quia possimus.Lorem ipsum dolor sit amet. 33 nihil internos ut omnis quia nam fuga natus aut ratione incidunt. Qui fugit eius in dolorum dicta ab excepturi natus non dolorum voluptatem hic tempora quod et architecto dignissimos quo quia possimus. </p>
                 <Choices />
             </div>
 

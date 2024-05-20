@@ -8,12 +8,13 @@ import StoryNav from '../components/StoryNav';
 
 export function StoryBoard({ openNav, handleNavClick, isLight, handleThemeClick }) {
 
+    
 
     return (
-        <div className={styles.StoryBoard}>
+        <div className={isLight? styles.StoryBoard2 : styles.StoryBoard}>
             <div className={styles.Storyboard_inner}>
-                <StoryNav openNav={openNav} handleNavClick={handleNavClick}/>
-                <Story/>
+                <StoryNav openNav={openNav} handleNavClick={handleNavClick} isLight={isLight} handleThemeClick={handleThemeClick}/>
+                <Story isLight={isLight}/>
             </div>
             {
                 openNav && <ChaptersNav handleNavClick={handleNavClick}/>
