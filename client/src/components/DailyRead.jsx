@@ -20,7 +20,7 @@ export function DailyRead() {
     <div className={styles.DailyRead}>
       <div className={styles.Daily_Top}>
         <h1>Random Story</h1>
-        <img src={Save} />
+        {/* <img src={Save} /> */}
       </div>
       <div
         className={styles.Daily_Content}

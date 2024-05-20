@@ -19,10 +19,9 @@ function Saved() {
 
   return (
     <div className={styles.User_saved}>
-      {console.log(savedStories)}
       {savedStories.length > 0 ? (
         savedStories.map((story) => (
-          <SpecificStory image={story.imageURL} title={story.title} />
+          <SpecificStory imgURL={story.imgURL} title={story.title} />
         ))
       ) : (
         <h1>No saved stories</h1>

@@ -4,11 +4,13 @@ import {
   GET_USER_SUCCESS,
   LOGIN_FAIL,
   VERIFY_FAIL,
+  GET_USERS_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
   isAuthenticated: false,
   user: {},
+  users: [],
   error: null,
 };
 
@@ -49,6 +51,11 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         error: action.payload,
+      };
+    case GET_USERS_SUCCESS:
+      return {
+        ...state,
+        users: [...action.payload],
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -64,22 +64,24 @@ export default function RecentExploration() {
   const stories = useSelector((state) => state.story.stories);
 
   useEffect(() => {
-    if (user.id) {
+    if (user?.id) {
       const visitedStoriesDetails = user.visited
         .map(({ story, ...rest }) => {
           const storyDetails = stories?.find(
             (storyElement) => storyElement._id === story
           );
           return {
-            story,
-            ...rest,
+            storyID: story,
             imgURL: storyDetails?.imgURL,
             title: storyDetails?.title,
+            ...rest,
           };
         })
         .sort((a, b) => b.date.localeCompare(a.date));
 
+      console.log(visitedStoriesDetails);
       setVisitedStories(visitedStoriesDetails);
+      console.log(visitedStories);
     }
   }, [user, stories]);
 
@@ -88,49 +90,43 @@ export default function RecentExploration() {
       ref={targetRef}
       className={`${styles.Recommendation} ${isVisible && styles.animation}`}
     >
-      {visitedStories.length !== 0 && (
-        <>
-          <div className={styles.viewAll}>
-            <h2 className={styles.Reco}>Recent Explorations</h2>
-            <Link className={styles.View}>View all</Link>
-          </div>
-          <Swiper
-            slidesPerView={2.75}
-            spaceBetween={20}
-            pagination={{
-              clickable: false,
-            }}
-            breakpoints={{
-              640: {
-                slidesPerView: 3,
-                spaceBetween: 5,
-              },
-              768: {
-                slidesPerView: 4,
-                spaceBetween: 10,
-              },
+      <div className={styles.viewAll}>
+        <h2 className={styles.Reco}>Recent Explorations</h2>
+      </div>
+      <Swiper
+        slidesPerView={2.75}
+        spaceBetween={20}
+        pagination={{
+          clickable: false,
+        }}
+        breakpoints={{
+          640: {
+            slidesPerView: 3,
+            spaceBetween: 5,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+          },
 
-              1280: {
-                slidesPerView: 8,
-                spaceBetween: 10,
-              },
-            }}
-            modules={[]}
-            className={styles.mySwiper}
-          >
-            {visitedStories.map((story) => (
-              <SwiperSlide key={story._id}>
-                <Link
-                  className={styles.title}
-                  to={`/StoryDetails/${story.story}`}
-                >
-                  <SpecificStory image={story.imgURL} title={story.title} />
-                </Link>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </>
-      )}
+          1280: {
+            slidesPerView: 8,
+            spaceBetween: 10,
+          },
+        }}
+        modules={[]}
+        className={styles.mySwiper}
+      >
+        {visitedStories.map((visitedStory) => (
+          <SwiperSlide key={visitedStory?._id}>
+            <SpecificStory
+              id={visitedStory?.storyID}
+              imgURL={visitedStory?.imgURL}
+              title={visitedStory?.title}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 }

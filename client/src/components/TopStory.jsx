@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
+import { toggleBookmark } from "../actions/authActions";
+
 import styles from "../css/TopStory.module.css";
 import Artwork2 from "../assets/artwork2.webp";
 import Save from "../assets/save.png";
 import Saved from "../assets/saved.png";
 import Confetti from "../assets/confetti.png";
 
-function TopStory({ title, tags, synopsis, imgURL }) {
+function TopStory({ title, tags, synopsis, imgURL, storyID }) {
   const [maxLength, setMaxLength] = useState(
     window.innerWidth <= 431 ? 100 : 50
   );
@@ -28,9 +33,14 @@ function TopStory({ title, tags, synopsis, imgURL }) {
 
   const truncatedText = fullText.substring(0, maxLength);
 
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+
   const [isBookmark, setIsBookmark] = useState(false);
   const handleBookmarkClick = () => {
     setIsBookmark(!isBookmark);
+    const token = localStorage.getItem("token");
+    dispatch(toggleBookmark(token, storyID));
   };
 
   return (
@@ -48,7 +58,14 @@ function TopStory({ title, tags, synopsis, imgURL }) {
             <h2>{title}</h2>
             <p>{tags?.join(" | ")}</p>
           </div>
-          <img onClick={handleBookmarkClick} src={isBookmark ? Saved : Save} />
+          <img
+            onClick={handleBookmarkClick}
+            src={
+              user?.savedStories?.findIndex((id) => id === storyID) !== -1
+                ? Saved
+                : Save
+            }
+          />
           {isBookmark && (
             <div className={styles.SavedNotif}>
               <h3>Story successfully bookmarked!</h3>
@@ -61,7 +78,9 @@ function TopStory({ title, tags, synopsis, imgURL }) {
           {synopsis}
           <span className={styles.dots}> ...</span>
         </div>
-        <button>Explore</button>
+        <Link to={`/StoryDetails/${storyID}`}>
+          <button>Explore</button>
+        </Link>
       </div>
     </div>
   );

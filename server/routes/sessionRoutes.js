@@ -5,6 +5,7 @@ const {
   startSession,
   submitUserChoice,
   getAssesment,
+  submitAssesmentScore,
 } = require("../controllers/sessionControllers");
 const { addHistory } = require("../controllers/authController");
 
@@ -13,8 +14,10 @@ const tokenMiddleware = require("../middleware/tokenMiddleware");
 router.get("/sessions/:storyId", tokenMiddleware, addHistory, startSession);
 router.post("/sessions/:storyId", tokenMiddleware, submitUserChoice);
 router.get("/sessions/:storyId/completed", tokenMiddleware, getAssesment);
-
-// router.get("/gameState", sessionControllers.getGameState);
-// router.post("/userDecision", sessionControllers.postUserDecision);
+router.post(
+  "/sessions/:storyId/completed",
+  tokenMiddleware,
+  submitAssesmentScore
+);
 
 module.exports = router;

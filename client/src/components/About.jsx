@@ -13,13 +13,13 @@ export const About = () => {
 
   useEffect(() => {
     setAssesmentScore(
-      user?.completedStories.reduce(
+      user?.completedStories?.reduce(
         (acc, story) => acc + story.assesmentScore,
         0
-      ) / user?.completedStories.length
+      ) / user?.completedStories?.length
     );
 
-    const tagCounts = user?.completedStories.reduce(
+    const tagCounts = user?.completedStories?.reduce(
       (acc, story) => {
         story.tags.forEach((tag) => {
           acc[tag] = (acc[tag] || 0) + 1;
@@ -33,9 +33,7 @@ export const About = () => {
       { highestCount: 0, highestTag: null }
     );
 
-    console.log(tagCounts);
-
-    setMostReadGenre(tagCounts.highestTag);
+    setMostReadGenre(tagCounts?.highestTag);
   }, [user]);
 
   return (
@@ -56,14 +54,14 @@ export const About = () => {
       <div className={styles.Metrics}>
         <Metrics
           Metric_name="Books Finished"
-          Metric_value={user?.completedStories.length}
+          Metric_value={user?.completedStories?.length}
         />
         <Metrics
           Metric_name="Avg. Assessment Score"
           Metric_value={assesmentScore}
         />
-        <Metrics Metric_name="Daily Read Streak" Metric_value="3" />
-        <Metrics Metric_name="Avg. Reading Duration" Metric_value="5:26 mins" />
+        {/* <Metrics Metric_name="Daily Read Streak" Metric_value="3" /> */}
+        {/* <Metrics Metric_name="Avg. Reading Duration" Metric_value="5:26 mins" /> */}
         <Metrics Metric_name="Most Read Genre" Metric_value={mostReadGenre} />
       </div>
     </div>

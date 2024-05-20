@@ -1,6 +1,7 @@
-const { red } = require("@mui/material/colors");
 const Story = require("../models/Story");
 const User = require("../models/User");
+
+const cloudinary = require("cloudinary").v2;
 
 module.exports.getStories = (req, res) => {
   Story.find().then((stories) => res.status(200).json({ stories }));
@@ -10,7 +11,6 @@ module.exports.postReview = (req, res) => {
   const { id } = req.params;
   const { reviewStar, reviewText } = req.body;
   const { email } = req.user;
-  console.log(req.user);
 
   User.findOne({ email }).then((user) => {
     if (!user) {
@@ -26,8 +26,6 @@ module.exports.postReview = (req, res) => {
         story.reviews.filter(
           (review) => review.userId.toString() === user._id.toString()
         ).length > 0;
-
-      console.log(doesReviewExist);
 
       if (doesReviewExist) {
         return res.status(400).json({ message: "Review already exists" });
@@ -95,4 +93,60 @@ module.exports.deleteReview = (req, res) => {
         );
     });
   });
+};
+
+module.exports.generateStoryCover = (req, res) => {
+  const { title, genre } = req.body;
+
+  console.log(title, genre);
+
+  fetch(`https://api.getimg.ai/v1/latent-consistency/text-to-image`, {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "content-type": "application/json",
+      Authorization: `Bearer ${process.env.GETIMG_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: "lcm-realistic-vision-v5-1",
+      prompt: `${title}, ${genre}`,
+      width: 512,
+      height: 512,
+      steps: 8,
+    }),
+  })
+    .then((response) => {
+      return response.json().then(({ image }) => {
+        const buffer = Buffer.from(image, "base64");
+
+        return cloudinary.uploader.upload(
+          `data:image/png;base64,${buffer.toString("base64")}`,
+          {
+            unique_filename: true,
+            folder: "Mindtale/stories/",
+          }
+        );
+      });
+    })
+    .then((result) => {
+      console.log("done uploading");
+      return res.status(200).json({ imgURL: result.secure_url });
+    })
+    .catch((error) => console.error(error));
+};
+
+module.exports.addStory = (req, res) => {
+  const { title, synopsis, genre, storyType, image } = req.body;
+
+  const story = {
+    title,
+    synopsis,
+    tags: [genre],
+    storyType,
+    imgURL: image,
+  };
+
+  const newStory = new Story(story);
+
+  newStory.save().then((story) => res.status(200).json({ story }));
 };

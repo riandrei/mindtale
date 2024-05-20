@@ -14,7 +14,7 @@ import StoryDetails2 from "./pages/StoryDetails2";
 import Settings from "./pages/Settings";
 import NewUserVerify from "./pages/NewUserVerify";
 import StoryBoard from "./pages/StoryBoard";
-import { SearchPeople } from "./pages/SearchPeople";
+import SearchPeople from "./pages/SearchPeople";
 import SearchBook from "./pages/SearchBook";
 import Admin from "./pages/Admin";
 import Story from "./components/Story";

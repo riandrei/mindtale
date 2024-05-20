@@ -138,24 +138,10 @@ function Homepage({ getUser, getStories }) {
                 tags={story?.tags}
                 synopsis={story.synopsis}
                 imgURL={story?.imgURL}
+                storyID={story?._id}
               />
             </SwiperSlide>
           ))}
-        {/* <SwiperSlide>
-          <TopStory Story_image={Art1} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <TopStory Story_image={Art2} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <TopStory Story_image={Art3} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <TopStory Story_image={Art4} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <TopStory Story_image={Art5} />
-        </SwiperSlide> */}
       </Swiper>
 
       <section className={styles.main_body}>

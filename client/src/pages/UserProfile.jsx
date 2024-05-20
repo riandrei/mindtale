@@ -35,6 +35,14 @@ function UserProfile({ getUser, getStories }) {
     setActiveIndex(index === activeIndex ? null : index); // Toggle active index
   };
 
+  const redirect = () => {
+    window.location.href = "/Login";
+  };
+  const handleLogoutClick = () => {
+    localStorage.removeItem("token");
+    redirect();
+  };
+
   const user = useSelector((state) => state.auth?.user);
   const stories = useSelector((state) => state.story.stories);
 
@@ -50,10 +58,14 @@ function UserProfile({ getUser, getStories }) {
     <div className={styles.Profile}>
       <Nav />
       <div className={styles.Top}>
-        <img src={Back} />
+        <Link to={`/Homepage`}>
+          <img src={Back} />
+        </Link>
         <div className={styles.Top_inner}>
-          <img src={Settings} />
-          <img src={Off} />
+          <Link to={`/Settings`}>
+            <img src={Settings} />
+          </Link>
+          <img src={Off} onClick={handleLogoutClick} />
         </div>
       </div>
 
@@ -63,9 +75,9 @@ function UserProfile({ getUser, getStories }) {
           <div className={styles.Middle_line}></div>
         </div>
         <img className={styles.Photocard} src={Photocard} />
-        <span className={styles.Name}>Dowelle Dayle</span>
+        <span className={styles.Name}>{user?.username}</span>
         <div className={styles.Round}>
-          <span>#MonD</span>
+          <span>{`#${user?.tag}`}</span>
         </div>
       </div>
 
@@ -89,7 +101,7 @@ function UserProfile({ getUser, getStories }) {
             <img src={Saves} />
             <span>Saved</span>
           </div>
-          <div
+          {/* <div
             className={
               activeIndex === 2 ? styles.UserHead_click2 : styles.UserHead_click
             }
@@ -97,7 +109,7 @@ function UserProfile({ getUser, getStories }) {
           >
             <img src={Invite} />
             <span>Achievements</span>
-          </div>
+          </div> */}
           <div
             className={
               activeIndex === 3 ? styles.UserHead_click2 : styles.UserHead_click

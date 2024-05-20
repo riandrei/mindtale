@@ -86,7 +86,11 @@ export default function SliderTags({ tag }) {
                   className={styles.title}
                   to={`/StoryDetails/${story._id}`}
                 >
-                  <SpecificStory image={story.imgURL} title={story.title} />
+                  <SpecificStory
+                    imgURL={story.imgURL}
+                    title={story.title}
+                    id={story._id}
+                  />
                 </Link>
               </SwiperSlide>
             )

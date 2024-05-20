@@ -3,10 +3,13 @@ import {
   GET_REVIEWS_SUCCESS,
   POST_REVIEW_SUCCESS,
   DELETE_REVIEW_SUCCESS,
+  GENERATE_COVER_SUCCESS,
+  ADD_STORY_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
   stories: [],
+  generatedCoverURL: null,
 };
 
 export default function storyReducer(state = initialState, action) {
@@ -43,6 +46,16 @@ export default function storyReducer(state = initialState, action) {
       return {
         ...state,
         stories: updatedStories,
+      };
+    case GENERATE_COVER_SUCCESS:
+      return {
+        ...state,
+        generatedCoverURL: action.payload.imgURL,
+      };
+    case ADD_STORY_SUCCESS:
+      return {
+        ...state,
+        stories: [...state.stories, action.payload.story],
       };
     default:
       return state;

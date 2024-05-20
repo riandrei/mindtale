@@ -19,10 +19,10 @@ export default function Completed(props) {
 
   useEffect(() => {
     setCompletedStories(
-      stories.filter(
+      stories?.filter(
         (story) =>
-          user?.completedStories.find(
-            (completedStory) => completedStory.story === story._id
+          user?.completedStories?.find(
+            (completedStory) => completedStory?.story === story?._id
           ) !== undefined
       )
     );
@@ -31,7 +31,7 @@ export default function Completed(props) {
   return (
     <div className={styles.User_saved}>
       {completedStories.length > 0 ? (
-        completedStories.map((story) => (
+        completedStories?.map((story) => (
           <SpecificStory image={story.imageURL} title={story.title} />
         ))
       ) : (

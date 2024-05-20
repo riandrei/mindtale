@@ -30,7 +30,7 @@ export function Choices({ choices, submitUserChoice }) {
             onClick={() => handleChoiceClick(choice)}
             // style={{ backgroundColor: selectedButton === index ? '#2395A5' : '' }}
           >
-            {choice}
+            {choice.text.slice(0, choice.text.indexOf(":"))}
           </button>
         ))
       )}

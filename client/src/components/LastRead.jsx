@@ -68,7 +68,7 @@ function LastRead({ toggleBookmark }) {
   const stories = useSelector((state) => state.story.stories);
 
   useEffect(() => {
-    if (user.id) {
+    if (user?.id) {
       const historyDetails = user.history
         .map(({ story, ...rest }) => {
           const storyDetails = stories?.find(

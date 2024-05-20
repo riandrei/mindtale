@@ -15,6 +15,7 @@ export function TopBar(props) {
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
+      localStorage.setItem("searchBook", searchBook);
       navigate("/SearchBook");
     }
   };
@@ -37,7 +38,7 @@ export function TopBar(props) {
           maxLength={30}
           type="text"
           placeholder="Search story..."
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyPress}
         />
       </div>
     </div>

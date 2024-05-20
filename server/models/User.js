@@ -83,6 +83,8 @@ const UserSchema = new Schema({
       },
     },
   ],
+  tag: String,
+  bio: String,
 });
 
 module.exports = User = mongoose.model("user", UserSchema);

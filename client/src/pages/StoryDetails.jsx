@@ -72,7 +72,7 @@ export function StoryDetails({
       getStories();
     }
 
-    if (!user.id) {
+    if (!user?.id) {
       if (localStorage.getItem("token")) {
         getUser();
       }
@@ -80,7 +80,7 @@ export function StoryDetails({
   }, []);
 
   useEffect(() => {
-    if (user.id) {
+    if (user?.id) {
       addVisited(storyId);
     }
   }, [user]);
@@ -102,7 +102,7 @@ export function StoryDetails({
     //   story?.reviews.filter((review) => review.userId === user._id).length > 0
     // );
     return (
-      story?.reviews.filter((review) => review.userId === user.id).length > 0
+      story?.reviews?.filter((review) => review.userId === user?.id).length > 0
     );
   };
 
@@ -188,13 +188,13 @@ export function StoryDetails({
         </div>
       </div>
       <div className={styles.Details_bottom}>
-        <img src={User} alt="" />
+        <img src={user?.profilePicture} alt="" />
         <div className={styles.input_comment}>
           <input
             maxLength={50}
             type="text"
             placeholder={
-              user.id
+              user?.id
                 ? checkExistingReview()
                   ? "You've already written a review."
                   : "Write your review for this story!"

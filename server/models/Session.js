@@ -26,6 +26,19 @@ const SessionSchema = new Schema({
       ],
     },
   ],
+  scenarioHistory: [
+    {
+      type: String,
+    },
+  ],
+  assesment: {
+    questions: [],
+    correctAnswers: [],
+    assesmentScore: {
+      type: Number,
+      default: null,
+    },
+  },
 });
 
 module.exports = Session = mongoose.model("session", SessionSchema);

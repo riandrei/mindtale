@@ -2,6 +2,8 @@ const bcrypt = require("bcrypt");
 const formData = require("form-data");
 const Mailgun = require("mailgun.js");
 const jwt = require("jsonwebtoken");
+const cloudinary = require("cloudinary").v2;
+const fs = require("fs");
 
 const User = require("../models/User");
 
@@ -67,6 +69,8 @@ module.exports.signIn = (req, res) => {
         profilePicture: user.profilePicture,
         history: user.history,
         visited: user.visited,
+        tag: user.tag,
+        bio: user.bio,
         token,
       };
 
@@ -116,6 +120,8 @@ module.exports.getUser = (req, res) => {
       profilePicture: user.profilePicture,
       history: user.history,
       visited: user.visited,
+      tag: user.tag,
+      bio: user.bio,
     };
 
     return res.status(200).json({ userInfo });
@@ -152,8 +158,6 @@ module.exports.addVisited = (req, res) => {
   const { storyId } = req.params;
   const { email } = req.user;
 
-  console.log(storyId, email);
-
   User.findOne({ email })
     .then((user) => {
       if (!user) {
@@ -181,8 +185,6 @@ module.exports.addHistory = (req, res, next) => {
   const { storyId } = req.params;
   const { email } = req.user;
 
-  console.log(storyId, email);
-
   User.findOne({ email })
     .then((user) => {
       if (!user) {
@@ -207,6 +209,106 @@ module.exports.addHistory = (req, res, next) => {
     });
 };
 
+module.exports.getUsers = (req, res) => {
+  User.find().then((users) => {
+    const filteredUsers = users.map(
+      ({ username, tag, profilePicture, _id }) => {
+        return { username, tag, profilePicture, _id };
+      }
+    );
+    return res
+      .status(200)
+      .json({ message: "Get Users Success", users: filteredUsers });
+  });
+};
+
+module.exports.updateUser = (req, res) => {
+  const { email } = req.user;
+  const profilePicture = req.profilePicture;
+  const { username, bio, tag } = req.body;
+
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    console.log(profilePicture);
+
+    user.username = username;
+    user.profilePicture = profilePicture;
+    user.bio = bio;
+    user.tag = tag;
+
+    // cloudinary.uploader
+    //   .upload(profilePicture.path, {
+    //     unique_filename: true,
+    //     folder: "Mindtale/profilePictures/",
+    //   })
+    //   .then((result) => {
+    //     fs.unlinkSync(profilePicture.path);
+
+    //     user.profilePicture = result.secure_url;
+
+    //     user
+    //       .save()
+    //       .then(() => res.status(200).json({ message: "User updated" }))
+    //       .catch((err) =>
+    //         res.status(400).json({ error: "Error updating user" })
+    //       );
+    //   });
+
+    user
+      .save()
+      .then(() => res.status(200).json({ message: "User updated" }))
+      .catch((err) => res.status(400).json({ error: "Error updating user" }));
+  });
+};
+
+module.exports.addFriend = (req, res) => {
+  const { userId } = req.params;
+  const { email } = req.user;
+
+  User.findOne({ email }).then((user) => {
+    User.findOne({ _id: userId }).then((friend) => {
+      friend.friendRequests.push(user._id);
+
+      friend.save().then(() => {
+        return res.status(200).json({ message: "Friend request sent" });
+      });
+    });
+  });
+};
+
+module.exports.acceptFriendRequest = (req, res) => {
+  const { friendId } = req.params;
+  const { email } = req.user;
+
+  User.findOne({ email }).then((user) => {
+    user.friends.push(friendId);
+    user.friendRequests = user.friendRequests.filter((request) => {
+      return request.toString() !== friendId;
+    });
+
+    user.save().then(() => {
+      return res.status(200).json({ message: "Friend request accepted" });
+    });
+  });
+};
+
+module.exports.declineFriendRequest = (req, res) => {
+  const { friendId } = req.params;
+  const { email } = req.user;
+
+  User.findOne({ email }).then((user) => {
+    user.friendRequests = user.friendRequests.filter((request) => {
+      return request.toString() !== friendId;
+    });
+
+    user.save().then(() => {
+      return res.status(200).json({ message: "Friend request declined" });
+    });
+  });
+};
 function hashPassword(password) {
   const saltRounds = 10;
 

@@ -4,11 +4,11 @@ import {
   VERIFY_SUCCESS,
   VERIFY_FAIL,
   GET_USER_SUCCESS,
+  GET_USERS_SUCCESS,
 } from "./types";
 
 export const logIn = (email, password, navigate) => (dispatch) => {
-  console.log("this working?");
-  fetch("http://localhost:3001/api/logIn", {
+  fetch("https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/logIn", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export const logIn = (email, password, navigate) => (dispatch) => {
 };
 
 export const signUp = (email, password, navigate) => (dispatch) => {
-  fetch("http://localhost:3001/api/signUp", {
+  fetch("https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/signUp", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export const signUp = (email, password, navigate) => (dispatch) => {
 export const verifyAccount = (code, email, navigate) => (dispatch) => {
   console.log(email, code);
 
-  fetch("http://localhost:3001/api/verify", {
+  fetch("https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/verify", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export const verifyAccount = (code, email, navigate) => (dispatch) => {
 };
 
 export const getUser = () => (dispatch) => {
-  fetch("http://localhost:3001/api/user", {
+  fetch("https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/user", {
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -102,28 +102,105 @@ export const getUser = () => (dispatch) => {
 };
 
 export const toggleBookmark = (token, storyId) => (dispatch) => {
-  fetch(`http://localhost:3001/api/bookmark/${storyId}`, {
-    method: "POST",
-    headers: {
-      Authorization: token,
-      "Content-Type": "application/json",
-    },
-  }).then((res) => {
+  fetch(
+    `https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/bookmark/${storyId}`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    }
+  ).then((res) => {
     if (res.status === 200) {
-      dispatch(getUser());
+      dispatch({
+        type: GET_USER_SUCCESS,
+        payload: res.users,
+      });
     }
   });
 };
 
 export const addVisited = (storyId) => (dispatch) => {
-  fetch(`http://localhost:3001/api/visited/${storyId}`, {
-    method: "POST",
+  fetch(
+    `https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/visited/${storyId}`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    }
+  ).then((res) => {
+    if (res.status === 200) {
+      return;
+    }
+  });
+};
+
+export const getUsers = () => (dispatch) => {
+  fetch(`https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/users`, {
+    method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),
     },
   }).then((res) => {
     if (res.status === 200) {
-      return;
+      res.json().then((res) => {
+        console.log(res.users);
+        dispatch({
+          type: GET_USERS_SUCCESS,
+          payload: res.users,
+        });
+      });
     }
   });
+};
+
+export const updateUser = (formData) => (dispatch) => {
+  console.log(formData);
+  fetch(`https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/user`, {
+    method: "PUT",
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+    credentials: "include",
+    body: formData,
+  });
+};
+
+export const addFriend = (friendId) => (dispatch) => {
+  console.log(friendId);
+  fetch(
+    `https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/friend/${friendId}`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    }
+  );
+};
+
+export const acceptFriendRequest = (friendId) => (dispatch) => {
+  fetch(
+    `https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/accept/${friendId}`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    }
+  );
+};
+
+export const rejectFriendRequest = (friendId) => (dispatch) => {
+  fetch(
+    `https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/decline/${friendId}`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    }
+  );
 };

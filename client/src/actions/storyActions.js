@@ -3,10 +3,12 @@ import {
   GET_REVIEWS_SUCCESS,
   DELETE_REVIEW_SUCCESS,
   POST_REVIEW_SUCCESS,
+  GENERATE_COVER_SUCCESS,
+  ADD_STORY_SUCCESS,
 } from "./types";
 
 export const getStories = () => (dispatch) => {
-  fetch("http://localhost:3001/api/stories", {
+  fetch("https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/stories", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -25,15 +27,18 @@ export const getStories = () => (dispatch) => {
 };
 
 export const postReview = (id, reviewStar, reviewText) => (dispatch) => {
-  fetch(`http://localhost:3001/api/stories/${id}/review`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token"),
-    },
-    credentials: "include",
-    body: JSON.stringify({ reviewStar, reviewText }),
-  }).then((res) => {
+  fetch(
+    `https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/stories/${id}/review`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      credentials: "include",
+      body: JSON.stringify({ reviewStar, reviewText }),
+    }
+  ).then((res) => {
     if (res.status === 200) {
       res.json().then(({ story }) => {
         console.log(story);
@@ -47,13 +52,16 @@ export const postReview = (id, reviewStar, reviewText) => (dispatch) => {
 };
 
 export const getReviews = (id) => (dispatch) => {
-  fetch(`http://localhost:3001/api/stories/${id}/review`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  }).then((res) => {
+  fetch(
+    `https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/stories/${id}/review`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  ).then((res) => {
     if (res.status === 200) {
       res.json().then(({ reviews }) => {
         dispatch({
@@ -66,20 +74,60 @@ export const getReviews = (id) => (dispatch) => {
 };
 
 export const deleteReview = (storyId) => (dispatch) => {
-  fetch(`http://localhost:3001/api/stories/${storyId}/review`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token"),
-    },
-    credentials: "include",
-  }).then((res) => {
+  fetch(
+    `https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/stories/${storyId}/review`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      credentials: "include",
+    }
+  ).then((res) => {
     if (res.status === 200) {
       res.json().then(({ story }) => {
         dispatch({
           type: DELETE_REVIEW_SUCCESS,
           payload: story,
         });
+      });
+    }
+  });
+};
+
+export const generateStoryCover = (title, genre) => (dispatch) => {
+  console.log(title, genre);
+  fetch(
+    `https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/stories/cover`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, genre }),
+    }
+  ).then((res) => {
+    if (res.status === 200) {
+      res.json().then((response) => {
+        console.log(response);
+        dispatch({ type: GENERATE_COVER_SUCCESS, payload: response });
+      });
+    }
+  });
+};
+
+export const addStory = (formData) => (dispatch) => {
+  console.log(formData);
+
+  fetch(`https://mindtale-backend-a6608b8f04a2.herokuapp.com/api/stories`, {
+    method: "POST",
+    body: formData,
+  }).then((res) => {
+    if (res.status === 200) {
+      res.json().then((response) => {
+        console.log(response);
+        dispatch({ type: ADD_STORY_SUCCESS, payload: response });
       });
     }
   });

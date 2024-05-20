@@ -26,12 +26,12 @@ export function Comment({ storyId, review, deleteReview }) {
     <div className={styles.Comment}>
       {/* <h2>Reviews</h2> */}
       <div className={styles.Comment_container}>
-        <img className={styles.User} src={review.userImg} />
+        <img className={styles.User} src={user?.profilePicture || "null"} />
         <div className={styles.Comment_details}>
           <div className={styles.Comment_name}>
             <h3>{review.userName}</h3>
             <p>{review.dateAdded.slice(0, 10)}</p>
-            {user.id === review.userId ? (
+            {user?.id === review.userId ? (
               <img onClick={handleEditClick} src={isEdit ? TrashOpen : Trash} />
             ) : null}
             {isEdit && (

@@ -21,12 +21,12 @@ function StoryBoard({ readStory }) {
 
   useEffect(() => {
     readStory({ storyId });
-  }, [storyId]);
+  }, []);
 
   return (
     <div className={styles.StoryBoard}>
       <Story />
-      <ChaptersNav />
+      {/* <ChaptersNav /> */}
     </div>
   );
 }
