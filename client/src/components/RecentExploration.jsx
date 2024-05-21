@@ -62,7 +62,7 @@ export default function RecentExploration() {
     <div ref={targetRef} className={`${styles.Recommendation} ${isVisible && styles.animation}`}>
       <div className={styles.viewAll}>
         <h2 className={styles.Reco}>Recent Explorations</h2>
-        <Link className={styles.View}>View all</Link>
+        <Link to="/ViewAll" className={styles.View}>View all</Link>
       </div>
       <Swiper
         slidesPerView={2.75}
