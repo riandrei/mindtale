@@ -13,7 +13,7 @@ export const Question = ({Question, handleQuestionCount, questionCount, isLight}
     }, [handleQuestionCount, questionCount]);
     return(
         <div className={styles.Question}>
-            <div className={isLight?styles.SpecificQuestion:styles.SpecificQuestion2}>
+            <div className={isLight?styles.SpecificQuestion2:styles.SpecificQuestion}>
             {Question}
             </div>
             <div className={styles.Choices}>

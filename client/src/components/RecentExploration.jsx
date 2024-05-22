@@ -92,6 +92,9 @@ export default function RecentExploration() {
     >
       <div className={styles.viewAll}>
         <h2 className={styles.Reco}>Recent Explorations</h2>
+        <Link to="/ViewAll" className={styles.View}>
+          View all
+        </Link>
       </div>
       <Swiper
         slidesPerView={2.75}

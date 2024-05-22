@@ -19,6 +19,7 @@ import SearchBook from "./pages/SearchBook";
 import Admin from "./pages/Admin";
 import MetricsPage from "./pages/MetricsPage";
 import Quiz from "./pages/Quiz";
+import ViewAll from "./pages/ViewAll";
 
 import Story from "./components/Story";
 import StoryNav from "./components/StoryNav";
@@ -42,6 +43,7 @@ function App() {
           <Route path="SearchBook" element={<SearchBook />} />
           <Route path="/Admin" element={<Admin />} />
           <Route path="/MetricsPage" element={<MetricsPage />} />
+          <Route path="/ViewAll" element={<ViewAll />} />
           <Route
             path="/Quiz"
             element={

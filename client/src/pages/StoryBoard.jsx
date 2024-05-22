@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import { Choices } from "../components/Choices";
 import ChaptersNav from "../components/ChaptersNav";
 import Story from "../components/Story";
+import StoryNav from "../components/StoryNav";
 
 import Back from "../assets/back.png";
 import Theme from "../assets/themes.png";

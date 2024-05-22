@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '../css/StoryNav.module.css'
 
 
@@ -6,14 +7,22 @@ import styles from '../css/StoryNav.module.css'
 import Back from '../assets/back.png'
 import Book from '../assets/book-icon.png'
 import Theme from '../assets/themes.png'
+import Dark from '../assets/dark.png'
+import Light from '../assets/book-icon-dark.png'
 
-export const StoryNav = ({handleThemeClick, isLight}) => {
+export const StoryNav = ({handleThemeClick, isLight, handleNavClick, openNav}) => {
+    const navigate = useNavigate();
+    const goBack = () => {
+        navigate(-1)
+    }
     return(
         <div className={styles.StoryNav}>
-            <img className={styles.Back} src={Back} />
+            <img onClick={goBack} className={styles.Back} src={Back} />
             <div className={styles.StoryNav_inner}>
-                <img onClick={handleThemeClick} src={Theme} />
-                <img src={Book} />
+                <img onClick={handleThemeClick} src={isLight? Dark:Theme} />
+                {
+                    openNav ? "" : <img onClick={handleNavClick} src={isLight ? Light :Book} />
+                }
             </div>
         </div>
     )

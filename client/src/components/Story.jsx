@@ -6,7 +6,7 @@ import styles from "../css/Story.module.css";
 import Choices from "../components/Choices";
 import Recommend from "../components/Recommend";
 
-import Sample1 from "../assets/sample1.png";
+import Sample1 from "../assets/photocard1.png";
 import Art from "../assets/artwork11.jpg";
 import Back from "../assets/back.png";
 import Menu from "../assets/menuu.png";

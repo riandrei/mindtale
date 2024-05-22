@@ -61,9 +61,10 @@
     color:#2395a5;
     width: 15%;
     text-align: center;
-    padding:1.25rem 0;
+    padding:1.225rem 0;
     font-weight: bold;
     font-size: 1em;
+    outline:solid 1px #2395a575;
 }
 .Choices button span:nth-child(2){
     background-color: #2395a5;

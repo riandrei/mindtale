@@ -1,0 +1,32 @@
+.Congrats{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+}
+.Congrats h1{
+    scale:10;
+    animation: scale 500ms ease forwards 250ms;
+}
+.Return{
+    transform: translateY(5rem);
+    opacity:0;
+    filter: blur(10px);
+    animation:appear 500ms ease forwards 1000ms;
+}
+@keyframes scale{
+    from {}
+    to{
+        scale:1;
+    }
+}
+@keyframes appear{
+    from {}
+    to{
+        transform: translateY(0);
+        opacity:1;
+        filter: blur(0);
+    }
+}
