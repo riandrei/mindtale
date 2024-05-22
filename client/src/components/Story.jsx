@@ -13,13 +13,7 @@ import Menu from "../assets/menuu.png";
 import { getAssesment } from "../actions/sessionActions";
 import MultipleChoiceQuiz from "./MultipleChoiceQuiz";
 
-export function Story({ getAssesment }) {
-  const [openNav, setOpenNav] = useState(false);
-  const handleNavClick = () => {
-    console.log("Hello check");
-    setOpenNav(!openNav);
-  };
-
+export function Story({ getAssesment, openNav, handleNavClick }) {
   const { storyId } = useParams();
   const currentNarrative = useSelector(
     (state) => state.session.currentNarrative

@@ -46,10 +46,10 @@ function App() {
             path="/Quiz"
             element={
               <Quiz
-                questionCount={questionCount}
-                handleQuestionCount={handleQuestionCount}
-                isLight={isLight}
-                handleThemeClick={handleThemeClick}
+              // questionCount={questionCount}
+              // handleQuestionCount={handleQuestionCount}
+              // isLight={isLight}
+              // handleThemeClick={handleThemeClick}
               />
             }
           />
@@ -57,8 +57,8 @@ function App() {
             path="/Settings"
             element={
               <Settings
-                settingClick={settingClick}
-                handleSettingClick={handleSettingClick}
+              // settingClick={settingClick}
+              // handleSettingClick={handleSettingClick}
               />
             }
           />

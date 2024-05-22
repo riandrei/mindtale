@@ -15,15 +15,18 @@ import Close from "../assets/invisible.png";
 import Chapters from "../components/Chapters";
 // import { handleNavClick } from './Story'
 
-const ChaptersNav = ({ getStories }) => {
+const ChaptersNav = ({
+  getStories,
+  filteredHistory,
+  handlePageClick,
+  handleNavClick,
+}) => {
   const { storyId } = useParams();
   const stories = useSelector((state) => state.story.stories);
-  const history = useSelector((state) => state.session.history);
 
   const [title, setTitle] = useState("");
   const [imgURL, setImgURL] = useState("");
   const [tags, setTags] = useState([]);
-  const [filteredHistory, setFilteredHistory] = useState([]);
 
   useEffect(() => {
     console.log(stories);
@@ -38,12 +41,6 @@ const ChaptersNav = ({ getStories }) => {
   }, [stories]);
 
   useEffect(() => {
-    if (history.length > 0) {
-      const filtered = history.filter((item) => item.role === "model");
-      setFilteredHistory(filtered);
-    }
-  }, [history]);
-  useEffect(() => {
     getStories();
   }, []);
 
@@ -51,7 +48,7 @@ const ChaptersNav = ({ getStories }) => {
     <div className={styles.Chapters}>
       <div className={styles.Top}>
         <img src={Back} />
-        <img src={Close} />
+        <img onClick={handleNavClick} src={Close} />
       </div>
       <div className={styles.Cover}>
         <img className={styles.Sample} src={imgURL} />
@@ -61,14 +58,16 @@ const ChaptersNav = ({ getStories }) => {
       </div>
       <div className={styles.Chapters_con}>
         {console.log(filteredHistory)}
-        <Chapters title="Prologue: Where it All Started" />
-        <Chapters title="Chapter 1: The Destination" />
-        <Chapters title="Chapter 1: The Destination" />
-        <Chapters title="Chapter 1: The Destination" />
-        <Chapters title="Chapter 1: The Destination" />
-        <Chapters title="Chapter 1: The Destination" />
-        <Chapters title="Chapter 1: The Destination" />
-        <Chapters title="Reading Assessment" />
+        {filteredHistory?.map(
+          (item, index) =>
+            index !== 0 && (
+              <Chapters
+                title={`Page ${index}`}
+                handlePageClick={handlePageClick}
+                index={index}
+              />
+            )
+        )}
       </div>
     </div>
   );
