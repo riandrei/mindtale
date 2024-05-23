@@ -1,0 +1,52 @@
+.Rank{
+    margin-right: 8rem;
+    display: flex;
+    justify-content: center;
+}
+.Rank1{
+    width:84px;
+    border-radius: 50%;
+}
+.SpecificRank{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap:.75rem
+}
+
+
+.Rank_details{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #17616B;
+    align-items: center;
+    justify-content: space-between;
+    padding:1rem .5rem .25rem;
+    height:25vh;
+}
+
+.Rank_details2{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #2395a5;
+    align-items: center;
+    justify-content: space-between;
+    padding:1rem .5rem .25rem;
+    height:20vh;
+}
+.Number{
+    font-size: 3em;
+}
+.Runner{
+    font-size: .9em;
+}
+
+@media(max-width:431px){
+    .Rank{
+        margin: 0;
+    }
+}

@@ -1,0 +1,14 @@
+.Leaderboard{
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url(../assets/castle4.png);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.Back{
+    width:48px;
+    padding:.5rem;
+}
