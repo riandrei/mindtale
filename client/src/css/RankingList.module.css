@@ -1,0 +1,69 @@
+.RankingList{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px #fff;
+    padding:.1rem;
+
+}
+.User{
+    width:64px;
+    height:64px;
+    border-radius: 50%;
+}
+.Specific_Ranklist{
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+}
+
+.Specific_Ranklist_inner{
+    display: flex;
+    gap:2rem;
+    width:40%;
+    align-items: center;
+}
+.Specific_Ranklist_inner_inner{
+    display: flex;
+    flex-direction: column;
+}
+.RankNum{
+    font-size: 3em;
+    font-weight:bolder ;
+    opacity: .85;
+}
+
+.Specific_Ranklist_inner_inner span:first-child{
+    font-size:1.25em;
+    font-weight: 500;
+}
+.Specific_Ranklist_inner_inner span:nth-child(2){
+    font-size:1em;
+    opacity:.9;
+}
+.Percent{
+    display: flex;
+    align-items: center;
+    padding-right: 1rem;
+
+}
+
+@media(max-width:431px){
+    .RankingList{
+        margin: 0;
+    }
+    .Specific_Ranklist_inner{
+        width:100%;
+    }
+    .Specific_Ranklist_inner{
+        gap:1rem;
+    }
+    .RankNum{
+        font-size: 2em;
+    }
+    .Specific_Ranklist_inner_inner span:first-child{
+        font-size: 1em;
+    }
+    .Specific_Ranklist_inner_inner span:nth-child(2){
+        font-size: .85em;
+    }
+}
