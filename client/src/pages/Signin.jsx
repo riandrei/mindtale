@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 
-import { signUp } from "../actions/authActions";
+import { signUp, signUpWithGoogle } from "../actions/authActions";
 
 import styles from "../css/Signin.module.css";
 
@@ -11,7 +11,7 @@ import Facebook from "../assets/fb.png";
 import Logo from "../assets/mindtale.png";
 import Wrong from "../assets/remove.png";
 
-function Signin({ signUp }) {
+function Signin({ signUp, signUpWithGoogle }) {
   const [createEmail, setCreateEmail] = useState("");
   const handleCreateEmail = (e) => {
     setCreateEmail(e.target.value);
@@ -72,21 +72,42 @@ function Signin({ signUp }) {
     }
   };
 
+  const handleCredentialResponse = (response) => {
+    console.log("credential response");
+    signUpWithGoogle(response.credential, navigate);
+  };
+
+  useEffect(() => {
+    const google = window.google;
+
+    google.accounts.id.initialize({
+      client_id: `375338202686-88hgnbpj0fndsdslis6h5aivf67ihleu.apps.googleusercontent.com`,
+      callback: handleCredentialResponse,
+    });
+    google.accounts.id.renderButton(document.querySelector("#buttonDiv"), {
+      theme: "outline",
+      size: "large",
+      text: "continue_with",
+
+      width: `${document.querySelector(`#signupContainer`).clientWidth / 2}`,
+    });
+  }, []);
+
   return (
     <div className={styles.Signin}>
       <div className={styles.extra}></div>
 
-      <div className={styles.middle}>
+      <div id="signupContainer" className={styles.middle}>
         <h2>Create an account</h2>
-        <div className={styles.socials}>
-          <div className={styles.google}>
-            <img src={Google} />
-            <p>Sign up with Google</p>
+        <div>
+          <div id="buttonDiv" className={styles.google}>
+            {/* <img src={Google} /> */}
+            {/* <p id="buttonContainer">Sign up with Google</p> */}
           </div>
-          <div className={styles.facebook}>
+          {/* <div className={styles.facebook}>
             <img src={Facebook} />
             <p>Sign up with Facebook</p>
-          </div>
+          </div> */}
         </div>
 
         <div className={styles.or}>
@@ -127,13 +148,26 @@ function Signin({ signUp }) {
           </p>
         </div>
 
-                {/* hindi clickable yung submit button unless nasatisfy niya yung requirements */}
-                <div className={ styles.already }>
-                    <button onClick={ handleSubmitClick } style={{ pointerEvents: isDisabled && 'none',filter: isDisabled && "brightness(.5)"}}>Create account</button>
-                    <p>Already have an account? <Link to="/Homepage" className={ styles.link }>Log in</Link></p>
-                </div>
-                <p className={ styles.arrow }>ARROW FUNK-TION</p>
-            </div>
+        {/* hindi clickable yung submit button unless nasatisfy niya yung requirements */}
+        <div className={styles.already}>
+          <button
+            onClick={handleSubmitClick}
+            style={{
+              pointerEvents: isDisabled && "none",
+              filter: isDisabled && "brightness(.5)",
+            }}
+          >
+            Create account
+          </button>
+          <p>
+            Already have an account?{" "}
+            <Link to="/Homepage" className={styles.link}>
+              Log in
+            </Link>
+          </p>
+        </div>
+        <p className={styles.arrow}>ARROW FUNK-TION</p>
+      </div>
 
       <div className={styles.bottom}>
         <h1>CREATE ACCOUNT</h1>
@@ -159,6 +193,6 @@ function Signin({ signUp }) {
   );
 }
 
-const mapDispatchToProps = { signUp };
+const mapDispatchToProps = { signUp, signUpWithGoogle };
 
 export default connect(null, mapDispatchToProps)(Signin);

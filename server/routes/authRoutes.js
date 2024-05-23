@@ -3,6 +3,8 @@ const Router = require("express").Router;
 const {
   signUp,
   signIn,
+  signUpWithGoogle,
+  signInWithGoogle,
   verify,
   getUser,
   toggleUserBookmark,
@@ -13,13 +15,17 @@ const {
   acceptFriendRequest,
   declineFriendRequest,
 } = require("../controllers/authController");
+
 const tokenMiddleware = require("../middleware/tokenMiddleware");
 const multerMiddleware = require("../middleware/multerMiddleware");
+const googleMiddleware = require("../middleware/googleMiddleware");
 
 const router = Router();
 
 router.post("/login", signIn);
 router.post("/signup", signUp);
+router.post("/login/google", googleMiddleware, signInWithGoogle);
+router.post("/signUp/google", googleMiddleware, signUpWithGoogle);
 router.post("/verify", verify);
 router.get("/user", tokenMiddleware, getUser);
 router.post("/bookmark/:storyId", tokenMiddleware, toggleUserBookmark);

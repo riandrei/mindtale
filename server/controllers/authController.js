@@ -27,6 +27,7 @@ module.exports.signUp = (req, res, next) => {
         verificationCode,
         password: hash,
         username: email,
+        tag: name.slice(0, 4),
       });
 
       newUser
@@ -42,6 +43,84 @@ module.exports.signUp = (req, res, next) => {
 
 module.exports.signIn = (req, res) => {
   const { email, password } = req.body;
+
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    bcrypt.compare(password, user.password).then((result) => {
+      if (!result) {
+        return res.status(401).json({ error: "Invalid credentials" });
+      }
+
+      const token = jwt.sign({ email }, process.env.JWT_SECRET, {
+        expiresIn: "30d",
+      });
+
+      const userInfo = {
+        email: user.email,
+        username: user.username,
+        id: user._id,
+        verified: user.verified,
+        savedStories: user.savedStories,
+        completedStories: user.completedStories,
+        friends: user.friends,
+        friendRequests: user.friendRequests,
+        profilePicture: user.profilePicture,
+        history: user.history,
+        visited: user.visited,
+        tag: user.tag,
+        bio: user.bio,
+        token,
+      };
+
+      return res.status(200).json({ message: "User signed in", userInfo });
+    });
+  });
+};
+
+module.exports.signUpWithGoogle = (req, res) => {
+  const user = res.userInfo;
+
+  const { email, name, picture } = user;
+  const password = email + process.env.GOOGLE_OAUTH_KEY;
+
+  hashPassword(password).then((hash) => {
+    User.findOne({ email }).then((user) => {
+      if (user) {
+        return res.status(400).json({ error: "Email already in use" });
+      }
+
+      const verificationCode = Math.floor(100000 + Math.random() * 900000);
+
+      const newUser = new User({
+        email,
+        verificationCode,
+        password: hash,
+        username: name,
+        profilePicture: picture,
+        verified: true,
+        tag: name.slice(0, 4),
+      });
+
+      newUser
+        .save()
+        .then(() => {
+          return res.status(201).json({ message: "User created", email });
+        })
+        .catch((err) => res.status(400).json({ error: "Error creating user" }));
+    });
+  });
+};
+
+module.exports.signInWithGoogle = (req, res) => {
+  const user = res.userInfo;
+
+  console.log(user);
+
+  const { email } = user;
+  const password = email + process.env.GOOGLE_OAUTH_KEY;
 
   User.findOne({ email }).then((user) => {
     if (!user) {

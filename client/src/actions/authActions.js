@@ -53,6 +53,55 @@ export const signUp = (email, password, navigate) => (dispatch) => {
   });
 };
 
+export const signInWithGoogle = (credential, navigate) => (dispatch) => {
+  fetch("http://localhost:3001/api/login/google", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ credential }),
+  }).then((res) => {
+    if (res.status === 200) {
+      res.json().then((res) => {
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: res.userInfo,
+          redirect: navigate,
+        });
+      });
+    } else {
+      if (res.status === 401) {
+        res.json().then((res) => {
+          dispatch({
+            type: LOGIN_FAIL,
+            payload: res.error,
+          });
+          console.log(res.error);
+        });
+      }
+    }
+  });
+};
+
+export const signUpWithGoogle = (credential, navigate) => (dispatch) => {
+  console.log("ACTION RUNNING");
+  fetch("http://localhost:3001/api/signUp/google", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ credential }),
+  }).then((res) => {
+    if (res.status === 201) {
+      res.json().then((res) => {
+        dispatch(signInWithGoogle(credential, navigate));
+      });
+    }
+  });
+};
+
 export const verifyAccount = (code, email, navigate) => (dispatch) => {
   console.log(email, code);
 
