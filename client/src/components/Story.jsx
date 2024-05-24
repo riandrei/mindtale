@@ -12,8 +12,9 @@ import Back from "../assets/back.png";
 import Menu from "../assets/menuu.png";
 import { getAssesment } from "../actions/sessionActions";
 import MultipleChoiceQuiz from "./MultipleChoiceQuiz";
+import Quiz from "../pages/Quiz";
 
-export function Story({ getAssesment, openNav, handleNavClick }) {
+export function Story({ getAssesment, openNav, handleNavClick, isLight }) {
   const { storyId } = useParams();
   const currentNarrative = useSelector(
     (state) => state.session.currentNarrative
@@ -41,15 +42,9 @@ export function Story({ getAssesment, openNav, handleNavClick }) {
 
   return (
     <div className={styles.Story}>
-      <div className={styles.Top}>
-        <Link to={`/StoryDetails/${storyId}`}>
-          <img src={Back} />
-        </Link>
-        {openNav && <img onClick={handleNavClick} src={Menu} />}
-      </div>
       {assesment?.questions?.length > 0 ? (
-        <MultipleChoiceQuiz
-          questions={assesment?.questions}
+        <Quiz
+          questions={assesment.questions}
           correctAnswers={assesment?.correctAnswers}
         />
       ) : scenarioHistory && scenarioHistory.length > 0 ? (
@@ -58,8 +53,12 @@ export function Story({ getAssesment, openNav, handleNavClick }) {
             src={scenarioHistory[scenarioHistory.length - 1]}
             style={{ width: "512px", height: "512px", objectFit: "cover" }}
           />
-          <p>{currentNarrative || "Loading..."}</p>
-          <Choices choices={currentChoices} />
+          <div className={styles.Story_inner}>
+            <p className={isLight ? styles.Text2 : styles.Text}>
+              {currentNarrative || "Loading..."}
+            </p>
+            <Choices choices={currentChoices} />
+          </div>
         </>
       ) : null}
 

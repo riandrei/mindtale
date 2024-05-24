@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import Book from "../assets/book.png";
 import Save from "../assets/save.png";
+import Leaderboard from "../assets/ranking-star-solid.svg";
 import Search from "../assets/search.png";
 import Quest from "../assets/quest.png";
 import Profile from "../assets/account.png";
@@ -25,10 +26,10 @@ function Nav() {
         {" "}
         <img src={SearchPeople} />{" "}
       </Link>
-      {/* <Link>
+      <Link>
         {" "}
-        <img src={Save} />{" "}
-      </Link> */}
+        <img src={Leaderboard} />{" "}
+      </Link>
       <Link to="/Profile">
         {" "}
         <img src={Profile} />{" "}

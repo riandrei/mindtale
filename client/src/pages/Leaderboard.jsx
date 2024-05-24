@@ -1,35 +1,37 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import styles from '../css/Leaderboard.module.css'
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { connect, useSelector } from "react-redux";
+import { getRanking } from "../actions/authActions";
+import styles from "../css/Leaderboard.module.css";
 
-import Nav from '../components/Nav'
-import Rank from '../components/Rank'
-import RankingList from '../components/RankingList'
+import Nav from "../components/Nav";
+import Rank from "../components/Rank";
+import RankingList from "../components/RankingList";
 
-import Back from '../assets/back.png'
+import Back from "../assets/back.png";
 
-export const Leaderboard = () => {
+const Leaderboard = ({ getRanking }) => {
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
 
-    const navigate = useNavigate();
-    const goBack = () => {
-        navigate(-1)
-    }
-    return(
-        <div className={styles.Leaderboard}>
-            <Nav/>
-            <img onClick={goBack} className={styles.Back} src={Back} />
-            <Rank />
-            <div className={styles.Ranklist_con}>
-                <RankingList/>
-                <RankingList/>
-                <RankingList/>
-                <RankingList/>
-                <RankingList/>
-                <RankingList/>
-                <RankingList/>
-            </div>
-        </div>
-    )
-}
+  const ranking = useSelector((state) => state.auth.ranking);
 
-export default Leaderboard;
+  useEffect(() => getRanking(), []);
+  return (
+    <div className={styles.Leaderboard}>
+      {console.log(ranking)}
+      <Nav />
+      <img onClick={goBack} className={styles.Back} src={Back} />
+      <Rank ranking={ranking} />
+      <div className={styles.Ranklist_con}>
+        <RankingList />
+      </div>
+    </div>
+  );
+};
+
+const mapDispatchToProps = { getRanking };
+
+export default connect(null, mapDispatchToProps)(Leaderboard);

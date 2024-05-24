@@ -32,7 +32,7 @@ export default function Completed(props) {
     <div className={styles.User_saved}>
       {completedStories.length > 0 ? (
         completedStories?.map((story) => (
-          <SpecificStory image={story.imageURL} title={story.title} />
+          <SpecificStory imgURL={story.imgURL} title={story.title} />
         ))
       ) : (
         <h1>No completed stories</h1>

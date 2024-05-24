@@ -388,6 +388,68 @@ module.exports.declineFriendRequest = (req, res) => {
     });
   });
 };
+
+module.exports.submitCompletedStory = (req, res) => {
+  const { storyId } = req.params;
+  const { assesmentScore } = req.body;
+  const { email } = req.user;
+
+  console.log(storyId, assesmentScore);
+  console.log(email);
+
+  Story.findOne({ _id: storyId }).then((story) => {
+    if (!story) {
+      return res.status(400).json({ error: "Story not found" });
+    }
+
+    User.findOne({ email }).then((user) => {
+      if (!user) {
+        return res.status(400).json({ error: "User not found" });
+      }
+
+      const existingStory = user.completedStories.find(
+        (story) => story.story.toString() === storyId
+      );
+
+      if (existingStory) {
+        existingStory.assesmentScore = assesmentScore;
+      } else {
+        user.completedStories.push({
+          story: storyId,
+          assesmentScore,
+          tags: story.tags,
+        });
+      }
+
+      user
+        .save()
+        .then(() => res.status(200).json({ message: "Story completed" }))
+        .catch((err) =>
+          res.status(400).json({ error: "Error completing story" })
+        );
+    });
+  });
+};
+
+module.exports.getRanking = (req, res) => {
+  User.find().then((users) => {
+    const ranking = users.map((user) => {
+      const { completedStories, username, profilePicture } = user;
+
+      const totalScore =
+        completedStories.reduce(
+          (acc, story) => acc + Number(story.assesmentScore),
+          0
+        ) * 100;
+
+      // completedStories.map((story) => {console.log}
+      return { username, profilePicture, totalScore };
+    });
+
+    res.status(200).json({ ranking });
+  });
+};
+
 function hashPassword(password) {
   const saltRounds = 10;
 

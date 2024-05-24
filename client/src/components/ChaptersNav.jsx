@@ -47,7 +47,6 @@ const ChaptersNav = ({
   return (
     <div className={styles.Chapters}>
       <div className={styles.Top}>
-        <img src={Back} />
         <img onClick={handleNavClick} src={Close} />
       </div>
       <div className={styles.Cover}>

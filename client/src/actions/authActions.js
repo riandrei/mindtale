@@ -5,6 +5,7 @@ import {
   VERIFY_FAIL,
   GET_USER_SUCCESS,
   GET_USERS_SUCCESS,
+  GET_RANKING_SUCCESS,
 } from "./types";
 
 export const logIn = (email, password, navigate) => (dispatch) => {
@@ -236,5 +237,37 @@ export const rejectFriendRequest = (friendId) => (dispatch) => {
     headers: {
       Authorization: localStorage.getItem("token"),
     },
+  });
+};
+
+export const submitCompletedStory = (storyId, assesmentScore) => (dispatch) => {
+  console.log(storyId, assesmentScore);
+
+  fetch(`http://localhost:3001/api/complete/${storyId}`, {
+    method: "POST",
+    headers: {
+      Authorization: localStorage.getItem("token"),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ assesmentScore }),
+  });
+};
+
+export const getRanking = () => (dispatch) => {
+  console.log("test");
+  fetch(`http://localhost:3001/api/ranking`, {
+    method: "GET",
+    headers: {
+      // Authorization: localStorage.getItem("token"),
+    },
+  }).then((res) => {
+    if (res.status === 200) {
+      res.json().then((res) => {
+        dispatch({
+          type: GET_RANKING_SUCCESS,
+          payload: res.ranking,
+        });
+      });
+    }
   });
 };

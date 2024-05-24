@@ -2,12 +2,11 @@ import React from "react";
 import { Chart } from "react-google-charts";
 
 export const options = {
-  chart: {
-    title: "Assesment Score Over Time",
-  },
+  title: "Assesment Score Over Time",
 };
 
 export default function App({ chartData }) {
+  console.log(chartData);
   return (
     <Chart
       chartType="Line"

@@ -47,7 +47,7 @@ export const About = () => {
           View metrics
         </Link>
         <div className={styles.Metrics_inner}>
-          <Metrics Metric_name="Books Finished" Metric_value="23" />
+          {/* <Metrics Metric_name="Books Finished" Metric_value="23" />
           <Metrics Metric_name="Avg. Assessment Score" Metric_value="55.56%" />
           <Metrics Metric_name="Daily Read Streak" Metric_value="3" />
           <Metrics
@@ -58,7 +58,7 @@ export const About = () => {
           <Metrics />
           <Metrics />
           <Metrics />
-          <Metrics />
+          <Metrics /> */}
         </div>
       </div>
     </div>

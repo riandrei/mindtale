@@ -21,10 +21,15 @@ import StoryHistory from "../components/StoryHistory";
 function StoryBoard({ readStory }) {
   const { storyId } = useParams();
 
-  const [openNav, setOpenNav] = useState(false);
+  const [openNav, setOpenNav] = useState(true);
   const handleNavClick = () => {
-    console.log("Hello check");
     setOpenNav(!openNav);
+  };
+
+  const [isLight, setIsLight] = useState(false);
+  const handleThemeClick = () => {
+    setIsLight(!isLight);
+    console.log("light");
   };
 
   const [filteredHistory, setFilteredHistory] = useState([]);
@@ -47,10 +52,22 @@ function StoryBoard({ readStory }) {
   }, []);
 
   return (
-    <div className={styles.StoryBoard}>
+    <div className={isLight ? styles.StoryBoard2 : styles.StoryBoard}>
       {console.log(indexClicked)}
       {indexClicked === -1 || indexClicked === filteredHistory.length - 1 ? (
-        <Story openNav={openNav} handleNavClick={handleNavClick} />
+        <div className={styles.Storyboard_inner}>
+          <StoryNav
+            openNav={openNav}
+            handleNavClick={handleNavClick}
+            isLight={isLight}
+            handleThemeClick={handleThemeClick}
+          />
+          <Story
+            isLight={isLight}
+            openNav={openNav}
+            handleNavClick={handleNavClick}
+          />
+        </div>
       ) : (
         <StoryHistory
           openNav={openNav}
