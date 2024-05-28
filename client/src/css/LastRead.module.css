@@ -114,6 +114,9 @@
     width:30px;
     height:30px;
 }
+.dots{
+    display: none;
+}
 @media (min-width: 768px) and (max-width: 1023px){
     .explore button{
         width:25%;
@@ -123,6 +126,9 @@
     .continue_reading{
         gap:.25rem;
         width:100%;
+    }
+    .dots{
+        display: inline-block;
     }
     .continue_reading h1{
         font-size: 1.5em;
@@ -139,7 +145,7 @@
         
     }
     .story_description{
-        font-size: .6em;
+        font-size: .75em;
         line-height: 200%;
     }
     .explore button{

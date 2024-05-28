@@ -13,7 +13,7 @@ function TopStory(props) {
 
   useEffect(() => {
     const handleResize = () => {
-      setMaxLength(window.innerWidth <= 1023 ? 175 : 450);
+      setMaxLength(window.innerWidth <= 1023 ? 100 : 450);
     };
 
     handleResize();

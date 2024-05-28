@@ -11,7 +11,7 @@ export function LastRead(props) {
   
     useEffect(() => {
       const handleResize = () => {
-        setMaxLength(window.innerWidth <= 1023 ? 125 : 450);
+        setMaxLength(window.innerWidth <= 1023 ? 100 : 450);
       };
   
       handleResize();
@@ -69,6 +69,7 @@ export function LastRead(props) {
                                 </div>
                                 <div className={ styles.story_description }>
                                     {truncatedText}
+                                    <span className={ styles.dots }> ...</span>
                                     <div></div>
                                 </div>
                                 <div className={ styles.explore}>
