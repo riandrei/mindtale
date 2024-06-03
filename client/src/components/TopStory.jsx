@@ -9,11 +9,11 @@ import Confetti from '../assets/confetti.png'
 
 function TopStory(props) {
   const [maxLength, setMaxLength] = useState(window.innerWidth <= 431 ? 100 : 50);
-  const fullText = "Black Torch unfolds the journey of Jiro, a reluctant wielder of enigmatic powers, navigating the blurred realm between humans and supernatural beings. Fueled by captivating discoveries and lurking dangers, Jiro's tale explores the delicate balance of coexistence. Faced with unforeseen challenges, he grapples with identity, friendship, and the intricate threads connecting his world to the mystical forces that shape his destiny."; // Your full text here
+  const fullText = "Black Torch unfoldBlack Torch unfolds the journey of Jiro, a reluctant wielder of enigmatic powers,s the journey of Jiro, a reluctant wielder of enigmatic powers, Black Torch unfolds the journey of Jiro, a reluctant wielder of enigmatic powers, navigating the blurred realm between humans and supernatural beings. Fueled by captivating discoveries and lurking dangers, Jiro's tale explores the delicate balance of coexistence. Faced with unforeseen challenges, he grapples with identity, friendship, and the intricate threads connecting his world to the mystical forces that shape his destiny."; 
 
   useEffect(() => {
     const handleResize = () => {
-      setMaxLength(window.innerWidth <= 1023 ? 100 : 450);
+      setMaxLength(window.innerWidth <= 1023 ? 100 : 600);
     };
 
     handleResize();
