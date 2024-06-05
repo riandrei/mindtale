@@ -8,7 +8,7 @@ import {
 } from "./types";
 
 export const getStories = () => (dispatch) => {
-  fetch("http://localhost:3001/api/stories", {
+  fetch("https://mindtale-backend-128727933592.herokuapp.com/api/stories", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -27,15 +27,18 @@ export const getStories = () => (dispatch) => {
 };
 
 export const postReview = (id, reviewStar, reviewText) => (dispatch) => {
-  fetch(`http://localhost:3001/api/stories/${id}/review`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token"),
-    },
-    credentials: "include",
-    body: JSON.stringify({ reviewStar, reviewText }),
-  }).then((res) => {
+  fetch(
+    `https://mindtale-backend-128727933592.herokuapp.com/api/stories/${id}/review`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      credentials: "include",
+      body: JSON.stringify({ reviewStar, reviewText }),
+    }
+  ).then((res) => {
     if (res.status === 200) {
       res.json().then(({ story }) => {
         console.log(story);
@@ -49,13 +52,16 @@ export const postReview = (id, reviewStar, reviewText) => (dispatch) => {
 };
 
 export const getReviews = (id) => (dispatch) => {
-  fetch(`http://localhost:3001/api/stories/${id}/review`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  }).then((res) => {
+  fetch(
+    `https://mindtale-backend-128727933592.herokuapp.com/api/stories/${id}/review`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  ).then((res) => {
     if (res.status === 200) {
       res.json().then(({ reviews }) => {
         dispatch({
@@ -68,14 +74,17 @@ export const getReviews = (id) => (dispatch) => {
 };
 
 export const deleteReview = (storyId) => (dispatch) => {
-  fetch(`http://localhost:3001/api/stories/${storyId}/review`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token"),
-    },
-    credentials: "include",
-  }).then((res) => {
+  fetch(
+    `https://mindtale-backend-128727933592.herokuapp.com/api/stories/${storyId}/review`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      credentials: "include",
+    }
+  ).then((res) => {
     if (res.status === 200) {
       res.json().then(({ story }) => {
         dispatch({
@@ -89,13 +98,16 @@ export const deleteReview = (storyId) => (dispatch) => {
 
 export const generateStoryCover = (title, genre) => (dispatch) => {
   console.log(title, genre);
-  fetch(`http://localhost:3001/api/stories/cover`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ title, genre }),
-  }).then((res) => {
+  fetch(
+    `https://mindtale-backend-128727933592.herokuapp.com/api/stories/cover`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, genre }),
+    }
+  ).then((res) => {
     if (res.status === 200) {
       res.json().then((response) => {
         console.log(response);
@@ -108,7 +120,7 @@ export const generateStoryCover = (title, genre) => (dispatch) => {
 export const addStory = (formData) => (dispatch) => {
   console.log(formData);
 
-  fetch(`http://localhost:3001/api/stories`, {
+  fetch(`https://mindtale-backend-128727933592.herokuapp.com/api/stories`, {
     method: "POST",
     body: formData,
   }).then((res) => {

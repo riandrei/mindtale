@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const cloudinary = require("cloudinary").v2;
+const path = require("path");
 
 const sessionRoutes = require("./routes/sessionRoutes");
 const authRoutes = require("./routes/authRoutes");
@@ -15,18 +16,22 @@ const storyRoutes = require("./routes/storyRoutes");
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://mindtale-972af775b04e.herokuapp.com",
     credentials: true,
   })
 );
 app.use(express.json());
 
-const port = process.env.PORT || 3001;
-const dbURI = process.env.DB_TEST_URI;
-
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+app.get("/test", (req, res) => {
+  res.send("Test");
+});
+
+const port = process.env.PORT || 3001;
+const dbURI = process.env.DB_TEST_URI;
 
 app.use("/api", sessionRoutes);
 app.use("/api", authRoutes);
@@ -51,30 +56,3 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
-// const { GoogleGenerativeAI } = require("@google/generative-ai");
-
-// const generativeAI = new GoogleGenerativeAI(process.env.GEMINI_TEST_API_KEY);
-
-// gemini();
-
-// async function gemini() {
-//   const model = generativeAI.getGenerativeModel({
-//     model: "gemini-pro",
-//   });
-
-//   const result = await chat.sendMessage(
-//     `The story is titled Dragons Realm of Treasures. It is about a guy who stumbles upon a dragons lair full of goodies.`
-//   );
-
-//   const response = await result.response;
-
-//   const text = response.text();
-//   const trimmedText = text.trim();
-
-//   console.log(trimmedText);
-
-//   const history = await chat.getHistory();
-
-//   console.log(history);
-// }

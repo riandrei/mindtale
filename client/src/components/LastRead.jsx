@@ -19,7 +19,7 @@ function LastRead({ toggleBookmark }) {
 
   useEffect(() => {
     const handleResize = () => {
-      setMaxLength(window.innerWidth <= 1023 ? 125 : 450);
+      setMaxLength(window.innerWidth <= 1023 ? 100 : 450);
     };
 
     handleResize();
@@ -133,7 +133,8 @@ function LastRead({ toggleBookmark }) {
                 />
               </div>
               <div className={styles.story_description}>
-                {latestStory?.synopsis}
+                {latestStory?.synopsis?.substring(0, maxLength)}
+                <span className={styles.dots}> ...</span>
                 <div></div>
               </div>
               <div className={styles.explore}>

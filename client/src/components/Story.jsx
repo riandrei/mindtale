@@ -51,7 +51,7 @@ export function Story({ getAssesment, openNav, handleNavClick, isLight }) {
         <>
           <img
             src={scenarioHistory[scenarioHistory.length - 1]}
-            style={{ width: "512px", height: "512px", objectFit: "cover" }}
+            className="story-image"
           />
           <div className={styles.Story_inner}>
             <p className={isLight ? styles.Text2 : styles.Text}>

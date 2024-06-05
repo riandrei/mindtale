@@ -19,7 +19,7 @@ function TopStory({ title, tags, synopsis, imgURL, storyID }) {
 
   useEffect(() => {
     const handleResize = () => {
-      setMaxLength(window.innerWidth <= 1023 ? 175 : 450);
+      setMaxLength(window.innerWidth <= 1023 ? 100 : 450);
     };
 
     handleResize();
@@ -75,7 +75,7 @@ function TopStory({ title, tags, synopsis, imgURL, storyID }) {
         </div>
 
         <div className={styles.description}>
-          {synopsis}
+          {synopsis.substring(0, maxLength)}
           <span className={styles.dots}> ...</span>
         </div>
         <Link to={`/StoryDetails/${storyID}`}>

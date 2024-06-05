@@ -26,7 +26,7 @@ function Nav() {
         {" "}
         <img src={SearchPeople} />{" "}
       </Link>
-      <Link>
+      <Link to="/Leaderboard">
         {" "}
         <img src={Leaderboard} />{" "}
       </Link>

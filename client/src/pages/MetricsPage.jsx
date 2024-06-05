@@ -7,6 +7,7 @@ import { getUser } from "../actions/authActions";
 import styles from "../css/MetricsPage.module.css";
 import SampleChart from "../components/SampleChart";
 import LineChart from "../components/LineChart";
+import PieChart from "../components/PieChart";
 import Dowelle from "../assets/Dowelle.jpg";
 
 import Back from "../assets/back.png";
@@ -28,16 +29,10 @@ export const MetricsPage = ({ getUser }) => {
   );
 
   const [chartData, setChartData] = useState([["Date", "Assesment Score"]]);
-
-  // const test = [
-  //   { date: "2021-09-01", assesmentScore: 50 },
-  //   { date: "2021-09-02", assesmentScore: 40 },
-  // ];
-  // test.forEach((story) => {
-  //   chartData.push([story.date, story.assesmentScore]);
-  // });
-
+  const [pieChartData, setPieChartData] = useState([["Genre", "Count"]]);
+  const [remarks, setRemarks] = useState("Loading...");
   const [tagCounts, setTagCounts] = useState({});
+  const [assessmentScore, setAssessmentScore] = useState(0);
 
   const getHighestCountTag = () => {
     let maxCount = 0;
@@ -55,6 +50,7 @@ export const MetricsPage = ({ getUser }) => {
 
   useEffect(() => {
     const tempChartData = [["Date", "Assesment Score"]];
+    const tempAssesmentScores = [];
 
     const reversedStories = completedStories?.toReversed();
 
@@ -63,9 +59,38 @@ export const MetricsPage = ({ getUser }) => {
         story.date.slice(0, story.date.indexOf("T")),
         Number(story.assesmentScore),
       ]);
+      tempAssesmentScores.push(Number(story.assesmentScore));
     });
 
     setChartData(tempChartData);
+
+    const firstHalf = tempAssesmentScores.slice(
+      0,
+      Math.floor(tempAssesmentScores.length / 2)
+    );
+    const secondHalf = tempAssesmentScores.slice(
+      Math.floor(tempAssesmentScores.length / 2),
+      tempAssesmentScores.length
+    );
+
+    const firstHalfAvg =
+      firstHalf.reduce((acc, curr) => acc + curr, 0) / firstHalf.length;
+    const secondHalfAvg =
+      secondHalf.reduce((acc, curr) => acc + curr, 0) / secondHalf.length;
+
+    const avg =
+      tempAssesmentScores.reduce((acc, curr) => acc + curr, 0) /
+      tempAssesmentScores.length;
+
+    setAssessmentScore(avg);
+
+    if (firstHalfAvg > secondHalfAvg) {
+      setRemarks("Declining");
+    } else if (firstHalfAvg < secondHalfAvg) {
+      setRemarks("Improving");
+    } else {
+      setRemarks("Stable");
+    }
 
     reversedStories?.forEach((item) => {
       item.tags.forEach((tag) => {
@@ -77,6 +102,13 @@ export const MetricsPage = ({ getUser }) => {
       });
     });
 
+    const tempPieChartData = [["Genre", "Count"]];
+
+    Object.entries(tagCounts).forEach(([tag, count]) => {
+      tempPieChartData.push([tag, count]);
+    });
+
+    setPieChartData(tempPieChartData);
     console.log(tagCounts);
   }, [completedStories]);
 
@@ -104,7 +136,7 @@ export const MetricsPage = ({ getUser }) => {
             </div> */}
             <div className={styles.Avg} onClick={() => handleDetail(2)}>
               <span>Avg. Assessment Score</span>
-              <span>40.7%</span>
+              <span>{assessmentScore}</span>
             </div>
             <div className={styles.Avg} onClick={() => handleDetail(3)}>
               <span>Favorite Genre</span>
@@ -113,7 +145,7 @@ export const MetricsPage = ({ getUser }) => {
             </div>
             <div className={styles.Avg} onClick={() => handleDetail(4)}>
               <span>Overall Performance</span>
-              <span>Developing</span>
+              <span>{remarks}</span>
             </div>
             <div className={styles.Avg} onClick={() => handleDetail(4)}>
               <span>Completed Stories</span>
@@ -122,8 +154,8 @@ export const MetricsPage = ({ getUser }) => {
           </div>
           {/* {chooseDetail === 1 && <LineChart chartData={chartData} />} */}
           {chooseDetail === 2 && <LineChart chartData={chartData} />}
-          {/* {chooseDetail === 3 && <LineChart />}
-          {chooseDetail === 4 && <SampleChart />} */}
+          {chooseDetail === 3 && <PieChart chartData={pieChartData} />}
+          {/* {chooseDetail === 4 && <SampleChart />} */}
         </div>
         {/* 
         <div className={styles.Middle_right}>

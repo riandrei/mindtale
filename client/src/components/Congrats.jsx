@@ -21,7 +21,7 @@ const Congrats = ({
   }, []);
   return (
     <div className={styles.Congrats}>
-      <h1>Congratulations! You finish the reading the book</h1>
+      <h1>Congratulations! You've finished reading the book</h1>
       {score && questionsLength && (
         <span className={isLight ? styles.Count2 : styles.Count}>
           {score} / {questionsLength}
