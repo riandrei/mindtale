@@ -19,7 +19,7 @@ function TopStory({ title, tags, synopsis, imgURL, storyID }) {
 
   useEffect(() => {
     const handleResize = () => {
-      setMaxLength(window.innerWidth <= 1023 ? 100 : 450);
+      setMaxLength(window.innerWidth <= 1023 ? 100 : 600);
     };
 
     handleResize();

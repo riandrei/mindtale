@@ -114,15 +114,22 @@
   .explore button {
     width: 25%;
   }
+.dots{
+    display: none;
+}
+@media (min-width: 768px) and (max-width: 1023px){
+    .explore button{
+        width:25%;
+    }
 }
 @media (max-width: 431px) {
   .continue_reading {
     gap: 0.25rem;
     width: 100%;
   }
-  .dots {
+  .dots{
     display: inline-block;
-  }
+}
   .continue_reading h1 {
     font-size: 1.5em;
   }
@@ -131,14 +138,13 @@
     width: 160px;
   }
   .story_description {
-    font-size: 0.75em;
     line-height: 125%;
   }
   .continue_inner {
     gap: 0.5rem;
   }
   .story_description {
-    font-size: 0.6em;
+    font-size: 0.75em;
     line-height: 200%;
   }
   .explore button {

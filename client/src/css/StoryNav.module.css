@@ -4,6 +4,17 @@
     align-items: center;
     padding: .5rem 1rem;
 }
+.StoryNav_inner span{
+    height: 100%;
+    font-size: 1.25em;
+    text-align: center;
+}
+.Light{
+    color:#333;
+}
+.Dark{
+    color:#fff;
+}
 .Back{
     width:32px;
 }
@@ -14,4 +25,5 @@
 .StoryNav_inner{
     display: flex;
     gap:1rem;
+    align-items: center;
 }
