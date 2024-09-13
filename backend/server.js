@@ -16,7 +16,7 @@ const storyRoutes = require("./routes/storyRoutes");
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://mindtale-frontend-714b6a16b37f.herokuapp.com",
     credentials: true,
   })
 );
