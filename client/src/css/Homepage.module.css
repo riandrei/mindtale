@@ -1,12 +1,12 @@
 .search img,
 .search input {
-    height: 50px;
-    background-color: #60606075;
+  height: 50px;
+  background-color: #60606075;
 }
 
 .Homepage,
 .main_body {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 .main_body,
@@ -14,24 +14,24 @@
 .story_button,
 .top_inner,
 .top_right {
-    display: flex;
+  display: flex;
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .nav_con {
-    padding: 2rem;
-    background-color: green;
-    position: absolute;
+  padding: 2rem;
+  background-color: green;
+  position: absolute;
 }
 
 .activeButton,
 .filter_open {
-    background-color: red;
+  background-color: red;
 }
 
 /* .Homepage {
@@ -39,147 +39,147 @@
 } */
 
 .top_container {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem 1rem 1rem 1.5rem;
-    width: 95%;
-    z-index: 3;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1rem 1rem 1.5rem;
+  width: 95%;
+  z-index: 3;
 }
 
 .top_inner {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .search {
-    gap: 0;
+  gap: 0;
 }
 
 .filter {
-    cursor: pointer;
-    transition: 350ms;
+  cursor: pointer;
+  transition: 350ms;
 }
 
 .filter:hover {
-    background-color: #606060;
+  background-color: #606060;
 }
 
 .filter_open {
-    position: fixed;
+  position: fixed;
 }
 
 .search img {
-    width: 50px;
-    padding: 0.75rem;
-    border-radius: 5px 0 0 5px;
+  width: 50px;
+  padding: 0.75rem;
+  border-radius: 5px 0 0 5px;
 }
 
 .search img:nth-child(3) {
-    border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
 }
 
 .search input {
-    width: 100%;
-    border: none;
-    color: #fff;
+  width: 100%;
+  border: none;
+  color: #fff;
 }
 
 .search input:focus {
-    outline: 0;
+  outline: 0;
 }
 
 ::placeholder {
-    color: #fff;
+  color: #fff;
 }
 
 .search button {
-    background: 0 0;
-    border: none;
+  background: 0 0;
+  border: none;
 }
 
 .story_button {
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .story_button button {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border: 1px solid #000;
-    background-color: #fff;
-    cursor: pointer;
-    transition: 250ms;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 250ms;
 }
 
 .story_button button:hover {
-    background-color: #0ff;
-    scale: 1.1;
+  background-color: #0ff;
+  scale: 1.1;
 }
 
 .main_body {
-    background-color: #111;
-    background-image: url(../assets/castle.png);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    margin-bottom: 1rem;
-    flex-direction: column;
-    gap: 0.5rem;
+  background-color: #111;
+  background-image: url(../assets/castlee.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin-bottom: 1rem;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .samplee {
-    background-color: #fff;
-    width: 50%;
-    transform: translateX(-5rem);
-    opacity: 0;
+  background-color: #fff;
+  width: 50%;
+  transform: translateX(-5rem);
+  opacity: 0;
 }
 
 .animation {
-    animation: 1s forwards entrance;
+  animation: 1s forwards entrance;
 }
 
 @keyframes entrance {
-    to {
-        transform: translate(0);
-        opacity: 1;
-    }
+  to {
+    transform: translate(0);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 431px) {
-    .main_body {
-        background-position: center;
-        background-attachment: fixed;
-        background-image: url(../assets/castle-mobile.png);
-    }
+  .main_body {
+    background-position: center;
+    background-attachment: fixed;
+    background-image: url(../assets/castle-mobile.png);
+  }
 
-    .search input {
-        padding: 0.5rem 0.75rem;
-    }
+  .search input {
+    padding: 0.5rem 0.75rem;
+  }
 
-    .search img,
-    .search input {
-        height: 30px;
-        background-color: #60606090;
-    }
+  .search img,
+  .search input {
+    height: 30px;
+    background-color: #60606090;
+  }
 
-    .search img {
-        padding: 0.5rem 1rem;
-    }
+  .search img {
+    padding: 0.5rem 1rem;
+  }
 
-    .search input:focus {
-        background-color: #444;
-    }
+  .search input:focus {
+    background-color: #444;
+  }
 
-    .story_button button {
-        width: 10px;
-        height: 10px;
-    }
+  .story_button button {
+    width: 10px;
+    height: 10px;
+  }
 
-    .topstory_container {
-        animation: 30s linear 5s infinite alternate-reverse next-story;
-    }
+  .topstory_container {
+    animation: 30s linear 5s infinite alternate-reverse next-story;
+  }
 }

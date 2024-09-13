@@ -21,13 +21,18 @@ const Congrats = ({
   }, []);
   return (
     <div className={styles.Congrats}>
-      <h1>Congratulations! You've finished reading the book</h1>
+      <h1 className={isLight ? styles.Count2 : styles.Count}>
+        Congratulations! You've finished reading the book
+      </h1>
       {score && questionsLength && (
         <span className={isLight ? styles.Count2 : styles.Count}>
           {score} / {questionsLength}
         </span>
       )}
-      <Link to="/Homepage" className={styles.Return}>
+      <Link
+        to="/Homepage"
+        className={`${styles.Return} ${isLight ? styles.Count2 : styles.Count}`}
+      >
         Return to homepage
       </Link>
     </div>

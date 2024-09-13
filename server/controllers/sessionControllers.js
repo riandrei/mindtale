@@ -58,13 +58,13 @@ module.exports.startSession = async function startSession(req, res) {
                   role: "user",
                   parts: [
                     {
-                      text: `You will be given a story title and synopsis. Your reply should include a 300 word long narration, multiple actions the user can pick from, and a boolean value indicating if the story has ended.
+                      text: `You will be given a story title and synopsis. Your reply should include a 300 word long narration, multiple actions the user can pick from, and a boolean value indicating if the story has ended. Keep in mind that the story should be straightforward and short. Do not repeat the same narrations or actions.
 
             Example story title and synopsis: "Dragon's Quest: Welcome to the realm of Avalon, a land shrouded in whispers of forgotten magic and mythical creatures. You are no longer a nameless villager, but a budding hero thrust into an extraordinary adventure. A shadow has fallen upon Avalon. Whispers of a slumbering dragon, awakened by a malevolent force, spread fear throughout the kingdom.",
             Example response:
             {
-              "narrator": "The sun, a lazy orange eye peeking over snow-capped mountains, bathes the quaint village of Elmsbrook in a gentle glow. You, (your name), stretch your arms, the crisp morning air a welcome contrast to the warmth of your straw mattress. But today feels different. A strange tension hangs heavy in the air, whispers of a long-dormant threat slithering through the usually cheerful greetings. The village elder, her once vibrant face etched with worry, calls you to the center square. There, under the gnarled oak, she reveals the chilling truth: the dragon of Mount Dracoheim, a beast of legend whispered only in hushed tones, has awakened. Its fiery breath threatens to engulf the kingdom in chaos. You, a budding adventurer with a thirst for knowledge and a heart full of courage, feel a spark ignite within you. Maybe the whispers are true – maybe you were destined for something more than tending sheep. Today, your life takes a sharp turn. Today, your quest begins."
-              "actions": [{"text": "Embrace the Hero's Call: Step forward, declare your willingness to face the dragon, and ask the Elder for guidance on preparing for the perilous journey.", "imagePrompt": "Talking to Elder"}, {"text": "Seek Hidden Knowledge: Express your concern about the dragon's sudden awakening and inquire about the cause. Perhaps the Elder knows of ancient texts or hidden lore that could shed light on the situation.", "imagePrompt": "Talking to the worried village Elder"}, {"text": "Explore Your Options: Before committing to such a daunting task, you could express your hesitance and ask the Elder for more information about the dragon and the potential dangers involved. Perhaps there's another way to resolve the situation.", "imagePrompt": "Talking to the worried village Elder"}]
+              "narrator": "The sun, a lazy orange eye peeking over snow-capped mountains, bathes the quaint village of Elmsbrook in a gentle glow. You stretch your arms, the crisp morning air a welcome contrast to the warmth of your straw mattress. But today feels different. A strange tension hangs heavy in the air, whispers of a long-dormant threat slithering through the usually cheerful greetings. The village elder, her once vibrant face etched with worry, calls you to the center square. There, under the gnarled oak, she reveals the chilling truth: the dragon of Mount Dracoheim, a beast of legend whispered only in hushed tones, has awakened. Its fiery breath threatens to engulf the kingdom in chaos. You, a budding adventurer with a thirst for knowledge and a heart full of courage, feel a spark ignite within you. Maybe the whispers are true – maybe you were destined for something more than tending sheep. Today, your life takes a sharp turn. Today, your quest begins."
+              "actions": [{"text": text here", "imagePrompt": "prompt here"}, {"text": "text here", "imagePrompt": "prompt here"}, {"text": "text here", "imagePrompt": "prompt here"}, {"text": "text here", "imagePrompt": "prompt here"}]
               "isEnd": false
             }
             `,
@@ -117,7 +117,7 @@ module.exports.startSession = async function startSession(req, res) {
                 console.log("Bad JSON response. Retrying...");
                 return startSession(req, res); // Retry the function
               } else {
-                // Handle other errors as you see fit
+                // Handle other errors
               }
             }
           });
@@ -142,29 +142,6 @@ module.exports.submitUserChoice = async function submitUserChoice(req, res) {
         if (!session) {
           return res.status(400).json({ error: "Session not found" });
         }
-
-        // console.log(
-        //   `https://res.cloudinary.com/drcynbces/image/upload/Mindtale/temp/${userChoice.text
-        //     .slice(0, userChoice.text.indexOf(":"))
-        //     .replace(/\s/g, "")}.jpg`
-        // );
-        // cloudinary.uploader
-        //   .upload(
-        //     `https://res.cloudinary.com/drcynbces/image/Mindtale/temp/${userChoice.text
-        //       .slice(0, userChoice.text.indexOf(":"))
-        //       .replace(/\s/g, "")}.jpg`,
-        //     {
-        //       unique_filename: true,
-        //       folder: "Mindtale/scenarioImages/",
-        //     }
-        //   )
-        //   .then((result) => {
-        //     console.log(result.secure_url);
-
-        //     session.scenarioHistory.push(`https://res.cloudinary.com/drcynbces/image/upload/Mindtale/temp/${userChoice.text
-        //     .slice(0, userChoice.text.indexOf(":"))
-        //     .replace(/\s/g, "")}.jpg`);
-        //   });
 
         session.scenarioHistory.push(
           `https://res.cloudinary.com/drcynbces/image/upload/Mindtale/temp/${userChoice.text
@@ -193,14 +170,13 @@ module.exports.submitUserChoice = async function submitUserChoice(req, res) {
           `
         );
 
-        console.log("test");
-
         const response = await result.response;
 
         const text = response.text();
         const trimmedText = text.trim();
 
         try {
+          console.log(trimmedText);
           const parsedText = JSON.parse(trimmedText);
 
           console.log(parsedText.isEnd);

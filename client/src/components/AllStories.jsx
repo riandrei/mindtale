@@ -18,7 +18,7 @@ function AllStories({ getStories }) {
   return (
     <div className={styles.AllStories}>
       <div className={styles.Stories_top}>
-        <span>All stories</span>
+        <span>Stories</span>
         <select>
           <option value="Newest">Newest</option>
           <option value="Newest">Oldest</option>

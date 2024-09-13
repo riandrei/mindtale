@@ -14,6 +14,7 @@ import Prev from "../assets/prev.png";
 import Next from "../assets/next.png";
 import Lock from "../assets/padlock.png";
 import Line from "../assets/line3.png";
+import NoImage from "../assets/noimgjpg.jpg";
 
 function Admin({ generateStoryCover, addStory }) {
   const navigate = useNavigate();
@@ -77,11 +78,11 @@ function Admin({ generateStoryCover, addStory }) {
   }, [generatedImageURL]);
   return (
     <div className={styles.Admin}>
-      <Nav />
-      <img onClick={goBack} className={styles.Back} src={Back} />
+      {/* <Nav /> */}
+      {/* <img onClick={goBack} className={styles.Back} src={Back} /> */}
       <form className={styles.Middle} onSubmit={handleSubmitClick}>
         <div className={styles.Middle_left}>
-          <img className={styles.Cover} src={generatedImage || "loading"} />
+          <img className={styles.Cover} src={generatedImage || NoImage} />
           <div className={styles.Middle_left_down}>
             <button
               disabled={titleValue.trim() === ""}

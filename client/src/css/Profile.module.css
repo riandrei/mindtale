@@ -1,150 +1,148 @@
-*{
-    padding:0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-.Profile{
-    background-image: url(../assets/castle.png);
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-    margin-right: 70px;
-    display: flex;
-    flex-direction: column;
-    gap:1rem;
-}
-
-.Top{
-    display: flex;
-    justify-content: space-between;
-    padding: .5rem 1rem;
-
-
-}
-.Top img{
-    width:32px;
-    height:32px;
-    cursor: pointer;
-    padding:.25rem;
-}
-.Top_inner{
-    display: flex;
-    gap:1rem;
-}
-.Top_inner img:nth-child(2){
-    background-color: #940000;
-    border:solid 1px #fff;
-    border-radius: 5px;
-
-}
-.Middle{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    transition:all 350ms;
-    width:225px;
-    margin: 0 auto;
-    clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
-    opacity: 0;
-    filter: blur(10px);
-    /* transform: translateY(5rem); */
-    animation:card 2000ms ease forwards 200ms;
-}
-@keyframes card{
-    from{
-
-    }
-    to{
-        opacity: 1;
-        filter: blur(0);
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-        transform: translate(0);
-    }
-}
-.Middle:hover{
-    scale:1.05;
+.Profile {
+  background-image: url(../assets/castlee.png);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  margin-right: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.Middle_top{
-    display: flex;
-    align-items: center;
-    gap:.25rem;
-    width:225px;
-    justify-content: center;
-    
+.Top {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
 }
-.Middle_top img{
-    width:30px;
+.Top img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  padding: 0.25rem;
 }
-.Middle_line{
-    height:5px;
-    width:115px;
-    background-color: #ffffff;
+.Top_inner {
+  display: flex;
+  gap: 1rem;
 }
-.Photocard{
-    width:225px;
+.Top_inner img:nth-child(2) {
+  background-color: #940000;
+  border: solid 1px #fff;
+  border-radius: 5px;
 }
-.Name{
-    width:225px;
-    background-color: #2395a5;
-    text-align: center;
-    color:#333;
-    padding:.5rem 1rem;
-    font-size: 1em;
-    font-weight:600;
-    border: solid 2px #ffffff75;
+.Middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: all 350ms;
+  width: 225px;
+  margin: 0 auto;
+  clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
+  opacity: 0;
+  filter: blur(10px);
+  /* transform: translateY(5rem); */
+  animation: card 2000ms ease forwards 200ms;
 }
-.Round{
-    height:100px;
-    width: 225px;
-    background-color: hsl(0, 0%, 13%, 80%);
-    clip-path: polygon(100% 0, 100% 20%, 50% 100%, 0 20%, 0 0);
-    text-align: center;
-    padding-top: .25rem;
-    color:#2395a5;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-}   
-.User_details{
-    display: flex;
-    flex-direction: column;
-    gap:1rem;
+@keyframes card {
+  from {
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translate(0);
+  }
 }
-.User_head{
-    display:flex;
-    justify-content: space-around;
-    border-bottom: solid 1px #fff;
-    padding-bottom: .5rem;
-}
-.UserHead_click, .UserHead_click2{
-    display: flex;
-    align-items: center;
-    gap:.5rem;
-    color:#fff;
-}
-.UserHead_click img, .UserHead_click2 img{
-    width:22px;
-}
-.UserHead_click span{
-    cursor: pointer;
+.Middle:hover {
+  scale: 1.05;
 }
 
-@media(max-width:431px){
-    .Profile{
-        margin-right: 0;
-    }
+.Middle_top {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: 225px;
+  justify-content: center;
+}
+.Middle_top img {
+  width: 30px;
+}
+.Middle_line {
+  height: 5px;
+  width: 115px;
+  background-color: #ffffff;
+}
+.Photocard {
+  width: 225px;
+}
+.Name {
+  width: 225px;
+  background-color: #2395a5;
+  text-align: center;
+  color: #333;
+  padding: 0.5rem 1rem;
+  font-size: 1em;
+  font-weight: 600;
+  border: solid 2px #ffffff75;
+}
+.Round {
+  height: 100px;
+  width: 225px;
+  background-color: hsl(0, 0%, 13%, 80%);
+  clip-path: polygon(100% 0, 100% 20%, 50% 100%, 0 20%, 0 0);
+  text-align: center;
+  padding-top: 0.25rem;
+  color: #2395a5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+.User_details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 26vh;
+}
+.User_head {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: solid 1px #fff;
+  padding-bottom: 0.5rem;
+}
+.UserHead_click,
+.UserHead_click2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+}
+.UserHead_click img,
+.UserHead_click2 img {
+  width: 22px;
+}
+.UserHead_click span {
+  cursor: pointer;
+}
 
-    .UserHead_click img,
-    .UserHead_click2 img{
-        display: none;
-    }
-    .UserHead_click span,
-    .UserHead_click2 span{
-        font-size: .85em;
-    }
+@media (max-width: 431px) {
+  .Profile {
+    margin-right: 0;
+  }
+
+  .UserHead_click img,
+  .UserHead_click2 img {
+    display: none;
+  }
+  .UserHead_click span,
+  .UserHead_click2 span {
+    font-size: 0.85em;
+  }
 }

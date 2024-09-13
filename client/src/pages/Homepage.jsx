@@ -147,9 +147,15 @@ function Homepage({ getUser, getStories }) {
       <section className={styles.main_body}>
         <RecentExploration />
         <LastRead />
-        {topTags.map((tag) => (
+        {/* {topTags.map((tag) => (
           <SliderTags key={tag} tag={tag} />
-        ))}
+        ))} */}
+        <SliderTags tag="Fantasy" />
+        <SliderTags tag="Adventure" />
+        <SliderTags tag="Sci-Fi" />
+        <SliderTags tag="Mystery" />
+        <SliderTags tag="Comedy" />
+
         <DailyRead />
       </section>
       <Footer />

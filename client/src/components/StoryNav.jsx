@@ -13,6 +13,8 @@ export const StoryNav = ({
   isLight,
   handleNavClick,
   openNav,
+  handleIncreaseFontSize,
+  handleDecreaseFontSize,
 }) => {
   const navigate = useNavigate();
   const goBack = () => {
@@ -22,6 +24,18 @@ export const StoryNav = ({
     <div className={styles.StoryNav}>
       <img onClick={goBack} className={styles.Back} src={Back} />
       <div className={styles.StoryNav_inner}>
+        <span
+          className={isLight ? styles.Light : styles.Dark}
+          onClick={handleDecreaseFontSize}
+        >
+          A-
+        </span>
+        <span
+          className={isLight ? styles.Light : styles.Dark}
+          onClick={handleIncreaseFontSize}
+        >
+          A+
+        </span>
         <img onClick={handleThemeClick} src={isLight ? Dark : Theme} />
         {openNav ? (
           <img onClick={handleNavClick} src={isLight ? Light : Book} />

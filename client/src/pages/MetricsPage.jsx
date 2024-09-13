@@ -84,9 +84,9 @@ export const MetricsPage = ({ getUser }) => {
 
     setAssessmentScore(avg);
 
-    if (firstHalfAvg > secondHalfAvg) {
+    if (secondHalfAvg > firstHalfAvg) {
       setRemarks("Declining");
-    } else if (firstHalfAvg < secondHalfAvg) {
+    } else if (secondHalfAvg < firstHalfAvg) {
       setRemarks("Improving");
     } else {
       setRemarks("Stable");
@@ -153,8 +153,10 @@ export const MetricsPage = ({ getUser }) => {
             </div>
           </div>
           {/* {chooseDetail === 1 && <LineChart chartData={chartData} />} */}
-          {chooseDetail === 2 && <LineChart chartData={chartData} />}
-          {chooseDetail === 3 && <PieChart chartData={pieChartData} />}
+          <div className={styles.ChartDiv}>
+            <LineChart chartData={chartData} />
+            <PieChart chartData={pieChartData} />
+          </div>
           {/* {chooseDetail === 4 && <SampleChart />} */}
         </div>
         {/* 

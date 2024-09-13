@@ -13,8 +13,15 @@ import Menu from "../assets/menuu.png";
 import { getAssesment } from "../actions/sessionActions";
 import MultipleChoiceQuiz from "./MultipleChoiceQuiz";
 import Quiz from "../pages/Quiz";
+import Loading from "../assets/tube-spinner.svg";
 
-export function Story({ getAssesment, openNav, handleNavClick, isLight }) {
+export function Story({
+  getAssesment,
+  openNav,
+  handleNavClick,
+  isLight,
+  fontSize,
+}) {
   const { storyId } = useParams();
   const currentNarrative = useSelector(
     (state) => state.session.currentNarrative
@@ -23,7 +30,18 @@ export function Story({ getAssesment, openNav, handleNavClick, isLight }) {
   const scenarioHistory = useSelector((state) => state.session.scenarioHistory);
   const isEnd = useSelector((state) => state.session.isEnd);
   const assesment = useSelector((state) => state.session.assesment);
+  const [loading, setLoading] = useState(false);
 
+  const onLoading = () => {
+    console.log(loading);
+    setLoading(true);
+    console.log(loading);
+  };
+  const offLoading = () => {
+    console.log(loading);
+    setLoading(false);
+    console.log(loading);
+  };
   useEffect(() => {
     console.log(currentNarrative, currentChoices, scenarioHistory);
     console.log(assesment);
@@ -44,6 +62,7 @@ export function Story({ getAssesment, openNav, handleNavClick, isLight }) {
     <div className={styles.Story}>
       {assesment?.questions?.length > 0 ? (
         <Quiz
+          isLight={isLight}
           questions={assesment.questions}
           correctAnswers={assesment?.correctAnswers}
         />
@@ -54,10 +73,68 @@ export function Story({ getAssesment, openNav, handleNavClick, isLight }) {
             className="story-image"
           />
           <div className={styles.Story_inner}>
-            <p className={isLight ? styles.Text2 : styles.Text}>
-              {currentNarrative || "Loading..."}
-            </p>
-            <Choices choices={currentChoices} />
+            {loading ? (
+              <svg
+                version="1.1"
+                id="L5"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                viewBox="0 0 100 100"
+                width={100}
+                enable-background="new 0 0 0 0"
+                xml:space="preserve"
+              >
+                <circle fill="#fff" stroke="none" cx="6" cy="50" r="6">
+                  <animateTransform
+                    attributeName="transform"
+                    dur="1s"
+                    type="translate"
+                    values="0 15 ; 0 -15; 0 15"
+                    repeatCount="indefinite"
+                    begin="0.1"
+                  />
+                </circle>
+                <circle fill="#fff" stroke="none" cx="30" cy="50" r="6">
+                  <animateTransform
+                    attributeName="transform"
+                    dur="1s"
+                    type="translate"
+                    values="0 10 ; 0 -10; 0 10"
+                    repeatCount="indefinite"
+                    begin="0.2"
+                  />
+                </circle>
+                <circle fill="#fff" stroke="none" cx="54" cy="50" r="6">
+                  <animateTransform
+                    attributeName="transform"
+                    dur="1s"
+                    type="translate"
+                    values="0 5 ; 0 -5; 0 5"
+                    repeatCount="indefinite"
+                    begin="0.3"
+                  />
+                </circle>
+              </svg>
+            ) : (
+              <>
+                <p
+                  className={`${isLight ? styles.Text2 : styles.Text} ${
+                    fontSize === 1 ? styles.TextFont : ""
+                  } ${fontSize === 2 ? styles.TextFont2 : ""} ${
+                    fontSize == 3 ? styles.TextFont3 : ""
+                  }`}
+                >
+                  {currentNarrative || "Loading..."}
+                </p>
+                <Choices
+                  choices={currentChoices}
+                  onLoading={onLoading}
+                  offLoading={offLoading}
+                />
+              </>
+            )}
           </div>
         </>
       ) : null}

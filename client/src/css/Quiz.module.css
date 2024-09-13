@@ -6,13 +6,24 @@
   min-height: 100vh;
   transition: all 350ms;
 }
+.Quiz {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #111;
+  transition: all 350ms;
+  width: 100%;
+}
 .Quiz2 {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   min-height: 100vh;
-  background-color: #e4e4e4;
+  background-color: white;
+  align-items: center;
   transition: all 350ms;
+  width: 100%;
 }
 .Count {
   text-align: right;

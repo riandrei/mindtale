@@ -17,6 +17,7 @@ import Sample1 from "../assets/sample1.png";
 
 import styles from "../css/StoryBoard.module.css";
 import StoryHistory from "../components/StoryHistory";
+import LoadingScreen from "../pages/LoadingScreen";
 
 function StoryBoard({ readStory }) {
   const { storyId } = useParams();
@@ -47,25 +48,55 @@ function StoryBoard({ readStory }) {
     }
   }, [history]);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    readStory({ storyId });
+    const loadStory = async () => {
+      console.log(loading);
+      setLoading(true); // Show the loading GIF
+      await readStory({ storyId });
+      setLoading(false); // Hide the loading GIF once the story is loaded
+    };
+
+    loadStory();
   }, []);
 
-  return (
+  const [fontSize, setFontSize] = useState(2);
+
+  const handleIncreaseFontSize = () => {
+    setFontSize((prevFontSize) => prevFontSize + 1);
+    console.log(fontSize);
+  };
+
+  const handleDecreaseFontSize = () => {
+    setFontSize((prevFontSize) => Math.max(prevFontSize - 1, 1));
+    console.log(fontSize);
+  };
+
+  if (fontSize === 4 || fontSize <= 0) {
+    setFontSize(1);
+  }
+
+  return loading ? (
+    <LoadingScreen />
+  ) : (
     <div className={isLight ? styles.StoryBoard2 : styles.StoryBoard}>
       {console.log(indexClicked)}
       {indexClicked === -1 || indexClicked === filteredHistory.length - 1 ? (
-        <div className={styles.Storyboard_inner}>
+        <div className={styles.StoryBoard_inner}>
           <StoryNav
             openNav={openNav}
             handleNavClick={handleNavClick}
             isLight={isLight}
             handleThemeClick={handleThemeClick}
+            handleIncreaseFontSize={handleIncreaseFontSize}
+            handleDecreaseFontSize={handleDecreaseFontSize}
           />
           <Story
             isLight={isLight}
             openNav={openNav}
             handleNavClick={handleNavClick}
+            fontSize={fontSize}
           />
         </div>
       ) : (

@@ -6,13 +6,14 @@ export const options = {
 };
 
 export default function App({ chartData }) {
-  console.log(chartData);
   return (
     <Chart
-      chartType="Line"
+      chartType="LineChart"
       width="100%"
       height="400px"
-      data={chartData}
+      data={chartData
+        .slice(0, 1)
+        .concat(chartData.slice(1, chartData.length + 1).toReversed())}
       options={options}
     />
   );

@@ -26,7 +26,7 @@ const Leaderboard = ({ getRanking }) => {
       <img onClick={goBack} className={styles.Back} src={Back} />
       <Rank ranking={ranking} />
       <div className={styles.Ranklist_con}>
-        <RankingList />
+        <RankingList ranking={ranking} />
       </div>
     </div>
   );

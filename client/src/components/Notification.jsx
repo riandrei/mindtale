@@ -21,7 +21,7 @@ function Notification() {
   return (
     <div className={styles.Notification}>
       <img src={Notif} onClick={handleNotificationClick} />
-      <span className={styles.badge}>9</span>
+      <span className={styles.badge}>{user?.friendRequests?.length}</span>
 
       <div
         className={

@@ -1,22 +1,23 @@
-.StoryBoard{
-    background-color: #111;
-    min-height: 100vh;
-    display: flex;
-    transition: all 350ms;
+.StoryBoard {
+  background-color: #111;
+  min-height: 100vh;
+  display: flex;
+  transition: all 350ms;
 }
-.StoryBoard2{
-    background-color: #fff;
-    min-height: 100vh;
-    display: flex;
-    transition: all 350ms;
+.StoryBoard2 {
+  background-color: #fff;
+  min-height: 100vh;
+  display: flex;
+  transition: all 350ms;
 }
-.StoryBoard_inner{
-    display: flex;
+.StoryBoard_inner {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (max-width: 431px) {
+  .StoryBoard {
     flex-direction: column;
-    gap:1rem;
-}
-@media (max-width:431px){
-    .StoryBoard{
-        flex-direction: column;
-    }
+  }
 }

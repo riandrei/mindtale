@@ -161,7 +161,7 @@ function Signin({ signUp, signUpWithGoogle }) {
           </button>
           <p>
             Already have an account?{" "}
-            <Link to="/Homepage" className={styles.link}>
+            <Link to="/Login" className={styles.link}>
               Log in
             </Link>
           </p>

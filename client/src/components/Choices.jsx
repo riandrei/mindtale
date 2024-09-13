@@ -6,7 +6,7 @@ import { submitUserChoice } from "../actions/sessionActions";
 
 import styles from "../css/Choices.module.css";
 
-export function Choices({ choices, submitUserChoice }) {
+export function Choices({ choices, onLoading, offLoading, submitUserChoice }) {
   //   const [selectedButton, setSelectedButton] = useState(null);
 
   // function handleClick(index) {
@@ -16,7 +16,16 @@ export function Choices({ choices, submitUserChoice }) {
   const { storyId } = useParams();
 
   const handleChoiceClick = (choice) => {
-    submitUserChoice({ userChoice: choice, storyId });
+    const submitChoice = async () => {
+      onLoading(); // Show the loading GIF
+      try {
+        await submitUserChoice({ userChoice: choice, storyId }); // Wait for the story to be fetched
+      } finally {
+        offLoading(); // Ensure loading stops, even if there's an error
+      }
+    };
+
+    submitChoice();
   };
 
   return (
