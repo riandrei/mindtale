@@ -7,16 +7,7 @@ export const Rank = ({ ranking }) => {
   const sortedRanking = ranking?.sort((a, b) => b.totalScore - a.totalScore);
   return (
     <div className={styles.Rank}>
-      {/* {ranking.map((rank, index) => (
-        <div className={styles.SpecificRank}>
-          <span className={styles.Runner}>{rank.username}</span>
-          <img className={styles.Rank1} src={rank.profilePicture} />
-          <div className={styles.Rank_details2}>
-            <span>{rank.totalScore}</span>
-            <span className={styles.Number}>{index + 1}</span>
-          </div>
-        </div>
-      ))} */}
+      {console.log(sortedRanking)}
       <div className={styles.SpecificRank}>
         <span>{sortedRanking[2]?.username || "Not Found"}</span>
 
@@ -25,7 +16,19 @@ export const Rank = ({ ranking }) => {
           src={sortedRanking[2]?.profilePicture || noPic}
         />
         <div className={styles.Rank_details2}>
-          <span>{sortedRanking[2]?.totalScore || "0"} points</span>
+          <span style={{ fontWeight: "bolder" }}>
+            {sortedRanking[2]?.totalScore || "0"} points
+          </span>
+          <span style={{ textAlign: "center" }}>
+            {new Date(sortedRanking[2]?.lastUpdated).toLocaleDateString(
+              "en-US",
+              {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              }
+            )}
+          </span>
           <span className={styles.Number}>3</span>
         </div>
       </div>
@@ -38,7 +41,19 @@ export const Rank = ({ ranking }) => {
           src={sortedRanking[0]?.profilePicture || noPic}
         />
         <div className={styles.Rank_details}>
-          <span>{sortedRanking[0]?.totalScore} points</span>
+          <span style={{ fontWeight: "bolder" }}>
+            {sortedRanking[0]?.totalScore} points
+          </span>
+          <span style={{ textAlign: "center" }}>
+            {new Date(sortedRanking[0]?.lastUpdated).toLocaleDateString(
+              "en-US",
+              {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              }
+            )}
+          </span>
           <span className={styles.Number}>1</span>
         </div>
       </div>
@@ -52,7 +67,19 @@ export const Rank = ({ ranking }) => {
           src={sortedRanking[1]?.profilePicture || noPic}
         />
         <div className={styles.Rank_details2}>
-          <span>{sortedRanking[1]?.totalScore || "0"} points</span>
+          <span style={{ fontWeight: "bolder" }}>
+            {sortedRanking[1]?.totalScore || "0"} points
+          </span>
+          <span style={{ textAlign: "center" }}>
+            {new Date(sortedRanking[1]?.lastUpdated).toLocaleDateString(
+              "en-US",
+              {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              }
+            )}
+          </span>
           <span className={styles.Number}>2</span>
         </div>
       </div>

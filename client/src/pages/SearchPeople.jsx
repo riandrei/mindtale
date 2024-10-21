@@ -44,7 +44,9 @@ function SearchPeople({ getUsers }) {
   };
 
   useEffect(() => {
-    getUsers();
+    if (users.length < 1) {
+      getUsers();
+    }
   }, []);
 
   return (

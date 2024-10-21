@@ -21,6 +21,7 @@ import MetricsPage from "./pages/MetricsPage";
 import Quiz from "./pages/Quiz";
 import ViewAll from "./pages/ViewAll";
 import Leaderboard from "./pages/Leaderboard";
+import AboutUs from "./components/AboutUs";
 
 import Story from "./components/Story";
 import StoryNav from "./components/StoryNav";
@@ -30,6 +31,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <Routes>
+          <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/Homepage" element={<Homepage />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/" element={<Landing />} />

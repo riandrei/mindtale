@@ -153,3 +153,16 @@
   display: flex;
   justify-content: center;
 }
+
+@media (max-width: 431px) {
+  .Detail {
+    flex-direction: column;
+  }
+  .Avg {
+    width: 100%;
+  }
+  .ChartDiv {
+    flex-direction: column;
+    width: 100%;
+  }
+}

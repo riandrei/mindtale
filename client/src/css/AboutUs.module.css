@@ -1,0 +1,115 @@
+.Bottom,
+.Box,
+.Top {
+    text-align: center;
+}
+
+.AboutUs {
+    background-color: #000;
+    width: 65vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    opacity: 0;
+    filter: blur(10px);
+    animation: .5s forwards Appear;
+}
+
+.Middle,
+.Top,
+.Top_inner {
+    gap: .5rem;
+}
+
+@keyframes Appear {
+    to {
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+.Top {
+    display: flex;
+    justify-content: space-between;
+    height: 15%;
+}
+
+.Box,
+.Top_inner {
+    flex-direction: column;
+    display: flex;
+}
+
+.Top_inner span:first-child {
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.Top_inner span:nth-child(2) {
+    font-size: 1em;
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+.Top img {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.Top img:active {
+    scale: .85;
+}
+
+.Middle {
+    display: flex;
+    justify-content: space-between;
+    height: 70%;
+}
+
+.Box {
+    gap: 1rem;
+    width: 25%;
+    box-shadow: 0 0 7px #ffffff50;
+    padding: 1rem;
+    border-radius: 15px;
+    height: 15rem;
+}
+
+.Box span:first-child {
+    font-weight: bolder;
+    font-size: 1.1em;
+    color: #305e80;
+}
+
+.Box span:nth-child(2) {
+    font-size: 1em;
+}
+
+.Bottom {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    height: 15%;
+}
+
+.Bottom span:first-child {
+    font-size: 1.5em;
+}
+
+.Bottom span:nth-child(2) {
+    font-size: .9em;
+}
+
+@media (max-width: 431px) {
+    .AboutUs {
+        display: none;
+    }
+}

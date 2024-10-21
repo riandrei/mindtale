@@ -1,6 +1,8 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
+const util = require("util");
+// const textToSpeech = require("@google-cloud/text-to-speech");
 
 const Session = require("../models/Session");
 const User = require("../models/User");
@@ -316,6 +318,24 @@ module.exports.submitAssesmentScore = (req, res) => {
     });
   });
 };
+
+// module.exports.getTextToSpeech = (req, res) => {
+//   const { text } = req.body;
+
+//   const client = new textToSpeech.TextToSpeechClient();
+
+//   const request = {
+//     input: { text: text },
+//     voice: { languageCode: "en-US", ssmlGender: "NEUTRAL" },
+//     audioConfig: { audioEncoding: "MP3" },
+//   };
+
+//   client.synthesizeSpeech(request).then(async ([response]) => {
+//     const writeFile = util.promisify(fs.writeFile);
+//     await writeFile("output.mp3", response.audioContent, "binary");
+//     console.log("done");
+//   });
+// };
 
 // module.exports.getAssesment = (req, res) => {
 //   const { storyId } = req.params;

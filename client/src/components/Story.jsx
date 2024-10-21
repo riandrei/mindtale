@@ -70,7 +70,7 @@ export function Story({
         <>
           <img
             src={scenarioHistory[scenarioHistory.length - 1]}
-            className="story-image"
+            className={styles.story_image}
           />
           <div className={styles.Story_inner}>
             {loading ? (

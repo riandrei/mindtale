@@ -15,13 +15,16 @@ export default function Friends() {
   const [friends, setFriends] = useState([]);
 
   useEffect(() => {
-    dispatch(getUsers());
+    if (users.length < 1) {
+      dispatch(getUsers());
+    }
+    // dispatch(getUsers());
   }, []);
 
   useEffect(() => {
     if (users.length > 0) {
       const filteredFriends = user.friends.map((friend) => {
-        const filteredUsers = users.filter((user) => user._id === friend);
+        const filteredUsers = users.filter((user) => user?._id === friend);
 
         return filteredUsers[0];
       });

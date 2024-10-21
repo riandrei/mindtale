@@ -442,8 +442,17 @@ module.exports.getRanking = (req, res) => {
           0
         ) * 100;
 
+      const lastCompletedStory =
+        user.completedStories[user.completedStories.length - 1];
+
+      let lastUpdated = "N/A";
+
+      if (lastCompletedStory) {
+        lastUpdated = lastCompletedStory.date;
+      }
+
       // completedStories.map((story) => {console.log}
-      return { username, profilePicture, totalScore };
+      return { username, profilePicture, totalScore, lastUpdated };
     });
 
     res.status(200).json({ ranking });
