@@ -138,20 +138,6 @@ export function Story({
           </div>
         </>
       ) : null}
-
-      {console.log(currentChoices)}
-      {/* <div className={styles.Next}>
-        <Link className={styles.Prev}>Previous</Link>
-        <Link className={styles.Prev}>Next</Link>
-      </div>
-      <div className={styles.StoryBoard_recommend}>
-        <Recommend photo={Art} genre="Mystery" title="Naruto Shipddpuden" />
-        <Recommend photo={Art} genre="Mystery" title="Naruto Shipddpuden" />
-        <Recommend photo={Art} genre="Mystery" title="Naruto Shipddpuden" />
-        <Recommend photo={Art} genre="Mystery" title="Naruto Shipddpuden" />
-        <Recommend photo={Art} genre="Mystery" title="Naruto Shipddpuden" />
-        <Recommend photo={Art} genre="Mystery" title="Naruto Shipddpuden" />
-      </div> */}
     </div>
   );
 }

@@ -19,6 +19,7 @@ const Leaderboard = ({ getRanking }) => {
   const ranking = useSelector((state) => state.auth.ranking);
 
   useEffect(() => {
+    console.log(ranking);
     if (ranking.length < 1) {
       getRanking();
     }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, connect } from "react-redux";
 
+import { getStories } from "../actions/storyActions";
 import { getUser } from "../actions/authActions";
 
 import styles from "../css/MetricsPage.module.css";
@@ -12,7 +13,7 @@ import Dowelle from "../assets/Dowelle.jpg";
 
 import Back from "../assets/back.png";
 
-export const MetricsPage = ({ getUser }) => {
+export const MetricsPage = ({ getUser, getStories }) => {
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
@@ -27,6 +28,7 @@ export const MetricsPage = ({ getUser }) => {
   const completedStories = useSelector(
     (state) => state.auth?.user?.completedStories
   );
+  const stories = useSelector((state) => state?.story?.stories);
 
   const [chartData, setChartData] = useState([["Date", "Assesment Score"]]);
   const [pieChartData, setPieChartData] = useState([["Genre", "Count"]]);
@@ -114,6 +116,7 @@ export const MetricsPage = ({ getUser }) => {
 
   useEffect(() => {
     getUser();
+    getStories();
   }, []);
 
   return (
@@ -125,81 +128,94 @@ export const MetricsPage = ({ getUser }) => {
         </div>
         {/* <img className={styles.User} src={Dowelle} /> */}
       </div>
-      {console.log(completedStories)}
 
-      <div className={styles.Middle}>
-        <div className={styles.Middle_left}>
-          <div className={styles.Detail}>
-            {/* <div className={styles.Avg} onClick={() => handleDetail(1)}>
+      {/* <div className={styles.Middle}> */}
+      <div className={styles.Middle_left}>
+        <div className={styles.Detail}>
+          {/* <div className={styles.Avg} onClick={() => handleDetail(1)}>
               <span>Avg. Usage</span>
               <span>1hr 20mins</span>
             </div> */}
-            <div className={styles.Avg} onClick={() => handleDetail(2)}>
-              <span>Avg. Assessment Score</span>
-              <span>{assessmentScore}</span>
-            </div>
-            <div className={styles.Avg} onClick={() => handleDetail(3)}>
-              <span>Favorite Genre</span>
-              {console.log(tagCounts)}
-              <span>{getHighestCountTag(tagCounts).maxTag}</span>
-            </div>
-            <div className={styles.Avg} onClick={() => handleDetail(4)}>
-              <span>Overall Performance</span>
-              <span>{remarks}</span>
-            </div>
-            <div className={styles.Avg} onClick={() => handleDetail(4)}>
-              <span>Completed Stories</span>
-              <span>{completedStories?.length}</span>
-            </div>
+          <div className={styles.Avg} onClick={() => handleDetail(2)}>
+            <span>Avg. Assessment Score</span>
+            <span>{assessmentScore}</span>
           </div>
-          {/* {chooseDetail === 1 && <LineChart chartData={chartData} />} */}
-          <div className={styles.ChartDiv}>
-            <LineChart chartData={chartData} />
-            <PieChart chartData={pieChartData} />
+          <div className={styles.Avg} onClick={() => handleDetail(3)}>
+            <span>Favorite Genre</span>
+            {console.log(tagCounts)}
+            <span>{getHighestCountTag(tagCounts).maxTag}</span>
           </div>
-          {/* {chooseDetail === 4 && <SampleChart />} */}
+          <div className={styles.Avg} onClick={() => handleDetail(4)}>
+            <span>Overall Performance</span>
+            <span>{remarks}</span>
+          </div>
+          <div className={styles.Avg} onClick={() => handleDetail(4)}>
+            <span>Completed Stories</span>
+            <span>{completedStories?.length}</span>
+          </div>
         </div>
-        {/* 
-        <div className={styles.Middle_right}>
-          <div className={styles.Blue_top}></div>
-          <div className={styles.Finished}>
-            <div className={styles.Finished_inner}>
-              <span>Books Finished</span>
-              <span>23</span>
-            </div>
-            <div className={styles.Top5}>
-              <span className={styles.Top_head}>
-                Top 5 Longest Book Duration
-              </span>
-              <div className={styles.Longest_con}>
-                <div className={styles.Specific}>
-                  <span>Harry Potter</span>
-                  <span>1hr 3mins</span>
+        {/* {chooseDetail === 1 && <LineChart chartData={chartData} />} */}
+        <div className={styles.ChartDiv}>
+          <LineChart chartData={chartData} />
+          <PieChart chartData={pieChartData} />
+        </div>
+        {/* {chooseDetail === 4 && <SampleChart />} */}
+      </div>
+      {/* </div> */}
+
+      <div className={styles.TagMetrics}>
+        {console.log(completedStories)}
+        {Object.entries(tagCounts)
+          .sort((a, b) => b[1] - a[1])
+          .map((entry) => entry[0])
+          .slice(0, completedStories?.length < 3 ? completedStories?.length : 3)
+          .map((tag) => (
+            <div className={styles.TagContainer}>
+              <h2>{tag}</h2>
+              <div className={styles.DetailHeader}>
+                <div>
+                  <h3>Title</h3>
                 </div>
-                <div className={styles.Specific}>
-                  <span>Harry Potter</span>
-                  <span>1hr 3mins</span>
-                </div>
-                <div className={styles.Specific}>
-                  <span>Harry Potter</span>
-                  <span>1hr 3mins</span>
-                </div>
-                <div className={styles.Specific}>
-                  <span>Harry Potter</span>
-                  <span>1hr 3mins</span>
-                </div>
-                <div className={styles.Specific}>
-                  <span>Harry Potter</span>
-                  <span>1hr 3mins</span>
+                <div>
+                  <h3>Date</h3>
+                  <h3>Score</h3>
                 </div>
               </div>
+              <div className={styles.TagStories}>
+                {completedStories.map((completedStory) => {
+                  return completedStory.tags.includes(tag) ? (
+                    <>
+                      <p>
+                        {
+                          stories[
+                            stories?.findIndex(
+                              (story) => story._id === completedStory.story
+                            )
+                          ]?.title
+                        }
+                      </p>
+                      <div>
+                        <p>
+                          {completedStory.date.slice(
+                            0,
+                            completedStory.date.indexOf("T")
+                          )}
+                        </p>
+                        <p>{completedStory.assesmentScore}</p>
+                      </div>
+                    </>
+                  ) : null;
+                })}
+              </div>
             </div>
-          </div>
-        </div> */}
+          ))}
+        {/* <div></div>
+        <div></div>
+        <div></div> */}
       </div>
     </div>
   );
 };
 
-const mapDispatchToProps = { getUser };
+const mapDispatchToProps = { getUser, getStories };
 export default connect(null, mapDispatchToProps)(MetricsPage);

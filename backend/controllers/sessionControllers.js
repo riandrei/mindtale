@@ -24,6 +24,7 @@ module.exports.startSession = async function startSession(req, res) {
     }
 
     Session.findOne({ user: user._id, story: storyId }).then((session) => {
+      console.log(session._id);
       if (session && session.history.length > 0) {
         const parsedText = JSON.parse(
           session.history[session.history.length - 1].parts[0].text
@@ -31,8 +32,6 @@ module.exports.startSession = async function startSession(req, res) {
         const history = session.history;
         const scenarioHistory = session.scenarioHistory;
         const assesment = session.assesment;
-
-        console.log(assesment);
 
         return res.status(200).json({
           content: { history, parsedText, scenarioHistory, assesment },

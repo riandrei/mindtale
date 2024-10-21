@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "../css/StoryNav.module.css";
+
+import TTS from "./TTS";
 
 import Back from "../assets/back.png";
 import Book from "../assets/book-icon.png";
@@ -20,10 +23,16 @@ export const StoryNav = ({
   const goBack = () => {
     navigate(-1);
   };
+
+  const currentNarrative = useSelector(
+    (state) => state.session.currentNarrative
+  );
+
   return (
     <div className={styles.StoryNav}>
       <img onClick={goBack} className={styles.Back} src={Back} />
       <div className={styles.StoryNav_inner}>
+        <TTS text={currentNarrative} isLight={isLight} />
         <span
           className={isLight ? styles.Light : styles.Dark}
           onClick={handleDecreaseFontSize}

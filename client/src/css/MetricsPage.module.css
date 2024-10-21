@@ -154,6 +154,55 @@
   justify-content: center;
 }
 
+.TagMetrics {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  justify-content: space-between;
+
+  gap: 1rem;
+}
+.TagContainer {
+  background-color: white;
+  width: 100%;
+  padding: 25px;
+}
+.TagContainer h2 {
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.DetailHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.DetailHeader div:first-child {
+  color: black;
+  width: 50%;
+}
+.DetailHeader div:last-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+.DetailHeader h3 {
+  color: black;
+}
+.TagStories {
+  display: flex;
+  justify-content: space-between;
+}
+.TagStories div:last-child {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+.TagStories p {
+  color: black;
+}
 @media (max-width: 431px) {
   .Detail {
     flex-direction: column;

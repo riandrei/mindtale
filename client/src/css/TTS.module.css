@@ -1,0 +1,36 @@
+.TTSDiv {
+  display: flex;
+  gap: 1rem;
+}
+.ButtonNightMode {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 350ms;
+}
+.ButtonNightMode:hover {
+  scale: 1.025;
+  box-shadow: 0 0 5px #b0b0b0;
+}
+.ButtonNightMode:active {
+  transform: scale(0.95);
+}
+.ButtonLightMode {
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 350ms;
+}
+.ButtonLightMode:hover {
+  scale: 1.025;
+  box-shadow: 0 0 5px #b0b0b0;
+}
+.ButtonLightMode:active {
+  transform: scale(0.95);
+}

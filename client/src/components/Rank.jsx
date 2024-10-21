@@ -4,7 +4,9 @@ import styles from "../css/Rank.module.css";
 import noPic from "../assets/account.png";
 
 export const Rank = ({ ranking }) => {
-  const sortedRanking = ranking?.sort((a, b) => b.totalScore - a.totalScore);
+  const sortedRanking = ranking?.toSorted(
+    (a, b) => b.totalScore - a.totalScore
+  );
   return (
     <div className={styles.Rank}>
       {console.log(sortedRanking)}

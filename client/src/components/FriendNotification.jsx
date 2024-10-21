@@ -37,7 +37,9 @@ function FriendNotification({ id }) {
   }, [users]);
 
   useEffect(() => {
-    dispatch(getUsers());
+    if (users.length < 1) {
+      dispatch(getUsers());
+    }
   }, []);
 
   return (
