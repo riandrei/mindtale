@@ -25,14 +25,11 @@ export const RankingList = ({ ranking }) => {
             </div>
             <div className={styles.Percent}>
               <span>
-                {new Date(sortedRanking[2]?.lastUpdated).toLocaleDateString(
-                  "en-US",
-                  {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  }
-                )}
+                {new Date(rank?.lastUpdated).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
               </span>
               <span style={{ marginLeft: "20px", fontWeight: "bolder" }}>
                 {rank?.totalScore || "0"} points

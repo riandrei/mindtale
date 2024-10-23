@@ -193,15 +193,29 @@
 }
 .TagStories {
   display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+.TagStoriesContainer {
+  display: flex;
   justify-content: space-between;
 }
 .TagStories div:last-child {
   display: flex;
   justify-content: space-between;
-  width: 50%;
 }
 .TagStories p {
+  width: 50%;
   color: black;
+}
+.TagScoreContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+.TagScoreContainer p:last-child {
+  text-align: end;
 }
 @media (max-width: 431px) {
   .Detail {

@@ -182,9 +182,9 @@ export const MetricsPage = ({ getUser, getStories }) => {
                 </div>
               </div>
               <div className={styles.TagStories}>
-                {completedStories.map((completedStory) => {
+                {completedStories?.toReversed().map((completedStory) => {
                   return completedStory.tags.includes(tag) ? (
-                    <>
+                    <div className={styles.TagStoriesContainer}>
                       <p>
                         {
                           stories[
@@ -194,7 +194,7 @@ export const MetricsPage = ({ getUser, getStories }) => {
                           ]?.title
                         }
                       </p>
-                      <div>
+                      <div className={styles.TagScoreContainer}>
                         <p>
                           {completedStory.date.slice(
                             0,
@@ -203,7 +203,7 @@ export const MetricsPage = ({ getUser, getStories }) => {
                         </p>
                         <p>{completedStory.assesmentScore}</p>
                       </div>
-                    </>
+                    </div>
                   ) : null;
                 })}
               </div>
