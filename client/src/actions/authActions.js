@@ -6,6 +6,9 @@ import {
   GET_USER_SUCCESS,
   GET_USERS_SUCCESS,
   GET_RANKING_SUCCESS,
+  FORGOT_PASSWORD_SUCCESS,
+  CHECK_VERIFICATION_CODE_SUCCESS,
+  CHANGE_PASSWORD_SUCCESS,
 } from "./types";
 
 export const logIn = (email, password, navigate) => (dispatch) => {
@@ -270,4 +273,100 @@ export const getRanking = () => (dispatch) => {
       });
     }
   });
+};
+
+export const forgotPassword = (email) => async (dispatch) => {
+  console.log(email);
+  try {
+    const response = await fetch(`http://localhost:3001/api/forgot`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    // Check if the response is successful
+    if (!response.ok) {
+      throw new Error("Failed to send forgot password email");
+    }
+
+    const data = await response.json();
+
+    dispatch({
+      type: FORGOT_PASSWORD_SUCCESS,
+      payload: data,
+    });
+
+    return true;
+  } catch (error) {
+    console.error("Error in forgot password action:", error);
+
+    return false;
+  }
+};
+
+export const checkVerification =
+  (email, verificationCode) => async (dispatch) => {
+    console.log(email);
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/checkVerificationCode`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, verificationCode }),
+        }
+      );
+
+      // Check if the response is successful
+      if (!response.ok) {
+        throw new Error("Failed to check verification code");
+      }
+
+      const data = await response.json();
+
+      dispatch({
+        type: CHECK_VERIFICATION_CODE_SUCCESS,
+        payload: data,
+      });
+
+      return true;
+    } catch (error) {
+      console.error("Error in check verification action:", error);
+
+      return false;
+    }
+  };
+
+export const changePassword = (email, newPassword) => async (dispatch) => {
+  try {
+    const response = await fetch(`http://localhost:3001/api/changePassword`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, newPassword }),
+    });
+
+    // Check if the response is successful
+    if (!response.ok) {
+      throw new Error("Failed to update password");
+    }
+
+    const data = await response.json();
+
+    dispatch({
+      type: CHANGE_PASSWORD_SUCCESS,
+      payload: data,
+    });
+
+    return true;
+  } catch (error) {
+    console.error("Error in change password action:", error);
+
+    return false;
+  }
 };

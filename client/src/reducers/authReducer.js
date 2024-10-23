@@ -6,6 +6,9 @@ import {
   VERIFY_FAIL,
   GET_USERS_SUCCESS,
   GET_RANKING_SUCCESS,
+  FORGOT_PASSWORD_SUCCESS,
+  CHECK_VERIFICATION_CODE_SUCCESS,
+  CHANGE_PASSWORD_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -63,6 +66,21 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         ranking: [...action.payload],
+      };
+    case FORGOT_PASSWORD_SUCCESS:
+      console.log(action.payload);
+      return {
+        ...state,
+      };
+    case CHECK_VERIFICATION_CODE_SUCCESS:
+      console.log(action.payload);
+      return {
+        ...state,
+      };
+    case CHANGE_PASSWORD_SUCCESS:
+      console.log(action.payload);
+      return {
+        ...state,
       };
     default:
       return state;

@@ -16,6 +16,9 @@ const {
   declineFriendRequest,
   submitCompletedStory,
   getRanking,
+  forgotPassword,
+  checkVerificationCode,
+  changePassword,
 } = require("../controllers/authController");
 
 const tokenMiddleware = require("../middleware/tokenMiddleware");
@@ -39,5 +42,8 @@ router.post("/accept/:friendId", tokenMiddleware, acceptFriendRequest);
 router.post("/decline/:friendId", tokenMiddleware, declineFriendRequest);
 router.post("/complete/:storyId", tokenMiddleware, submitCompletedStory);
 router.get("/ranking", getRanking);
+router.post("/forgot", forgotPassword);
+router.post("/checkVerificationCode", checkVerificationCode);
+router.post("/changePassword", changePassword);
 
 module.exports = router;
