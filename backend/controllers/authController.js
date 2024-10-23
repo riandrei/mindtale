@@ -3,6 +3,7 @@ const formData = require("form-data");
 const Mailgun = require("mailgun.js");
 const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
+const { Resend } = require("resend");
 const fs = require("fs");
 
 const User = require("../models/User");
@@ -27,7 +28,7 @@ module.exports.signUp = (req, res, next) => {
         verificationCode,
         password: hash,
         username: email,
-        tag: name.slice(0, 4),
+        tag: Math.floor(1000 + Math.random() * 9000),
       });
 
       newUser
@@ -474,20 +475,111 @@ function validateEmail(email) {
   return emailRegex.test(email);
 }
 
-function sendEmail(email, verificationCode) {
-  const mailgun = new Mailgun(formData);
-  const mg = mailgun.client({
-    username: "api",
-    key: process.env.MAILGUN_API_KEY,
-  });
+// function sendEmail(email, verificationCode) {
+//   const mailgun = new Mailgun(formData);
+//   const mg = mailgun.client({
+//     username: "api",
+//     key: process.env.MAILGUN_API_KEY,
+//   });
 
-  mg.messages
-    .create("sandbox2930b2991faf4d08a1dc5a2f685a01ef.mailgun.org", {
-      from: "MindTale <mindtale@sandbox2930b2991faf4d08a1dc5a2f685a01ef.mailgun.org>",
-      to: [`${email}`],
-      subject: "Verification Code",
-      text: `Your verification code is ${verificationCode}`,
-    })
-    .then((msg) => console.log(msg)) // logs response data
-    .catch((err) => console.log(err));
+//   mg.messages
+//     .create("sandbox2930b2991faf4d08a1dc5a2f685a01ef.mailgun.org", {
+//       from: "MindTale <mindtale@sandbox2930b2991faf4d08a1dc5a2f685a01ef.mailgun.org>",
+//       to: [`${email}`],
+//       subject: "Verification Code",
+//       text: `Your verification code is ${verificationCode}`,
+//     })
+//     .then((msg) => console.log(msg)) // logs response data
+//     .catch((err) => console.log(err));
+// }
+
+function sendEmail(email, verificationCode) {
+  console.log(email, verificationCode);
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
+  (async () => {
+    try {
+      const data = await resend.emails.send({
+        from: `MindTale <onboarding@mindtale.site>`,
+        to: [`${email}`],
+        subject: "Verification Code",
+        html: `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Email Verification</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f4f4f4;
+                    color: #333;
+                    margin: 0;
+                    padding: 0;
+                }
+                .container {
+                    max-width: 600px;
+                    margin: 30px auto;
+                    background-color: #ffffff;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    padding: 20px;
+                }
+                .header {
+                    text-align: center;
+                    background-color: #007bff;
+                    color: white;
+                    padding: 10px 0;
+                    border-radius: 8px 8px 0 0;
+                }
+                .content {
+                    padding: 20px;
+                }
+                .content p {
+                    font-size: 16px;
+                    line-height: 1.6;
+                }
+                .code {
+                    font-size: 24px;
+                    font-weight: bold;
+                    text-align: center;
+                    color: #007bff;
+                    margin: 20px 0;
+                }
+                .footer {
+                    text-align: center;
+                    font-size: 14px;
+                    color: #666;
+                    margin-top: 30px;
+                }
+            </style>
+        </head>
+        <body>
+        
+            <div class="container">
+                <div class="header">
+                    <h1>Email Verification</h1>
+                </div>
+                <div class="content">
+                    <p>Dear <strong>${email}</strong>,</p>
+                    <p>Thank you for signing up for our service! To complete your registration, please verify your email address using the verification code below:</p>
+                    <div class="code">${verificationCode}</div>
+                    <p>If you didn't request this, please ignore this email.</p>
+                    <p>Best regards,<br>The MindTale Team</p>
+                </div>
+                <div class="footer">
+                    <p>&copy; 2024 MindTale. All rights reserved.</p>
+                </div>
+            </div>
+        
+        </body>
+        </html>
+        `,
+      });
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  })();
 }
