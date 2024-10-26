@@ -2,6 +2,7 @@ import {
   GET_ASSESMENT_SUCCESS,
   READ_STORY_SUCCESS,
   SUBMIT_USER_CHOICE_SUCCESS,
+  TRANSLATE_TEXT_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   currentNarrative: "",
   isEnd: false,
   assesment: {},
+  translatedText: "",
 };
 
 export default function sessionReducer(state = initialState, action) {
@@ -36,6 +38,12 @@ export default function sessionReducer(state = initialState, action) {
       return {
         ...initialState,
         assesment: action.payload.assesment,
+      };
+    case TRANSLATE_TEXT_SUCCESS:
+      console.log(action.payload);
+      return {
+        ...state,
+        translatedText: action.payload.translatedText,
       };
     default:
       return state;

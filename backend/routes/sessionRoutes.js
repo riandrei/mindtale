@@ -7,6 +7,7 @@ const {
   getAssesment,
   submitAssesmentScore,
   getTextToSpeech,
+  translateText,
 } = require("../controllers/sessionControllers");
 const { addHistory } = require("../controllers/authController");
 
@@ -21,5 +22,6 @@ router.post(
   submitAssesmentScore
 );
 // router.get("/sessions/:storyId/tts", tokenMiddleware, getTextToSpeech);
+router.post("/translatetext", translateText);
 
 module.exports = router;

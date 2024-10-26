@@ -2,6 +2,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
 const util = require("util");
+const { Translate } = require("@google-cloud/translate").v2;
 // const textToSpeech = require("@google-cloud/text-to-speech");
 
 const Session = require("../models/Session");
@@ -429,3 +430,21 @@ function getImageScene(imagePrompt, userAction) {
     })
     .catch((error) => console.error(error));
 }
+
+module.exports.translateText = (req, res) => {
+  const { text, targetLanguage } = req.body;
+
+  console.log(req.body);
+
+  const translate = new Translate();
+
+  translate
+    .translate(text, targetLanguage)
+    .then((results) => {
+      console.log(results);
+      const translation = results[0];
+
+      return res.status(200).json({ translation });
+    })
+    .catch((error) => console.error(error));
+};

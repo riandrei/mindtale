@@ -1,2 +1,3 @@
 node_modules
-/server/.env
+/backend/.env
+/backend/cloud-translate.json
