@@ -436,7 +436,13 @@ module.exports.translateText = (req, res) => {
 
   console.log(req.body);
 
-  const translate = new Translate();
+  const translate = new Translate({
+    projectId: "mindtale",
+    credentials: {
+      private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+      client_email: process.env.GOOGLE_CLIENT_EMAIL,
+    },
+  });
 
   translate
     .translate(text, targetLanguage)
