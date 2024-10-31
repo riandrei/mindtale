@@ -10,6 +10,7 @@ const TTS = ({ text, isLight }) => {
   const [utterance, setUtterance] = useState(null);
   const [currentCaption, setCurrentCaption] = useState("");
   const [ccEnabled, setCCEnabled] = useState(false);
+  const [sentenceIndex, setSentenceIndex] = useState(-1);
 
   const dispatch = useDispatch();
 
@@ -25,20 +26,22 @@ const TTS = ({ text, isLight }) => {
       const sentences = translatedText?.split(/(?<=[.?!])\s+/);
       console.log(translatedText);
 
-      let sentenceIndex = -1;
-
       u.onboundary = (event) => {
         // When a word boundary is hit, update the current caption
         console.log(event.name);
+        console.log(sentenceIndex);
         if (event.name === "sentence") {
-          sentenceIndex++;
-
-          setCurrentCaption(sentences[sentenceIndex]);
+          setSentenceIndex((prevIndex) => {
+            const newIndex = prevIndex + 1;
+            setCurrentCaption(sentences[newIndex]);
+            return newIndex;
+          });
         }
       };
 
       u.onend = () => {
         setCurrentCaption(""); // Clear the caption when the speech ends
+        setSentenceIndex(-1);
       };
 
       setUtterance(u);
@@ -57,6 +60,9 @@ const TTS = ({ text, isLight }) => {
     if (isPaused) {
       synth.resume();
     } else {
+      console.log("play");
+
+      setSentenceIndex(-1);
       synth.speak(utterance);
     }
 
@@ -73,7 +79,8 @@ const TTS = ({ text, isLight }) => {
     const synth = window.speechSynthesis;
     synth.cancel();
     setIsPaused(false);
-    setCurrentCaption(""); // Clear captions when stopped
+    setCurrentCaption("");
+    setSentenceIndex(-1);
   };
 
   const handleCCClick = () => {
@@ -83,12 +90,11 @@ const TTS = ({ text, isLight }) => {
   return (
     <div className={styles.TTSDiv}>
       <div>
-        {ccEnabled && (
+        {ccEnabled && currentCaption.length > 0 && (
           <p className={isLight ? styles.CaptionsLight : styles.CaptionsNight}>
             {currentCaption}
           </p>
-        )}{" "}
-        {/* Display the current caption */}
+        )}
       </div>
       <button
         className={
