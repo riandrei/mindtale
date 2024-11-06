@@ -10,7 +10,7 @@ export const RankingList = ({ ranking }) => {
   return (
     <>
       {/* Renders the ranks from 4 and onward */}
-      {sortedRanking?.slice(3).map((rank, index) => (
+      {sortedRanking?.slice(3, 10).map((rank, index) => (
         <div key={index} className={styles.RankingList}>
           <div className={styles.Specific_Ranklist}>
             <div className={styles.Specific_Ranklist_inner}>
