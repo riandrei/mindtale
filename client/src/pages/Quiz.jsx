@@ -55,8 +55,10 @@ const Quiz = ({
 
   const isCompleted = () => {
     if (completedStories) {
-      console.log(completedStories);
-      return completedStories.find(({ story }) => story === storyId);
+      console.log(completedStories.toReversed());
+      return completedStories
+        .toReversed()
+        .find(({ story }) => story === storyId);
     }
   };
 
@@ -67,24 +69,24 @@ const Quiz = ({
   return (
     <div className={isLight ? styles.Quiz2 : styles.Quiz}>
       {console.log(completedStories)}
-      {!isCompleted() ? (
-        questions.map(
-          (question, index) =>
-            questionCount === index && (
-              <Question
-                key={question.id}
-                question={question.question}
-                questionNumber={index}
-                choices={question.answers}
-                handleQuestionCount={handleQuestionCount}
-                questionCount={questionCount}
-                isLight={isLight}
-              />
-            )
-        )
-      ) : (
-        <Congrats isLight={isLight} score={null} questionsLength={null} />
+      {/* {!isCompleted() ? ( */}
+      {questions.map(
+        (question, index) =>
+          questionCount === index && (
+            <Question
+              key={question.id}
+              question={question.question}
+              questionNumber={index}
+              choices={question.answers}
+              handleQuestionCount={handleQuestionCount}
+              questionCount={questionCount}
+              isLight={isLight}
+            />
+          )
       )}
+      {/* ) : (
+        <Congrats isLight={isLight} score={null} questionsLength={null} />
+      )} */}
       {questionCount === questions.length && (
         <Congrats
           isLight={isLight}

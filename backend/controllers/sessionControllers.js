@@ -24,8 +24,9 @@ module.exports.startSession = async function startSession(req, res) {
       return res.status(400).json({ error: "User not found" });
     }
 
-    Session.findOne({ user: user._id, story: storyId }).then((session) => {
-      console.log(session._id);
+    Session.find({ user: user._id, story: storyId }).then((sessions) => {
+      console.log("sess", sessions);
+      const session = sessions[sessions.length - 1];
       if (session && session.history.length > 0) {
         const parsedText = JSON.parse(
           session.history[session.history.length - 1].parts[0].text

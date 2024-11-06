@@ -55,9 +55,12 @@
 }
 .CaptionsLight {
   position: fixed;
-  bottom: 10px; /* Distance from the bottom of the page */
-  left: 0; /* Align to the left side of the screen */
-  width: 100%; /* Make it span the full width */
+  transform: translateX(
+    -50%
+  ); /* Move it left by 50% of its width to center it */
+  bottom: 5%; /* Distance from the bottom of the page */
+  left: 50%; /* Align to the left side of the screen */
+  width: 40%; /* Make it span the full width */
   text-align: center; /* Center the content horizontally */
   background-color: rgba(
     0,

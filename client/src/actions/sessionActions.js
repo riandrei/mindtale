@@ -3,6 +3,7 @@ import {
   SUBMIT_USER_CHOICE_SUCCESS,
   GET_ASSESMENT_SUCCESS,
   TRANSLATE_TEXT_SUCCESS,
+  RESET_SESSION,
 } from "./types";
 
 export const readStory =
@@ -111,4 +112,10 @@ export const translateText = (text, targetLanguage) => async (dispatch) => {
     console.log(error);
     return false;
   }
+};
+
+export const resetSession = () => (dispatch) => {
+  dispatch({
+    type: RESET_SESSION,
+  });
 };

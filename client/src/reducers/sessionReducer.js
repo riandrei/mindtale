@@ -3,6 +3,7 @@ import {
   READ_STORY_SUCCESS,
   SUBMIT_USER_CHOICE_SUCCESS,
   TRANSLATE_TEXT_SUCCESS,
+  RESET_SESSION,
 } from "../actions/types";
 
 const initialState = {
@@ -45,6 +46,8 @@ export default function sessionReducer(state = initialState, action) {
         ...state,
         translatedText: action.payload.translatedText,
       };
+    case RESET_SESSION:
+      return initialState;
     default:
       return state;
   }

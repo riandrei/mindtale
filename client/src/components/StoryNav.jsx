@@ -11,6 +11,9 @@ import Theme from "../assets/themes.png";
 import Dark from "../assets/dark.png";
 import Light from "../assets/book-icon-dark.png";
 
+import { useDispatch } from "react-redux";
+import { resetSession } from "../actions/sessionActions";
+
 export const StoryNav = ({
   handleThemeClick,
   isLight,
@@ -19,8 +22,10 @@ export const StoryNav = ({
   handleIncreaseFontSize,
   handleDecreaseFontSize,
 }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const goBack = () => {
+    dispatch(resetSession());
     navigate(-1);
   };
 

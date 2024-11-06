@@ -13,9 +13,8 @@ const Congrats = ({
 }) => {
   const { storyId } = useParams();
 
-  console.log(storyId);
   useEffect(() => {
-    if (score && questionsLength) {
+    if (score > -1 && questionsLength) {
       submitCompletedStory(storyId, score);
     }
   }, []);

@@ -7,6 +7,7 @@ const { Resend } = require("resend");
 const fs = require("fs");
 
 const User = require("../models/User");
+const Session = require("../models/Session");
 
 module.exports.signUp = (req, res, next) => {
   const { email, password } = req.body;
@@ -408,23 +409,26 @@ module.exports.submitCompletedStory = (req, res) => {
         return res.status(400).json({ error: "User not found" });
       }
 
-      const existingStory = user.completedStories.find(
-        (story) => story.story.toString() === storyId
-      );
-
-      if (existingStory) {
-        existingStory.assesmentScore = assesmentScore;
-      } else {
-        user.completedStories.push({
-          story: storyId,
-          assesmentScore,
-          tags: story.tags,
-        });
-      }
+      user.completedStories.push({
+        story: storyId,
+        assesmentScore,
+        tags: story.tags,
+      });
 
       user
         .save()
-        .then(() => res.status(200).json({ message: "Story completed" }))
+        .then(() => {
+          const newSession = new Session({
+            user: user._id,
+            story: storyId,
+            history: [],
+            scenarioHistory: [],
+            assesment: {},
+          });
+          newSession.save().then(() => {
+            return res.status(200).json({ message: "Story completed" });
+          });
+        })
         .catch((err) =>
           res.status(400).json({ error: "Error completing story" })
         );
