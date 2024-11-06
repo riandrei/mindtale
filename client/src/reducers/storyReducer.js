@@ -5,6 +5,7 @@ import {
   DELETE_REVIEW_SUCCESS,
   GENERATE_COVER_SUCCESS,
   ADD_STORY_SUCCESS,
+  DELETE_STORY_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -56,6 +57,13 @@ export default function storyReducer(state = initialState, action) {
       return {
         ...state,
         stories: [...state.stories, action.payload.story],
+      };
+    case DELETE_STORY_SUCCESS:
+      return {
+        ...state,
+        stories: state.stories.filter(
+          (story) => story._id !== action.payload.storyId
+        ),
       };
     default:
       return state;

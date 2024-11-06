@@ -9,6 +9,8 @@ import {
   FORGOT_PASSWORD_SUCCESS,
   CHECK_VERIFICATION_CODE_SUCCESS,
   CHANGE_PASSWORD_SUCCESS,
+  ADMIN_LOGIN_SUCCESS,
+  GET_STORIES_STATS_SUCCESS,
 } from "./types";
 
 export const logIn = (email, password, navigate) => (dispatch) => {
@@ -369,4 +371,42 @@ export const changePassword = (email, newPassword) => async (dispatch) => {
 
     return false;
   }
+};
+
+export const getStoriesStats = () => (dispatch) => {
+  fetch("http://localhost:3001/api/stories/stats", {
+    method: "GET",
+  }).then((res) => {
+    if (res.status === 200) {
+      res.json().then((res) => {
+        dispatch({
+          type: GET_STORIES_STATS_SUCCESS,
+          payload: res,
+        });
+      });
+    }
+  });
+};
+
+export const adminLogin = (username, password, navigate) => (dispatch) => {
+  console.log(username, password);
+  fetch("http://localhost:3001/api/adminLogin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ username, password }),
+  }).then((res) => {
+    if (res.status === 200) {
+      res.json().then((res) => {
+        dispatch({
+          type: ADMIN_LOGIN_SUCCESS,
+          payload: res.userInfo,
+        });
+
+        dispatch(getStoriesStats());
+      });
+    }
+  });
 };

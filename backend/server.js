@@ -12,6 +12,7 @@ const path = require("path");
 const sessionRoutes = require("./routes/sessionRoutes");
 const authRoutes = require("./routes/authRoutes");
 const storyRoutes = require("./routes/storyRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
 app.use(
@@ -36,6 +37,7 @@ const dbURI = process.env.DB_TEST_URI;
 app.use("/api", sessionRoutes);
 app.use("/api", authRoutes);
 app.use("/api", storyRoutes);
+app.use("/api", adminRoutes);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

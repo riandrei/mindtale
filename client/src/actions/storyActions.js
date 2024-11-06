@@ -5,6 +5,7 @@ import {
   POST_REVIEW_SUCCESS,
   GENERATE_COVER_SUCCESS,
   ADD_STORY_SUCCESS,
+  DELETE_STORY_SUCCESS,
 } from "./types";
 
 export const getStories = () => (dispatch) => {
@@ -116,6 +117,19 @@ export const addStory = (formData) => (dispatch) => {
       res.json().then((response) => {
         console.log(response);
         dispatch({ type: ADD_STORY_SUCCESS, payload: response });
+      });
+    }
+  });
+};
+
+export const deleteStory = (id) => (dispatch) => {
+  fetch(`http://localhost:3001/api/stories/${id}`, {
+    method: "DELETE",
+  }).then((res) => {
+    if (res.status === 200) {
+      res.json().then((response) => {
+        console.log(response);
+        dispatch({ type: DELETE_STORY_SUCCESS, payload: response });
       });
     }
   });

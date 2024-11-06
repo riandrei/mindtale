@@ -150,3 +150,15 @@ module.exports.addStory = (req, res) => {
 
   newStory.save().then((story) => res.status(200).json({ story }));
 };
+
+module.exports.deleteStory = (req, res) => {
+  const { id } = req.params;
+
+  Story.findByIdAndDelete(id).then((story) => {
+    if (!story) {
+      return res.status(404).json({ message: "Story not found" });
+    }
+
+    return res.status(200).json({ message: "Story deleted", storyId: id });
+  });
+};

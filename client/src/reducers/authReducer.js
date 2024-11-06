@@ -9,6 +9,8 @@ import {
   FORGOT_PASSWORD_SUCCESS,
   CHECK_VERIFICATION_CODE_SUCCESS,
   CHANGE_PASSWORD_SUCCESS,
+  ADMIN_LOGIN_SUCCESS,
+  GET_STORIES_STATS_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -16,7 +18,11 @@ const initialState = {
   user: {},
   users: [],
   ranking: [],
+  isAdmin: false,
   error: null,
+  averageScores: [],
+  bookmarkCounts: [],
+  visitCounts: [],
 };
 
 export default function authReducer(state = initialState, action) {
@@ -81,6 +87,18 @@ export default function authReducer(state = initialState, action) {
       console.log(action.payload);
       return {
         ...state,
+      };
+    case ADMIN_LOGIN_SUCCESS:
+      return {
+        ...state,
+        isAdmin: true,
+      };
+    case GET_STORIES_STATS_SUCCESS:
+      return {
+        ...state,
+        averageScores: action.payload.averageScores,
+        bookmarkCounts: action.payload.bookmarkCounts,
+        visitCounts: action.payload.visitCounts,
       };
     default:
       return state;

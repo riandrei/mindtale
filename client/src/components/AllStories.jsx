@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, connect } from "react-redux";
 
 import styles from "../css/AllStories.module.css";
 import SpecificStory from "../components/SpecificStory";
+import StoryModal from "../components/StoryModal";
 import { getStories } from "../actions/storyActions";
 
 import Story1 from "../assets/artwork8.jpg";
@@ -10,6 +11,16 @@ import Line from "../assets/line3.png";
 
 function AllStories({ getStories }) {
   const stories = useSelector((state) => state.story.stories);
+
+  const [showStoryModal, setShowStoryModal] = useState(false);
+  const [activeStory, setActiveStory] = useState(null);
+
+  const toggleStoryModal = (id) => {
+    const story = stories.find((story) => story._id === id);
+
+    setActiveStory(story);
+    setShowStoryModal(!showStoryModal);
+  };
 
   useEffect(() => {
     getStories();
@@ -32,15 +43,17 @@ function AllStories({ getStories }) {
               key={story._id}
               title={story.title}
               imgURL={story.imgURL}
+              id={story._id}
+              toggleStoryModal={toggleStoryModal}
             />
           ))}
-
-        {/* <SpecificStory image={Story1} title="Sample title" />
-        <SpecificStory image={Story1} title="Sample title" />
-        <SpecificStory image={Story1} title="Sample title" />
-        <SpecificStory image={Story1} title="Sample title" />
-        <SpecificStory image={Story1} title="Sample title" /> */}
       </div>
+      {showStoryModal && (
+        <StoryModal
+          toggleStoryModal={toggleStoryModal}
+          activeStory={activeStory}
+        />
+      )}
     </div>
   );
 }
