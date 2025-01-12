@@ -30,6 +30,7 @@ module.exports.signUp = (req, res, next) => {
         password: hash,
         username: email,
         tag: Math.floor(1000 + Math.random() * 9000),
+        school: "Independent",
       });
 
       newUser
@@ -56,9 +57,13 @@ module.exports.signIn = (req, res) => {
         return res.status(401).json({ error: "Invalid credentials" });
       }
 
-      const token = jwt.sign({ email }, process.env.JWT_SECRET, {
-        expiresIn: "30d",
-      });
+      const token = jwt.sign(
+        { email, school: user.school },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "30d",
+        }
+      );
 
       const userInfo = {
         email: user.email,
@@ -203,6 +208,7 @@ module.exports.getUser = (req, res) => {
       visited: user.visited,
       tag: user.tag,
       bio: user.bio,
+      storyPreference: user.storyPreference,
     };
 
     return res.status(200).json({ userInfo });
@@ -337,6 +343,50 @@ module.exports.updateUser = (req, res) => {
     //         res.status(400).json({ error: "Error updating user" })
     //       );
     //   });
+
+    user
+      .save()
+      .then(() => res.status(200).json({ message: "User updated" }))
+      .catch((err) => res.status(400).json({ error: "Error updating user" }));
+  });
+};
+
+module.exports.submitUserData = (req, res) => {
+  const { email } = req.user;
+  const profilePicture = req.profilePicture;
+  const { name, birthday, school, sex, gradeLevel, age, bio } = req.body;
+
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    user.username = name;
+    user.birthday = birthday;
+    user.school = school;
+    user.sex = sex;
+    user.gradeLevel = gradeLevel;
+    user.age = age;
+    user.bio = bio;
+    user.profilePicture = profilePicture;
+
+    user
+      .save()
+      .then(() => res.status(200).json({ message: "User updated" }))
+      .catch((err) => res.status(400).json({ error: "Error updating user" }));
+  });
+};
+
+module.exports.submitUserPreference = (req, res) => {
+  const { email } = req.user;
+  const { userPreference } = req.body;
+
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    user.storyPreference = userPreference;
 
     user
       .save()
@@ -710,4 +760,64 @@ module.exports.changePassword = (req, res) => {
         );
     });
   });
+};
+
+module.exports.getWordsStats = (req, res) => {
+  const { email } = req.user;
+
+  User.findOne({ email }).then((user) => {
+    const userWordsData = user.words;
+
+    return res.status(200).json({ userWordsData });
+  });
+};
+
+module.exports.submitWordInteraction = (req, res) => {
+  const { email } = req.user; // Extract user email from the request
+  const { word } = req.body; // Extract word from the request body
+
+  console.log(word);
+
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        console.error(`User with email ${email} not found.`);
+        return res.status(404).json({ error: "User not found." });
+      }
+
+      // Access the user's word list (or initialize it if undefined)
+      const existingWords = user.words || [];
+
+      // Find the word in the user's word list
+      console.log(word.toLowerCase());
+      const existingWord = existingWords.find(
+        (w) => w.word === word.toLowerCase()
+      );
+
+      if (existingWord) {
+        // Convert wordsInteraction to a number, increment it, and store it back as a string
+        const currentInteraction = parseInt(existingWord.interactions, 10) || 0;
+        existingWord.interactions = (currentInteraction + 1).toString();
+      }
+
+      // Save the updated word list back to the user
+      user.words = existingWords;
+
+      user
+        .save()
+        .then(() => {
+          console.log("User's word interaction updated successfully.");
+          res
+            .status(200)
+            .json({ message: "Word interaction updated successfully." });
+        })
+        .catch((err) => {
+          console.error("Error saving user data:", err);
+          res.status(500).json({ error: "Failed to save user data." });
+        });
+    })
+    .catch((err) => {
+      console.error("Error finding user:", err);
+      res.status(500).json({ error: "Error finding user." });
+    });
 };

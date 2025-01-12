@@ -8,6 +8,7 @@ export const Question = ({
   handleQuestionCount,
   questionCount,
   isLight,
+  fontSize, // Add fontSize prop
 }) => {
   const returnLetter = (index) => {
     switch (index) {
@@ -23,6 +24,7 @@ export const Question = ({
         return "";
     }
   };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       handleQuestionCount("timeout");
@@ -34,13 +36,22 @@ export const Question = ({
   return (
     <div className={styles.Question}>
       <div
-        className={isLight ? styles.SpecificQuestion2 : styles.SpecificQuestion}
+        className={`${
+          isLight ? styles.SpecificQuestion2 : styles.SpecificQuestion
+        } ${fontSize === 1 ? styles.TextFont : ""} ${
+          fontSize === 2 ? styles.TextFont2 : ""
+        } ${fontSize === 3 ? styles.TextFont3 : ""}`}
       >
         {question}
       </div>
       <div className={styles.Choices}>
         {choices.map((choice, index) => (
-          <button onClick={() => handleQuestionCount(index, questionNumber)}>
+          <button
+            onClick={() => handleQuestionCount(index, questionNumber)}
+            className={`${fontSize === 1 ? styles.TextFont : ""} ${
+              fontSize === 2 ? styles.TextFont2 : ""
+            } ${fontSize === 3 ? styles.TextFont3 : ""}`}
+          >
             <span>{returnLetter(index)}</span>
             <span>{choice}</span>
           </button>

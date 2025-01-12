@@ -5,6 +5,7 @@ import styles from "../css/Story.module.css";
 
 import Choices from "../components/Choices";
 import Recommend from "../components/Recommend";
+import ClickableWords from "./ClickableWords";
 
 import Sample1 from "../assets/photocard1.png";
 import Art from "../assets/artwork11.jpg";
@@ -21,6 +22,7 @@ export function Story({
   handleNavClick,
   isLight,
   fontSize,
+  handleWordClick,
 }) {
   const { storyId } = useParams();
   const currentNarrative = useSelector(
@@ -65,6 +67,7 @@ export function Story({
           isLight={isLight}
           questions={assesment.questions}
           correctAnswers={assesment?.correctAnswers}
+          fontSize={fontSize}
         />
       ) : scenarioHistory && scenarioHistory.length > 0 ? (
         <>
@@ -126,7 +129,13 @@ export function Story({
                     fontSize == 3 ? styles.TextFont3 : ""
                   }`}
                 >
-                  {currentNarrative || "Loading..."}
+                  {
+                    <ClickableWords
+                      handleWordClick={handleWordClick}
+                      currentNarrative={currentNarrative}
+                    />
+                  }
+                  {/* {currentNarrative || "Loading..."} */}
                 </p>
                 <Choices
                   choices={currentChoices}

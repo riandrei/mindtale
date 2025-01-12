@@ -121,13 +121,13 @@ function Signin({ signUp, signUpWithGoogle }) {
             value={createEmail}
             onChange={handleCreateEmail}
             type="text"
-            placeholder="Sign up your email"
+            placeholder="Type your email here..."
           />
           <input
             value={createPassword}
             onChange={handleCreatePassword}
             type="password"
-            placeholder="Sign up your password"
+            placeholder="Type your password here..."
           />
           <input
             value={confirmPassword}
@@ -144,7 +144,7 @@ function Signin({ signUp, signUpWithGoogle }) {
           />
           <p>
             I agree to the{" "}
-            <Link className={styles.terms}>terms and conditions</Link>{" "}
+            <Link to="/TermsAndConditions" target="_blank" className={styles.terms}>terms and conditions</Link>{" "}
           </p>
         </div>
 

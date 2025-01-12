@@ -43,6 +43,34 @@
   margin-top: -20px;
 }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 50%;
+  right: 150%; /* Position to the right of the element */
+  transform: translateY(-50%);
+  background-color: teal;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 999999;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .Nav {
     position: fixed;

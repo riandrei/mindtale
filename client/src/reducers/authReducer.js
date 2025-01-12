@@ -11,6 +11,10 @@ import {
   CHANGE_PASSWORD_SUCCESS,
   ADMIN_LOGIN_SUCCESS,
   GET_STORIES_STATS_SUCCESS,
+  SUBMIT_USER_DATA_SUCCESS,
+  SUBMIT_USER_PREFERENCE_SUCCESS,
+  SCHOOL_ADMIN_LOGIN_SUCCESS,
+  GET_WORD_STATS_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -19,10 +23,12 @@ const initialState = {
   users: [],
   ranking: [],
   isAdmin: false,
+  isSchoolAdmin: false,
   error: null,
   averageScores: [],
   bookmarkCounts: [],
   visitCounts: [],
+  wordsStats: []
 };
 
 export default function authReducer(state = initialState, action) {
@@ -36,7 +42,7 @@ export default function authReducer(state = initialState, action) {
         user: action.payload,
       };
     case VERIFY_SUCCESS:
-      action.redirect("/Homepage");
+      action.redirect("/UserDetails");
       return {
         ...state,
         user: {
@@ -100,6 +106,28 @@ export default function authReducer(state = initialState, action) {
         bookmarkCounts: action.payload.bookmarkCounts,
         visitCounts: action.payload.visitCounts,
       };
+    case SUBMIT_USER_DATA_SUCCESS:
+      console.log(action)
+      action.redirect("/StoryPreference");
+      return {
+        ...state
+      }
+    case SUBMIT_USER_PREFERENCE_SUCCESS:
+      action.redirect("/Homepage");
+      return {
+        ...state
+      }
+    case SCHOOL_ADMIN_LOGIN_SUCCESS:
+      localStorage.setItem("token", action.payload.token);
+      return {
+        ...state,
+        isSchoolAdmin: true,
+      }
+    case GET_WORD_STATS_SUCCESS:
+      return {
+        ...state,
+        wordsStats: action.payload
+      }
     default:
       return state;
   }

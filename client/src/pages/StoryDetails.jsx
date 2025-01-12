@@ -164,6 +164,9 @@ export function StoryDetails({
               <span className={styles.text}>...</span>
             </div>
           </div>
+          <p style={{marginTop: "100px", color: "grey", fontWeight: "bold"}}>
+              Note: All stories are estimated to be about 1500 to 2000 words long but some may be shorter or longer depending on the story.
+          </p>
           {/* <div className={styles.Views}>
             <span>2.1k Reads</span>
             <img src={View} alt="" />

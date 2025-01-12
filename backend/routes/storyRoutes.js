@@ -9,12 +9,14 @@ const {
   generateStoryCover,
   addStory,
   deleteStory,
+  getAllStories
 } = require("../controllers/storyController");
 
 const tokenMiddleware = require("../middleware/tokenMiddleware");
 const multerMiddleware = require("../middleware/multerMiddleware");
 
-router.get("/stories", getStories);
+router.get("/stories", tokenMiddleware, getStories);
+router.get("/allStories", getAllStories);
 router.post("/stories", multerMiddleware, addStory);
 router.get("/stories/:id/review", getReviews);
 router.post("/stories/:id/review", tokenMiddleware, postReview);

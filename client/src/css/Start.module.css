@@ -1,0 +1,565 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Font Styles */
+.Genres div,
+.Pick h1,
+.Pick span,
+.Start label,
+.StudentDetails h1 {
+    font-family: 'Michroma';
+}
+
+/* Common ::before Styles */
+.Comedy::before,
+.Adventure::before,
+.Cyberpunk::before,
+.Epic::before,
+.Fable::before,
+.Fantasy::before,
+.FolkTale::before,
+.Horror::before,
+.Legends::before,
+.Mystery::before,
+.Mythology::before,
+.Parables::before,
+.Scifi::before,
+.Steampunk::before,
+.Thriller::before {
+    content: '';
+    background-position: center;
+    background-size: cover;
+    opacity: 0.75;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: transform 0.3s;
+}
+
+/* Start Component */
+.Start {
+    background-color: #111;
+    height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Start label {
+    font-size: 1.5em;
+}
+
+/* Student Details */
+.StudentDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.StudentDetails h1 {
+    letter-spacing: 2.5px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Personal Details */
+.PersonalDetails {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+.PersonalDetails_left {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.PersonalDetails_left textarea {
+    background-color: #111;
+    border: 1px solid #fff;
+    font-size: 1.25em;
+}
+
+.PersonalDetails_left button {
+    padding: 0.5rem 0;
+    background-color: #67dbd2;
+    border-radius: 20px;
+    font-size: 1.5em;
+    color: #333;
+    font-family: 'Michroma';
+}
+
+.PersonalDetails_left input,
+.PersonalDetails_left select {
+    border: 1px solid #fff;
+    padding: 0.5rem 1rem;
+    background-color: #111;
+}
+
+.PersonalDetails_left input {
+    color: #fff;
+    font-size: 1.25em;
+}
+
+.PersonalDetails_left select {
+    font-size: 1em;
+}
+
+/* Sections */
+.Top {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.Mid,
+.Textarea,
+.topInner1 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.topInner1 {
+    width: 75%;
+}
+
+.Bot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Bot div,
+.topInner2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.topInner2 {
+    width: 25%;
+}
+
+.Bot div {
+    width: 33%;
+}
+
+.PersonalDetails_right {
+    background-color: #333;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 40%;
+    padding: 3rem 5rem;
+}
+
+/* Icons */
+.Dots span,
+.iconContainer img,
+.mainIcon {
+    border-radius: 50%;
+}
+
+.iconContainer {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.iconContainer img {
+    width: 20%;
+    cursor: pointer;
+    transition: 350ms;
+}
+
+.iconContainer img:hover {
+    scale: 1.1;
+}
+
+.mainIcon {
+    width: 50%;
+}
+
+.File {
+    display: none;
+}
+
+/* Dots */
+.Dots {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.Dots span {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #fff;
+}
+
+.dotColor {
+    background-color: #66b9e9;
+}
+
+/* Story Preference */
+.StoryPreference {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* Pick Section */
+.Pick {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.Pick h1 {
+    font-size: 2.5em;
+}
+
+.Pick span {
+    font-size: 1.5em;
+    opacity: 0.75;
+}
+
+/* Genres Section */
+.Genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0 auto;
+    width: 75%;
+}
+
+.Genres div {
+    font-size: 1.25em;
+    cursor: pointer;
+}
+
+.Genres button {
+    width: 100%;
+    border: 1px solid #fff;
+    background-color: #111;
+    border-radius: 100px;
+    font-size: 1.5em;
+    transition: 350ms;
+}
+
+.Genres button:hover {
+    border: 1px solid #51c3d0;
+    box-shadow: 0 0 15px #51c3d0;
+    color: #51c3d0;
+    scale: 1.025;
+}
+
+/* Adventure and Other Genres */
+.Comedy,
+.Adventure,
+.Cyberpunk,
+.Epic,
+.Fable,
+.Fantasy,
+.FolkTale,
+.Horror,
+.Legends,
+.Mystery,
+.Mythology,
+.Parables,
+.Scifi,
+.Steampunk,
+.Thriller {
+    position: relative;
+    width: 32%;
+    padding: 3rem;
+    text-align: center;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.Comedy::before,
+.Adventure:hover::before,
+.Cyberpunk:hover::before,
+.Epic:hover::before,
+.Fable:hover::before,
+.Fantasy:hover::before,
+.FolkTale:hover::before,
+.Horror:hover::before,
+.Legends:hover::before,
+.Mystery:hover::before,
+.Mythology:hover::before,
+.Parables:hover::before,
+.Scifi:hover::before,
+.Steampunk:hover::before,
+.Thriller:hover::before {
+    transform: scale(1.25);
+}
+
+/* Background Images */
+.Fable::before {
+    content: ""; /* Required for pseudo-elements */
+    display: block; /* Makes the pseudo-element behave like an element */
+    position: absolute; /* Positioning to cover the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures the image covers the element fully */
+    background-position: center; /* Centers the image */
+    background-blend-mode: darken; /* Applies the dark filter */
+    z-index: -1; /* Ensures the pseudo-element is behind the content */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/Fable.avif');
+}
+
+.Fantasy::before {
+    content: ""; /* Required for pseudo-elements */
+    display: block; /* Makes the pseudo-element behave like an element */
+    position: absolute; /* Positioning to cover the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures the image covers the element fully */
+    background-position: center; /* Centers the image */
+    background-blend-mode: darken; /* Applies the dark filter */
+    z-index: -1; /* Ensures the pseudo-element is behind the content */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/Fantasy.webp');
+}
+
+.Adventure::before {
+    content: ""; /* Required for pseudo-elements */
+    display: block; /* Makes the pseudo-element behave like an element */
+    position: absolute; /* Positioning to cover the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures the image covers the element fully */
+    background-position: center; /* Centers the image */
+    background-blend-mode: darken; /* Applies the dark filter */
+    z-index: -1; /* Ensures the pseudo-element is behind the content */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/Adventure.avif');
+}
+
+.Mythology::before {
+    content: ""; /* Required for pseudo-elements */
+    display: block; /* Makes the pseudo-element behave like an element */
+    position: absolute; /* Positioning to cover the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures the image covers the element fully */
+    background-position: center; /* Centers the image */
+    background-blend-mode: darken; /* Applies the dark filter */
+    z-index: -1; /* Ensures the pseudo-element is behind the content */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/Mythology.jpg');
+}
+
+.FolkTale::before {
+    content: ""; /* Required for pseudo-elements */
+    display: block; /* Makes the pseudo-element behave like an element */
+    position: absolute; /* Positioning to cover the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures the image covers the element fully */
+    background-position: center; /* Centers the image */
+    background-blend-mode: darken; /* Applies the dark filter */
+    z-index: -1; /* Ensures the pseudo-element is behind the content */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/FolkTale.webp');
+}
+
+.Epic::before {
+    background-image: url('../assets/Epic.webp');
+}
+
+.Legends::before {
+    background-image: url('../assets/Legend.jpg');
+}
+
+.Mystery::before {
+    content: ""; /* Required for pseudo-elements */
+    display: block; /* Makes the pseudo-element behave like an element */
+    position: absolute; /* Positioning to cover the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures the image covers the element fully */
+    background-position: center; /* Centers the image */
+    background-blend-mode: darken; /* Applies the dark filter */
+    z-index: -1; /* Ensures the pseudo-element is behind the content */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/Mystery.webp');
+}
+
+.Steampunk::before {
+    background-image: url('../assets/Steampunk.avif');
+}
+
+.Cyberpunk::before {
+    content: ""; /* Required for pseudo-elements */
+    display: block; /* Makes the pseudo-element behave like an element */
+    position: absolute; /* Positioning to cover the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures the image covers the element fully */
+    background-position: center; /* Centers the image */
+    background-blend-mode: darken; /* Applies the dark filter */
+    z-index: -1; /* Ensures the pseudo-element is behind the content */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/Cyberpunk.webp');
+}
+
+.Parables::before {
+    content: ""; /* Required for pseudo-elements */
+    display: block; /* Makes the pseudo-element behave like an element */
+    position: absolute; /* Positioning to cover the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures the image covers the element fully */
+    background-position: center; /* Centers the image */
+    background-blend-mode: darken; /* Applies the dark filter */
+    z-index: -1; /* Ensures the pseudo-element is behind the content */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/Parables.jpg');
+}
+
+.Horror::before {
+    content: ""; /* Required for pseudo-elements */
+    display: block; /* Makes the pseudo-element behave like an element */
+    position: absolute; /* Positioning to cover the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures the image covers the element fully */
+    background-position: center; /* Centers the image */
+    background-blend-mode: darken; /* Applies the dark filter */
+    z-index: -1; /* Ensures the pseudo-element is behind the content */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/Horror.avif');
+}
+
+.Scifi::before {
+    content: ""; /* Required for pseudo-elements */
+    display: block; /* Makes the pseudo-element behave like an element */
+    position: absolute; /* Positioning to cover the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures the image covers the element fully */
+    background-position: center; /* Centers the image */
+    background-blend-mode: darken; /* Applies the dark filter */
+    z-index: -1; /* Ensures the pseudo-element is behind the content */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/Scifi.jpg');
+}
+
+.Thriller::before {
+    content: ""; /* Required for pseudo-elements */
+    display: block; /* Makes the pseudo-element behave like an element */
+    position: absolute; /* Positioning to cover the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures the image covers the element fully */
+    background-position: center; /* Centers the image */
+    background-blend-mode: darken; /* Applies the dark filter */
+    z-index: -1; /* Ensures the pseudo-element is behind the content */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/Thriller.avif');
+}
+.Comedy::before {
+    content: ""; /* Required for pseudo-elements */
+    display: block; /* Makes the pseudo-element behave like an element */
+    position: absolute; /* Positioning to cover the parent element */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures the image covers the element fully */
+    background-position: center; /* Centers the image */
+    background-blend-mode: darken; /* Applies the dark filter */
+    z-index: -1; /* Ensures the pseudo-element is behind the content */
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/comedy.jpg');
+}
+
+
+/* Utility Classes */
+.Selected {
+    outline: 3px solid #51c3d0;
+}
+
+.Pickmore {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Media Queries */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .Start {
+        min-height: 115vh;
+    }
+
+    .Genres {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .Genres div {
+        width: 45%;
+    }
+
+    .Genres button {
+        width: 90%;
+        padding: 0.5rem 0;
+    }
+
+    .StudentDetails {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 431px) {
+    .PersonalDetails,
+    .StoryPreference,
+    .Top {
+        flex-direction: column;
+    }
+
+    .Start {
+        min-height: 100vh;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .StudentDetails {
+        gap: 1.25rem;
+    }
+
+    .Bot {
+        gap: 0.5rem;
+    }
+
+    .Genres div {
+        font-size: 1.15em;
+    }
+}

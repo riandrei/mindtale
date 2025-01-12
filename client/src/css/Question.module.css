@@ -1,103 +1,114 @@
-*{
-    padding:0;
-    margin:0;
-    box-sizing: border-box;
-    outline:none;
-    border:none;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
 }
-.Question{
-    display: flex;
-    gap:2rem;
-    flex-direction: column;
-    height: 70vh;
-    transform: translateY(5rem);
-    opacity: 0;
-    filter: blur(5px);
-    animation:appear 1750ms ease forwards;
+.Question {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  height: 70vh;
+  transform: translateY(5rem);
+  opacity: 0;
+  filter: blur(5px);
+  animation: appear 1750ms ease forwards;
 
-    background:none;
+  background: none;
 }
-@keyframes appear{
-    from{}
-    to{
-        transform: translate(0);
-        opacity: 1;
-        filter: blur(0);
-    }
+@keyframes appear {
+  from {
+  }
+  to {
+    transform: translate(0);
+    opacity: 1;
+    filter: blur(0);
+  }
 }
 
-.SpecificQuestion{
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.5em;
-    width:75%;
-    margin:0 auto;
+.SpecificQuestion {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  width: 75%;
+  margin: 0 auto;
 }
-.SpecificQuestion2{
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.5em;
-    width:75%;
-    margin:0 auto;
-    color:#333;
+.SpecificQuestion2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  width: 75%;
+  margin: 0 auto;
+  color: #333;
 }
 .Choices {
-    width:75%;
-    margin: 0 auto;
+  width: 75%;
+  margin: 0 auto;
 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap:1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
 }
-.Choices button{
-    background-color: #f0f0f0;
-    width:45%;
-    display: flex;
-    cursor: pointer;
+.Choices button {
+  background-color: #f0f0f0;
+  width: 45%;
+  display: flex;
+  cursor: pointer;
+}
+.Choices button span:first-child {
+  color: #2395a5;
+  width: 15%;
+  text-align: center;
+  padding: 1.225rem 0;
+  font-weight: bold;
+  font-size: 1em;
+  outline: solid 1px #2395a575;
+}
+.Choices button span:nth-child(2) {
+  background-color: #2395a5;
+  width: 100%;
+  padding: 1.25rem 0;
+  text-align: center;
+  font-weight: 600;
+}
+.Time {
+  width: 85%;
+  margin: 0 auto;
+  height: 20px;
+  background-color: #2395a5;
+  animation: Time 20s linear forwards;
+  clip-path: polygon(0 0, 100% 0, 100% 5%, 0 5%);
+}
 
+@keyframes Time {
+  0% {
+  }
+  75% {
+    background-color: #940000;
+  }
+  100% {
+    clip-path: polygon(0 0, 0% 0, 0% 10%, 0 12%);
+  }
 }
-.Choices button span:first-child{
-    color:#2395a5;
-    width: 15%;
-    text-align: center;
-    padding:1.225rem 0;
-    font-weight: bold;
-    font-size: 1em;
-    outline:solid 1px #2395a575;
-}
-.Choices button span:nth-child(2){
-    background-color: #2395a5;
+
+@media (max-width: 431px) {
+  .Choices {
+    flex-direction: column;
+    width: 95%;
+  }
+  .Choices button {
     width: 100%;
-    padding:1.25rem 0;
-    text-align: center;
-    font-weight: 600;
-}
-.Time{
-    width:85%;
-    margin: 0 auto;
-    height:20px;
-    background-color: #2395a5;
-    animation: Time 20s linear forwards;
-    clip-path: polygon(0 0, 100% 0, 100% 5%, 0 5%);
+  }
 }
 
-@keyframes Time{
-    0%{}
-    75%{
-        background-color: #940000;
-    }
-    100%{
-        clip-path: polygon(0 0, 0% 0, 0% 10%, 0 12%);
-    }
+.TextFont {
+  font-size: 16px;
 }
-
-@media(max-width:431px){
-    .Choices{
-        flex-direction: column;
-        width:95%;
-    }
-    .Choices button{
-        width:100%;
-    }
+.TextFont2 {
+  font-size: 20px;
+}
+.TextFont3 {
+  font-size: 24px;
 }

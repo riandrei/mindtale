@@ -35,6 +35,18 @@
     border:solid 1.5px #ffffff90;
     width:fit-content;
 }
+.Statistics {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-around;
+    color: black;
+}
+.statisticsBox {
+    width: 20%;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
 @media(max-width:431px){
     .Metrics{
         justify-content:center;

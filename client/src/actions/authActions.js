@@ -11,6 +11,9 @@ import {
   CHANGE_PASSWORD_SUCCESS,
   ADMIN_LOGIN_SUCCESS,
   GET_STORIES_STATS_SUCCESS,
+  SUBMIT_USER_DATA_SUCCESS,
+  SUBMIT_USER_PREFERENCE_SUCCESS,
+  GET_WORD_STATS_SUCCESS
 } from "./types";
 
 export const logIn = (email, password, navigate) => (dispatch) => {
@@ -217,6 +220,38 @@ export const updateUser = (formData) => (dispatch) => {
   });
 };
 
+export const submitUserData = (formData, navigate) => (dispatch) => {
+  console.log(navigate)
+  fetch(`http://localhost:3001/api/userData`, {
+    method: "PUT",
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+    credentials: "include",
+    body: formData,
+  }).then((res) => {
+    if(res.status === 200) {
+      dispatch({type: SUBMIT_USER_DATA_SUCCESS, redirect: navigate,})
+    }
+  })
+}
+
+export const submitUserPreference = (userPreference, navigate) => (dispatch) => {
+  fetch(`http://localhost:3001/api/userPreference`, {
+    method: "PUT",
+    headers: {
+      Authorization: localStorage.getItem("token"),
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ userPreference }),
+  }).then((res) => {
+    if(res.status === 200) {
+      dispatch({type: SUBMIT_USER_PREFERENCE_SUCCESS, redirect: navigate,})
+    }
+  })
+}
+
 export const addFriend = (friendId) => (dispatch) => {
   console.log(friendId);
   fetch(`http://localhost:3001/api/friend/${friendId}`, {
@@ -410,3 +445,31 @@ export const adminLogin = (username, password, navigate) => (dispatch) => {
     }
   });
 };
+
+export const getWordsStats = () => (dispatch) => {
+  fetch("http://localhost:3001/api/wordStats", {
+    method: "GET",
+    headers: {
+      Authorization: localStorage.getItem("token"),
+      "Content-Type": "application/json",
+    },
+  }).then((res) => {
+    if(res.status === 200) {
+      res.json().then((res) => {
+        dispatch({type: GET_WORD_STATS_SUCCESS, payload: res.userWordsData})
+      })
+    }
+  })
+}
+
+export const submitWordInteraction = (word) => (dispatch) => {
+  fetch("http://localhost:3001/api/wordInteraction", {
+    method: "POST", 
+    headers: {
+      Authorization: localStorage.getItem("token"),
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({word})
+  })
+}

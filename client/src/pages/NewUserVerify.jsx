@@ -18,7 +18,7 @@ function NewUserVerify({ verifyAccount, getUser }) {
   const [isMatch, setIsMatch] = useState(false);
   const [code, setCode] = useState("");
 
-  const handleSubmitClick = () => {
+  const handleCodeSubmitClick = () => {
     console.log(user.email);
     setIsMatch(false);
     setCode("");
@@ -46,31 +46,33 @@ function NewUserVerify({ verifyAccount, getUser }) {
   }, []);
 
   return (
-    <div className={styles.NewUserVerify}>
-      <div className={styles.Verification}>
-        <div className={styles.Back}>
-          <img onClick={goBack} className={styles.back} src={Back} />
-          <h2>Account verification</h2>
-        </div>
-        <input
-          type="text"
-          placeholder="Enter the verification code"
-          value={code}
-          onChange={handleCodeValueChange}
-        />
-        {isMatch && (
-          <p className={styles.Wrong}>The verification code is wrong</p>
-        )}
-        <p>
-          We've sent a verification code to your email. Check your spam if it
-          isn't working
-        </p>
-        <div className={styles.Buttons}>
-          <button onClick={handleSubmitClick}>Submit</button>
-          <button>Resend</button>
+    <>
+      <div className={styles.NewUserVerify}>
+        <div className={styles.Verification}>
+          <div className={styles.Back}>
+            <img onClick={goBack} className={styles.back} src={Back} />
+            <h2>Account verification</h2>
+          </div>
+          <input
+            type="text"
+            placeholder="Enter the verification code"
+            value={code}
+            onChange={handleCodeValueChange}
+          />
+          {isMatch && (
+            <p className={styles.Wrong}>The verification code is wrong</p>
+          )}
+          <p>
+            We've sent a verification code to your email. Check your spam if it
+            isn't working
+          </p>
+          <div className={styles.Buttons}>
+            <button onClick={handleCodeSubmitClick}>Submit</button>
+            <button>Resend</button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,10 +1,29 @@
 const Story = require("../models/Story");
 const User = require("../models/User");
+const SchoolStory = require("../models/SchoolStory")
 
 const cloudinary = require("cloudinary").v2;
 
-module.exports.getStories = (req, res) => {
+module.exports.getAllStories = (req, res) => {
   Story.find().then((stories) => res.status(200).json({ stories }));
+};
+
+module.exports.getStories = (req, res) => {
+  const {school} = req.user
+
+  console.log(school)
+
+  Story.find().then( async (stories) => {
+    if(school !== "Independent") {
+      const schoolData = await SchoolStory.findOne({school})
+      const approve = schoolData.approved
+
+      const approvedStories = stories.filter((story) => approve.includes(story._id))
+
+      return res.status(200).json({stories: approvedStories})
+    }
+    return res.status(200).json({ stories })
+  });
 };
 
 module.exports.postReview = (req, res) => {

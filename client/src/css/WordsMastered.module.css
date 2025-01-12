@@ -1,0 +1,123 @@
+.wordsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+  
+  .wordCard{
+    background-color: #472948;
+    /* border: 1px solid #ddd; */
+    border-radius: 8px;
+    padding: 16px;
+    width: 250px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  
+  .wordCard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .wordCard p,
+  .wordCard strong {
+    color: white;
+  }
+  .word {
+    color: white;
+    font-size: 1.5rem;
+    margin: 8px 0;
+  }
+  
+  .actions button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    margin: 8px 4px;
+    padding: 8px 12px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .actions button:hover {
+    background-color: #0056b3;
+  }
+  
+  .sortContainer {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .sortContainer button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .sortContainer button:hover {
+    background-color: #0056b3;
+  }
+  
+  .controls {
+    /* justify-content: space-between; */
+    margin-top: 1rem;
+    margin-bottom: 16px;
+    margin-left: 6.5rem;
+    gap: 8px;
+  }
+  
+  .searchInput,
+  .filterInput,
+  .sortDropdown {
+    color: black;
+    padding: 8px;
+    border-radius: 4px;
+    flex: 1;
+    max-width: 200px;
+  }
+  
+  .controls button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: black;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .controls button:hover {
+    background-color: #0056b3;
+  }
+  
+  .anotherlabel {
+    display: flex;
+    gap: 9.9rem;
+  }
+
+  .anothercontrols {
+    display: flex;
+    gap: 1rem;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

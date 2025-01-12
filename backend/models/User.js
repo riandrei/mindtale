@@ -89,6 +89,19 @@ const UserSchema = new Schema({
   ],
   tag: String,
   bio: String,
+  birthday: String,
+  school: String,
+  sex: String,
+  gradeLevel: String,
+  age: String,
+  storyPreference: [String],
+  words: [
+    {
+      word: String,
+      timesEncountered: String,
+      interactions: String
+    }
+  ]
 });
 
 module.exports = User = mongoose.model("user", UserSchema);

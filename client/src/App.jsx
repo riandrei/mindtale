@@ -21,10 +21,16 @@ import MetricsPage from "./pages/MetricsPage";
 import Quiz from "./pages/Quiz";
 import ViewAll from "./pages/ViewAll";
 import Leaderboard from "./pages/Leaderboard";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import StudentDetails from "./pages/StudentDetails";
+import SchoolAdmin from "./pages/SchoolAdmin"
 import AboutUs from "./components/AboutUs";
+import Dictionary from "./pages/Dictionary";
 
 import Story from "./components/Story";
 import StoryNav from "./components/StoryNav";
+import StoryPreference from "./pages/StoryPreference";
+import WordsMastered from "./pages/WordsMastered";
 
 function App() {
   return (
@@ -68,6 +74,12 @@ function App() {
               />
             }
           />
+          <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
+          <Route path="/UserDetails" element={<StudentDetails />} />
+          <Route path="/StoryPreference" element={<StoryPreference />} />
+          <Route path="/SchoolAdmin" element={<SchoolAdmin />} />
+          <Route path="/Dictionary" element={<Dictionary />} />
+          <Route path="/WordsMastered" element={<WordsMastered />} />
         </Routes>
       </Router>
     </Provider>

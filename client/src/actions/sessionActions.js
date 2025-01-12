@@ -3,6 +3,7 @@ import {
   SUBMIT_USER_CHOICE_SUCCESS,
   GET_ASSESMENT_SUCCESS,
   TRANSLATE_TEXT_SUCCESS,
+  TRANSLATE_WORD_SUCCESS,
   RESET_SESSION,
 } from "./types";
 
@@ -104,6 +105,36 @@ export const translateText = (text, targetLanguage) => async (dispatch) => {
     console.log(data);
     dispatch({
       type: TRANSLATE_TEXT_SUCCESS,
+      payload: data,
+    });
+
+    return data.translation;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+export const translateWord = (text, targetLanguage) => async (dispatch) => {
+  try {
+    const response = await fetch("http://localhost:3001/api/translatetext", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+        credentials: "include",
+      },
+      body: JSON.stringify({ text, targetLanguage }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to translate text");
+    }
+
+    const data = await response.json();
+    console.log(data);
+    dispatch({
+      type: TRANSLATE_WORD_SUCCESS,
       payload: data,
     });
 

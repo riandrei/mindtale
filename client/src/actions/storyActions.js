@@ -13,6 +13,27 @@ export const getStories = () => (dispatch) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token"),
+    },
+    credentials: "include",
+  }).then((res) => {
+    if (res.status === 200) {
+      res.json().then((res) => {
+        dispatch({
+          type: GET_STORIES_SUCCESS,
+          payload: res.stories,
+        });
+      });
+    }
+  });
+};
+
+export const getAllStories = () => (dispatch) => {
+  console.log('test')
+  fetch("http://localhost:3001/api/allStories", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
     },
     credentials: "include",
   }).then((res) => {

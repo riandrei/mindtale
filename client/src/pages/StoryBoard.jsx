@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 
-import { readStory } from "../actions/sessionActions";
+import { readStory, translateText, translateWord } from "../actions/sessionActions";
+import {submitWordInteraction} from "../actions/authActions"
 
 import Footer from "../components/Footer";
 import { Choices } from "../components/Choices";
 import ChaptersNav from "../components/ChaptersNav";
 import Story from "../components/Story";
 import StoryNav from "../components/StoryNav";
+import WordPopup from "../components/WordPopup";
 
 import Back from "../assets/back.png";
 import Theme from "../assets/themes.png";
@@ -21,6 +23,10 @@ import LoadingScreen from "../pages/LoadingScreen";
 
 function StoryBoard({ readStory }) {
   const { storyId } = useParams();
+  const dispatch = useDispatch();
+
+  const [showPopup, setShowPopup] = useState(false)
+  const [selectedWord, setSelectedWord] = useState('')
 
   const [openNav, setOpenNav] = useState(true);
   const handleNavClick = () => {
@@ -77,6 +83,55 @@ function StoryBoard({ readStory }) {
     setFontSize(1);
   }
 
+  const handleWordClick = (word) => {
+    console.log("Clicked word:", word);
+
+    setSelectedWord(word)
+    setShowPopup(true)
+  }
+
+  useEffect(() => {
+    dispatch(translateText(selectedWord, 'tl'))
+    dispatch(translateWord(selectedWord, 'tl'))
+    fetchDefinition()
+    dispatch(submitWordInteraction(selectedWord.replace(/^[^\w]+|[^\w]+$/g, "")
+    ))
+  }, [selectedWord])
+ 
+  const [result, setResult] = useState(null);
+    const [error, setError] = useState('');
+  
+    const fetchDefinition = async () => {
+      const word = selectedWord.replace(/^[^\w]+|[^\w]+$/g, "");
+
+      console.log('fetch')
+      if (!word.trim()) {
+        setError('Please enter a word to search.');
+        return;
+      }
+    
+      try {
+        setError('');
+        const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+        console.log(response)
+        if (!response.ok) {
+          setResult(null);
+          setError('Word not found');
+          return;
+        }
+        const data = await response.json();
+        setResult(data[0]);
+        setError(''); 
+      } catch {
+        setResult(null);
+        setError('Something went wrong');
+      }
+    };
+
+  const handleCloseClick = () => {
+    setShowPopup(false)
+  }
+
   return loading ? (
     <LoadingScreen />
   ) : (
@@ -97,6 +152,7 @@ function StoryBoard({ readStory }) {
             openNav={openNav}
             handleNavClick={handleNavClick}
             fontSize={fontSize}
+            handleWordClick={handleWordClick}
           />
         </div>
       ) : (
@@ -107,6 +163,7 @@ function StoryBoard({ readStory }) {
           narrativeImage={scenarioHistory[indexClicked - 1]}
         />
       )}
+      {showPopup ? <WordPopup selectedWord={selectedWord} result={result} error={error} handleCloseClick={handleCloseClick}/> : null}
       {/* <Story openNav={openNav} handleNavClick={handleNavClick} /> */}
       {openNav ? null : (
         <ChaptersNav

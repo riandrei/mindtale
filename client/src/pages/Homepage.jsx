@@ -116,6 +116,7 @@ function Homepage({ getUser, getStories }) {
 
   return (
     <div className={styles.Homepage}>
+      {console.log(user)}
       <Nav />
       <TopBar />
       <Swiper
@@ -150,11 +151,9 @@ function Homepage({ getUser, getStories }) {
         {/* {topTags.map((tag) => (
           <SliderTags key={tag} tag={tag} />
         ))} */}
-        <SliderTags tag="Fantasy" />
-        <SliderTags tag="Adventure" />
-        <SliderTags tag="Sci-Fi" />
-        <SliderTags tag="Mystery" />
-        <SliderTags tag="Comedy" />
+        {user?.storyPreference?.map((storyTag) => (
+          <SliderTags tag={storyTag} />
+        ))}
 
         <DailyRead />
       </section>

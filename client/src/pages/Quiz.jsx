@@ -15,6 +15,7 @@ const Quiz = ({
   correctAnswers,
   isLight,
   handleThemeClick,
+  fontSize,
 }) => {
   const completedStories = useSelector(
     (state) => state.auth.user?.completedStories
@@ -78,6 +79,7 @@ const Quiz = ({
               handleQuestionCount={handleQuestionCount}
               questionCount={questionCount}
               isLight={isLight}
+              fontSize={fontSize}
             />
           )
       )}

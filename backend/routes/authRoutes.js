@@ -19,6 +19,10 @@ const {
   forgotPassword,
   checkVerificationCode,
   changePassword,
+  submitUserData,
+  submitUserPreference,
+  getWordsStats,
+  submitWordInteraction
 } = require("../controllers/authController");
 
 const tokenMiddleware = require("../middleware/tokenMiddleware");
@@ -45,5 +49,9 @@ router.get("/ranking", getRanking);
 router.post("/forgot", forgotPassword);
 router.post("/checkVerificationCode", checkVerificationCode);
 router.post("/changePassword", changePassword);
+router.put("/userData", tokenMiddleware, multerMiddleware, submitUserData)
+router.put("/userPreference", tokenMiddleware, submitUserPreference)
+router.get("/wordStats", tokenMiddleware, getWordsStats)
+router.post("/wordInteraction", tokenMiddleware, submitWordInteraction)
 
 module.exports = router;

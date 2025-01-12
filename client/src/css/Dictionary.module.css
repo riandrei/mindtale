@@ -1,0 +1,191 @@
+@import url(https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
+
+/* Random Words Section Styling */
+.RandomWords {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.RandomWordButton {
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text */
+  font-size: 1rem; /* Button text size */
+  padding: 0.5rem 1rem; /* Padding inside buttons */
+  border: none; /* Remove border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+.RandomWordButton:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.RandomWordButton:active {
+  background-color: #3e8e41; /* Even darker green on click */
+  transform: scale(0.95); /* Slightly shrink on click */
+}
+
+.Dictionary {
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dictNav {
+  display: flex;
+  align-items: center;
+  width: 95%;
+  gap: 1.25rem;
+}
+
+.Word,
+.noSearch {
+  flex-direction: column;
+}
+
+.dictNav span {
+  font-size: 2em;
+  font-family: Michroma;
+}
+
+.Back {
+  height: 64px;
+  aspect-ratio: 1 / 1;
+  border: solid 1px #ffffff50;
+  border-radius: 50%;
+}
+
+.Search {
+  width: 32px;
+  height: 32px;
+}
+
+.dictNav input {
+  width: 100%;
+  background-color: #111;
+  padding: 0.5rem 1rem;
+  font-size: 1.25em;
+  border-bottom: 1px solid #333;
+}
+
+.noSearch {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+  align-items: center;
+  animation: 2s infinite alternate-reverse forwards Bounce;
+}
+
+@keyframes Bounce {
+  to {
+    transform: translateY(-1rem);
+  }
+}
+
+.noSearch span {
+  font-family: Michroma;
+  font-size: 1.25em;
+}
+
+.Recent,
+.Word_top_inner span {
+  font-size: 2em;
+  font-family: Poppins;
+  font-weight: 700;
+}
+
+.Kid {
+  width: 50%;
+}
+
+.Word,
+.Word_inner {
+  display: flex;
+  width: 100%;
+  padding: 2rem;
+}
+
+.Word_inner {
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 1.25em;
+  border-radius: 15px;
+  background-color: #47294875;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+}
+
+.Block,
+.Word_top_inner {
+  align-items: center;
+  display: flex;
+}
+
+.Word_top_inner {
+  gap: 2rem;
+}
+
+.Word_top_inner img {
+  width: 48px;
+}
+
+.Speech {
+  opacity: 0.75;
+  letter-spacing: 1px;
+}
+
+.Word_bot {
+  display: flex;
+  gap: 1rem;
+}
+
+.Block {
+  height: 50px;
+  width: 10px;
+  background-color: #2395a5;
+  justify-content: center;
+}
+
+.Word_bot span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: italic;
+}
+
+@media (max-width: 431px) {
+  .Back {
+    height: 32px;
+  }
+
+  .Dictionary,
+  .Word {
+    padding: 0.5rem;
+  }
+
+  .dictNav span {
+    font-size: 1em;
+  }
+
+  .dictNav input,
+  .noSearch span {
+    font-size: 0.75em;
+  }
+
+  .Search {
+    height: 16px;
+  }
+
+  .Word_inner,
+  .Word_top_inner {
+    gap: 1rem;
+  }
+}

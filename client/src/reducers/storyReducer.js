@@ -6,10 +6,14 @@ import {
   GENERATE_COVER_SUCCESS,
   ADD_STORY_SUCCESS,
   DELETE_STORY_SUCCESS,
+  GET_ALLOWED_STORIES_SUCCESS,
+  APPROVE_STORY_SUCCESS
 } from "../actions/types";
 
 const initialState = {
   stories: [],
+  allowedStories: [],
+  rejectedStories: [],
   generatedCoverURL: null,
 };
 
@@ -65,6 +69,19 @@ export default function storyReducer(state = initialState, action) {
           (story) => story._id !== action.payload.storyId
         ),
       };
+    case GET_ALLOWED_STORIES_SUCCESS:
+      console.log(action.payload)
+      return {
+        ...state,
+        allowedStories: action.payload.approved,
+        rejectedStories: action.payload.rejected
+      }
+    case APPROVE_STORY_SUCCESS:
+      return {
+        ...state,
+        allowedStories: action.payload.approved,
+        rejectedStories: action.payload.rejected
+      }
     default:
       return state;
   }

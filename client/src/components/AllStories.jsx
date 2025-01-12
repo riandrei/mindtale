@@ -4,12 +4,12 @@ import { useSelector, connect } from "react-redux";
 import styles from "../css/AllStories.module.css";
 import SpecificStory from "../components/SpecificStory";
 import StoryModal from "../components/StoryModal";
-import { getStories } from "../actions/storyActions";
+import { getAllStories } from "../actions/storyActions";
 
 import Story1 from "../assets/artwork8.jpg";
 import Line from "../assets/line3.png";
 
-function AllStories({ getStories }) {
+function AllStories({ getAllStories }) {
   const stories = useSelector((state) => state.story.stories);
 
   const [showStoryModal, setShowStoryModal] = useState(false);
@@ -23,7 +23,7 @@ function AllStories({ getStories }) {
   };
 
   useEffect(() => {
-    getStories();
+    getAllStories();
   }, []);
 
   return (
@@ -57,5 +57,5 @@ function AllStories({ getStories }) {
     </div>
   );
 }
-const mapDispatchToProps = { getStories };
+const mapDispatchToProps = { getAllStories };
 export default connect(null, mapDispatchToProps)(AllStories);

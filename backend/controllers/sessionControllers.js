@@ -61,7 +61,7 @@ module.exports.startSession = async function startSession(req, res) {
                   role: "user",
                   parts: [
                     {
-                      text: `You will be given a story title and synopsis. Your reply should include a 300 word long narration, multiple actions the user can pick from, and a boolean value indicating if the story has ended. Keep in mind that the story should be straightforward and short. Do not repeat the same narrations or actions.
+                      text: `You will be given a story title and synopsis. Your reply should include a 50 word long narration, multiple actions the user can pick from, and a boolean value indicating if the story has ended. Keep in mind that the story should be straightforward and short. Do not repeat the same narrations or actions you have already said previously. Change isEnd to true once it has been about 15 chats back and forth.
 
             Example story title and synopsis: "Dragon's Quest: Welcome to the realm of Avalon, a land shrouded in whispers of forgotten magic and mythical creatures. You are no longer a nameless villager, but a budding hero thrust into an extraordinary adventure. A shadow has fallen upon Avalon. Whispers of a slumbering dragon, awakened by a malevolent force, spread fear throughout the kingdom.",
             Example response:
@@ -79,7 +79,7 @@ module.exports.startSession = async function startSession(req, res) {
                   parts: [{ text: "Okay, what is the story about?" }],
                 },
               ],
-              generationConfig: { maxOutputTokens: 5000 },
+              generationConfig: { maxOutputTokens: 500 },
             });
 
             const result = await chat.sendMessage(
@@ -110,6 +110,8 @@ module.exports.startSession = async function startSession(req, res) {
 
               const scenarioHistory = [...Session.scenarioHistory];
               const assesment = Session.assesment;
+
+              saveWords(parsedText.narrator, email)
 
               return res.status(200).json({
                 content: { history, parsedText, scenarioHistory, assesment },
@@ -198,6 +200,8 @@ module.exports.submitUserChoice = async function submitUserChoice(req, res) {
 
           const scenarioHistory = [...session.scenarioHistory];
           const assesment = session.assesment;
+
+          saveWords(parsedText.narrator, email)
 
           return res
             .status(200)
@@ -455,3 +459,75 @@ module.exports.translateText = (req, res) => {
     })
     .catch((error) => console.error(error));
 };
+
+function saveWords(narration, email) {
+  console.log("narration", narration);
+  
+  const wordsArray = narration
+    .toLowerCase()
+    .replace(/[^a-z\s']/g, '') // Remove punctuation except apostrophes
+    .split(/\s+/); // Split by whitespace
+
+  // Step 2: Count unique words
+  const wordMap = {};
+  wordsArray.forEach((word) => {
+    if (word) {
+      if (!wordMap[word]) {
+        wordMap[word] = { timesEncountered: 0, interactions: 0 };
+      }
+      wordMap[word].timesEncountered++;
+    }
+  });
+
+  // Step 3: Convert to the desired format
+  const newWords = Object.entries(wordMap).map(([word, data]) => ({
+    word,
+    timesEncountered: data.timesEncountered.toString(),
+    interactions: data.interactions.toString(),
+  }));
+
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      console.error(`User with email ${email} not found.`);
+      return;
+    }
+
+    const existingWords = user.words || [];
+
+    // Merge new words with existing saved words
+    const mergedWords = [...existingWords];
+
+    console.log('before', mergedWords)
+
+    newWords.forEach((newWord) => {
+      const existingWord = mergedWords.find(
+        (word) => word.word === newWord.word
+      );
+      if (existingWord) {
+        existingWord.timesEncountered = (
+          parseInt(existingWord.timesEncountered, 10) +
+          parseInt(newWord.timesEncountered, 10)
+        ).toString();
+        existingWord.interactions = existingWord.interactions; // No change here
+      } else {
+        mergedWords.push(newWord);
+      }
+    });
+
+    console.log('merge', mergedWords)
+
+    user.words = mergedWords;
+
+    // Save the updated user data
+    user
+      .save()
+      .then(() => {
+        console.log("User's words updated successfully.");
+      })
+      .catch((err) => {
+        console.error("Error saving user data:", err);
+      });
+  });
+
+  console.log(newWords);
+}

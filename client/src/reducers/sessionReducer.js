@@ -4,6 +4,7 @@ import {
   SUBMIT_USER_CHOICE_SUCCESS,
   TRANSLATE_TEXT_SUCCESS,
   RESET_SESSION,
+  TRANSLATE_WORD_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   isEnd: false,
   assesment: {},
   translatedText: "",
+  translatedWord: "",
 };
 
 export default function sessionReducer(state = initialState, action) {
@@ -46,6 +48,12 @@ export default function sessionReducer(state = initialState, action) {
         ...state,
         translatedText: action.payload.translatedText,
       };
+    case TRANSLATE_WORD_SUCCESS:
+      console.log(action.payload.translation)
+      return {
+        ...state,
+        translatedWord: action.payload.translation
+      }
     case RESET_SESSION:
       return initialState;
     default:
