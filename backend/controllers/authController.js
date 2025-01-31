@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const formData = require("form-data");
-const Mailgun = require("mailgun.js");
 const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
 const speech = require("@google-cloud/speech");

@@ -19,7 +19,7 @@ import {
 } from "./types";
 
 export const logIn = (email, password, navigate) => (dispatch) => {
-  fetch("http://localhost:3001/api/logIn", {
+  fetch("https://api.auth.localhost/api/logIn", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export const logIn = (email, password, navigate) => (dispatch) => {
 };
 
 export const signUp = (email, password, navigate) => (dispatch) => {
-  fetch("http://localhost:3001/api/signUp", {
+  fetch("https://api.auth.localhost/api/signUp", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export const signUp = (email, password, navigate) => (dispatch) => {
 };
 
 export const signInWithGoogle = (credential, navigate) => (dispatch) => {
-  fetch("http://localhost:3001/api/login/google", {
+  fetch("https://api.auth.localhost/api/login/google", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -97,7 +97,7 @@ export const signInWithGoogle = (credential, navigate) => (dispatch) => {
 
 export const signUpWithGoogle = (credential, navigate) => (dispatch) => {
   console.log("ACTION RUNNING");
-  fetch("http://localhost:3001/api/signUp/google", {
+  fetch("https://api.auth.localhost/api/signUp/google", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -116,7 +116,7 @@ export const signUpWithGoogle = (credential, navigate) => (dispatch) => {
 export const verifyAccount = (code, email, navigate) => (dispatch) => {
   console.log(email, code);
 
-  fetch("http://localhost:3001/api/verify", {
+  fetch("https://api.auth.localhost/api/verify", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -143,7 +143,7 @@ export const verifyAccount = (code, email, navigate) => (dispatch) => {
 };
 
 export const getUser = () => (dispatch) => {
-  fetch("http://localhost:3001/api/user", {
+  fetch("https://api.auth.localhost/api/user", {
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -162,7 +162,7 @@ export const getUser = () => (dispatch) => {
 };
 
 export const toggleBookmark = (token, storyId) => (dispatch) => {
-  fetch(`http://localhost:3001/api/bookmark/${storyId}`, {
+  fetch(`https://api.auth.localhost/api/bookmark/${storyId}`, {
     method: "POST",
     headers: {
       Authorization: token,
@@ -179,7 +179,7 @@ export const toggleBookmark = (token, storyId) => (dispatch) => {
 };
 
 export const addVisited = (storyId) => (dispatch) => {
-  fetch(`http://localhost:3001/api/visited/${storyId}`, {
+  fetch(`https://api.auth.localhost/api/visited/${storyId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -192,7 +192,7 @@ export const addVisited = (storyId) => (dispatch) => {
 };
 
 export const getUsers = () => (dispatch) => {
-  fetch(`http://localhost:3001/api/users`, {
+  fetch(`https://api.auth.localhost/api/users`, {
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -212,7 +212,7 @@ export const getUsers = () => (dispatch) => {
 
 export const updateUser = (formData) => (dispatch) => {
   console.log(formData);
-  fetch(`http://localhost:3001/api/user`, {
+  fetch(`https://api.auth.localhost/api/user`, {
     method: "PUT",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -224,7 +224,7 @@ export const updateUser = (formData) => (dispatch) => {
 
 export const submitUserData = (formData, navigate) => (dispatch) => {
   console.log(navigate);
-  fetch(`http://localhost:3001/api/userData`, {
+  fetch(`https://api.auth.localhost/api/userData`, {
     method: "PUT",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -240,7 +240,7 @@ export const submitUserData = (formData, navigate) => (dispatch) => {
 
 export const submitUserPreference =
   (userPreference, navigate) => (dispatch) => {
-    fetch(`http://localhost:3001/api/userPreference`, {
+    fetch(`https://api.auth.localhost/api/userPreference`, {
       method: "PUT",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -257,7 +257,7 @@ export const submitUserPreference =
 
 export const addFriend = (friendId) => (dispatch) => {
   console.log(friendId);
-  fetch(`http://localhost:3001/api/friend/${friendId}`, {
+  fetch(`https://api.auth.localhost/api/friend/${friendId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -266,7 +266,7 @@ export const addFriend = (friendId) => (dispatch) => {
 };
 
 export const acceptFriendRequest = (friendId) => (dispatch) => {
-  fetch(`http://localhost:3001/api/accept/${friendId}`, {
+  fetch(`https://api.auth.localhost/api/accept/${friendId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -275,7 +275,7 @@ export const acceptFriendRequest = (friendId) => (dispatch) => {
 };
 
 export const rejectFriendRequest = (friendId) => (dispatch) => {
-  fetch(`http://localhost:3001/api/decline/${friendId}`, {
+  fetch(`https://api.auth.localhost/api/decline/${friendId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -286,7 +286,7 @@ export const rejectFriendRequest = (friendId) => (dispatch) => {
 export const submitCompletedStory = (storyId, assesmentScore) => (dispatch) => {
   console.log(storyId, assesmentScore);
 
-  fetch(`http://localhost:3001/api/complete/${storyId}`, {
+  fetch(`https://api.auth.localhost/api/complete/${storyId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -298,7 +298,7 @@ export const submitCompletedStory = (storyId, assesmentScore) => (dispatch) => {
 
 export const getRanking = () => (dispatch) => {
   console.log("test");
-  fetch(`http://localhost:3001/api/ranking`, {
+  fetch(`https://api.auth.localhost/api/ranking`, {
     method: "GET",
     headers: {
       // Authorization: localStorage.getItem("token"),
@@ -318,7 +318,7 @@ export const getRanking = () => (dispatch) => {
 export const forgotPassword = (email) => async (dispatch) => {
   console.log(email);
   try {
-    const response = await fetch(`http://localhost:3001/api/forgot`, {
+    const response = await fetch(`https://api.auth.localhost/api/forgot`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -351,7 +351,7 @@ export const checkVerification =
     console.log(email);
     try {
       const response = await fetch(
-        `http://localhost:3001/api/checkVerificationCode`,
+        `https://api.auth.localhost/api/checkVerificationCode`,
         {
           method: "POST",
           headers: {
@@ -383,13 +383,16 @@ export const checkVerification =
 
 export const changePassword = (email, newPassword) => async (dispatch) => {
   try {
-    const response = await fetch(`http://localhost:3001/api/changePassword`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, newPassword }),
-    });
+    const response = await fetch(
+      `https://api.auth.localhost/api/changePassword`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, newPassword }),
+      }
+    );
 
     // Check if the response is successful
     if (!response.ok) {
@@ -412,7 +415,7 @@ export const changePassword = (email, newPassword) => async (dispatch) => {
 };
 
 export const getStoriesStats = () => (dispatch) => {
-  fetch("http://localhost:3001/api/stories/stats", {
+  fetch("https://api.auth.localhost/api/stories/stats", {
     method: "GET",
   }).then((res) => {
     if (res.status === 200) {
@@ -428,7 +431,7 @@ export const getStoriesStats = () => (dispatch) => {
 
 export const adminLogin = (username, password, navigate) => (dispatch) => {
   console.log(username, password);
-  fetch("http://localhost:3001/api/adminLogin", {
+  fetch("https://api.auth.localhost/api/adminLogin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -450,7 +453,7 @@ export const adminLogin = (username, password, navigate) => (dispatch) => {
 };
 
 export const getWordsStats = () => (dispatch) => {
-  fetch("http://localhost:3001/api/wordStats", {
+  fetch("https://api.auth.localhost/api/wordStats", {
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -466,7 +469,7 @@ export const getWordsStats = () => (dispatch) => {
 };
 
 export const submitWordInteraction = (word) => (dispatch) => {
-  fetch("http://localhost:3001/api/wordInteraction", {
+  fetch("https://api.auth.localhost/api/wordInteraction", {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -479,7 +482,7 @@ export const submitWordInteraction = (word) => (dispatch) => {
 
 export const submitWordReadingScore =
   (passage, audioData, wordReadingType) => (dispatch) => {
-    fetch("http://localhost:3001/api/wordReadingScore", {
+    fetch("https://api.auth.localhost/api/wordReadingScore", {
       method: "POST",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -503,7 +506,7 @@ export const submitWordReadingScore =
 
 export const submitComprehensionScore =
   (questions, answers, comprehensionType) => (dispatch) => {
-    fetch("http://localhost:3001/api/comprehensionScore", {
+    fetch("https://api.auth.localhost/api/comprehensionScore", {
       method: "POST",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -528,7 +531,7 @@ export const submitComprehensionScore =
   };
 
 export const getPHILIRIResults = () => (dispatch) => {
-  fetch("http://localhost:3001/api/philIRI", {
+  fetch("https://api.auth.localhost/api/philIRI", {
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),

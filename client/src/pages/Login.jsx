@@ -156,7 +156,7 @@ function Login({ logIn }) {
 
       <div className={styles.bottom}>
         <div className={styles.title}>
-          <h1>MINDTALE</h1>
+          <h1>MINDTAL!!!E</h1>
           <p>Gamified Interactive Stories Powered by AI</p>
         </div>
 

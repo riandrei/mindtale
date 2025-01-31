@@ -1,26 +1,23 @@
-import { SCHOOL_ADMIN_LOGIN_SUCCESS, GET_ALLOWED_STORIES_SUCCESS, APPROVE_STORY_SUCCESS } from "./types"
+import {
+  SCHOOL_ADMIN_LOGIN_SUCCESS,
+  GET_ALLOWED_STORIES_SUCCESS,
+  APPROVE_STORY_SUCCESS,
+} from "./types";
 
 export const addAdmin = (formData) => (dispatch) => {
-    console.log('test')
-    console.log(formData)
-    fetch(`http://localhost:3001/api/admin`, {
-        method: "POST",
-        headers: {
-          Authorization: localStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(formData),
-      })
-    //   .then((res) => {
-    //     if(res.status === 200) {
-    //       dispatch({ type: ADD_ADMIN_SUCCESS })
-    //     }
-    //   })
-}
+  fetch(`https://api.auth.localhost/api/admin`, {
+    method: "POST",
+    headers: {
+      Authorization: localStorage.getItem("token"),
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(formData),
+  });
+};
 
 export const schoolAdminLogin = (username, password) => (dispatch) => {
-  fetch("http://localhost:3001/api/schoolAdminLogin", {
+  fetch("https://api.auth.localhost/api/schoolAdminLogin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -34,15 +31,13 @@ export const schoolAdminLogin = (username, password) => (dispatch) => {
           type: SCHOOL_ADMIN_LOGIN_SUCCESS,
           payload: res.userInfo,
         });
-
-        // dispatch(getStoriesStats());
       });
     }
   });
 };
 
 export const getAllowedStories = () => (dispatch) => {
-  fetch("http://localhost:3001/api/allowedStories", {
+  fetch("https://api.auth.localhost/api/allowedStories", {
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -58,35 +53,34 @@ export const getAllowedStories = () => (dispatch) => {
       });
     }
   });
-}
+};
 
 export const approveStory = (storyId) => (dispatch) => {
-  fetch(`http://localhost:3001/api/approveStory/${storyId}`, {
+  fetch(`https://api.auth.localhost/api/approveStory/${storyId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
     },
   }).then((res) => {
-    if(res.status === 200) {
+    if (res.status === 200) {
       res.json().then((res) => {
-        dispatch({type: APPROVE_STORY_SUCCESS, payload: res.schoolData})
-      })
+        dispatch({ type: APPROVE_STORY_SUCCESS, payload: res.schoolData });
+      });
     }
-  })
-}
-
+  });
+};
 
 export const rejectStory = (storyId) => (dispatch) => {
-  fetch(`http://localhost:3001/api/rejectStory/${storyId}`, {
+  fetch(`https://api.auth.localhost/api/rejectStory/${storyId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
     },
   }).then((res) => {
-    if(res.status === 200) {
+    if (res.status === 200) {
       res.json().then((res) => {
-        dispatch({type: APPROVE_STORY_SUCCESS, payload: res.schoolData})
-      })
+        dispatch({ type: APPROVE_STORY_SUCCESS, payload: res.schoolData });
+      });
     }
-  })
-}
+  });
+};
