@@ -1,0 +1,20 @@
+.Pretest {
+  background-color: #451d35;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 1rem;
+}
+.Pretest img {
+  width: 40%;
+}
+.Home {
+  background-color: #fff;
+  color: #451d35;
+  padding: 0.5rem;
+  text-decoration: none;
+}

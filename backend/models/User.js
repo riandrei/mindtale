@@ -99,9 +99,15 @@ const UserSchema = new Schema({
     {
       word: String,
       timesEncountered: String,
-      interactions: String
-    }
-  ]
+      interactions: String,
+    },
+  ],
+  philIRI: {
+    preTestWordReadingScore: Number,
+    preTestComprehensionScore: Number,
+    postTestWordReadingScore: Number,
+    postTestComprehensionScore: Number,
+  },
 });
 
 module.exports = User = mongoose.model("user", UserSchema);

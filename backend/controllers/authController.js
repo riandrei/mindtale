@@ -3,6 +3,7 @@ const formData = require("form-data");
 const Mailgun = require("mailgun.js");
 const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
+const speech = require("@google-cloud/speech");
 const { Resend } = require("resend");
 const fs = require("fs");
 
@@ -820,4 +821,252 @@ module.exports.submitWordInteraction = (req, res) => {
       console.error("Error finding user:", err);
       res.status(500).json({ error: "Error finding user." });
     });
+};
+
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+
+const generativeAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+const model = generativeAI.getGenerativeModel({
+  model: "gemini-1.5-flash",
+});
+
+module.exports.submitWordReadingScore = async (req, res) => {
+  const client = new speech.SpeechClient({
+    projectId: "mindtale",
+    credentials: {
+      private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+      client_email: process.env.GOOGLE_CLIENT_EMAIL,
+    },
+  });
+  const passage = req.body.passage;
+
+  let audioData = req.body.audioData;
+  audioData = audioData.replace(/^data:audio\/\w+;base64,/, ""); // Remove prefix if present
+
+  const audio = {
+    content: audioData, // Use content for raw base64-encoded audio data
+  };
+
+  const config = {
+    encoding: "WEBM_OPUS",
+    sampleRateHertz: 48000,
+    languageCode: "en-US",
+  };
+
+  const request = {
+    audio: audio,
+    config: config,
+  };
+
+  let transcription;
+
+  try {
+    const [response] = await client.recognize(request);
+    transcription = response.results
+      .map((result) => result.alternatives[0].transcript)
+      .join("\n");
+    // res.status(200).send({ transcription });
+  } catch (error) {
+    console.error("Error transcribing audio:", error.message);
+    res.status(500).send({ error: error.message });
+  }
+
+  const passageWords = normalizeText(passage).split(" ");
+
+  const transcriptionWords = normalizeText(transcription).split(" ");
+
+  const miscues = await getMiscues(passageWords, transcriptionWords);
+  const numberOfWords = passageWords.length;
+
+  const wordReadingScore =
+    ((numberOfWords - miscues.miscues) / numberOfWords) * 100;
+
+  try {
+    const user = await User.findOne({ email: req.user.email });
+
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    const { wordReadingType } = req.body;
+
+    if (wordReadingType === "pretest") {
+      user.philIRI.preTestWordReadingScore = wordReadingScore;
+    } else {
+      user.philIRI.postTestWordReadingScore = wordReadingScore;
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      message: "Word reading score updated successfully",
+      wordReadingScore,
+    });
+  } catch (error) {
+    console.error("Error updating word reading score:", error.message);
+    res.status(500).send({ error: "Error updating word reading score" });
+  }
+};
+
+async function getMiscues(passageWords, transcriptionWords) {
+  const chat = await model.startChat({
+    history: [
+      {
+        role: "user",
+        parts: [
+          {
+            text: `I will give you a passage and a transcription. You need to count the number of miscues in the transcription. No need to give the reason. Just give the response in the given format.
+  Response Format:
+  {
+    "miscues": 3
+  }
+  `,
+          },
+        ],
+      },
+      {
+        role: "model",
+        parts: [
+          {
+            text: `Okay, give me the passage and transcription. I will only respond with {"miscues": number} after this.`,
+          },
+        ],
+      },
+    ],
+  });
+
+  let retries = 3;
+  let miscuesResponse;
+
+  while (retries > 0) {
+    try {
+      const result = await chat.sendMessage(
+        `Here is the passage: ${passageWords}. Here is the transcription: ${transcriptionWords}.`
+      );
+
+      const response = await result.response;
+      const text = response.text();
+      const trimmedText = text.trim();
+
+      const jsonMatch = trimmedText.match(/\{[^}]*"miscues"[^}]*\}/);
+      if (jsonMatch) {
+        miscuesResponse = JSON.parse(jsonMatch[0]);
+        return miscuesResponse;
+      } else {
+        throw new Error("No valid JSON object found in the response.");
+      }
+    } catch (error) {
+      console.error(
+        `Error parsing model response. Retries left: ${retries - 1}.`,
+        error.message
+      );
+      retries--;
+    }
+  }
+
+  throw new Error("Failed to get valid miscues response after retries.");
+}
+
+function normalizeText(text) {
+  return text
+    .replace(/[.,!?;:"()\-“”]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+module.exports.submitComprehensionScore = async (req, res) => {
+  const { questions } = req.body;
+
+  const answers = Object.values(req.body.answers);
+
+  try {
+    const chat = await model.startChat({
+      history: [
+        {
+          role: "user",
+          parts: [
+            {
+              text: `I will provide a list of questions with their correct answers and a list of user-provided answers. Compare the user's answers to the correct answers and count how many are correct. Give me the reasons. Send me the response in the given format:
+              Response Format:
+              {
+                "correctAnswers": <number>
+              }`,
+            },
+          ],
+        },
+        {
+          role: "model",
+          parts: [{ text: "Understood. Please provide the data." }],
+        },
+      ],
+    });
+
+    const result = await chat.sendMessage(
+      `Here are the questions with correct answers: ${JSON.stringify(
+        questions
+      )}. Here are the user's answers: ${JSON.stringify(answers)}.`
+    );
+
+    const response = await result.response;
+    const text = response.text();
+    const trimmedText = text.trim();
+
+    console.log("Model response:", trimmedText);
+
+    // Extract and parse the AI's JSON response
+    const jsonMatch = trimmedText.match(/\{[^}]*"correctAnswers"[^}]*\}/);
+    if (!jsonMatch) {
+      throw new Error("No valid JSON response from the AI.");
+    }
+
+    const scoreData = JSON.parse(jsonMatch[0]);
+    const correctAnswers = scoreData.correctAnswers;
+
+    const comprehensionScore = (correctAnswers / answers.length) * 100;
+
+    // Save to the user's record (example assumes Mongoose and a `User` model)
+    const user = await User.findOne({ email: req.user.email });
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    const { comprehensionType } = req.body;
+
+    if (comprehensionType === "pretest") {
+      user.philIRI.preTestComprehensionScore = comprehensionScore;
+    } else {
+      user.philIRI.postTestComprehensionScore = comprehensionScore;
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      message: "Comprehension score updated successfully.",
+      correctAnswers,
+    });
+  } catch (error) {
+    console.error("Error evaluating comprehension score:", error.message);
+    res.status(500).send({ error: "Failed to evaluate comprehension score." });
+  }
+};
+
+module.exports.getPHILIRIResults = async (req, res) => {
+  const { email } = req.user;
+
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      console.error(`User with email ${email} not found.`);
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    const { philIRI } = user;
+
+    if (!philIRI) {
+      return res.status(404).json({ error: "PHIL-IRI data not found." });
+    }
+
+    return res.status(200).json({ philIRI });
+  });
 };

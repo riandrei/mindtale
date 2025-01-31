@@ -15,6 +15,8 @@ import {
   SUBMIT_USER_PREFERENCE_SUCCESS,
   SCHOOL_ADMIN_LOGIN_SUCCESS,
   GET_WORD_STATS_SUCCESS,
+  SUBMIT_COMPREHENSION_SCORE_SUCCESS,
+  SUBMIT_WORD_READING_SCORE_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -28,7 +30,17 @@ const initialState = {
   averageScores: [],
   bookmarkCounts: [],
   visitCounts: [],
-  wordsStats: []
+  wordsStats: [],
+  philIRI: {
+    pretest: {
+      wordReadingScore: null,
+      comprehensionScore: null,
+    },
+    posttest: {
+      wordReadingScore: null,
+      comprehensionScore: null,
+    },
+  },
 };
 
 export default function authReducer(state = initialState, action) {
@@ -107,26 +119,76 @@ export default function authReducer(state = initialState, action) {
         visitCounts: action.payload.visitCounts,
       };
     case SUBMIT_USER_DATA_SUCCESS:
-      console.log(action)
+      console.log(action);
       action.redirect("/StoryPreference");
       return {
-        ...state
-      }
+        ...state,
+      };
     case SUBMIT_USER_PREFERENCE_SUCCESS:
       action.redirect("/Homepage");
       return {
-        ...state
-      }
+        ...state,
+      };
     case SCHOOL_ADMIN_LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         isSchoolAdmin: true,
-      }
+      };
     case GET_WORD_STATS_SUCCESS:
       return {
         ...state,
-        wordsStats: action.payload
+        wordsStats: action.payload,
+      };
+    case SUBMIT_COMPREHENSION_SCORE_SUCCESS:
+      console.log(action.payload);
+      if (action.comprehensionType === "pretest") {
+        return {
+          ...state,
+          philIRI: {
+            ...state.philIRI,
+            pretest: {
+              ...state.philIRI.pretest,
+              comprehensionScore: action.payload,
+            },
+          },
+        };
+      } else {
+        return {
+          ...state,
+          philIRI: {
+            ...state.philIRI,
+            posttest: {
+              ...state.philIRI.posttest,
+              comprehensionScore: action.payload,
+            },
+          },
+        };
+      }
+    case SUBMIT_WORD_READING_SCORE_SUCCESS:
+      console.log(action.payload);
+      if (action.wordReadingType === "pretest") {
+        return {
+          ...state,
+          philIRI: {
+            ...state.philIRI,
+            pretest: {
+              ...state.philIRI.pretest,
+              wordReadingScore: action.payload,
+            },
+          },
+        };
+      } else {
+        return {
+          ...state,
+          philIRI: {
+            ...state.philIRI,
+            posttest: {
+              ...state.philIRI.posttest,
+              wordReadingScore: action.payload,
+            },
+          },
+        };
       }
     default:
       return state;

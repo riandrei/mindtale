@@ -23,7 +23,7 @@ import ViewAll from "./pages/ViewAll";
 import Leaderboard from "./pages/Leaderboard";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import StudentDetails from "./pages/StudentDetails";
-import SchoolAdmin from "./pages/SchoolAdmin"
+import SchoolAdmin from "./pages/SchoolAdmin";
 import AboutUs from "./components/AboutUs";
 import Dictionary from "./pages/Dictionary";
 
@@ -31,6 +31,8 @@ import Story from "./components/Story";
 import StoryNav from "./components/StoryNav";
 import StoryPreference from "./pages/StoryPreference";
 import WordsMastered from "./pages/WordsMastered";
+import PreTest from "./pages/PreTest";
+import PostTest from "./pages/PostTest";
 
 function App() {
   return (
@@ -80,6 +82,8 @@ function App() {
           <Route path="/SchoolAdmin" element={<SchoolAdmin />} />
           <Route path="/Dictionary" element={<Dictionary />} />
           <Route path="/WordsMastered" element={<WordsMastered />} />
+          <Route path="/PreTest" element={<PreTest />} />
+          <Route path="/PostTest" element={<PostTest />} />
         </Routes>
       </Router>
     </Provider>

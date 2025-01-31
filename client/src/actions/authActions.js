@@ -13,7 +13,9 @@ import {
   GET_STORIES_STATS_SUCCESS,
   SUBMIT_USER_DATA_SUCCESS,
   SUBMIT_USER_PREFERENCE_SUCCESS,
-  GET_WORD_STATS_SUCCESS
+  GET_WORD_STATS_SUCCESS,
+  SUBMIT_WORD_READING_SCORE_SUCCESS,
+  SUBMIT_COMPREHENSION_SCORE_SUCCESS,
 } from "./types";
 
 export const logIn = (email, password, navigate) => (dispatch) => {
@@ -221,7 +223,7 @@ export const updateUser = (formData) => (dispatch) => {
 };
 
 export const submitUserData = (formData, navigate) => (dispatch) => {
-  console.log(navigate)
+  console.log(navigate);
   fetch(`http://localhost:3001/api/userData`, {
     method: "PUT",
     headers: {
@@ -230,27 +232,28 @@ export const submitUserData = (formData, navigate) => (dispatch) => {
     credentials: "include",
     body: formData,
   }).then((res) => {
-    if(res.status === 200) {
-      dispatch({type: SUBMIT_USER_DATA_SUCCESS, redirect: navigate,})
+    if (res.status === 200) {
+      dispatch({ type: SUBMIT_USER_DATA_SUCCESS, redirect: navigate });
     }
-  })
-}
+  });
+};
 
-export const submitUserPreference = (userPreference, navigate) => (dispatch) => {
-  fetch(`http://localhost:3001/api/userPreference`, {
-    method: "PUT",
-    headers: {
-      Authorization: localStorage.getItem("token"),
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-    body: JSON.stringify({ userPreference }),
-  }).then((res) => {
-    if(res.status === 200) {
-      dispatch({type: SUBMIT_USER_PREFERENCE_SUCCESS, redirect: navigate,})
-    }
-  })
-}
+export const submitUserPreference =
+  (userPreference, navigate) => (dispatch) => {
+    fetch(`http://localhost:3001/api/userPreference`, {
+      method: "PUT",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ userPreference }),
+    }).then((res) => {
+      if (res.status === 200) {
+        dispatch({ type: SUBMIT_USER_PREFERENCE_SUCCESS, redirect: navigate });
+      }
+    });
+  };
 
 export const addFriend = (friendId) => (dispatch) => {
   console.log(friendId);
@@ -454,22 +457,87 @@ export const getWordsStats = () => (dispatch) => {
       "Content-Type": "application/json",
     },
   }).then((res) => {
-    if(res.status === 200) {
+    if (res.status === 200) {
       res.json().then((res) => {
-        dispatch({type: GET_WORD_STATS_SUCCESS, payload: res.userWordsData})
-      })
+        dispatch({ type: GET_WORD_STATS_SUCCESS, payload: res.userWordsData });
+      });
     }
-  })
-}
+  });
+};
 
 export const submitWordInteraction = (word) => (dispatch) => {
   fetch("http://localhost:3001/api/wordInteraction", {
-    method: "POST", 
+    method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
       "Content-Type": "application/json",
     },
     credentials: "include",
-    body: JSON.stringify({word})
-  })
-}
+    body: JSON.stringify({ word }),
+  });
+};
+
+export const submitWordReadingScore =
+  (passage, audioData, wordReadingType) => (dispatch) => {
+    fetch("http://localhost:3001/api/wordReadingScore", {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ passage, audioData, wordReadingType }),
+    }).then((res) => {
+      console.log("testanother");
+      if (res.status === 200) {
+        res.json().then((res) => {
+          dispatch({
+            type: SUBMIT_WORD_READING_SCORE_SUCCESS,
+            wordReadingType,
+            payload: res.wordReadingScore,
+          });
+        });
+      }
+    });
+  };
+
+export const submitComprehensionScore =
+  (questions, answers, comprehensionType) => (dispatch) => {
+    fetch("http://localhost:3001/api/comprehensionScore", {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ answers, questions, comprehensionType }),
+    }).then((res) => {
+      console.log("test");
+      console.log(res);
+      if (res.status === 200) {
+        res.json().then((res) => {
+          console.log(res);
+          dispatch({
+            type: SUBMIT_COMPREHENSION_SCORE_SUCCESS,
+            comprehensionType,
+            payload: res.correctAnswers,
+          });
+        });
+      }
+    });
+  };
+
+export const getPHILIRIResults = () => (dispatch) => {
+  fetch("http://localhost:3001/api/philIRI", {
+    method: "GET",
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  }).then((res) => {
+    if (res.status === 200) {
+      res.json().then((res) => {
+        console.log(res);
+      });
+    }
+  });
+};
