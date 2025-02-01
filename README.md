@@ -77,7 +77,7 @@
    docker-compose up --build
    ```
 
-4. Access the application at `http://localhost:3000`
+4. Access the application at `https://auth.localhost`
 
 ---
 
