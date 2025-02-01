@@ -1,63 +1,95 @@
-## Mindtale System Manual
+# MindTale 📖✨
 
-### Introduction
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20Now-%23007EC6?logo=google-chrome&logoColor=white)](https://mindtale.site)
+[![MERN Stack](https://img.shields.io/badge/MERN-Stack-%2343853D?logo=mongodb&logoColor=white)](https://www.mongodb.com/resources/languages/mern-stack)
+[![AI-Powered](https://img.shields.io/badge/AI-Powered-%23FF6F00?logo=googlegemini&logoColor=white)](https://gemini.google/advanced/)
 
-- **1.1 System/Website Overview:**
+**MindTale** redefines storytelling by merging literature with artificial intelligence, empowering users to co-create immersive narratives. Designed to foster a love for reading among Filipinos, this interactive platform enhances reading comprehension through personalized, choice-driven adventures.
 
-  ```
-  MindTale is a web application that breaks the mold of traditional reading experiences by leveraging the power of artificial intelligence (AI). We offer an interactive platform where users actively participate in shaping the narrative of the story. Through this engaging and personalized experience, MindTale aims to cultivate a love of reading among Filipinos, ultimately improving their reading comprehension skills.
-  ```
+---
 
-- **1.2 Manual Purpose:**
+## 🌟 Features
 
-  ```
-  This user guide is designed to help you navigate the platform.
-  ```
+- **AI-Driven Story Evolution**: Dynamic narratives adapt to user choices in real-time.
+- **Interactive Decision-Making**: Shape the plot through critical choices at key story junctions.
+- **Personalized Reading Journeys**: Tailored stories based on user preferences and reading history.
+- **Progress Tracking**: Monitor reading comprehension improvements with analytics.
+- **Culturally Inclusive**: Stories and themes resonate with Filipino readers.
 
-### User Guide
+---
 
-- **2.1 Getting Started:**
+## 🛠️ Tech Stack
 
-  - **System/Website Requirements:**
+- **Frontend**: React.js,
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **AI Engine**: Gemini
+- **Authentication**: JWT, Google Auth
+- **Deployment**: Docker, Google Compute Engine, Cloudflare
 
-    ```
-    To use MindTale, all you'll need is:
-        * A web browser (Chrome, Firefox, etc.)
-        * A stable internet connection
-    ```
+---
 
-  - **Login Instructions:**
+## 🖥️ Local Development
 
-    ```
-    We will be using our provided account as the email verification service we used recently changed the way it worked and we didn't have time to switch it.
+### Requirements
 
-    Using our provided credentials, logging in is simple:
-        1. Visit the MindTale website (https://mindtale-frontend.onrender.com).
-        2. Wait to Load.
-        3. Enter "riandrei.casanas@gmail.com" as email address and "riandrei123" as the password.
-        4. Click "Log In".
-    	5. Wait for it to take you to the homepage
-    ```
+- Docker and Docker Compose
+- API keys for integrated services (Gemini, Cloudinary, etc.)
 
-- **2.2 User Interface:**
+### Setup Instructions
 
-  - **Navigation:**
+1. **Create Backend Environment File**:
+   ```bash
+   cd backend
+   touch .env
+   ```
+2. **Configure `.env` File**:
 
-    ```
-    MindTale features a user-friendly interface with a navigation bar at the side. This bar provides quick access to sections like "Homepage" "Book Search", "Friend Search", and "User Profile".
-    ```
+   ```ini
+   # Database
+   DB_TEST_URI=<your_mongodb_uri>
 
-- **2.3 Using System/Website Features:**
+   # Authentication
+   JWT_SECRET=<your_jwt_secret>
+   ADMIN_USERNAME=<admin_account>
+   ADMIN_PASSWORD=<secure_password>
 
-  ```
-  * Browsing Stories
-    - On the homepage, you can browse through the available stories by scrolling down the page.
-  * Reading Stories
-    - Click on any story card to view the story and click read after that.
-  * Searching Stories
-    - To search for a specific story, click on the "Book Search" button on the navigation bar or use the search box on the homepage.
-  * Adding Friends
-    - Click on the "Friend Search" button on the navigation bar to search for and add friends.
-  * Viewing User Profile
-    - Click on the "User Profile" button on the navigation bar to view your profile and click the gear icon to edit user information.
-  ```
+   # API Keys
+   GEMINI_API_KEY=<gemini_ai_key>
+   GETIMG_API_KEY=<getimg_api_key>
+   CLOUDINARY_CLOUD_NAME=<your_cloud_name>
+   CLOUDINARY_API_KEY=<your_api_key>
+   CLOUDINARY_API_SECRET=<your_api_secret>
+   RESEND_API_KEY=<resend_email_key>
+
+   # Google Services
+   GOOGLE_OAUTH_KEY=<oauth_client_id>
+   GOOGLE_CLIENT_EMAIL=<service_account_email>
+   GOOGLE_PRIVATE_KEY=<service_account_private_key>
+
+   # Application
+   APP_ORIGIN=https://auth.localhost
+   ```
+
+3. **Launch Containers**:
+
+   ```bash
+   docker-compose up --build
+   ```
+
+4. Access the application at `http://localhost:3000`
+
+---
+
+## 📖 How It Works
+
+1. **Sign Up/Login**: Secure JWT-based authentication
+2. **Choose Your Adventure**: Select from genre-based story templates
+3. **Shape the Narrative**: Make decisions that alter the story's course
+4. **AI Magic**: Watch as GPT dynamically generates new story branches
+5. **Track Progress**: View reading stats and comprehension scores
+
+---
+
+**Crafted with ❤️ by Team Arrow Funk-tion**  
+📣 Visit our [Facebook Page](https://www.facebook.com/mindtaleapp/).
