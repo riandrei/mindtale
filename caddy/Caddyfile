@@ -4,7 +4,7 @@
 }
 
 www.{$DOMAIN_NAME:invalid} {
-    redir https://auth.localhost{uri} permanent
+    redir https://{$DOMAIN_NAME}{uri} permanent
 }
 
 api.{$DOMAIN_NAME:invalid} {
