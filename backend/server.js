@@ -15,12 +15,16 @@ const storyRoutes = require("./routes/storyRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
+
+const allowedOrigin = process.env.APP_ORIGIN || "http://localhost"; // Default fallback
+
 app.use(
   cors({
-    origin: ["http://auth.localhost", "https://auth.localhost"],
+    origin: allowedOrigin,
     credentials: true,
   })
 );
+
 app.use(express.json({ limit: "50mb" }));
 
 app.get("/", (req, res) => {

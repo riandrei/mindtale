@@ -4,7 +4,7 @@ services:
   api:
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      target: development
     restart: unless-stopped
     env_file: ./backend/.env
     volumes:
@@ -12,12 +12,13 @@ services:
       - /app/node_modules
     networks:
       - mindtale
-    ports:
-      - "3001:3001"
   frontend:
     build:
       context: ./client
-      dockerfile: Dockerfile
+      target: development
+      args:
+        VITE_API_URL: https://api.auth.localhost
+    env_file: ./client/.env
     restart: unless-stopped
     volumes:
       - ./client:/app
@@ -25,10 +26,26 @@ services:
     command: npm run dev -- --host
     networks:
       - mindtale
-    ports:
-      - "5173:5173"
     depends_on:
       - api
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile.dev:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - mindtale
+    depends_on:
+      - api
+      - frontend
+
+volumes:
+  caddy_data:
+  caddy_config:
 
 networks:
   mindtale:

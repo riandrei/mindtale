@@ -8,8 +8,10 @@ import {
   DELETE_STORY_SUCCESS,
 } from "./types";
 
+const baseURL = import.meta.env.VITE_API_URL;
+
 export const getStories = () => (dispatch) => {
-  fetch("https://api.auth.localhost/api/stories", {
+  fetch(`${baseURL}/api/stories`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -29,7 +31,7 @@ export const getStories = () => (dispatch) => {
 };
 
 export const getAllStories = () => (dispatch) => {
-  fetch("https://api.auth.localhost/api/allStories", {
+  fetch(`${baseURL}/api/allStories`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -48,7 +50,7 @@ export const getAllStories = () => (dispatch) => {
 };
 
 export const postReview = (id, reviewStar, reviewText) => (dispatch) => {
-  fetch(`https://api.auth.localhost/api/stories/${id}/review`, {
+  fetch(`${baseURL}/api/stories/${id}/review`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -70,7 +72,7 @@ export const postReview = (id, reviewStar, reviewText) => (dispatch) => {
 };
 
 export const getReviews = (id) => (dispatch) => {
-  fetch(`https://api.auth.localhost/api/stories/${id}/review`, {
+  fetch(`${baseURL}/api/stories/${id}/review`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -89,7 +91,7 @@ export const getReviews = (id) => (dispatch) => {
 };
 
 export const deleteReview = (storyId) => (dispatch) => {
-  fetch(`https://api.auth.localhost/api/stories/${storyId}/review`, {
+  fetch(`${baseURL}/api/stories/${storyId}/review`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -109,8 +111,7 @@ export const deleteReview = (storyId) => (dispatch) => {
 };
 
 export const generateStoryCover = (title, genre) => (dispatch) => {
-  console.log(title, genre);
-  fetch(`https://api.auth.localhost/api/stories/cover`, {
+  fetch(`${baseURL}/api/stories/cover`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -127,9 +128,7 @@ export const generateStoryCover = (title, genre) => (dispatch) => {
 };
 
 export const addStory = (formData) => (dispatch) => {
-  console.log(formData);
-
-  fetch(`https://api.auth.localhost/api/stories`, {
+  fetch(`${baseURL}/api/stories`, {
     method: "POST",
     body: formData,
   }).then((res) => {
@@ -143,7 +142,7 @@ export const addStory = (formData) => (dispatch) => {
 };
 
 export const deleteStory = (id) => (dispatch) => {
-  fetch(`https://api.auth.localhost/api/stories/${id}`, {
+  fetch(`${baseURL}/api/stories/${id}`, {
     method: "DELETE",
   }).then((res) => {
     if (res.status === 200) {
