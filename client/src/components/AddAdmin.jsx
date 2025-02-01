@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
 
 import { addAdmin } from "../actions/adminActions";
 
 const AddAdmin = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     school: "Tapinac Elementary School",
     username: "",
@@ -13,23 +13,24 @@ const AddAdmin = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(value)
+
     setFormData({ ...formData, [name]: value });
-    console.log(formData)
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addAdmin(formData))
-    console.log("Admin added:", formData); // Placeholder for submission logic
+    dispatch(addAdmin(formData));
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "auto", padding: "20px",  }}>
+    <div style={{ maxWidth: "400px", margin: "auto", padding: "20px" }}>
       <h2>Add Admin</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="school" style={{ display: "block", marginBottom: "5px" }}>
+          <label
+            htmlFor="school"
+            style={{ display: "block", marginBottom: "5px" }}
+          >
             School
           </label>
           <select
@@ -45,7 +46,7 @@ const AddAdmin = () => {
               padding: "8px",
               border: "1px solid #ccc",
               borderRadius: "4px",
-              color: "#000000"
+              color: "#000000",
             }}
           >
             <option>Tapinac Elementary School</option>
@@ -53,7 +54,10 @@ const AddAdmin = () => {
           </select>
         </div>
         <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="username" style={{ display: "block", marginBottom: "5px" }}>
+          <label
+            htmlFor="username"
+            style={{ display: "block", marginBottom: "5px" }}
+          >
             Username
           </label>
           <input
@@ -68,12 +72,15 @@ const AddAdmin = () => {
               padding: "8px",
               border: "1px solid #ccc",
               borderRadius: "4px",
-              color: "#000000"
+              color: "#000000",
             }}
           />
         </div>
         <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="password" style={{ display: "block", marginBottom: "5px" }}>
+          <label
+            htmlFor="password"
+            style={{ display: "block", marginBottom: "5px" }}
+          >
             Password
           </label>
           <input
@@ -89,7 +96,7 @@ const AddAdmin = () => {
               padding: "8px",
               border: "1px solid #ccc",
               borderRadius: "4px",
-              color: "#000000"
+              color: "#000000",
             }}
           />
         </div>

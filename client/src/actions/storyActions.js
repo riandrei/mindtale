@@ -61,7 +61,6 @@ export const postReview = (id, reviewStar, reviewText) => (dispatch) => {
   }).then((res) => {
     if (res.status === 200) {
       res.json().then(({ story }) => {
-        console.log(story);
         dispatch({
           type: POST_REVIEW_SUCCESS,
           payload: story,
@@ -120,7 +119,6 @@ export const generateStoryCover = (title, genre) => (dispatch) => {
   }).then((res) => {
     if (res.status === 200) {
       res.json().then((response) => {
-        console.log(response);
         dispatch({ type: GENERATE_COVER_SUCCESS, payload: response });
       });
     }
@@ -134,7 +132,6 @@ export const addStory = (formData) => (dispatch) => {
   }).then((res) => {
     if (res.status === 200) {
       res.json().then((response) => {
-        console.log(response);
         dispatch({ type: ADD_STORY_SUCCESS, payload: response });
       });
     }
@@ -147,7 +144,6 @@ export const deleteStory = (id) => (dispatch) => {
   }).then((res) => {
     if (res.status === 200) {
       res.json().then((response) => {
-        console.log(response);
         dispatch({ type: DELETE_STORY_SUCCESS, payload: response });
       });
     }

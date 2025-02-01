@@ -10,9 +10,6 @@ const CompleteScores = () => {
     (state) => state.auth?.philIRI.pretest.wordReadingScore
   );
 
-  console.log(comprehensionScore);
-  console.log(wordReadingScore);
-
   return (
     <div className={styles.Pretest}>
       <div class={styles.Pretest_inner}>

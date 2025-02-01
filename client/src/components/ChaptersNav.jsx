@@ -29,10 +29,8 @@ const ChaptersNav = ({
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    console.log(stories);
     if (stories.length > 0) {
       const story = stories.find((story) => story._id === storyId);
-      console.log(storyId);
 
       setImgURL(story.imgURL);
       setTitle(story.title);
@@ -56,7 +54,6 @@ const ChaptersNav = ({
         <span>{tags.join(" | ")}</span>
       </div>
       <div className={styles.Chapters_con}>
-        {console.log(filteredHistory)}
         {filteredHistory?.map(
           (item, index) =>
             index !== 0 && (

@@ -45,7 +45,6 @@ export const getAllowedStories = () => (dispatch) => {
       Authorization: localStorage.getItem("token"),
     },
   }).then((res) => {
-    console.log(res.status);
     if (res.status === 200 || res.status === 201) {
       res.json().then((res) => {
         dispatch({

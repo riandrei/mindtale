@@ -33,8 +33,6 @@ function SearchBook({ getStories }) {
       return title.toLowerCase().includes(searchBook.toLowerCase());
     });
 
-    console.log(newFilteredStories);
-
     setFilteredStories(newFilteredStories);
   };
 

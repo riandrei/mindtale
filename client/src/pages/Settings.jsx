@@ -12,7 +12,6 @@ export function Settings({}) {
   const [settingClick, setSettingClick] = useState(1);
   const handleSettingClick = (value) => {
     setSettingClick(value);
-    console.log(value);
   };
 
   return (

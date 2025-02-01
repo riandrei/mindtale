@@ -148,7 +148,6 @@ export const getUser = () => (dispatch) => {
       Authorization: localStorage.getItem("token"),
     },
   }).then((res) => {
-    console.log(res.status);
     if (res.status === 200) {
       res.json().then((res) => {
         dispatch({
@@ -199,7 +198,6 @@ export const getUsers = () => (dispatch) => {
   }).then((res) => {
     if (res.status === 200) {
       res.json().then((res) => {
-        console.log(res.users);
         dispatch({
           type: GET_USERS_SUCCESS,
           payload: res.users,
@@ -475,7 +473,6 @@ export const submitWordReadingScore =
       credentials: "include",
       body: JSON.stringify({ passage, audioData, wordReadingType }),
     }).then((res) => {
-      console.log("testanother");
       if (res.status === 200) {
         res.json().then((res) => {
           dispatch({
@@ -499,11 +496,8 @@ export const submitComprehensionScore =
       credentials: "include",
       body: JSON.stringify({ answers, questions, comprehensionType }),
     }).then((res) => {
-      console.log("test");
-      console.log(res);
       if (res.status === 200) {
         res.json().then((res) => {
-          console.log(res);
           dispatch({
             type: SUBMIT_COMPREHENSION_SCORE_SUCCESS,
             comprehensionType,
@@ -520,11 +514,5 @@ export const getPHILIRIResults = () => (dispatch) => {
     headers: {
       Authorization: localStorage.getItem("token"),
     },
-  }).then((res) => {
-    if (res.status === 200) {
-      res.json().then((res) => {
-        console.log(res);
-      });
-    }
   });
 };

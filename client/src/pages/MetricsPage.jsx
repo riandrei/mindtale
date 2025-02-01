@@ -111,7 +111,6 @@ export const MetricsPage = ({ getUser, getStories }) => {
     });
 
     setPieChartData(tempPieChartData);
-    console.log(tagCounts);
   }, [completedStories]);
 
   useEffect(() => {
@@ -142,7 +141,6 @@ export const MetricsPage = ({ getUser, getStories }) => {
           </div>
           <div className={styles.Avg} onClick={() => handleDetail(3)}>
             <span>Favorite Genre</span>
-            {console.log(tagCounts)}
             <span>{getHighestCountTag(tagCounts).maxTag}</span>
           </div>
           <div className={styles.Avg} onClick={() => handleDetail(4)}>
@@ -164,7 +162,6 @@ export const MetricsPage = ({ getUser, getStories }) => {
       {/* </div> */}
 
       <div className={styles.TagMetrics}>
-        {console.log(completedStories)}
         {Object.entries(tagCounts)
           .sort((a, b) => b[1] - a[1])
           .map((entry) => entry[0])

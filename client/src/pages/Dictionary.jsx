@@ -32,7 +32,6 @@ const Dictionary = () => {
   };
 
   const handleRandomWordClick = async (selectedWord) => {
-    console.log(selectedWord);
     await handleSearch(selectedWord); // Pass the selected word directly to the search function
   };
 
@@ -134,7 +133,6 @@ const SearchResult = ({ entry, capitalize }) => {
 
   const playAudio = (audioUrl) => {
     if (audioUrl) {
-      console.log("test");
       const audio = new Audio(audioUrl);
       audio.play();
     }

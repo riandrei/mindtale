@@ -6,7 +6,6 @@ export const options = {
 };
 
 export default function App({ chartData }) {
-  console.log(chartData);
   return (
     <Chart
       chartType="PieChart"

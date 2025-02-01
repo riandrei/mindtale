@@ -67,7 +67,6 @@ function Login({ logIn }) {
   const [wrongAcc, setWrongAcc] = useState(false);
   const handleWrongClick = () => {
     setWrongAcc(!wrongAcc);
-    console.log("hello");
   };
 
   const navigate = useNavigate();

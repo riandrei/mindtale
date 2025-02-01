@@ -63,7 +63,6 @@ export default function authReducer(state = initialState, action) {
         },
       };
     case GET_USER_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         isAuthenticated: true,
@@ -92,17 +91,14 @@ export default function authReducer(state = initialState, action) {
         ranking: [...action.payload],
       };
     case FORGOT_PASSWORD_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
       };
     case CHECK_VERIFICATION_CODE_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
       };
     case CHANGE_PASSWORD_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
       };
@@ -119,7 +115,6 @@ export default function authReducer(state = initialState, action) {
         visitCounts: action.payload.visitCounts,
       };
     case SUBMIT_USER_DATA_SUCCESS:
-      console.log(action);
       action.redirect("/StoryPreference");
       return {
         ...state,
@@ -141,7 +136,6 @@ export default function authReducer(state = initialState, action) {
         wordsStats: action.payload,
       };
     case SUBMIT_COMPREHENSION_SCORE_SUCCESS:
-      console.log(action.payload);
       if (action.comprehensionType === "pretest") {
         return {
           ...state,
@@ -166,7 +160,6 @@ export default function authReducer(state = initialState, action) {
         };
       }
     case SUBMIT_WORD_READING_SCORE_SUCCESS:
-      console.log(action.payload);
       if (action.wordReadingType === "pretest") {
         return {
           ...state,

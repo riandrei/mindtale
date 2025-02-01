@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { connect, useSelector, useDispatch } from "react-redux";
 
-import { readStory, translateText, translateWord } from "../actions/sessionActions";
-import {submitWordInteraction} from "../actions/authActions"
+import {
+  readStory,
+  translateText,
+  translateWord,
+} from "../actions/sessionActions";
+import { submitWordInteraction } from "../actions/authActions";
 
 import Footer from "../components/Footer";
 import { Choices } from "../components/Choices";
@@ -25,8 +29,8 @@ function StoryBoard({ readStory }) {
   const { storyId } = useParams();
   const dispatch = useDispatch();
 
-  const [showPopup, setShowPopup] = useState(false)
-  const [selectedWord, setSelectedWord] = useState('')
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedWord, setSelectedWord] = useState("");
 
   const [openNav, setOpenNav] = useState(true);
   const handleNavClick = () => {
@@ -36,7 +40,6 @@ function StoryBoard({ readStory }) {
   const [isLight, setIsLight] = useState(false);
   const handleThemeClick = () => {
     setIsLight(!isLight);
-    console.log("light");
   };
 
   const [filteredHistory, setFilteredHistory] = useState([]);
@@ -58,7 +61,6 @@ function StoryBoard({ readStory }) {
 
   useEffect(() => {
     const loadStory = async () => {
-      console.log(loading);
       setLoading(true); // Show the loading GIF
       await readStory({ storyId });
       setLoading(false); // Hide the loading GIF once the story is loaded
@@ -71,12 +73,10 @@ function StoryBoard({ readStory }) {
 
   const handleIncreaseFontSize = () => {
     setFontSize((prevFontSize) => prevFontSize + 1);
-    console.log(fontSize);
   };
 
   const handleDecreaseFontSize = () => {
     setFontSize((prevFontSize) => Math.max(prevFontSize - 1, 1));
-    console.log(fontSize);
   };
 
   if (fontSize === 4 || fontSize <= 0) {
@@ -84,59 +84,60 @@ function StoryBoard({ readStory }) {
   }
 
   const handleWordClick = (word) => {
-    console.log("Clicked word:", word);
-
-    setSelectedWord(word)
-    setShowPopup(true)
-  }
+    setSelectedWord(word);
+    setShowPopup(true);
+  };
 
   useEffect(() => {
-    dispatch(translateText(selectedWord, 'tl'))
-    dispatch(translateWord(selectedWord, 'tl'))
-    fetchDefinition()
-    dispatch(submitWordInteraction(selectedWord.replace(/^[^\w]+|[^\w]+$/g, "")
-    ))
-  }, [selectedWord])
- 
-  const [result, setResult] = useState(null);
-    const [error, setError] = useState('');
-  
-    const fetchDefinition = async () => {
-      const word = selectedWord.replace(/^[^\w]+|[^\w]+$/g, "");
+    dispatch(translateText(selectedWord, "tl"));
+    dispatch(translateWord(selectedWord, "tl"));
+    fetchDefinition();
+    dispatch(
+      submitWordInteraction(selectedWord.replace(/^[^\w]+|[^\w]+$/g, ""))
+    );
+  }, [selectedWord]);
 
-      console.log('fetch')
-      if (!word.trim()) {
-        setError('Please enter a word to search.');
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState("");
+
+  const fetchDefinition = async () => {
+    const word = selectedWord.replace(/^[^\w]+|[^\w]+$/g, "");
+
+    if (!word.trim()) {
+      setError("Please enter a word to search.");
+      return;
+    }
+
+    try {
+      setError("");
+
+      const response = await fetch(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+      );
+
+      if (!response.ok) {
+        setResult(null);
+        setError("Word not found");
         return;
       }
-    
-      try {
-        setError('');
-        const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
-        console.log(response)
-        if (!response.ok) {
-          setResult(null);
-          setError('Word not found');
-          return;
-        }
-        const data = await response.json();
-        setResult(data[0]);
-        setError(''); 
-      } catch {
-        setResult(null);
-        setError('Something went wrong');
-      }
-    };
+
+      const data = await response.json();
+      setResult(data[0]);
+      setError("");
+    } catch {
+      setResult(null);
+      setError("Something went wrong");
+    }
+  };
 
   const handleCloseClick = () => {
-    setShowPopup(false)
-  }
+    setShowPopup(false);
+  };
 
   return loading ? (
     <LoadingScreen />
   ) : (
     <div className={isLight ? styles.StoryBoard2 : styles.StoryBoard}>
-      {console.log(indexClicked)}
       {indexClicked === -1 || indexClicked === filteredHistory.length - 1 ? (
         <div className={styles.StoryBoard_inner}>
           <StoryNav
@@ -163,8 +164,14 @@ function StoryBoard({ readStory }) {
           narrativeImage={scenarioHistory[indexClicked - 1]}
         />
       )}
-      {showPopup ? <WordPopup selectedWord={selectedWord} result={result} error={error} handleCloseClick={handleCloseClick}/> : null}
-      {/* <Story openNav={openNav} handleNavClick={handleNavClick} /> */}
+      {showPopup ? (
+        <WordPopup
+          selectedWord={selectedWord}
+          result={result}
+          error={error}
+          handleCloseClick={handleCloseClick}
+        />
+      ) : null}
       {openNav ? null : (
         <ChaptersNav
           openNav={openNav}

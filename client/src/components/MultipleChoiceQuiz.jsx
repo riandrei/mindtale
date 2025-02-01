@@ -44,9 +44,6 @@ function MultipleChoiceQuiz({ questions, correctAnswers }) {
       }
     });
 
-    console.log(userAnswers);
-    console.log(correctAnswers);
-
     const tally = userAnswers.map(
       (userAnswer, index) => userAnswer === correctAnswers[index]
     );
@@ -56,7 +53,6 @@ function MultipleChoiceQuiz({ questions, correctAnswers }) {
   };
 
   useEffect(() => {
-    console.log(score);
     if (score) {
       dispatch(submitAssesmentScore(storyId, score));
     }

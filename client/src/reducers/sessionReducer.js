@@ -43,17 +43,15 @@ export default function sessionReducer(state = initialState, action) {
         assesment: action.payload.assesment,
       };
     case TRANSLATE_TEXT_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         translatedText: action.payload.translatedText,
       };
     case TRANSLATE_WORD_SUCCESS:
-      console.log(action.payload.translation)
       return {
         ...state,
-        translatedWord: action.payload.translation
-      }
+        translatedWord: action.payload.translation,
+      };
     case RESET_SESSION:
       return initialState;
     default:

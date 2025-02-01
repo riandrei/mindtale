@@ -3,7 +3,6 @@ const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_OAUTH_KEY);
 
 const verify = async (credential) => {
-  console.log(credential);
   const ticket = await client.verifyIdToken({
     idToken: credential,
     audience: process.env.GOOGLE_OAUTH_KEY,
@@ -13,7 +12,6 @@ const verify = async (credential) => {
 };
 
 const googleMiddleware = async (req, res, next) => {
-  console.log("running");
   const { credential } = req.body;
 
   if (!credential) {

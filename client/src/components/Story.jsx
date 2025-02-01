@@ -35,19 +35,11 @@ export function Story({
   const [loading, setLoading] = useState(false);
 
   const onLoading = () => {
-    console.log(loading);
     setLoading(true);
-    console.log(loading);
   };
   const offLoading = () => {
-    console.log(loading);
     setLoading(false);
-    console.log(loading);
   };
-  useEffect(() => {
-    console.log(currentNarrative, currentChoices, scenarioHistory);
-    console.log(assesment);
-  }, [currentNarrative, currentChoices, scenarioHistory, assesment]);
 
   useEffect(() => {
     if (
@@ -55,7 +47,6 @@ export function Story({
       Object.keys(assesment).length > 0 &&
       Object.keys(assesment.questions).length < 1
     ) {
-      console.log("bruh");
       getAssesment(storyId);
     }
   }, [isEnd]);

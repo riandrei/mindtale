@@ -25,11 +25,8 @@ function FriendNotification({ id }) {
   };
 
   useEffect(() => {
-    console.log(users);
     if (users.length > 0) {
       const filteredUsers = users.filter((user) => user._id === id);
-
-      console.log(filteredUsers);
 
       setName(filteredUsers[0].username);
       setImg(filteredUsers[0].profilePicture);

@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 
 const User = require("../models/User");
-const Admin = require("../models/Admin")
-const SchoolStory = require("../models/SchoolStory")
+const Admin = require("../models/Admin");
+const SchoolStory = require("../models/SchoolStory");
 
 module.exports.adminLogin = (req, res) => {
   const { username, password } = req.body;
@@ -98,9 +98,8 @@ module.exports.getStoriesStats = async (req, res) => {
   return res.status(200).json({ visitCounts, averageScores, bookmarkCounts });
 };
 
-module.exports.addAdmin = (req,res) => {
-  console.log(req.body)
-  const { school, username, password } = req.body.formData
+module.exports.addAdmin = (req, res) => {
+  const { school, username, password } = req.body.formData;
 
   hashPassword(password).then((hash) => {
     Admin.findOne({ username }).then((admin) => {
@@ -111,7 +110,7 @@ module.exports.addAdmin = (req,res) => {
       const newAdmin = new Admin({
         username: username,
         password: hash,
-        school: school
+        school: school,
       });
 
       newAdmin
@@ -119,20 +118,18 @@ module.exports.addAdmin = (req,res) => {
         .then(() => {
           return res.status(201).json({ message: "Admin created" });
         })
-        .catch((err) => res.status(400).json({ error: "Error creating admin" }));
+        .catch((err) =>
+          res.status(400).json({ error: "Error creating admin" })
+        );
     });
   });
-
-  console.log(school, username, password)
-}
+};
 
 module.exports.schoolAdminLogin = (req, res) => {
   const { username, password } = req.body;
 
-  console.log(username, password)
-
-  Admin.findOne({username}).then((admin) => {
-    if(!admin) {
+  Admin.findOne({ username }).then((admin) => {
+    if (!admin) {
       return res.status(401).json({ error: "Invalid username" });
     }
 
@@ -141,120 +138,135 @@ module.exports.schoolAdminLogin = (req, res) => {
         return res.status(401).json({ error: "Invalid credentials" });
       }
 
-      const token = jwt.sign({ username, school: admin.school }, process.env.JWT_SECRET, {
-        expiresIn: "30d",
-      });
+      const token = jwt.sign(
+        { username, school: admin.school },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "30d",
+        }
+      );
 
       const userInfo = {
         username: admin.username,
         school: admin.school,
-        token
+        token,
       };
 
       return res.status(200).json({ message: "Admin signed in", userInfo });
     });
-
-  })
+  });
 };
 
-module.exports.getAllowedStories = (req,res) => {
-  const { school } = req.user
-  SchoolStory.findOne({school}).then((schoolData) => {
-    if(!schoolData) {
-      const newSchoolStory = new SchoolStory({pending: [], approved: [], rejected: [], school})
+module.exports.getAllowedStories = (req, res) => {
+  const { school } = req.user;
+  SchoolStory.findOne({ school }).then((schoolData) => {
+    if (!schoolData) {
+      const newSchoolStory = new SchoolStory({
+        pending: [],
+        approved: [],
+        rejected: [],
+        school,
+      });
 
       newSchoolStory
         .save()
         .then((data) => {
-          console.log(data, 'getallowed')
-          return res.status(201).json({ schoolData: data, message: "School story created" });
+          return res
+            .status(201)
+            .json({ schoolData: data, message: "School story created" });
         })
-        .catch((err) => res.status(400).json({ error: "Error creating admin" }));
+        .catch((err) =>
+          res.status(400).json({ error: "Error creating admin" })
+        );
     }
 
-    return res.status(200).json({schoolData, message: "School story data fetched"})
-  })
-  console.log(req.user)
-}
+    return res
+      .status(200)
+      .json({ schoolData, message: "School story data fetched" });
+  });
+};
 
 module.exports.approveStory = (req, res) => {
   const { school } = req.user; // Get the school from the user
   const { storyId } = req.params; // Get the storyId from the request parameters
 
-  SchoolStory.findOne({ school }).then((schoolData) => {
-    if (!schoolData) {
-      return res.status(404).json({ message: "School data not found" });
-    }
+  SchoolStory.findOne({ school })
+    .then((schoolData) => {
+      if (!schoolData) {
+        return res.status(404).json({ message: "School data not found" });
+      }
 
-    console.log('approve deez')
+      // Check if the storyId exists in the rejected array
+      const rejectedIndex = schoolData.rejected.indexOf(storyId);
+      if (rejectedIndex !== -1) {
+        // Remove storyId from rejected
+        schoolData.rejected.splice(rejectedIndex, 1);
+      }
 
-    // Check if the storyId exists in the rejected array
-    const rejectedIndex = schoolData.rejected.indexOf(storyId);
-    if (rejectedIndex !== -1) {
-      // Remove storyId from rejected
-      schoolData.rejected.splice(rejectedIndex, 1);
-    }
+      // Add storyId to approved if not already there
+      if (!schoolData.approved.includes(storyId)) {
+        schoolData.approved.push(storyId);
+      }
 
-    // Add storyId to approved if not already there
-    if (!schoolData.approved.includes(storyId)) {
-      schoolData.approved.push(storyId);
-    }
-
-    // Save the updated document
-    schoolData
-      .save()
-      .then((schoolData) => {
-        res.status(200).json({ schoolData, message: "Story approved successfully" });
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(500).json({ message: "Error approving story" });
-      });
-  }).catch((err) => {
-    console.error(err);
-    res.status(500).json({ message: "Error fetching school data" });
-  });
+      // Save the updated document
+      schoolData
+        .save()
+        .then((schoolData) => {
+          res
+            .status(200)
+            .json({ schoolData, message: "Story approved successfully" });
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).json({ message: "Error approving story" });
+        });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ message: "Error fetching school data" });
+    });
 };
 
 module.exports.rejectStory = (req, res) => {
   const { school } = req.user; // Get the school from the user
   const { storyId } = req.params; // Get the storyId from the request parameters
 
-  SchoolStory.findOne({ school }).then((schoolData) => {
-    if (!schoolData) {
-      return res.status(404).json({ message: "School data not found" });
-    }
+  SchoolStory.findOne({ school })
+    .then((schoolData) => {
+      if (!schoolData) {
+        return res.status(404).json({ message: "School data not found" });
+      }
 
-    console.log('approve deez')
+      // Check if the storyId exists in the approved array
+      const approvedIndex = schoolData.approved.indexOf(storyId);
+      if (approvedIndex !== -1) {
+        // Remove storyId from approved
+        schoolData.approved.splice(approvedIndex, 1);
+      }
 
-    // Check if the storyId exists in the approved array
-    const approvedIndex = schoolData.approved.indexOf(storyId);
-    if (approvedIndex !== -1) {
-      // Remove storyId from approved
-      schoolData.approved.splice(approvedIndex, 1);
-    }
+      // Add storyId to rejected if not already there
+      if (!schoolData.rejected.includes(storyId)) {
+        schoolData.rejected.push(storyId);
+      }
 
-    // Add storyId to rejected if not already there
-    if (!schoolData.rejected.includes(storyId)) {
-      schoolData.rejected.push(storyId);
-    }
-
-    // Save the updated document
-    schoolData
-      .save()
-      .then((schoolData) => {
-        res.status(200).json({ schoolData, message: "Story approved successfully" });
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(500).json({ message: "Error approving story" });
-      });
-  }).catch((err) => {
-    console.error(err);
-    res.status(500).json({ message: "Error fetching school data" });
-  });
+      // Save the updated document
+      schoolData
+        .save()
+        .then((schoolData) => {
+          res
+            .status(200)
+            .json({ schoolData, message: "Story approved successfully" });
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).json({ message: "Error approving story" });
+        });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ message: "Error fetching school data" });
+    });
 };
-
 
 function hashPassword(password) {
   const saltRounds = 10;

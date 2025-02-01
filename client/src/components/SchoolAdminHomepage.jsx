@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { connect, useDispatch, useSelector, } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import styles from "../css/Admin.module.css";
 
 import Nav from "../components/Nav";
 import AllStories from "../components/AllStories";
-import AddAdmin from "../components/AddAdmin"
+import AddAdmin from "../components/AddAdmin";
 
 import { generateStoryCover, addStory } from "../actions/storyActions";
 
@@ -21,7 +21,7 @@ import PendingStories from "./PendingStories";
 import RejectedStories from "./RejectedStories";
 
 function SchoolAdminHomepage() {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
@@ -55,7 +55,6 @@ function SchoolAdminHomepage() {
     formData.append("storyType", selectedButton);
     formData.append("image", generatedImage);
 
-    console.log(formData);
     dispatch(addStory(formData));
 
     e.target.reset();
@@ -69,7 +68,6 @@ function SchoolAdminHomepage() {
 
   const handleGenerateButtonClick = () => {
     dispatch(generateStoryCover(titleValue, selectedGenre));
-    console.log(titleValue, selectedGenre);
   };
 
   const generatedImageURL = useSelector(
@@ -115,36 +113,36 @@ function SchoolAdminHomepage() {
           <div className={styles.Genre}>
             <span>Genre</span>
             <div className={styles.Genre_choices}>
-            <div className={styles.Choice}>
-                  <input
-                    type="radio"
-                    name="genre"
-                    id="fantasy"
-                    checked={selectedGenre === "Fables"}
-                    onChange={() => handleGenreChange("Fables")}
-                  />
-                  <label htmlFor="fantasy">Fables</label>
-                </div>
-                <div className={styles.Choice}>
-                  <input
-                    type="radio"
-                    name="genre"
-                    id="fantasy"
-                    checked={selectedGenre === "Mythology"}
-                    onChange={() => handleGenreChange("Mythology")}
-                  />
-                  <label htmlFor="fantasy">Mythology</label>
-                </div>
-                <div className={styles.Choice}>
-                  <input
-                    type="radio"
-                    name="genre"
-                    id="fantasy"
-                    checked={selectedGenre === "Folk Tale"}
-                    onChange={() => handleGenreChange("Folk Tale")}
-                  />
-                  <label htmlFor="fantasy">Folk Tale</label>
-                </div>
+              <div className={styles.Choice}>
+                <input
+                  type="radio"
+                  name="genre"
+                  id="fantasy"
+                  checked={selectedGenre === "Fables"}
+                  onChange={() => handleGenreChange("Fables")}
+                />
+                <label htmlFor="fantasy">Fables</label>
+              </div>
+              <div className={styles.Choice}>
+                <input
+                  type="radio"
+                  name="genre"
+                  id="fantasy"
+                  checked={selectedGenre === "Mythology"}
+                  onChange={() => handleGenreChange("Mythology")}
+                />
+                <label htmlFor="fantasy">Mythology</label>
+              </div>
+              <div className={styles.Choice}>
+                <input
+                  type="radio"
+                  name="genre"
+                  id="fantasy"
+                  checked={selectedGenre === "Folk Tale"}
+                  onChange={() => handleGenreChange("Folk Tale")}
+                />
+                <label htmlFor="fantasy">Folk Tale</label>
+              </div>
               <div className={styles.Choice}>
                 <input
                   type="radio"
@@ -268,4 +266,4 @@ function SchoolAdminHomepage() {
   );
 }
 
-export default SchoolAdminHomepage
+export default SchoolAdminHomepage;

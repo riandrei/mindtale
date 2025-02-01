@@ -25,7 +25,6 @@ module.exports.startSession = async function startSession(req, res) {
     }
 
     Session.find({ user: user._id, story: storyId }).then((sessions) => {
-      console.log("sess", sessions);
       const session = sessions[sessions.length - 1];
       if (session && session.history.length > 0) {
         const parsedText = JSON.parse(
@@ -94,8 +93,6 @@ module.exports.startSession = async function startSession(req, res) {
             try {
               const parsedText = JSON.parse(trimmedText);
 
-              console.log(parsedText);
-
               const history = await chat.getHistory();
 
               parsedText.actions.forEach((action) => {
@@ -111,7 +108,7 @@ module.exports.startSession = async function startSession(req, res) {
               const scenarioHistory = [...Session.scenarioHistory];
               const assesment = Session.assesment;
 
-              saveWords(parsedText.narrator, email)
+              saveWords(parsedText.narrator, email);
 
               return res.status(200).json({
                 content: { history, parsedText, scenarioHistory, assesment },
@@ -181,10 +178,7 @@ module.exports.submitUserChoice = async function submitUserChoice(req, res) {
         const trimmedText = text.trim();
 
         try {
-          console.log(trimmedText);
           const parsedText = JSON.parse(trimmedText);
-
-          console.log(parsedText.isEnd);
 
           const history = await chat.getHistory();
 
@@ -196,12 +190,12 @@ module.exports.submitUserChoice = async function submitUserChoice(req, res) {
           });
 
           session.history = [...history];
-          session.save().then((session) => console.log(session));
+          session.save();
 
           const scenarioHistory = [...session.scenarioHistory];
           const assesment = session.assesment;
 
-          saveWords(parsedText.narrator, email)
+          saveWords(parsedText.narrator, email);
 
           return res
             .status(200)
@@ -223,8 +217,6 @@ module.exports.submitUserChoice = async function submitUserChoice(req, res) {
 module.exports.getAssesment = (req, res) => {
   const { storyId } = req.params;
   const { email } = req.user;
-
-  console.log("tes");
 
   User.findOne({ email }).then((user) => {
     Session.findOne({ user: user._id, story: storyId }).then(
@@ -285,8 +277,6 @@ module.exports.getAssesment = (req, res) => {
         const text = response.text();
         const trimmedText = text.trim();
 
-        console.log(trimmedText);
-
         try {
           const parsedText = JSON.parse(trimmedText);
 
@@ -314,7 +304,6 @@ module.exports.submitAssesmentScore = (req, res) => {
     }
 
     Session.findOne({ user: user._id, story: storyId }).then((session) => {
-      console.log(assesmentScore);
       session.assesment.assesmentScore = assesmentScore;
 
       session.save();
@@ -324,83 +313,7 @@ module.exports.submitAssesmentScore = (req, res) => {
   });
 };
 
-// module.exports.getTextToSpeech = (req, res) => {
-//   const { text } = req.body;
-
-//   const client = new textToSpeech.TextToSpeechClient();
-
-//   const request = {
-//     input: { text: text },
-//     voice: { languageCode: "en-US", ssmlGender: "NEUTRAL" },
-//     audioConfig: { audioEncoding: "MP3" },
-//   };
-
-//   client.synthesizeSpeech(request).then(async ([response]) => {
-//     const writeFile = util.promisify(fs.writeFile);
-//     await writeFile("output.mp3", response.audioContent, "binary");
-//     console.log("done");
-//   });
-// };
-
-// module.exports.getAssesment = (req, res) => {
-//   const { storyId } = req.params;
-//   const { email } = req.user;
-
-//   User.findOne({ email }).then((user) => {
-//     if (!user) {
-//       return res.status(400).json({ error: "User not found" });
-//     }
-
-//     Session.findOne({ user: user._id, story: storyId }).then((session) => {
-//       const storyFlow = session.history
-//         .map(({ parts, role }, index) => {
-//           if (index < 3) {
-//             return null;
-//           }
-
-//           if (role == "user") {
-//             return parts[0].text;
-//           } else {
-//             const { scenario } = JSON.parse(parts[0].text);
-
-//             return `narrator: ${scenario}`;
-//           }
-//         })
-//         .filter((text) => text !== null)
-//         .join("\n");
-
-//       fetch(`https://mindtale.southeastasia.inference.ml.azure.com/score`, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: "Bearer " + process.env.AZURE_SUMMARIZER_API_KEY,
-//           "azureml-model-deployment": "facebook-bart-large-cnn-19",
-//         },
-//         body: JSON.stringify({ inputs: storyFlow }),
-//       })
-//         .then((response) => {
-//           if (response.ok) {
-//             return response.json();
-//           } else {
-//             // Print the headers - they include the request ID and the timestamp, which are useful for debugging the failure
-//             console.debug(...response.headers);
-//             console.debug(response.body);
-//             throw new Error(
-//               "Request failed with status code" + response.status
-//             );
-//           }
-//         })
-//         .then((json) => console.log(json))
-//         .catch((error) => {
-//           console.error(error);
-//         });
-//     });
-//   });
-// };
-
 function getImageScene(imagePrompt, userAction) {
-  console.log(imagePrompt + ", Fantasy" + ", Colorful");
-
   fetch(`https://api.getimg.ai/v1/latent-consistency/text-to-image`, {
     method: "POST",
     headers: {
@@ -427,10 +340,6 @@ function getImageScene(imagePrompt, userAction) {
             folder: "Mindtale/temp/",
           }
         );
-        // fs.writeFile(`../temp/${userAction}.png`, buffer, (err) => {
-        //   if (err) throw err;
-        //   console.log("Saved!");
-        // });
       });
     })
     .catch((error) => console.error(error));
@@ -438,8 +347,6 @@ function getImageScene(imagePrompt, userAction) {
 
 module.exports.translateText = (req, res) => {
   const { text, targetLanguage } = req.body;
-
-  console.log(req.body);
 
   const translate = new Translate({
     projectId: "mindtale",
@@ -452,7 +359,6 @@ module.exports.translateText = (req, res) => {
   translate
     .translate(text, targetLanguage)
     .then((results) => {
-      console.log(results);
       const translation = results[0];
 
       return res.status(200).json({ translation });
@@ -461,11 +367,9 @@ module.exports.translateText = (req, res) => {
 };
 
 function saveWords(narration, email) {
-  console.log("narration", narration);
-  
   const wordsArray = narration
     .toLowerCase()
-    .replace(/[^a-z\s']/g, '') // Remove punctuation except apostrophes
+    .replace(/[^a-z\s']/g, "") // Remove punctuation except apostrophes
     .split(/\s+/); // Split by whitespace
 
   // Step 2: Count unique words
@@ -497,8 +401,6 @@ function saveWords(narration, email) {
     // Merge new words with existing saved words
     const mergedWords = [...existingWords];
 
-    console.log('before', mergedWords)
-
     newWords.forEach((newWord) => {
       const existingWord = mergedWords.find(
         (word) => word.word === newWord.word
@@ -514,20 +416,11 @@ function saveWords(narration, email) {
       }
     });
 
-    console.log('merge', mergedWords)
-
     user.words = mergedWords;
 
     // Save the updated user data
-    user
-      .save()
-      .then(() => {
-        console.log("User's words updated successfully.");
-      })
-      .catch((err) => {
-        console.error("Error saving user data:", err);
-      });
+    user.save().catch((err) => {
+      console.error("Error saving user data:", err);
+    });
   });
-
-  console.log(newWords);
 }

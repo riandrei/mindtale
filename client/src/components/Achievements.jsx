@@ -2,7 +2,6 @@ import React from "react";
 import styles from "../css/Achievements.module.css";
 
 const Achievements = ({ achievements }) => {
-  console.log("achievements", achievements);
   return (
     <div className={styles.Achievements}>
       <h1 style={{ width: "100%", textAlign: "center", marginTop: "2rem" }}>

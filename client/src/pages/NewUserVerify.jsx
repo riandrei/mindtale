@@ -19,7 +19,6 @@ function NewUserVerify({ verifyAccount, getUser }) {
   const [code, setCode] = useState("");
 
   const handleCodeSubmitClick = () => {
-    console.log(user.email);
     setIsMatch(false);
     setCode("");
     verifyAccount(code, user.email, navigate);
@@ -36,13 +35,9 @@ function NewUserVerify({ verifyAccount, getUser }) {
   }, [errorStatus]);
 
   useEffect(() => {
-    console.log(user);
     if (Object.keys(user).length === 0) {
-      console.log("test", user);
       getUser();
     }
-
-    console.log(user);
   }, []);
 
   return (

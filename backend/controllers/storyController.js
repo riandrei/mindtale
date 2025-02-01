@@ -1,6 +1,6 @@
 const Story = require("../models/Story");
 const User = require("../models/User");
-const SchoolStory = require("../models/SchoolStory")
+const SchoolStory = require("../models/SchoolStory");
 
 const cloudinary = require("cloudinary").v2;
 
@@ -9,20 +9,20 @@ module.exports.getAllStories = (req, res) => {
 };
 
 module.exports.getStories = (req, res) => {
-  const {school} = req.user
+  const { school } = req.user;
 
-  console.log(school)
+  Story.find().then(async (stories) => {
+    if (school !== "Independent") {
+      const schoolData = await SchoolStory.findOne({ school });
+      const approve = schoolData.approved;
 
-  Story.find().then( async (stories) => {
-    if(school !== "Independent") {
-      const schoolData = await SchoolStory.findOne({school})
-      const approve = schoolData.approved
+      const approvedStories = stories.filter((story) =>
+        approve.includes(story._id)
+      );
 
-      const approvedStories = stories.filter((story) => approve.includes(story._id))
-
-      return res.status(200).json({stories: approvedStories})
+      return res.status(200).json({ stories: approvedStories });
     }
-    return res.status(200).json({ stories })
+    return res.status(200).json({ stories });
   });
 };
 
@@ -117,8 +117,6 @@ module.exports.deleteReview = (req, res) => {
 module.exports.generateStoryCover = (req, res) => {
   const { title, genre } = req.body;
 
-  console.log(title, genre);
-
   fetch(`https://api.getimg.ai/v1/latent-consistency/text-to-image`, {
     method: "POST",
     headers: {
@@ -148,7 +146,6 @@ module.exports.generateStoryCover = (req, res) => {
       });
     })
     .then((result) => {
-      console.log("done uploading");
       return res.status(200).json({ imgURL: result.secure_url });
     })
     .catch((error) => console.error(error));

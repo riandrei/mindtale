@@ -82,22 +82,17 @@ module.exports.startSession = async function startSession(req, res) {
               const history = await chat.getHistory();
 
               getImageScene(parsedText.scenarioImagePrompt).then(() => {
-                console.log("test");
-
                 cloudinary.uploader
                   .upload("../temp/scenario.png", {
                     unique_filename: true,
                     folder: "Mindtale/scenarioImages/",
                   })
                   .then((result) => {
-                    console.log(result.secure_url);
                     fs.unlinkSync("../temp/scenario.png");
 
                     Session.scenarioHistory.push(result.secure_url);
 
                     const scenarioHistory = [...session.scenarioHistory];
-
-                    console.log("test here");
 
                     Session.history = [...history];
                     Session.save();
@@ -165,32 +160,6 @@ module.exports.submitUserChoice = async function submitUserChoice(req, res) {
           const scenarioHistory = [];
 
           return res.status(200).json({ history, parsedText, scenarioHistory });
-
-          // getImageScene(parsedText.scenarioImagePrompt).then(() => {
-          //   console.log("test");
-
-          //   cloudinary.uploader
-          //     .upload("../temp/scenario.png", {
-          //       unique_filename: true,
-          //       folder: "Mindtale/scenarioImages/",
-          //     })
-          //     .then((result) => {
-          //       fs.unlinkSync("../temp/scenario.png");
-
-          //       Session.scenarioHistory.push(result.secure_url);
-
-          //       const scenarioHistory = [...session.scenarioHistory];
-
-          //       console.log("test here");
-
-          //       Session.history = [...history];
-          //       Session.save();
-
-          //       return res
-          //         .status(200)
-          //         .json({ history, parsedText, scenarioHistory });
-          //     });
-          // });
         } catch (err) {
           console.log(err);
           if (err instanceof SyntaxError) {
@@ -253,7 +222,6 @@ module.exports.getAssesment = (req, res) => {
             );
           }
         })
-        .then((json) => console.log(json))
         .catch((error) => {
           console.error(error);
         });
@@ -263,8 +231,6 @@ module.exports.getAssesment = (req, res) => {
 
 function getImageScene(scenarioImagePrompt) {
   return new Promise((resolve, reject) => {
-    console.log(scenarioImagePrompt + ", colorful" + ", child friendly");
-
     fetch(`https://api.getimg.ai/v1/stable-diffusion-xl/text-to-image`, {
       method: "POST",
       headers: {
@@ -282,10 +248,8 @@ function getImageScene(scenarioImagePrompt) {
       .then(async (response) => {
         response.json().then((res) => {
           const buffer = Buffer.from(res.image, "base64");
-          console.log(res.im);
           fs.writeFile("../temp/scenario.png", buffer, (err) => {
             if (err) throw err;
-            console.log("Saved!");
             resolve();
           });
         });

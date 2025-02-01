@@ -5,15 +5,15 @@ import styles from "../css/AllStories.module.css";
 import SpecificStory from "./SpecificStory";
 import SchoolStoryModal from "./SchoolStoryModal";
 import { getAllStories } from "../actions/storyActions";
-import {getAllowedStories} from "../actions/adminActions"
+import { getAllowedStories } from "../actions/adminActions";
 
 import Story1 from "../assets/artwork8.jpg";
 import Line from "../assets/line3.png";
 
 function AllowedStories() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const stories = useSelector((state) => state.story.stories);
-  const allowedStories = useSelector((state) => state.story.allowedStories)
+  const allowedStories = useSelector((state) => state.story.allowedStories);
 
   const [showStoryModal, setShowStoryModal] = useState(false);
   const [activeStory, setActiveStory] = useState(null);
@@ -26,32 +26,28 @@ function AllowedStories() {
   };
 
   useEffect(() => {
-    console.log('allowedstories')
     dispatch(getAllStories());
-    dispatch(getAllowedStories())
+    dispatch(getAllowedStories());
   }, []);
 
   return (
     <div className={styles.AllStories}>
-      {console.log(allowedStories)}
       <div className={styles.Stories_top}>
         <span>Approved Stories</span>
       </div>
       <div className={styles.Stories_con}>
-      {stories.length > 0 &&
-            stories
-                .filter(
-                    (story) =>
-                        allowedStories?.includes(story._id))
-                .map((story) => (
-                    <SpecificStory
-                        key={story._id}
-                        title={story.title}
-                        imgURL={story.imgURL}
-                        id={story._id}
-                        toggleStoryModal={toggleStoryModal}
-                    />
-        ))}
+        {stories.length > 0 &&
+          stories
+            .filter((story) => allowedStories?.includes(story._id))
+            .map((story) => (
+              <SpecificStory
+                key={story._id}
+                title={story.title}
+                imgURL={story.imgURL}
+                id={story._id}
+                toggleStoryModal={toggleStoryModal}
+              />
+            ))}
       </div>
       {showStoryModal && (
         <SchoolStoryModal

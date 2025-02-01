@@ -79,9 +79,7 @@ export default function RecentExploration() {
         })
         .sort((a, b) => b.date.localeCompare(a.date));
 
-      console.log(visitedStoriesDetails);
       setVisitedStories(visitedStoriesDetails);
-      console.log(visitedStories);
     }
   }, [user, stories]);
 

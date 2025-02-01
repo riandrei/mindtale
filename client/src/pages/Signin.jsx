@@ -59,21 +59,11 @@ function Signin({ signUp, signUpWithGoogle }) {
         setNotMatch(false);
 
         signUp(createEmail, createPassword, navigate);
-
-        console.log(user);
-
-        // FOR WHEN WE HAVE VERIFICATION PAGE
-        // if (!user.verified) {
-        //   navigate("/verify");
-        // } else {
-        //   navigate("/");
-        // }
       }
     }
   };
 
   const handleCredentialResponse = (response) => {
-    console.log("credential response");
     signUpWithGoogle(response.credential, navigate);
   };
 
@@ -144,7 +134,13 @@ function Signin({ signUp, signUpWithGoogle }) {
           />
           <p>
             I agree to the{" "}
-            <Link to="/TermsAndConditions" target="_blank" className={styles.terms}>terms and conditions</Link>{" "}
+            <Link
+              to="/TermsAndConditions"
+              target="_blank"
+              className={styles.terms}
+            >
+              terms and conditions
+            </Link>{" "}
           </p>
         </div>
 

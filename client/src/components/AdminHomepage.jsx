@@ -5,7 +5,7 @@ import styles from "../css/Admin.module.css";
 
 import Nav from "../components/Nav";
 import AllStories from "../components/AllStories";
-import AddAdmin from "../components/AddAdmin"
+import AddAdmin from "../components/AddAdmin";
 
 import { generateStoryCover, addStory } from "../actions/storyActions";
 
@@ -64,7 +64,6 @@ function AdminHomepage({ generateStoryCover, addStory }) {
 
   const handleGenerateButtonClick = () => {
     generateStoryCover(titleValue, selectedGenre);
-    console.log(titleValue, selectedGenre);
   };
 
   const generatedImageURL = useSelector(
@@ -112,35 +111,35 @@ function AdminHomepage({ generateStoryCover, addStory }) {
             <span>Genre</span>
             <div className={styles.Genre_choices}>
               <div className={styles.Choice}>
-                  <input
-                    type="radio"
-                    name="genre"
-                    id="fantasy"
-                    checked={selectedGenre === "Fables"}
-                    onChange={() => handleGenreChange("Fables")}
-                  />
-                  <label htmlFor="fantasy">Fables</label>
-                </div>
-                <div className={styles.Choice}>
-                  <input
-                    type="radio"
-                    name="genre"
-                    id="fantasy"
-                    checked={selectedGenre === "Mythology"}
-                    onChange={() => handleGenreChange("Mythology")}
-                  />
-                  <label htmlFor="fantasy">Mythology</label>
-                </div>
-                <div className={styles.Choice}>
-                  <input
-                    type="radio"
-                    name="genre"
-                    id="fantasy"
-                    checked={selectedGenre === "Folk Tale"}
-                    onChange={() => handleGenreChange("Folk Tale")}
-                  />
-                  <label htmlFor="fantasy">Folk Tale</label>
-                </div>
+                <input
+                  type="radio"
+                  name="genre"
+                  id="fantasy"
+                  checked={selectedGenre === "Fables"}
+                  onChange={() => handleGenreChange("Fables")}
+                />
+                <label htmlFor="fantasy">Fables</label>
+              </div>
+              <div className={styles.Choice}>
+                <input
+                  type="radio"
+                  name="genre"
+                  id="fantasy"
+                  checked={selectedGenre === "Mythology"}
+                  onChange={() => handleGenreChange("Mythology")}
+                />
+                <label htmlFor="fantasy">Mythology</label>
+              </div>
+              <div className={styles.Choice}>
+                <input
+                  type="radio"
+                  name="genre"
+                  id="fantasy"
+                  checked={selectedGenre === "Folk Tale"}
+                  onChange={() => handleGenreChange("Folk Tale")}
+                />
+                <label htmlFor="fantasy">Folk Tale</label>
+              </div>
               <div className={styles.Choice}>
                 <input
                   type="radio"

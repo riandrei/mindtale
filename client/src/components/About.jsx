@@ -40,12 +40,6 @@ export const About = () => {
   useEffect(() => {
     if (user?.completedStories?.length) {
       // Calculate average score
-      console.log(
-        user.completedStories.reduce(
-          (acc, story) => acc + Number(story.assesmentScore),
-          0
-        )
-      );
       setAssesmentScore(
         user.completedStories.reduce(
           (acc, story) => acc + Number(story.assesmentScore),

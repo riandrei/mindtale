@@ -9,7 +9,6 @@ export const Rank = ({ ranking }) => {
   );
   return (
     <div className={styles.Rank}>
-      {console.log(sortedRanking)}
       <div className={styles.SpecificRank}>
         <span>{sortedRanking[2]?.username || "Not Found"}</span>
 

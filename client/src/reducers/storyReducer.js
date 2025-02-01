@@ -7,7 +7,7 @@ import {
   ADD_STORY_SUCCESS,
   DELETE_STORY_SUCCESS,
   GET_ALLOWED_STORIES_SUCCESS,
-  APPROVE_STORY_SUCCESS
+  APPROVE_STORY_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -70,18 +70,17 @@ export default function storyReducer(state = initialState, action) {
         ),
       };
     case GET_ALLOWED_STORIES_SUCCESS:
-      console.log(action.payload)
       return {
         ...state,
         allowedStories: action.payload.approved,
-        rejectedStories: action.payload.rejected
-      }
+        rejectedStories: action.payload.rejected,
+      };
     case APPROVE_STORY_SUCCESS:
       return {
         ...state,
         allowedStories: action.payload.approved,
-        rejectedStories: action.payload.rejected
-      }
+        rejectedStories: action.payload.rejected,
+      };
     default:
       return state;
   }

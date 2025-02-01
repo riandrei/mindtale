@@ -24,12 +24,9 @@ const TTS = ({ text, isLight }) => {
 
       // Split text into sentences or phrases for captions
       const sentences = translatedText?.split(/(?<=[.?!])\s+/);
-      console.log(translatedText);
 
       u.onboundary = (event) => {
         // When a word boundary is hit, update the current caption
-        console.log(event.name);
-        console.log(sentenceIndex);
         if (event.name === "sentence") {
           setSentenceIndex((prevIndex) => {
             const newIndex = prevIndex + 1;
@@ -60,8 +57,6 @@ const TTS = ({ text, isLight }) => {
     if (isPaused) {
       synth.resume();
     } else {
-      console.log("play");
-
       setSentenceIndex(-1);
       synth.speak(utterance);
     }

@@ -12,7 +12,6 @@ function Notification() {
   const [isHaveNotif, setIsHaveNotif] = useState(true);
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const handleNotificationClick = () => {
-    console.log("Hello");
     setIsNotifOpen(!isNotifOpen);
   };
 

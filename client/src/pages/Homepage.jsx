@@ -116,7 +116,6 @@ function Homepage({ getUser, getStories }) {
 
   return (
     <div className={styles.Homepage}>
-      {console.log(user)}
       <Nav />
       <TopBar />
       <Swiper

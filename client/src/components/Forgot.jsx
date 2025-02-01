@@ -45,7 +45,6 @@ export function Forgot({ handleForgotClick }) {
 
       // Once the forgotPassword action is complete, run useIsNext
       if (isSuccess) {
-        console.log("Forgot password email sent successfully");
         useIsNext(isNext + 1);
       } else {
         alert("Failed to send forgot password email");
@@ -71,7 +70,6 @@ export function Forgot({ handleForgotClick }) {
       );
 
       if (isSuccess) {
-        console.log("Verification Code matched");
         useIsNext(isNext + 1);
       } else {
         alert("Verification Code doesn't match");
@@ -96,10 +94,7 @@ export function Forgot({ handleForgotClick }) {
       const isSuccess = await dispatch(changePassword(email, isNewPass));
 
       if (isSuccess) {
-        console.log("Updated password successfully");
         useIsNext(isNext + 1);
-      } else {
-        console.log("Updated password failed");
       }
     } catch (error) {
       // Handle any errors from the forgotPassword action

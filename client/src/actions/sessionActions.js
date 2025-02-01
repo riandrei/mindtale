@@ -22,7 +22,6 @@ export const readStory =
     }).then((res) => {
       if (res.status === 200) {
         res.json().then((res) => {
-          console.log(res);
           dispatch({
             type: READ_STORY_SUCCESS,
             payload: res.content,
@@ -46,7 +45,6 @@ export const submitUserChoice =
     }).then((res) => {
       if (res.status === 200) {
         res.json().then((res) => {
-          console.log(res);
           dispatch({
             type: SUBMIT_USER_CHOICE_SUCCESS,
             payload: res,
@@ -65,7 +63,6 @@ export const getAssesment = (storyId) => (dispatch) => {
       credentials: "include",
     },
   }).then((res) => {
-    console.log(res);
     dispatch({
       type: GET_ASSESMENT_SUCCESS,
       payload: res,
@@ -102,7 +99,7 @@ export const translateText = (text, targetLanguage) => async (dispatch) => {
     }
 
     const data = await response.json();
-    console.log(data);
+
     dispatch({
       type: TRANSLATE_TEXT_SUCCESS,
       payload: data,
@@ -132,7 +129,7 @@ export const translateWord = (text, targetLanguage) => async (dispatch) => {
     }
 
     const data = await response.json();
-    console.log(data);
+
     dispatch({
       type: TRANSLATE_WORD_SUCCESS,
       payload: data,

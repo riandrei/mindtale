@@ -124,8 +124,6 @@ module.exports.signUpWithGoogle = (req, res) => {
 module.exports.signInWithGoogle = (req, res) => {
   const user = res.userInfo;
 
-  console.log(user);
-
   const { email } = user;
   const password = email + process.env.GOOGLE_OAUTH_KEY;
 
@@ -288,7 +286,6 @@ module.exports.addHistory = (req, res, next) => {
       return user.save();
     })
     .then((user) => {
-      console.log("History added");
       next();
     })
     .catch((error) => {
@@ -318,8 +315,6 @@ module.exports.updateUser = (req, res) => {
     if (!user) {
       return res.status(400).json({ error: "User not found" });
     }
-
-    console.log(profilePicture);
 
     user.username = username;
     user.profilePicture = profilePicture;
@@ -446,9 +441,6 @@ module.exports.submitCompletedStory = (req, res) => {
   const { assesmentScore } = req.body;
   const { email } = req.user;
 
-  console.log(storyId, assesmentScore);
-  console.log(email);
-
   Story.findOne({ _id: storyId }).then((story) => {
     if (!story) {
       return res.status(400).json({ error: "Story not found" });
@@ -506,7 +498,6 @@ module.exports.getRanking = (req, res) => {
         lastUpdated = lastCompletedStory.date;
       }
 
-      // completedStories.map((story) => {console.log}
       return { username, profilePicture, totalScore, lastUpdated };
     });
 
@@ -530,7 +521,6 @@ function validateEmail(email) {
 }
 
 function sendEmail(email, verificationCode) {
-  console.log(email, verificationCode);
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   (async () => {
@@ -612,8 +602,6 @@ function sendEmail(email, verificationCode) {
         </html>
         `,
       });
-
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -622,7 +610,6 @@ function sendEmail(email, verificationCode) {
 
 module.exports.forgotPassword = (req, res) => {
   const { email } = req.body;
-  console.log(req.body);
 
   User.findOne({ email }).then((user) => {
     if (!user) {
@@ -631,7 +618,6 @@ module.exports.forgotPassword = (req, res) => {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    console.log("test");
     const verificationCode = user.verificationCode;
 
     (async () => {
@@ -713,7 +699,7 @@ module.exports.forgotPassword = (req, res) => {
             </html>
             `,
         });
-        console.log(data);
+
         return res.status(200).json({ message: "Password reset email sent" });
       } catch (error) {
         console.log(error);
@@ -776,8 +762,6 @@ module.exports.submitWordInteraction = (req, res) => {
   const { email } = req.user; // Extract user email from the request
   const { word } = req.body; // Extract word from the request body
 
-  console.log(word);
-
   User.findOne({ email })
     .then((user) => {
       if (!user) {
@@ -789,7 +773,6 @@ module.exports.submitWordInteraction = (req, res) => {
       const existingWords = user.words || [];
 
       // Find the word in the user's word list
-      console.log(word.toLowerCase());
       const existingWord = existingWords.find(
         (w) => w.word === word.toLowerCase()
       );
@@ -806,7 +789,6 @@ module.exports.submitWordInteraction = (req, res) => {
       user
         .save()
         .then(() => {
-          console.log("User's word interaction updated successfully.");
           res
             .status(200)
             .json({ message: "Word interaction updated successfully." });
@@ -1011,8 +993,6 @@ module.exports.submitComprehensionScore = async (req, res) => {
     const response = await result.response;
     const text = response.text();
     const trimmedText = text.trim();
-
-    console.log("Model response:", trimmedText);
 
     // Extract and parse the AI's JSON response
     const jsonMatch = trimmedText.match(/\{[^}]*"correctAnswers"[^}]*\}/);
