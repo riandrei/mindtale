@@ -39,9 +39,9 @@ api.{$DOMAIN_NAME:invalid} {
         }
 
         zone burst_limit {
-            key {remote_host}
+            #key {remote_host}
             # if using Cloudflare proxy, use the following key:
-            # key {http.request.header.CF-Connecting-IP}
+            key {http.request.header.CF-Connecting-IP}
             events 20
             window 1s
         }
