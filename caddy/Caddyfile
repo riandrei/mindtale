@@ -1,13 +1,13 @@
-{$DOMAIN_NAME:invalid} {
+{$DOMAIN_NAME:invalid}:8001 {
     encode gzip
     reverse_proxy frontend:80
 }
 
-www.{$DOMAIN_NAME:invalid} {
+www.{$DOMAIN_NAME:invalid}:8001 {
     redir https://{$DOMAIN_NAME}{uri} permanent
 }
 
-api.{$DOMAIN_NAME:invalid} {
+api.{$DOMAIN_NAME:invalid}:8001 {
     encode gzip
     reverse_proxy api:3001
 
