@@ -14,9 +14,8 @@ ARG VITE_API_URL
 RUN VITE_API_URL=${VITE_API_URL} npm run build
 
 # Production stage
+FROM nginx:alpine AS production
 
-FROM caddy:2-alpine AS production
+COPY --from=development /app/dist /usr/share/nginx/html
 
-COPY Caddyfile /etc/caddy/Caddyfile
-
-COPY --from=development /app/dist /srv
+CMD ["nginx", "-g", "daemon off;"]
