@@ -7,7 +7,7 @@ import {
 const baseURL = import.meta.env.VITE_API_URL;
 
 export const addAdmin = (formData) => (dispatch) => {
-  fetch(`${baseURL}/api/admin`, {
+  fetch(`/api/admin`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -19,7 +19,7 @@ export const addAdmin = (formData) => (dispatch) => {
 };
 
 export const schoolAdminLogin = (username, password) => (dispatch) => {
-  fetch(`${baseURL}/api/schoolAdminLogin`, {
+  fetch(`/api/schoolAdminLogin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export const schoolAdminLogin = (username, password) => (dispatch) => {
 };
 
 export const getAllowedStories = () => (dispatch) => {
-  fetch(`${baseURL}/api/allowedStories`, {
+  fetch(`/api/allowedStories`, {
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -57,7 +57,7 @@ export const getAllowedStories = () => (dispatch) => {
 };
 
 export const approveStory = (storyId) => (dispatch) => {
-  fetch(`${baseURL}/api/approveStory/${storyId}`, {
+  fetch(`/api/approveStory/${storyId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -72,7 +72,7 @@ export const approveStory = (storyId) => (dispatch) => {
 };
 
 export const rejectStory = (storyId) => (dispatch) => {
-  fetch(`${baseURL}/api/rejectStory/${storyId}`, {
+  fetch(`/api/rejectStory/${storyId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),

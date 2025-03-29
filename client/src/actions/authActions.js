@@ -21,7 +21,7 @@ import {
 const baseURL = import.meta.env.VITE_API_URL;
 
 export const logIn = (email, password, navigate) => (dispatch) => {
-  fetch(`${baseURL}/api/logIn`, {
+  fetch(`/api/logIn`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export const logIn = (email, password, navigate) => (dispatch) => {
 };
 
 export const signUp = (email, password, navigate) => (dispatch) => {
-  fetch(`${baseURL}/api/signUp`, {
+  fetch(`/api/signUp`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -67,7 +67,7 @@ export const signUp = (email, password, navigate) => (dispatch) => {
 };
 
 export const signInWithGoogle = (credential, navigate) => (dispatch) => {
-  fetch(`${baseURL}/api/login/google`, {
+  fetch(`/api/login/google`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -98,7 +98,7 @@ export const signInWithGoogle = (credential, navigate) => (dispatch) => {
 };
 
 export const signUpWithGoogle = (credential, navigate) => (dispatch) => {
-  fetch(`${baseURL}/api/signUp/google`, {
+  fetch(`/api/signUp/google`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -115,7 +115,7 @@ export const signUpWithGoogle = (credential, navigate) => (dispatch) => {
 };
 
 export const verifyAccount = (code, email, navigate) => (dispatch) => {
-  fetch(`${baseURL}/api/verify`, {
+  fetch(`/api/verify`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -142,7 +142,7 @@ export const verifyAccount = (code, email, navigate) => (dispatch) => {
 };
 
 export const getUser = () => (dispatch) => {
-  fetch(`${baseURL}/api/user`, {
+  fetch(`/api/user`, {
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -160,7 +160,7 @@ export const getUser = () => (dispatch) => {
 };
 
 export const toggleBookmark = (token, storyId) => (dispatch) => {
-  fetch(`${baseURL}/api/bookmark/${storyId}`, {
+  fetch(`/api/bookmark/${storyId}`, {
     method: "POST",
     headers: {
       Authorization: token,
@@ -177,7 +177,7 @@ export const toggleBookmark = (token, storyId) => (dispatch) => {
 };
 
 export const addVisited = (storyId) => (dispatch) => {
-  fetch(`${baseURL}/api/visited/${storyId}`, {
+  fetch(`/api/visited/${storyId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -190,7 +190,7 @@ export const addVisited = (storyId) => (dispatch) => {
 };
 
 export const getUsers = () => (dispatch) => {
-  fetch(`${baseURL}/api/users`, {
+  fetch(`/api/users`, {
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -208,7 +208,7 @@ export const getUsers = () => (dispatch) => {
 };
 
 export const updateUser = (formData) => (dispatch) => {
-  fetch(`${baseURL}/api/user`, {
+  fetch(`/api/user`, {
     method: "PUT",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -219,7 +219,7 @@ export const updateUser = (formData) => (dispatch) => {
 };
 
 export const submitUserData = (formData, navigate) => (dispatch) => {
-  fetch(`${baseURL}/api/userData`, {
+  fetch(`/api/userData`, {
     method: "PUT",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -235,7 +235,7 @@ export const submitUserData = (formData, navigate) => (dispatch) => {
 
 export const submitUserPreference =
   (userPreference, navigate) => (dispatch) => {
-    fetch(`${baseURL}/api/userPreference`, {
+    fetch(`/api/userPreference`, {
       method: "PUT",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -251,7 +251,7 @@ export const submitUserPreference =
   };
 
 export const addFriend = (friendId) => (dispatch) => {
-  fetch(`${baseURL}/api/friend/${friendId}`, {
+  fetch(`/api/friend/${friendId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -260,7 +260,7 @@ export const addFriend = (friendId) => (dispatch) => {
 };
 
 export const acceptFriendRequest = (friendId) => (dispatch) => {
-  fetch(`${baseURL}/api/accept/${friendId}`, {
+  fetch(`/api/accept/${friendId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -269,7 +269,7 @@ export const acceptFriendRequest = (friendId) => (dispatch) => {
 };
 
 export const rejectFriendRequest = (friendId) => (dispatch) => {
-  fetch(`${baseURL}/api/decline/${friendId}`, {
+  fetch(`/api/decline/${friendId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -278,7 +278,7 @@ export const rejectFriendRequest = (friendId) => (dispatch) => {
 };
 
 export const submitCompletedStory = (storyId, assesmentScore) => (dispatch) => {
-  fetch(`${baseURL}/api/complete/${storyId}`, {
+  fetch(`/api/complete/${storyId}`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -289,7 +289,7 @@ export const submitCompletedStory = (storyId, assesmentScore) => (dispatch) => {
 };
 
 export const getRanking = () => (dispatch) => {
-  fetch(`${baseURL}/api/ranking`, {
+  fetch(`/api/ranking`, {
     method: "GET",
     headers: {
       // Authorization: localStorage.getItem("token"),
@@ -308,7 +308,7 @@ export const getRanking = () => (dispatch) => {
 
 export const forgotPassword = (email) => async (dispatch) => {
   try {
-    const response = await fetch(`${baseURL}/api/forgot`, {
+    const response = await fetch(`/api/forgot`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -339,7 +339,7 @@ export const forgotPassword = (email) => async (dispatch) => {
 export const checkVerification =
   (email, verificationCode) => async (dispatch) => {
     try {
-      const response = await fetch(`${baseURL}/api/checkVerificationCode`, {
+      const response = await fetch(`/api/checkVerificationCode`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -369,7 +369,7 @@ export const checkVerification =
 
 export const changePassword = (email, newPassword) => async (dispatch) => {
   try {
-    const response = await fetch(`${baseURL}/api/changePassword`, {
+    const response = await fetch(`/api/changePassword`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -398,7 +398,7 @@ export const changePassword = (email, newPassword) => async (dispatch) => {
 };
 
 export const getStoriesStats = () => (dispatch) => {
-  fetch(`${baseURL}/api/stories/stats`, {
+  fetch(`/api/stories/stats`, {
     method: "GET",
   }).then((res) => {
     if (res.status === 200) {
@@ -413,7 +413,7 @@ export const getStoriesStats = () => (dispatch) => {
 };
 
 export const adminLogin = (username, password, navigate) => (dispatch) => {
-  fetch(`${baseURL}/api/adminLogin`, {
+  fetch(`/api/adminLogin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -435,7 +435,7 @@ export const adminLogin = (username, password, navigate) => (dispatch) => {
 };
 
 export const getWordsStats = () => (dispatch) => {
-  fetch(`${baseURL}/api/wordStats`, {
+  fetch(`/api/wordStats`, {
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -451,7 +451,7 @@ export const getWordsStats = () => (dispatch) => {
 };
 
 export const submitWordInteraction = (word) => (dispatch) => {
-  fetch(`${baseURL}/api/wordInteraction`, {
+  fetch(`/api/wordInteraction`, {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -464,7 +464,7 @@ export const submitWordInteraction = (word) => (dispatch) => {
 
 export const submitWordReadingScore =
   (passage, audioData, wordReadingType) => (dispatch) => {
-    fetch(`${baseURL}/api/wordReadingScore`, {
+    fetch(`/api/wordReadingScore`, {
       method: "POST",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -487,7 +487,7 @@ export const submitWordReadingScore =
 
 export const submitComprehensionScore =
   (questions, answers, comprehensionType) => (dispatch) => {
-    fetch(`${baseURL}/api/comprehensionScore`, {
+    fetch(`/api/comprehensionScore`, {
       method: "POST",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -509,7 +509,7 @@ export const submitComprehensionScore =
   };
 
 export const getPHILIRIResults = () => (dispatch) => {
-  fetch(`${baseURL}/api/philIRI`, {
+  fetch(`/api/philIRI`, {
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),

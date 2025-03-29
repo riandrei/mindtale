@@ -11,7 +11,7 @@ import {
 const baseURL = import.meta.env.VITE_API_URL;
 
 export const getStories = () => (dispatch) => {
-  fetch(`${baseURL}/api/stories`, {
+  fetch(`/api/stories`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export const getStories = () => (dispatch) => {
 };
 
 export const getAllStories = () => (dispatch) => {
-  fetch(`${baseURL}/api/allStories`, {
+  fetch(`/api/allStories`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export const getAllStories = () => (dispatch) => {
 };
 
 export const postReview = (id, reviewStar, reviewText) => (dispatch) => {
-  fetch(`${baseURL}/api/stories/${id}/review`, {
+  fetch(`/api/stories/${id}/review`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export const postReview = (id, reviewStar, reviewText) => (dispatch) => {
 };
 
 export const getReviews = (id) => (dispatch) => {
-  fetch(`${baseURL}/api/stories/${id}/review`, {
+  fetch(`/api/stories/${id}/review`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -90,7 +90,7 @@ export const getReviews = (id) => (dispatch) => {
 };
 
 export const deleteReview = (storyId) => (dispatch) => {
-  fetch(`${baseURL}/api/stories/${storyId}/review`, {
+  fetch(`/api/stories/${storyId}/review`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -110,7 +110,7 @@ export const deleteReview = (storyId) => (dispatch) => {
 };
 
 export const generateStoryCover = (title, genre) => (dispatch) => {
-  fetch(`${baseURL}/api/stories/cover`, {
+  fetch(`/api/stories/cover`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -126,7 +126,7 @@ export const generateStoryCover = (title, genre) => (dispatch) => {
 };
 
 export const addStory = (formData) => (dispatch) => {
-  fetch(`${baseURL}/api/stories`, {
+  fetch(`/api/stories`, {
     method: "POST",
     body: formData,
   }).then((res) => {
@@ -139,7 +139,7 @@ export const addStory = (formData) => (dispatch) => {
 };
 
 export const deleteStory = (id) => (dispatch) => {
-  fetch(`${baseURL}/api/stories/${id}`, {
+  fetch(`/api/stories/${id}`, {
     method: "DELETE",
   }).then((res) => {
     if (res.status === 200) {

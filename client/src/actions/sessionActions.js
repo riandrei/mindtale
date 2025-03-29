@@ -12,7 +12,7 @@ const baseURL = import.meta.env.VITE_API_URL;
 export const readStory =
   ({ storyId }) =>
   (dispatch) => {
-    fetch(`${baseURL}/api/sessions/${storyId}`, {
+    fetch(`/api/sessions/${storyId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +34,7 @@ export const readStory =
 export const submitUserChoice =
   ({ userChoice, storyId }) =>
   (dispatch) => {
-    return fetch(`${baseURL}/api/sessions/${storyId}`, {
+    return fetch(`/api/sessions/${storyId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export const submitUserChoice =
   };
 
 export const getAssesment = (storyId) => (dispatch) => {
-  fetch(`${baseURL}/api/sessions/${storyId}/completed`, {
+  fetch(`/api/sessions/${storyId}/completed`, {
     method: "GET",
     headers: {
       Authorization: localStorage.getItem("token"),
@@ -71,7 +71,7 @@ export const getAssesment = (storyId) => (dispatch) => {
 };
 
 export const submitAssesmentScore = (storyId, assesmentScore) => (dispatch) => {
-  fetch(`${baseURL}/api/sessions/${storyId}/completed`, {
+  fetch(`/api/sessions/${storyId}/completed`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -84,7 +84,7 @@ export const submitAssesmentScore = (storyId, assesmentScore) => (dispatch) => {
 
 export const translateText = (text, targetLanguage) => async (dispatch) => {
   try {
-    const response = await fetch(`${baseURL}/api/translatetext`, {
+    const response = await fetch(`/api/translatetext`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -114,7 +114,7 @@ export const translateText = (text, targetLanguage) => async (dispatch) => {
 
 export const translateWord = (text, targetLanguage) => async (dispatch) => {
   try {
-    const response = await fetch(`${baseURL}/api/translatetext`, {
+    const response = await fetch(`/api/translatetext`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
