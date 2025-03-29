@@ -31,8 +31,6 @@ services:
     restart: always
     environment:
       - VITE_API_URL=${APP_ORIGIN}
-    ports:
-      - "3000:80"
     depends_on:
       - backend
     networks:
