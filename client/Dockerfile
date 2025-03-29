@@ -1,22 +1,25 @@
-# Development stage
-FROM node:20-bookworm-slim AS development
+# Build stage
+FROM node:18-alpine as build
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm install
 
 COPY . .
 
-ARG VITE_API_URL
-
-RUN VITE_API_URL=${VITE_API_URL} npm run build
+RUN npm run build
 
 # Production stage
+FROM nginx:alpine
 
-FROM caddy:2-alpine AS production
+# Copy the build output
+COPY --from=build /app/build /usr/share/nginx/html
 
-COPY Caddyfile /etc/caddy/Caddyfile
+# Add nginx configuration to route everything to index.html for SPA
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=development /app/dist /srv
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

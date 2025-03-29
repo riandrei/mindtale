@@ -1,44 +1,43 @@
-name: mindtale
+version: "3"
 
 services:
-  api:
+  backend:
     build:
       context: ./backend
-      target: production
-    restart: unless-stopped
-    env_file: ./backend/.env
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - DB_TEST_URI=${DB_TEST_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - GETIMG_API_KEY=${GETIMG_API_KEY}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - GOOGLE_OAUTH_KEY=${GOOGLE_OAUTH_KEY}
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - GOOGLE_PRIVATE_KEY=${GOOGLE_PRIVATE_KEY}
+      - GOOGLE_CLIENT_EMAIL=${GOOGLE_CLIENT_EMAIL}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - APP_ORIGIN=${APP_ORIGIN}
     networks:
-      - mindtale
+      - app-network
+
   frontend:
     build:
       context: ./client
-      target: production
-      args:
-        VITE_API_URL: https://api.${DOMAIN_NAME}
-    restart: unless-stopped
-    networks:
-      - mindtale
-    depends_on:
-      - api
-  caddy:
-    build:
-      context: ./caddy
       dockerfile: Dockerfile
-    ports:
-      - "8001:80"
-      - "444:443"
+    restart: always
     environment:
-      DOMAIN_NAME: ${DOMAIN_NAME}
-    networks:
-      - mindtale
+      - VITE_API_URL=${APP_ORIGIN}
+    ports:
+      - "80:80"
     depends_on:
-      - api
-      - frontend
-
-volumes:
-  caddy_data:
-  caddy_config:
+      - backend
+    networks:
+      - app-network
 
 networks:
-  mindtale:
+  app-network:
     driver: bridge
