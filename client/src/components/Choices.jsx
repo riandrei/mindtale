@@ -37,6 +37,7 @@ export function Choices({ choices, onLoading, offLoading, submitUserChoice }) {
           <button
             key={index}
             onClick={() => handleChoiceClick(choice)}
+            style={{ color: "white" }}
             // style={{ backgroundColor: selectedButton === index ? '#2395A5' : '' }}
           >
             {choice.text.slice(0, choice.text.indexOf(":"))}

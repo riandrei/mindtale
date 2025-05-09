@@ -137,7 +137,10 @@ function StoryBoard({ readStory }) {
   return loading ? (
     <LoadingScreen />
   ) : (
-    <div className={isLight ? styles.StoryBoard2 : styles.StoryBoard}>
+    <div
+      className={isLight ? styles.StoryBoard2 : styles.StoryBoard}
+      style={{ color: "white" }}
+    >
       {indexClicked === -1 || indexClicked === filteredHistory.length - 1 ? (
         <div className={styles.StoryBoard_inner}>
           <StoryNav
