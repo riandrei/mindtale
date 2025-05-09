@@ -88,6 +88,8 @@ module.exports.startSession = async function startSession(req, res) {
             const response = await result.response;
 
             const text = response.text();
+
+            console.log(text);
             const trimmedText = text.trim();
 
             try {
@@ -175,6 +177,8 @@ module.exports.submitUserChoice = async function submitUserChoice(req, res) {
         const response = await result.response;
 
         const text = response.text();
+
+        console.log(text);
         const trimmedText = text.trim();
 
         try {
