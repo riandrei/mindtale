@@ -11,10 +11,6 @@ const StoryModal = ({ activeStory, toggleStoryModal }) => {
   const bookmarkCounts = useSelector((state) => state.auth.bookmarkCounts);
   const visitCounts = useSelector((state) => state.auth.visitCounts);
 
-  console.log(averageScores);
-  console.log(bookmarkCounts);
-  console.log(visitCounts);
-
   const handleDeleteClick = () => {
     dispatch(deleteStory(activeStory._id));
     toggleStoryModal(null);
@@ -71,8 +67,9 @@ const StoryModal = ({ activeStory, toggleStoryModal }) => {
               </svg>
               <p>
                 {`Average Assesment Score: ${
-                  averageScores.find((story) => story._id === activeStory?._id)
-                    ?.averageScore || 0
+                  averageScores
+                    .find((story) => story._id === activeStory?._id)
+                    ?.averageScore?.toFixed(2) || 0
                 }`}
               </p>
             </div>
