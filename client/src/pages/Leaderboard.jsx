@@ -24,7 +24,7 @@ const Leaderboard = ({ getRanking }) => {
     }
   }, []);
   return (
-    <div className={styles.Leaderboard}>
+    <div className={styles.Leaderboard} style={{ color: "white" }}>
       <Nav />
       <img onClick={goBack} className={styles.Back} src={Back} />
       <Rank ranking={ranking} />
