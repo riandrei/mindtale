@@ -12,7 +12,7 @@ const Story = require("../models/Story");
 const generativeAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const model = generativeAI.getGenerativeModel({
-  model: "gemini-2.0-flash",
+  model: "gemini-1.5-pro",
 });
 
 module.exports.startSession = async function startSession(req, res) {
