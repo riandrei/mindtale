@@ -63,6 +63,8 @@ async function getAverageAssessmentScores() {
       { $sort: { averageScore: -1 } }, // Optional: sort by highest average score
     ]);
 
+    console.log(averageScores);
+
     return averageScores;
   } catch (err) {
     console.error("Error fetching average scores:", err);

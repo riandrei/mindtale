@@ -66,11 +66,6 @@ const StoryModal = ({ activeStory, toggleStoryModal }) => {
                 />
               </svg>
               <p>
-                {`Average Assesment Score: ${
-                  averageScores
-                    .find((story) => story._id === activeStory?._id)
-                    ?.averageScore?.toFixed(2) || 0
-                }`}
                 {Number.parseFloat(
                   averageScores.find((story) => story._id === activeStory?._id)
                     ?.averageScore
