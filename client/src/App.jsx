@@ -33,6 +33,7 @@ import StoryPreference from "./pages/StoryPreference";
 import WordsMastered from "./pages/WordsMastered";
 import PreTest from "./pages/PreTest";
 import PostTest from "./pages/PostTest";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   return (
@@ -77,6 +78,7 @@ function App() {
             }
           />
           <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/UserDetails" element={<StudentDetails />} />
           <Route path="/StoryPreference" element={<StoryPreference />} />
           <Route path="/SchoolAdmin" element={<SchoolAdmin />} />

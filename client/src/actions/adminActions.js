@@ -18,6 +18,21 @@ export const addAdmin = (formData) => (dispatch) => {
   });
 };
 
+export const getStoriesStats = () => (dispatch) => {
+  fetch(`/api/stories/stats`, {
+    method: "GET",
+  }).then((res) => {
+    if (res.status === 200) {
+      res.json().then((res) => {
+        dispatch({
+          type: GET_STORIES_STATS_SUCCESS,
+          payload: res,
+        });
+      });
+    }
+  });
+};
+
 export const schoolAdminLogin = (username, password) => (dispatch) => {
   fetch(`/api/schoolAdminLogin`, {
     method: "POST",
@@ -33,6 +48,8 @@ export const schoolAdminLogin = (username, password) => (dispatch) => {
           type: SCHOOL_ADMIN_LOGIN_SUCCESS,
           payload: res.userInfo,
         });
+
+        dispatch(getStoriesStats());
       });
     }
   });
