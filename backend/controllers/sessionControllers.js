@@ -60,7 +60,7 @@ module.exports.startSession = async function startSession(req, res) {
                   role: "user",
                   parts: [
                     {
-                      text: `You will be given a story title and synopsis. Your reply should include a 50 word long narration, multiple actions the user can pick from, and a boolean value indicating if the story has ended. Keep in mind that the story should be straightforward and short. Do not repeat the same narrations or actions you have already said previously. Change isEnd to true once it has been about 15 chats back and forth.
+                      text: `You will be given a story title and synopsis. Your reply should include a 50 word long narration, multiple actions the user can pick from, and a boolean value indicating if the story has ended. Keep in mind that the story should be straightforward and short. Do not repeat the same narrations or actions you have already said previously. Change isEnd to true once it has been about 15 chats back and forth. DO NOT add anything outside the "{}".
 
             Example story title and synopsis: "Dragon's Quest: Welcome to the realm of Avalon, a land shrouded in whispers of forgotten magic and mythical creatures. You are no longer a nameless villager, but a budding hero thrust into an extraordinary adventure. A shadow has fallen upon Avalon. Whispers of a slumbering dragon, awakened by a malevolent force, spread fear throughout the kingdom.",
             Example response:
