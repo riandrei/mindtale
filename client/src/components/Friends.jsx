@@ -34,7 +34,7 @@ export default function Friends() {
   }, [users]);
 
   return (
-    <div className={styles.Friends}>
+    <div className={styles.Friends} style={{ color: "white" }}>
       {friends.length > 0 ? (
         friends.map((friend) => (
           <div className={styles.Specific_friend}>

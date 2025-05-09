@@ -78,7 +78,7 @@ const Dictionary = () => {
   const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
   return (
-    <div className={styles.Dictionary}>
+    <div className={styles.Dictionary} style={{ color: "white" }}>
       <div className={styles.dictNav}>
         <img
           onClick={handleBackClick}

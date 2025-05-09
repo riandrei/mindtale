@@ -173,7 +173,7 @@ export const About = () => {
   }, [user]);
 
   return (
-    <div>
+    <div style={{ color: "white" }}>
       <div className={styles.Intro}>
         <h1>Introduction:</h1>
         <p>{user?.bio}</p>
