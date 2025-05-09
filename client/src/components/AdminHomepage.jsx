@@ -76,7 +76,7 @@ function AdminHomepage({ generateStoryCover, addStory }) {
     }
   }, [generatedImageURL]);
   return (
-    <div className={styles.Admin}>
+    <div className={styles.Admin} style={{ color: "white" }}>
       {/* <Nav /> */}
       {/* <img onClick={goBack} className={styles.Back} src={Back} /> */}
       <form className={styles.Middle} onSubmit={handleSubmitClick}>
