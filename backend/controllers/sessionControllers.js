@@ -89,11 +89,13 @@ module.exports.startSession = async function startSession(req, res) {
 
             const text = response.text();
 
-            console.log(text);
             const trimmedText = text.trim();
 
+            const cleanedText = trimmedText.replace(/^```json\s*|\s*```$/g, "");
+
+            console.log(cleanedText);
             try {
-              const parsedText = JSON.parse(trimmedText);
+              const parsedText = JSON.parse(cleanedText);
 
               const history = await chat.getHistory();
 
@@ -178,11 +180,14 @@ module.exports.submitUserChoice = async function submitUserChoice(req, res) {
 
         const text = response.text();
 
-        console.log(text);
         const trimmedText = text.trim();
 
+        const cleanedText = trimmedText.replace(/^```json\s*|\s*```$/g, "");
+
+        console.log(cleanedText);
+
         try {
-          const parsedText = JSON.parse(trimmedText);
+          const parsedText = JSON.parse(cleanedText);
 
           const history = await chat.getHistory();
 
