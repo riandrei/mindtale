@@ -47,13 +47,13 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
-const saveUsersToDatabase = require("../saveUsersToDatabase");
+// const saveUsersToDatabase = require("../saveUsersToDatabase");
 
 mongoose
   .connect(dbURI)
   .then((result) => {
     console.log("Connected to db");
-    saveUsersToDatabase();
+    // saveUsersToDatabase();
   })
   .catch((err) => console.log(err));
 
