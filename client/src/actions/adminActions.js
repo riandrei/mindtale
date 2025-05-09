@@ -2,6 +2,7 @@ import {
   SCHOOL_ADMIN_LOGIN_SUCCESS,
   GET_ALLOWED_STORIES_SUCCESS,
   APPROVE_STORY_SUCCESS,
+  GET_STORIES_STATS_SUCCESS,
 } from "./types";
 
 const baseURL = import.meta.env.VITE_API_URL;

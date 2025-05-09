@@ -11,6 +11,10 @@ const StoryModal = ({ activeStory, toggleStoryModal }) => {
   const bookmarkCounts = useSelector((state) => state.auth.bookmarkCounts);
   const visitCounts = useSelector((state) => state.auth.visitCounts);
 
+  console.log(averageScores);
+  console.log(bookmarkCounts);
+  console.log(visitCounts);
+
   const handleDeleteClick = () => {
     dispatch(deleteStory(activeStory._id));
     toggleStoryModal(null);
