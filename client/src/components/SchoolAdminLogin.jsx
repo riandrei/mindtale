@@ -28,7 +28,14 @@ const SchoolAdminLogin = () => {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "auto", padding: "2rem" }}>
+    <div
+      style={{
+        maxWidth: "400px",
+        margin: "auto",
+        padding: "2rem",
+        color: "white",
+      }}
+    >
       <h2>Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>

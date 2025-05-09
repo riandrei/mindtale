@@ -81,7 +81,7 @@ function SchoolAdminHomepage() {
   }, [generatedImageURL]);
 
   return (
-    <div className={styles.Admin}>
+    <div className={styles.Admin} style={{ color: "white" }}>
       <form className={styles.Middle} onSubmit={handleSubmitClick}>
         <div className={styles.Middle_left}>
           <img className={styles.Cover} src={generatedImage || NoImage} />
