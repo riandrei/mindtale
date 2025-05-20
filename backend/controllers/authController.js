@@ -838,7 +838,9 @@ module.exports.submitWordInteraction = (req, res) => {
         return res.status(404).json({ error: "User not found." });
       }
 
-      saveWords([word], email);
+      if (word) {
+        saveWords([word], email);
+      }
 
       // Access the user's word list (or initialize it if undefined)
       const existingWords = user.words || [];
