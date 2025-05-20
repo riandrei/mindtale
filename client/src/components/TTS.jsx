@@ -18,7 +18,7 @@ const TTS = ({ text, isLight }) => {
     const synth = window.speechSynthesis;
 
     const fetchData = async () => {
-      const translatedText = await dispatch(translateText(text, "tl"));
+      // const translatedText = await dispatch(translateText(text, "tl"));
 
       const u = new SpeechSynthesisUtterance(text);
 

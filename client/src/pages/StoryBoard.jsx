@@ -89,7 +89,7 @@ function StoryBoard({ readStory }) {
   };
 
   useEffect(() => {
-    dispatch(translateText(selectedWord, "tl"));
+    // dispatch(translateText(selectedWord, "tl"));
     dispatch(translateWord(selectedWord, "tl"));
     fetchDefinition();
     dispatch(
