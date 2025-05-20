@@ -229,3 +229,93 @@
     width: 100%;
   }
 }
+
+.SummarySection,
+.InterpretationsSection,
+.TipsSection {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.InterpretationCard {
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border-left: 4px solid #4caf50;
+}
+
+.InterpretationHint {
+  font-size: 0.8em;
+  color: #666;
+  margin-top: 5px;
+}
+
+.ChartExplanation,
+.SectionExplanation {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.TagHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.TagInsight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.9em;
+}
+
+.TagTip {
+  color: #2196f3;
+  font-weight: bold;
+}
+
+.ScoreDisplay {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.HighScore {
+  background: #4caf50;
+  color: white;
+}
+.GoodScore {
+  background: #8bc34a;
+  color: white;
+}
+.FairScore {
+  background: #ff9800;
+  color: white;
+}
+.LowScore {
+  background: #f44336;
+  color: white;
+}
+
+.TipsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.Tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  background: white;
+  border-radius: 6px;
+}
+
+.TipIcon {
+  font-size: 1.5em;
+}

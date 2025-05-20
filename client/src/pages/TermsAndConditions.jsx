@@ -1,3 +1,5 @@
+import ParentConsent from "../assets/MINDTALE-PARENTAL-CONSENT-FORM.pdf";
+
 export function TermsAndConditions() {
   return (
     <>
@@ -439,6 +441,30 @@ export function TermsAndConditions() {
               </bdt>
               <bdt className="statement-end-if-in-editor" data-type="close" />
             </bdt>
+          </div>
+          <div align="center" style={{ lineHeight: 1 }}>
+            <br />
+          </div>
+          <div>
+            <h3>Parental Consent Form</h3>
+            <p>
+              If you are a minor, your parent or guardian must complete the form
+              below.
+            </p>
+
+            <iframe
+              src={ParentConsent}
+              width="100%"
+              height="600"
+              style={{ border: "1px solid #ccc" }}
+              title="Parental Consent Form PDF"
+            ></iframe>
+
+            <p>
+              <a href={ParentConsent} target="_blank">
+                Click here to download the form
+              </a>
+            </p>
           </div>
           <div className="MsoNormal" style={{ lineHeight: 1 }}>
             <br />
@@ -1215,6 +1241,7 @@ export function TermsAndConditions() {
               </bdt>
             </span>
           </div>
+
           <div className="MsoNormal" style={{ lineHeight: "1.5" }}>
             <br />
           </div>
