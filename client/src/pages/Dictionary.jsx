@@ -45,30 +45,27 @@ const Dictionary = () => {
   const handleBackClick = () => navigate(-1);
 
   const handleSearch = async (searchWord = word) => {
-    if (!searchWord.trim()) return;
-
-    try {
-      dispatch(translateWord(searchWord, "tl"));
-
-      const response = await fetch(
-        `https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`
-      );
-      if (!response.ok) throw new Error("Word not found");
-
-      const data = await response.json();
-      setSearchResults((prevResults) => [
-        { word, result: data[0] },
-        ...prevResults,
-      ]);
-    } catch (error) {
-      console.error("Error fetching word:", error);
-      setSearchResults((prevResults) => [
-        { word, result: null },
-        ...prevResults,
-      ]);
-    } finally {
-      setNoSearch(false);
-    }
+    // if (!searchWord.trim()) return;
+    // try {
+    //   // dispatch(translateWord(searchWord, "tl"));
+    //   const response = await fetch(
+    //     `https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`
+    //   );
+    //   if (!response.ok) throw new Error("Word not found");
+    //   const data = await response.json();
+    //   setSearchResults((prevResults) => [
+    //     { word, result: data[0] },
+    //     ...prevResults,
+    //   ]);
+    // } catch (error) {
+    //   console.error("Error fetching word:", error);
+    //   setSearchResults((prevResults) => [
+    //     { word, result: null },
+    //     ...prevResults,
+    //   ]);
+    // } finally {
+    //   setNoSearch(false);
+    // }
   };
 
   const handleKeyPress = (e) => {

@@ -90,7 +90,7 @@ function StoryBoard({ readStory }) {
 
   useEffect(() => {
     // dispatch(translateText(selectedWord, "tl"));
-    dispatch(translateWord(selectedWord, "tl"));
+    // dispatch(translateWord(selectedWord, "tl"));
     fetchDefinition();
     dispatch(
       submitWordInteraction(selectedWord.replace(/^[^\w]+|[^\w]+$/g, ""))
