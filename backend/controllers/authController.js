@@ -839,7 +839,7 @@ module.exports.submitWordInteraction = (req, res) => {
       }
 
       if (word) {
-        saveWords([word], email);
+        saveWords(word, email);
       }
 
       // Access the user's word list (or initialize it if undefined)
