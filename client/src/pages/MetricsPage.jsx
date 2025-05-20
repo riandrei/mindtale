@@ -171,11 +171,11 @@ export const MetricsPage = ({ getUser, getStories }) => {
 
     setAssessmentScore(avg);
 
-    let currentRemarks = "Stable";
+    let currentRemarks = "Consistent";
     if (secondHalfAvg > firstHalfAvg) {
       currentRemarks = "Improving";
     } else if (secondHalfAvg < firstHalfAvg) {
-      currentRemarks = "Declining";
+      currentRemarks = "Needs Attention";
     }
     setRemarks(currentRemarks);
 
