@@ -2,6 +2,8 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
 const util = require("util");
+
+const Papa = require("papaparse");
 const { Translate } = require("@google-cloud/translate").v2;
 // const textToSpeech = require("@google-cloud/text-to-speech");
 // import Papa from "papaparse";
