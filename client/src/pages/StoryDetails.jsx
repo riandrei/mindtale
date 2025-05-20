@@ -161,11 +161,17 @@ export function StoryDetails({
               <span className={styles.text}>...</span>
             </div>
           </div>
-          {reviewText && (
-            <p>
-              Note: You have completed this story once. Your journey lasted{" "}
-              {Math.floor(Math.random() * (2000 - 1500 + 1)) + 1500} words.
-            </p>
+          {user?.id ? (
+            checkExistingReview() ? (
+              <p>
+                Note: You have completed this story once. Your journey lasted{" "}
+                {Math.floor(Math.random() * (2000 - 1500 + 1)) + 1500} words.
+              </p>
+            ) : (
+              <></>
+            )
+          ) : (
+            <></>
           )}
           {/* <div className={styles.Views}>
             <span>2.1k Reads</span>

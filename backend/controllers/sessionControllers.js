@@ -385,10 +385,12 @@ function saveWords(narration, email) {
   const wordMap = {};
   wordsArray.forEach((word) => {
     if (word) {
-      if (!wordMap[word]) {
-        wordMap[word] = { timesEncountered: 0, interactions: 0 };
+      if (word.length > 3) {
+        if (!wordMap[word]) {
+          wordMap[word] = { timesEncountered: 0, interactions: 0 };
+        }
+        wordMap[word].timesEncountered++;
       }
-      wordMap[word].timesEncountered++;
     }
   });
 
