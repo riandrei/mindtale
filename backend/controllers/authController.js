@@ -758,6 +758,75 @@ module.exports.getWordsStats = (req, res) => {
   });
 };
 
+async function saveWords(narration, email) {
+  const wordsArray = narration
+    .toLowerCase()
+    .replace(/[^a-z\s']/g, "")
+    .split(/\s+/);
+
+  const wordMap = {};
+
+  const wordPromises = wordsArray.map(async (word) => {
+    if (!word || word.length <= 3) {
+      return;
+    }
+
+    try {
+      const isSignificant = await isSignificantWord(word);
+
+      console.log(isSignificant, word);
+
+      if (isSignificant) {
+        if (!wordMap[word]) {
+          wordMap[word] = { timesEncountered: 0, interactions: 0 };
+        }
+        wordMap[word].timesEncountered++;
+      }
+    } catch (error) {
+      console.error(`Error checking significance for word "${word}":`, error);
+    }
+  });
+
+  await Promise.all(wordPromises);
+
+  const newWords = Object.entries(wordMap).map(([word, data]) => ({
+    word,
+    timesEncountered: data.timesEncountered.toString(),
+    interactions: data.interactions.toString(),
+  }));
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      console.error(`User with email ${email} not found.`);
+      return;
+    }
+
+    const existingWords = user.words || [];
+
+    const mergedWords = [...existingWords];
+    newWords.forEach((newWord) => {
+      const existingWord = mergedWords.find(
+        (word) => word.word === newWord.word
+      );
+      if (existingWord) {
+        existingWord.timesEncountered = (
+          parseInt(existingWord.timesEncountered, 10) +
+          parseInt(newWord.timesEncountered, 10)
+        ).toString();
+        existingWord.interactions = existingWord.interactions;
+      } else {
+        mergedWords.push(newWord);
+      }
+    });
+
+    user.words = mergedWords;
+
+    await user.save();
+  } catch (err) {
+    console.error("Error updating user with new words:", err);
+  }
+}
 module.exports.submitWordInteraction = (req, res) => {
   const { email } = req.user; // Extract user email from the request
   const { word } = req.body; // Extract word from the request body
@@ -768,6 +837,8 @@ module.exports.submitWordInteraction = (req, res) => {
         console.error(`User with email ${email} not found.`);
         return res.status(404).json({ error: "User not found." });
       }
+
+      saveWords([word], email);
 
       // Access the user's word list (or initialize it if undefined)
       const existingWords = user.words || [];
