@@ -425,6 +425,8 @@ async function saveWords(narration, email) {
     try {
       const isSignificant = await isSignificantWord(word);
 
+      console.log(isSignificant, word);
+
       if (isSignificant) {
         if (!wordMap[word]) {
           wordMap[word] = { timesEncountered: 0, interactions: 0 };
