@@ -17,34 +17,34 @@ const TTS = ({ text, isLight }) => {
   useEffect(() => {
     const synth = window.speechSynthesis;
 
-    const fetchData = async () => {
-      // const translatedText = await dispatch(translateText(text, "tl"));
+    // const fetchData = async () => {
+    //   // const translatedText = await dispatch(translateText(text, "tl"));
 
-      const u = new SpeechSynthesisUtterance(text);
+    //   const u = new SpeechSynthesisUtterance(text);
 
-      // Split text into sentences or phrases for captions
-      const sentences = translatedText?.split(/(?<=[.?!])\s+/);
+    //   // Split text into sentences or phrases for captions
+    //   const sentences = translatedText?.split(/(?<=[.?!])\s+/);
 
-      u.onboundary = (event) => {
-        // When a word boundary is hit, update the current caption
-        if (event.name === "sentence") {
-          setSentenceIndex((prevIndex) => {
-            const newIndex = prevIndex + 1;
-            setCurrentCaption(sentences[newIndex]);
-            return newIndex;
-          });
-        }
-      };
+    //   u.onboundary = (event) => {
+    //     // When a word boundary is hit, update the current caption
+    //     if (event.name === "sentence") {
+    //       setSentenceIndex((prevIndex) => {
+    //         const newIndex = prevIndex + 1;
+    //         setCurrentCaption(sentences[newIndex]);
+    //         return newIndex;
+    //       });
+    //     }
+    //   };
 
-      u.onend = () => {
-        setCurrentCaption(""); // Clear the caption when the speech ends
-        setSentenceIndex(-1);
-      };
+    //   u.onend = () => {
+    //     setCurrentCaption(""); // Clear the caption when the speech ends
+    //     setSentenceIndex(-1);
+    //   };
 
-      setUtterance(u);
-    };
+    //   setUtterance(u);
+    // };
 
-    fetchData();
+    // fetchData();
 
     return () => {
       synth.cancel();
