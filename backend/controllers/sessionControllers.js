@@ -4,6 +4,7 @@ const fs = require("fs");
 const util = require("util");
 const { Translate } = require("@google-cloud/translate").v2;
 // const textToSpeech = require("@google-cloud/text-to-speech");
+// import Papa from "papaparse";
 
 const Session = require("../models/Session");
 const User = require("../models/User");
@@ -354,6 +355,39 @@ function getImageScene(imagePrompt, userAction) {
     .catch((error) => console.error(error));
 }
 
+function isSignificantWord() {
+  fs.readFile("../extended_common_words.csv", { encoding: "utf8" })
+    .then((csvContent) => {
+      Papa.parse(csvContent, {
+        header: true,
+        skipEmptyLines: true,
+        complete: function (results) {
+          results.data.forEach((row) => {
+            const word = row.Word;
+
+            if (word) {
+              if (!wordMap[word]) {
+                wordMap[word] = { timesEncountered: 0, interactions: 0 };
+              }
+              wordMap[word].timesEncountered++;
+            }
+          });
+
+          // Extract words that meet the criteria into an array
+          const filteredWordsArray = Object.keys(wordMap);
+
+          // Display results
+          displayResults(wordMap, filteredWordsArray);
+        },
+        error: function (error) {
+          console.error("Error parsing CSV:", error);
+        },
+      });
+    })
+    .catch((error) => {
+      console.error("Error reading file:", error);
+    });
+}
 module.exports.translateText = (req, res) => {
   const { text, targetLanguage } = req.body;
 
@@ -375,33 +409,43 @@ module.exports.translateText = (req, res) => {
     .catch((error) => console.error(error));
 };
 
-function saveWords(narration, email) {
+async function saveWords(narration, email) {
   const wordsArray = narration
     .toLowerCase()
-    .replace(/[^a-z\s']/g, "") // Remove punctuation except apostrophes
-    .split(/\s+/); // Split by whitespace
+    .replace(/[^a-z\s']/g, "")
+    .split(/\s+/);
 
-  // Step 2: Count unique words
   const wordMap = {};
-  wordsArray.forEach((word) => {
-    if (word) {
-      if (word.length > 3) {
+
+  const wordPromises = wordsArray.map(async (word) => {
+    if (!word || word.length <= 3) {
+      return;
+    }
+
+    try {
+      const isSignificant = await isSignificantWord(word);
+
+      if (isSignificant) {
         if (!wordMap[word]) {
           wordMap[word] = { timesEncountered: 0, interactions: 0 };
         }
         wordMap[word].timesEncountered++;
       }
+    } catch (error) {
+      console.error(`Error checking significance for word "${word}":`, error);
     }
   });
 
-  // Step 3: Convert to the desired format
+  await Promise.all(wordPromises);
+
   const newWords = Object.entries(wordMap).map(([word, data]) => ({
     word,
     timesEncountered: data.timesEncountered.toString(),
     interactions: data.interactions.toString(),
   }));
 
-  User.findOne({ email }).then((user) => {
+  try {
+    const user = await User.findOne({ email });
     if (!user) {
       console.error(`User with email ${email} not found.`);
       return;
@@ -409,9 +453,7 @@ function saveWords(narration, email) {
 
     const existingWords = user.words || [];
 
-    // Merge new words with existing saved words
     const mergedWords = [...existingWords];
-
     newWords.forEach((newWord) => {
       const existingWord = mergedWords.find(
         (word) => word.word === newWord.word
@@ -421,7 +463,7 @@ function saveWords(narration, email) {
           parseInt(existingWord.timesEncountered, 10) +
           parseInt(newWord.timesEncountered, 10)
         ).toString();
-        existingWord.interactions = existingWord.interactions; // No change here
+        existingWord.interactions = existingWord.interactions;
       } else {
         mergedWords.push(newWord);
       }
@@ -429,9 +471,8 @@ function saveWords(narration, email) {
 
     user.words = mergedWords;
 
-    // Save the updated user data
-    user.save().catch((err) => {
-      console.error("Error saving user data:", err);
-    });
-  });
+    await user.save();
+  } catch (err) {
+    console.error("Error updating user with new words:", err);
+  }
 }

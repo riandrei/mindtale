@@ -47,7 +47,45 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
-// const deleteWords = require("./deleteWords");
+// const Papa = require("papaparse");
+// const fs = require("fs");
+// // const deleteWords = require("./deleteWords");
+// function isSignificantWord(wordToCheck) {
+//   return new Promise((resolve, reject) => {
+//     // Use the callback style of fs.readFile instead of Promise style
+//     fs.readFile(
+//       "./extended_common_words.csv",
+//       { encoding: "utf8" },
+//       (err, csvContent) => {
+//         if (err) {
+//           reject(err);
+//           return;
+//         }
+
+//         Papa.parse(csvContent, {
+//           header: true,
+//           skipEmptyLines: true,
+//           complete: function (results) {
+//             // Convert to lowercase for case-insensitive comparison
+//             const wordToCheckLower = wordToCheck.toLowerCase();
+
+//             // Check if the word exists in our common words list
+//             const commonWords = results.data.map((row) =>
+//               row.Word.toLowerCase()
+//             );
+//             const isCommon = commonWords.includes(wordToCheckLower);
+
+//             // A word is significant if it's NOT in the common words list
+//             resolve(!isCommon);
+//           },
+//           error: function (error) {
+//             reject(error);
+//           },
+//         });
+//       }
+//     );
+//   });
+// }
 
 mongoose
   .connect(dbURI)
