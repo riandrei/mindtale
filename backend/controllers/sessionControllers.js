@@ -355,38 +355,41 @@ function getImageScene(imagePrompt, userAction) {
     .catch((error) => console.error(error));
 }
 
-function isSignificantWord() {
-  fs.readFile("../extended_common_words.csv", { encoding: "utf8" })
-    .then((csvContent) => {
-      Papa.parse(csvContent, {
-        header: true,
-        skipEmptyLines: true,
-        complete: function (results) {
-          results.data.forEach((row) => {
-            const word = row.Word;
+function isSignificantWord(wordToCheck) {
+  return new Promise((resolve, reject) => {
+    // Use the callback style of fs.readFile instead of Promise style
+    fs.readFile(
+      "./extended_common_words.csv",
+      { encoding: "utf8" },
+      (err, csvContent) => {
+        if (err) {
+          reject(err);
+          return;
+        }
 
-            if (word) {
-              if (!wordMap[word]) {
-                wordMap[word] = { timesEncountered: 0, interactions: 0 };
-              }
-              wordMap[word].timesEncountered++;
-            }
-          });
+        Papa.parse(csvContent, {
+          header: true,
+          skipEmptyLines: true,
+          complete: function (results) {
+            // Convert to lowercase for case-insensitive comparison
+            const wordToCheckLower = wordToCheck.toLowerCase();
 
-          // Extract words that meet the criteria into an array
-          const filteredWordsArray = Object.keys(wordMap);
+            // Check if the word exists in our common words list
+            const commonWords = results.data.map((row) =>
+              row.Word.toLowerCase()
+            );
+            const isCommon = commonWords.includes(wordToCheckLower);
 
-          // Display results
-          displayResults(wordMap, filteredWordsArray);
-        },
-        error: function (error) {
-          console.error("Error parsing CSV:", error);
-        },
-      });
-    })
-    .catch((error) => {
-      console.error("Error reading file:", error);
-    });
+            // A word is significant if it's NOT in the common words list
+            resolve(!isCommon);
+          },
+          error: function (error) {
+            reject(error);
+          },
+        });
+      }
+    );
+  });
 }
 module.exports.translateText = (req, res) => {
   const { text, targetLanguage } = req.body;
