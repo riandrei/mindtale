@@ -45,7 +45,7 @@ export default function sessionReducer(state = initialState, action) {
     case TRANSLATE_TEXT_SUCCESS:
       return {
         ...state,
-        translatedText: action.payload.translatedText,
+        // translatedText: action.payload.translatedText,
       };
     case TRANSLATE_WORD_SUCCESS:
       return {
